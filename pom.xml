@@ -14,7 +14,6 @@
 	<name>DefisApp</name>
 	<description>Project for Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
