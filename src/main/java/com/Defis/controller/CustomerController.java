@@ -27,10 +27,10 @@ public class CustomerController {
 	
 	@GetMapping("customers/new")
 	public String showNewCustomerForm(Model model) {
-		List<Agent> listCategories = agentRepo.findAll();
+		List<Agent> listAgents = agentRepo.findAll();
 		
 		model.addAttribute("customer", new Customer());
-		model.addAttribute("listCategories", listCategories);
+		model.addAttribute("listAgents", listAgents);
 		
 		return "customer_form";
 	}
@@ -42,16 +42,16 @@ public class CustomerController {
 		String[] detailCcontacts = request.getParameterValues("detailCcontact");
 		String[] detailCnationalIds = request.getParameterValues("detailCnationalId");
 		String[] detailCrelationships = request.getParameterValues("detailCrelationship");
-		String[] detailCemail = request.getParameterValues("detailCemail");
+		String[] detailCemails = request.getParameterValues("detailCemail");
 		String[] detailCcounties = request.getParameterValues("detailCcounty");
-		String[] detailCcwards = request.getParameterValues("detailCcward");
+		String[] detailCwards = request.getParameterValues("detailCward");
 		String[] detailCcurrent_residences = request.getParameterValues("detailCcurrent_residence");
 		
 		for (int i  = 0; i < detailCnames.length; i++) {
 			if(detailIDs != null && detailIDs.length > 0) {
-				customer.setDetail(Integer.valueOf(detailIDs[i]), detailCnames[i], detailCcontacts[i], detailCnationalIds[i], detailCrelationships[i], detailCemail[i], detailCcounties[i], detailCcwards[i], detailCcurrent_residences[i]);
+				customer.setDetail(Integer.valueOf(detailIDs[i]), detailCnames[i], detailCcontacts[i], detailCnationalIds[i], detailCrelationships[i], detailCemails[i], detailCcounties[i], detailCwards[i], detailCcurrent_residences[i]);
 			}else {
-			customer.addDetail(detailCnames[i], detailCcontacts[i], detailCnationalIds[i], detailCrelationships[i], detailCemail[i], detailCcounties[i], detailCcwards[i], detailCcurrent_residences[i]);
+			customer.addDetail(detailCnames[i], detailCcontacts[i], detailCnationalIds[i], detailCrelationships[i], detailCemails[i], detailCcounties[i], detailCwards[i], detailCcurrent_residences[i]);
 			}
 		}
 		
@@ -73,9 +73,9 @@ public class CustomerController {
 		Customer customer = customerRepo.findById(id).get();
 		model.addAttribute("customer", customer);
 		
-		List<Agent> listCategories = agentRepo.findAll();
+		List<Agent> listAgents = agentRepo.findAll();
 		
-		model.addAttribute("listCategories", listCategories);
+		model.addAttribute("listAgents", listAgents);
 		
 		return "customer_form";
 	}

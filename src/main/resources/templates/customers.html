@@ -2,7 +2,7 @@
 <html xmlns: th="http://www.thymeleaf.org">
     <head>
         <meta charset="ISO-8859-1">
-        <title>List products</title>
+        <title>List customer</title>
         <link rel="stylesheet" types="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
     </head>
     <body>
@@ -15,34 +15,35 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Age</th>
                                 <th>Email</th>
                                 <th>County</th>
                                 <th>Ward</th>
                                 <th>Village Name</th>
+                                <th>Huduma Number</th>
                                 <th>Gender</th>
-                                <th>Name</th>
                                 <th>Chief Name</th>
-                                <th>Chief Number</th>
-                                <th>Agent</th>
-                                <th>Details</th>
+                                <th>Chief Contact</th>
+                                <th>Agent Name</th>
                                 <th></th>
                             </tr>
                             
                         </thead>     
                         <tbody>
-                            <th:block th:each="product : ${listProducts}">
+                            <th:block th:each="customer : ${listCustomers}">
                                 <tr>
-                                    <td>[[${customer.id}]]</td>
+                                    <td>[[${customer.identification_no}]]</td>
                                     <td>[[${customer.name}]]</td>
+                                    <td>[[${customer.age}]]</td>
                                     <td>[[${customer.email}]]</td>
                                     <td>[[${customer.county}]]</td>
                                     <td>[[${customer.ward}]]</td>
                                     <td>[[${customer.village_name}]]</td>
+                                    <td>[[${customer.huduma_no}]]</td>
                                     <td>[[${customer.gender}]]</td>
                                     <td>[[${customer.chief_name}]]</td>
                                     <td>[[${customer.chief_contact}]]</td>
                                     <td>[[${customer.agent.name}]]</td>
-                                    <td>[[${customer.details}]]</td>
                                     <td>
                                         <a th:href="@{'/customers/edit/' + ${customer.id}}">Edit</a>
                                     

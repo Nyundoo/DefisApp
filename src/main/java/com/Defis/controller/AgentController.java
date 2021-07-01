@@ -45,9 +45,9 @@ public class AgentController {
 		Agent agent = repo.findById(id).get();
 		model.addAttribute("agent", agent);
 		
-		List<Agent> listCategories = repo.findAll();
+		List<Agent> listAgents = repo.findAll();
 		
-		model.addAttribute("listCategories", listCategories);
+		model.addAttribute("listAgents", listAgents);
 		
 		return "agent_form";
 	}

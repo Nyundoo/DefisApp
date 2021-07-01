@@ -14,9 +14,21 @@
                 <input type="hidden" th:field="*{id}" th:value="${customer.id}" />
                 <div class="m-3">
                     <div class="form-group row">
+                        <label class="col-form-label col-sm-4">Identification Number: </label>
+                        <div class="col-sm-8">
+                            <input type="text" th:field="*{identification_no}" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-form-label col-sm-4">Customer Name: </label>
                         <div class="col-sm-8">
                             <input type="text" th:field="*{name}" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4">Age: </label>
+                        <div class="col-sm-8">
+                            <input type="text" th:field="*{age}" class="form-control" required />
                         </div>
                     </div>
                     <div class="form-group row">
@@ -68,7 +80,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-form-label col-sm-4">Category: </label>
+                        <label class="col-form-label col-sm-4">Agent: </label>
                         <div class="col-sm-8">
                            <select th:field="*{agent}" class="form-control" required>
                                <th:block th:each="cat : ${listAgents}">
@@ -76,105 +88,139 @@
                                </th:block>
                            </select>
                         </div>
-                    </div>
+                    </div>       
 
-                    <th:block th:unless="${customer.id == null}" th:each="detail, status : ${customer.details}">
-                        <input type="hidden" name="detailID" th:value="${detail.id}" />
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-4">Details #[[${status.count}]]: </label>
-                            <div class="col-sm-4">
-                                <input type="text" name="detailName" th:value="${detail.name}" class="form-control" required />
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" name="detailValue" th:value="${detail.value}" class="form-control" required />
-                            </div>
-                        </div>
-                    </th:block>
 
-                    <th:block th:if="${customer.id == null}">
-                        <label class="col-form-label col-sm-4">Parent/Guardian and Next of Kin</label>
-                    <div class="form-group row">                        
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCname" placeholder="Name" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCrelationship" placeholder="Relationship" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCcounty" placeholder="County" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCward" placeholder="Ward" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCvillage_name" placeholder="Village" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCemail" placeholder="Email" class="form-control" required />
-                        </div>
-                    </div>
-                    <div class="form-group row">                        
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCname" placeholder="Name" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCrelationship" placeholder="Relationship" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCcounty" placeholder="County" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCward" placeholder="Ward" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCvillage_name" placeholder="Village" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCemail" placeholder="Email" class="form-control" required />
-                        </div>
-                    </div>
-                    <div class="form-group row">                        
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCname" placeholder="Name" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCrelationship" placeholder="Relationship" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCcounty" placeholder="County" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCward" placeholder="Ward" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCvillage_name" placeholder="Village" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCemail" placeholder="Email" class="form-control" required />
-                        </div>
-                    </div>
-                    <div class="form-group row">                        
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCname" placeholder="Name" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCrelationship" placeholder="Relationship" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCcounty" placeholder="County" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCward" placeholder="Ward" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCvillage_name" placeholder="Village" class="form-control" required />
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="text" name="detailCemail" placeholder="Email" class="form-control" required />
-                        </div>
-                    </div>
-                   
-                </th:block>
+
+       
+                            <SCRIPT language="javascript">
+                                function addRow(tableID) {
+                        
+                                    var table = document.getElementById(tableID);
+                        
+                                    var rowCount = table.rows.length;
+                                    var row = table.insertRow(rowCount);
+                        
+                                    var colCount = table.rows[0].cells.length;
+                        
+                                    for(var i=0; i<colCount; i++) {
+                        
+                                        var newcell	= row.insertCell(i);
+                        
+                                        newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+                                        //alert(newcell.childNodes);
+                                        switch(newcell.childNodes[0].type) {
+                                            case "text":
+                                                    newcell.childNodes[0].value = "";
+                                                    break;
+                                            case "checkbox":
+                                                    newcell.childNodes[0].checked = false;
+                                                    break;
+                                            case "select-one":
+                                                    newcell.childNodes[0].selectedIndex = 0;
+                                                    break;
+                                        }
+                                    }
+                                }
+                        
+                                function deleteRow(tableID) {
+                                    try {
+                                    var table = document.getElementById(tableID);
+                                    var rowCount = table.rows.length;
+                        
+                                    for(var i=0; i<rowCount; i++) {
+                                        var row = table.rows[i];
+                                        var chkbox = row.cells[0].childNodes[0];
+                                        if(null != chkbox && true == chkbox.checked) {
+                                            if(rowCount <= 1) {
+                                                alert("Cannot delete all the rows.");
+                                                break;
+                                            }
+                                            table.deleteRow(i);
+                                            rowCount--;
+                                            i--;
+                                        }
+                        
+                        
+                                    }
+                                    }catch(e) {
+                                        alert(e);
+                                    }
+                                }
+                        
+                            </SCRIPT>
+                       
+                       <th:block th:if="${customer.id == null}">
+                            <INPUT type="button" value="Add Row" onclick="addRow('dataTable')" />
+                        
+                            <INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable')" />
+                        </th:block>
+                        
+                            <TABLE  border="1">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th:block th:if="${customer.id == null}">
+                                        <th></th>
+                                    </th:block>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>County</th>
+                                        <th>Ward</th>
+                                        <th>Residence</th>
+                                        <th>Contact</th>
+                                        <th>Email</th>
+                                        <th>Relationship</th>
+                                    </tr>                                    
+                                </thead> 
+                                <th:block th:unless="${customer.id == null}" th:each="detail, status : ${customer.details}">
+                                <input type="hidden" name="detailID" th:value="${detail.id}" />                               
+                                
+                                <tbody>                                   
+                                <TR>
+                                    <th:block th:if="${customer.id == null}">
+                                    <TD><INPUT type="checkbox" name="chk"/></TD>
+                                </th:block>
+                                    <TD><input type="text" name="detailCnationalId" placeholder="National ID" th:value="${detail.cnational_id}" class="form-control" required /></TD>
+                                    <TD><input type="text" name="detailCname" placeholder="Name" th:value="${detail.cname}" class="form-control" required /></TD>
+                                    <TD><input type="text" name="detailCcounty" placeholder="County" th:value="${detail.ccounty}" class="form-control" required /></TD>
+                                    <TD><input type="text" name="detailCward" placeholder="Ward" th:value="${detail.cward}" class="form-control" required /></TD>
+                                    <TD><input type="text" name="detailCcurrent_residence" placeholder="Current Res" th:value="${detail.ccurrent_residence}" class="form-control" required /></TD>
+                                    <TD><input type="text" name="detailCcontact" placeholder="Contact" th:value="${detail.ccontact}" class="form-control" required /></TD>
+                                    <TD> <input type="text" name="detailCemail" placeholder="Email" th:value="${detail.cemail}" class="form-control" required /></TD>
+                                    <TD>
+                                        <SELECT name="detailCrelationship">
+                                            <OPTION value="Parent">Parent</OPTION>
+                                            <OPTION value="Guardian">Guardian</OPTION>
+                                            <OPTION value="Next of Kin">Next of Kin</OPTION>
+                                            <OPTION value="Spouse">Spouse</OPTION>
+                                        </SELECT>
+                                    </TD>
+                                </TR>
+                            </tbody>
+                                </th:block>
+                                <th:block th:if="${customer.id == null}">
+                                <tbody id="dataTable">
+                                <TR>
+                                    <TD><INPUT type="checkbox" name="chk"/></TD>
+                                    <TD><input type="text" name="detailCnationalId" placeholder="National ID" class="form-control" required /></TD>
+                                    <TD><input type="text" name="detailCname" placeholder="Name" class="form-control" required /></TD>
+                                    <TD><input type="text" name="detailCcounty" placeholder="County" class="form-control" required /></TD>
+                                    <TD><input type="text" name="detailCward" placeholder="Ward" class="form-control" required /></TD>
+                                    <TD><input type="text" name="detailCcurrent_residence" placeholder="Current Res" class="form-control" required /></TD>
+                                    <TD><input type="text" name="detailCcontact" placeholder="Contact" class="form-control" required /></TD>
+                                    <TD> <input type="text" name="detailCemail" placeholder="Email" class="form-control" required /></TD>
+                                    <TD>
+                                        <SELECT name="detailCrelationship">
+                                            <OPTION value="Parent">Parent</OPTION>
+                                            <OPTION value="Guardian">Guardian</OPTION>
+                                            <OPTION value="Next of Kin">Next of Kin</OPTION>
+                                            <OPTION value="Spouse">Spouse</OPTION>
+                                        </SELECT>
+                                    </TD>
+                                </TR>
+                            </tbody>
+                                </th:block>
+                            </TABLE>  
 
                     <div class="text-center p-3">
                         <button type="submit" class="btn btn-primary">Save</button>
