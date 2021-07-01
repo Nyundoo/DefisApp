@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns: th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="ISO-8859-1">
+        <title>List products</title>
+        <link rel="stylesheet" types="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    </head>
+    <body>
+        <div class="container text-center">
+            <div><h1>Product List</h1></div>
+
+                <div>
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>County</th>
+                                <th>Ward</th>
+                                <th>Village Name</th>
+                                <th>Gender</th>
+                                <th>Name</th>
+                                <th>Chief Name</th>
+                                <th>Chief Number</th>
+                                <th>Agent</th>
+                                <th>Details</th>
+                                <th></th>
+                            </tr>
+                            
+                        </thead>     
+                        <tbody>
+                            <th:block th:each="product : ${listProducts}">
+                                <tr>
+                                    <td>[[${customer.id}]]</td>
+                                    <td>[[${customer.name}]]</td>
+                                    <td>[[${customer.email}]]</td>
+                                    <td>[[${customer.county}]]</td>
+                                    <td>[[${customer.ward}]]</td>
+                                    <td>[[${customer.village_name}]]</td>
+                                    <td>[[${customer.gender}]]</td>
+                                    <td>[[${customer.chief_name}]]</td>
+                                    <td>[[${customer.chief_contact}]]</td>
+                                    <td>[[${customer.agent.name}]]</td>
+                                    <td>[[${customer.details}]]</td>
+                                    <td>
+                                        <a th:href="@{'/customers/edit/' + ${customer.id}}">Edit</a>
+                                    
+                                        <a th:href="@{'/customers/delete/' + ${customer.id}}">Delete</a>
+                                    </td>
+                                </tr>                                
+                            </th:block>
+                        </tbody>                   
+                    </table>
+
+                </div>
+        </div>       
+        
+    </body>
+</html>

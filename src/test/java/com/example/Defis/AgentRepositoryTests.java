@@ -10,23 +10,23 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
-import com.Defis.domain.Category;
-import com.Defis.repository.CategoryRepository;
+import com.Defis.domain.Agent;
+import com.Defis.repository.AgentRepository;
 
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
-public class CategoryRepositoryTests {
+public class AgentRepositoryTests {
 	
 	@Autowired
-	private CategoryRepository repo;
+	private AgentRepository repo;
 	
 	@Test
-	public void testCreateCategory() {
-		Category savedCategory = repo.save(new Category("Electronics"));
+	public void testCreateAgent() {
+		Agent savedAgent = repo.save(new Agent("Electronics"));
 		
-		assertThat(savedCategory.getId()).isGreaterThan(0);
+		assertThat(savedAgent.getId()).isGreaterThan(0);
 	}
 
 }

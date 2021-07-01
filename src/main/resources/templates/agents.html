@@ -2,12 +2,12 @@
 <html xmlns: th="http://www.thymeleaf.org">
     <head>
         <meta charset="ISO-8859-1">
-        <title>List products</title>
+        <title>List categories</title>
         <link rel="stylesheet" types="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
     </head>
     <body>
         <div class="container text-center">
-            <div><h1>Product List</h1></div>
+            <div><h1>Agent List</h1></div>
 
                 <div>
                     <table class="table table-bordered">
@@ -15,25 +15,29 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Price</th>
-                                <th>Category</th>
-                                <th>Details</th>
+                                <th>Current Residence</th>
+                                <th>Email</th>
+                                <th>County</th>
+                                <th>Ward</th>
+                                <th>Village Name</th>
                                 <th></th>
                             </tr>
                             
                         </thead>     
                         <tbody>
-                            <th:block th:each="product : ${listProducts}">
+                            <th:block th:each="agent : ${listAgents}">
                                 <tr>
-                                    <td>[[${product.id}]]</td>
-                                    <td>[[${product.name}]]</td>
-                                    <td>[[${product.price}]]</td>
-                                    <td>[[${product.category.name}]]</td>
-                                    <td>[[${product.details}]]</td>
+                                    <td>[[${agent.id}]]</td>
+                                    <td>[[${agent.name}]]</td>
+                                    <td>[[${agent.current_residence}]]</td>
+                                    <td>[[${agent.email}]]</td>
+                                    <td>[[${agent.county}]]</td>
+                                    <td>[[${agent.ward}]]</td>
+                                    <td>[[${agent.village_name}]]</td>
                                     <td>
-                                        <a th:href="@{'/products/edit/' + ${product.id}}">Edit</a>
+                                        <a th:href="@{'/agents/edit/' + ${agent.id}}">Edit</a>
                                     
-                                        <a th:href="@{'/products/delete/' + ${product.id}}">Delete</a>
+                                        <a th:href="@{'/agents/delete/' + ${agent.id}}">Delete</a>
                                     </td>
                                 </tr>                                
                             </th:block>
