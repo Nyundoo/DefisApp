@@ -1,27 +1,48 @@
 <!DOCTYPE html>
-<html xmlns: th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="ISO-8859-1">
-        <title>New Customer</title>
-        <link rel="stylesheet" types="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
-    </head>
-    <body>
-        <div class="container text-center">
-            <div><h1>Welcome to New Customer Data entry Page</h1></div>
+<html lang="en">
+<head th:replace="common/header :: common-header" />
 
-            <div class="p-2">
-                <a class="h2" th:href="@{/agents}">List Agents</a>
-            </div>
-            <div class="p-2">
-                <a class="h2" th:href="@{/agents/new}">Create Agents</a>
-            </div>
-            <div class="p-2">
-                <a class="h2" th:href="@{/customers}">List Customers</a>
-            </div>
-            <div class="p-2">
-                <a class="h2" th:href="@{/customers/new}">Create Customers</a>
-            </div>
-        </div>       
-        
+<!-- /GetBu
+<!-- /GetButton.io widget -->
+<body>
+  <div th:replace="common/header :: navbar" />
+            <div class="container text-center">
+
+                <div><h1>Welcome to New Customer Data entry Page</h1></div>
+    
+            </div>       
+            
+        </body>
+
+
+        <div class="overlay"></div>
+
+
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#sidebar").mCustomScrollbar({
+                    theme: "minimal"
+                });
+
+                $('#dismiss, .overlay').on('click', function () {
+                    $('#sidebar').removeClass('active');
+                    $('.overlay').fadeOut();
+                });
+
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').addClass('active');
+                    $('.overlay').fadeIn();
+                    $('.collapse.in').toggleClass('in');
+                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                });
+            });
+        </script>
     </body>
 </html>
