@@ -1,61 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="common/header :: common-header" />
 
 <!-- /GetBu
 <!-- /GetButton.io widget -->
 <body>
-  <div th:replace="common/header :: navbar" />
-        <div class="container text-center" style= "margin-top:120px;">
-            <div><h1>Product List</h1></div>
+    <div th:replace="common/header :: navbar" />
+          <div class="container text-center">
+              <div><h1>Customer List</h1></div>
+  
+                  <div>
+                      <table class="table table-bordered">
+                          <thead class="thead-dark">
+                              <tr>
+                                  <th>ID</th>
+                                  <th>Name</th>
+                                  <th>Age</th>
+                                  <th>Email</th>
+                                  <th>County</th>
+                                  <th>Ward</th>
+                                  <th>Village Name</th>
+                                  <th>Huduma Number</th>
+                                  <th>Gender</th>
+                                  <th>Chief Name</th>
+                                  <th>Chief Contact</th>
+                                  <th>Agent Name</th>
+                                  <th></th>
+                              </tr>
+                              
+                          </thead>     
+                          <tbody>
+                              <th:block th:each="customer : ${listCustomers}">
+                                  <tr>
+                                      <td>[[${customer.identification_no}]]</td>
+                                      <td>[[${customer.name}]]</td>
+                                      <td>[[${customer.age}]]</td>
+                                      <td>[[${customer.email}]]</td>
+                                      <td>[[${customer.county}]]</td>
+                                      <td>[[${customer.ward}]]</td>
+                                      <td>[[${customer.village_name}]]</td>
+                                      <td>[[${customer.huduma_no}]]</td>
+                                      <td>[[${customer.gender}]]</td>
+                                      <td>[[${customer.chief_name}]]</td>
+                                      <td>[[${customer.chief_contact}]]</td>
+                                      <td>[[${customer.agent.name}]]</td>
+                                      <td>
+                                          <a th:href="@{'/customers/edit/' + ${customer.id}}">Edit</a>
+                                      
+                                          <a th:href="@{'/customers/delete/' + ${customer.id}}">Delete</a>
+                                      </td>
+                                  </tr>                                
+                              </th:block>
+                          </tbody>                   
+                      </table>
+  
+                  </div>
+          </div>       
+          
+      </body>
 
-                <div>
-                    <table class="table table-bordered">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Email</th>
-                                <th>County</th>
-                                <th>Ward</th>
-                                <th>Village Name</th>
-                                <th>Huduma Number</th>
-                                <th>Gender</th>
-                                <th>Chief Name</th>
-                                <th>Chief Contact</th>
-                                <th>Agent Name</th>
-                                <th></th>
-                            </tr>
-                            
-                        </thead>     
-                        <tbody>
-                            <th:block th:each="customer : ${listCustomers}">
-                                <tr>
-                                    <td>[[${customer.identification_no}]]</td>
-                                    <td>[[${customer.name}]]</td>
-                                    <td>[[${customer.age}]]</td>
-                                    <td>[[${customer.email}]]</td>
-                                    <td>[[${customer.county}]]</td>
-                                    <td>[[${customer.ward}]]</td>
-                                    <td>[[${customer.village_name}]]</td>
-                                    <td>[[${customer.huduma_no}]]</td>
-                                    <td>[[${customer.gender}]]</td>
-                                    <td>[[${customer.chief_name}]]</td>
-                                    <td>[[${customer.chief_contact}]]</td>
-                                    <td>[[${customer.agent.name}]]</td>
-                                    <td>
-                                        <a th:href="@{'/customers/edit/' + ${customer.id}}">Edit</a>
-                                    
-                                        <a th:href="@{'/customers/delete/' + ${customer.id}}">Delete</a>
-                                    </td>
-                                </tr>                                
-                            </th:block>
-                        </tbody>                   
-                    </table>
 
-                </div>
-        </div>       
-        
-    </body>
+        <div class="overlay"></div>
+
+
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#sidebar").mCustomScrollbar({
+                    theme: "minimal"
+                });
+
+                $('#dismiss, .overlay').on('click', function () {
+                    $('#sidebar').removeClass('active');
+                    $('.overlay').fadeOut();
+                });
+
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').addClass('active');
+                    $('.overlay').fadeIn();
+                    $('.collapse.in').toggleClass('in');
+                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                });
+            });
+        </script>
+    
 </html>
