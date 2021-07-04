@@ -166,14 +166,14 @@
                                           <th:block th:if="${customer.id == null}">
                                           <th></th>
                                       </th:block>
-                                          <th>ID</th>
-                                          <th>Name</th>
-                                          <th>County</th>
-                                          <th>Ward</th>
-                                          <th>Residence</th>
-                                          <th>Contact</th>
-                                          <th>Email</th>
-                                          <th>Relationship</th>
+                                          <th style="color:#ffff">ID</th>
+                                          <th style="color:#ffff">Name</th>
+                                          <th style="color:#ffff">County</th>
+                                          <th style="color:#ffff">Ward</th>
+                                          <th style="color:#ffff">Residence</th>
+                                          <th style="color:#ffff">Contact</th>
+                                          <th style="color:#ffff">Email</th>
+                                          <th style="color:#ffff">Relationship</th>
                                       </tr>                                    
                                   </thead> 
                                   <th:block th:unless="${customer.id == null}" th:each="detail, status : ${customer.details}">
