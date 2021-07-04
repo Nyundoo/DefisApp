@@ -71,7 +71,7 @@
             </nav>
             <div class="overlay" ></div>
             <nav class="navbar navbar-light bg-light" style="background-color: #000000;">
-                <a class="navbar-brand" style="color: #fff;" th:href="@{/}">Defis application</a>                
+                <a class="navbar-brand" style="color: #fff;" th:href="@{/}">Defis Application</a>                
               </nav>
 
             <!-- Page Content Holder -->
@@ -93,6 +93,26 @@
                     </div>
                 </div>
             </nav>
+            <nav class="navbar navbar-default" style="background-color: #fff; width: 70%; margin: auto;">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-left">
+                            <form action="/action_page.php" style="margin-top: 10px;">
+                              <input type="text" placeholder="Enter Applicantion Number" name="search">
+                              <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a th:href="@{/}">Home page</a></li>
+                            <li><a th:href="@{/agents}">List Agents</a></li>
+                            <li><a th:href="@{/agents/new}">New Agent</a></li>
+                            <li><a th:href="@{/customers}">List Applicants</a></li>
+                            <li><a th:href="@{/customers/new}">Add a New Applicant</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            
         </div>
         
 

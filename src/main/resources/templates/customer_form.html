@@ -8,12 +8,12 @@
 <body>
     <div th:replace="common/header :: navbar" />
           <div class="container text-center">
-              <div th:if="${customer.id == null}"><h1>Create New Customer</h1></div>
-              <div th:unless="${customer.id == null}"><h1>Edit Customer</h1></div>
+              <div th:if="${customer.id == null}"><h1>Create New Applicant</h1></div>
+              <div th:unless="${customer.id == null}"><h1>Edit Applicant</h1></div>
   
               <form th:action="@{/customers/save}" th:object="${customer}" method="post" style="max-width: 1080px; margin: 0 auto;">
                 <fieldset>
-                    <legend>Customer:</legend>
+                    <legend style="text-align: left;">Applicant:</legend>
                   <input type="hidden" th:field="*{id}" th:value="${customer.id}" />
                   <div class="m-3">
                       <div class="form-group row">
@@ -152,7 +152,7 @@
                                   }
                           
                               </SCRIPT>
-                              <legend>Parent/Guardian and Next of Kin:</legend>
+                              <legend style="text-align: left;">Parent/Guardian and Next of Kin of the Applicant:</legend>
                          
                          <th:block th:if="${customer.id == null}">
                               <INPUT type="button" value="Add Row" onclick="addRow('dataTable')" />
@@ -192,7 +192,7 @@
                                       <TD><input type="text" name="detailCcontact" placeholder="Contact" th:value="${detail.ccontact}" class="form-control" required /></TD>
                                       <TD> <input type="text" name="detailCemail" placeholder="Email" th:value="${detail.cemail}" class="form-control" required /></TD>
                                       <TD>
-                                          <SELECT name="detailCrelationship">
+                                          <SELECT name="detailCrelationship" style="text-align: center; width: 33px;">
                                               <OPTION value="Parent">Parent</OPTION>
                                               <OPTION value="Guardian">Guardian</OPTION>
                                               <OPTION value="Next of Kin">Next of Kin</OPTION>
