@@ -17,8 +17,27 @@
                   <input type="hidden" th:field="*{id}" th:value="${customer.id}" />
                   <div class="m-3">
                     <div class="columna">
+                        <div class="form-group">
+                            <div class="atu" >
+                                <input id="itemImage" type="file" name="itemImage"
+                                    value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columnb" style="text-align: right;">
+                        <!-- upload image1 -->
+					<div class="form-group">
+						<div class="">
+							<label for="itemImage">Upload item image1</label>
+						</div>
+						<div class="">
+						<img alt="Main Image preview" id="thumbnail" style="width:200px; height:200px;" />
+						</div>
+					</div>
+                    </div>
+                    <div class="columna">
                       <div class="form-group row">
-                          <label class="col-form-label col-sm-4" style="text-align: right;">Identification Number: </label>
+                          <label class="col-form-label col-sm-4" style="text-align: right;">Application Number: </label>
                           <div class="col-sm-8">
                               <input type="text" th:field="*{identification_no}" class="form-control" required />
                           </div>
@@ -272,5 +291,28 @@
                 });
             });
         </script>
+
+<script>
+    $(document).ready(function(){
+        $('#itemImage').change(function(){
+            showImageThumbnail(this);
+        });      
+        
+    });
+    
+    
+    function showImageThumbnail(fileInput) {
+        file = fileInput.files[0];
+        reader = new FileReader();
+        
+        reader.onload = function(e) {
+            $('#thumbnail').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(file);
+    }
+    
+    
+                
+    </script>
     
 </html>
