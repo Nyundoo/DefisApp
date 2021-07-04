@@ -64,8 +64,8 @@
                 </ul>
 
                 <ul class="list-unstyled CTAs">
-                    <li><a sec:authorize="isAnonymous()" th:href="@{/login}" class="download" style="background-color: #f0c14b; color: #000000;">Sign in</a></li>
-                    <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="download" style="background-color: #f0c14b; color: #000000;">Logout</a></li>
+                    <li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}" style="color: #fff;"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+                    <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}" style="color: #fff;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     <li><a th:href="@{/}" class="article">Back to Home Page</a></li>
                 </ul>
             </nav>
@@ -86,7 +86,6 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a sec:authorize="isAnonymous()" th:href="@{/login}" style="color: #fff;"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
                             <li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}" style="color: #fff;"><span class="glyphicon glyphicon-user"></span> Account</a></li>
                             <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}" style="color: #fff;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                         </ul>
