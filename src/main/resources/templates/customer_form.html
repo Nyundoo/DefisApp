@@ -11,11 +11,12 @@
               <div th:if="${customer.id == null}"><h1>Create New Applicant</h1></div>
               <div th:unless="${customer.id == null}"><h1>Edit Applicant</h1></div>
   
-              <form th:action="@{/customers/save}" th:object="${customer}" method="post" style="max-width: 1080px; margin: 0 auto;">
+              <form th:action="@{/customers/save}" th:object="${customer}" method="post" style="margin: 0 auto;">
                 <fieldset>
                     <legend style="text-align: left;">Applicant:</legend>
                   <input type="hidden" th:field="*{id}" th:value="${customer.id}" />
                   <div class="m-3">
+                    <div class="columna">
                       <div class="form-group row">
                           <label class="col-form-label col-sm-4" style="text-align: right;">Identification Number: </label>
                           <div class="col-sm-8">
@@ -52,6 +53,8 @@
                               <input type="text" th:field="*{ward}" class="form-control" required />
                           </div>
                       </div>
+                      </div>
+                      <div class="columnb">
                       <div class="form-group row">
                           <label class="col-form-label col-sm-4" style="text-align: right;">Village Name: </label>
                           <div class="col-sm-8">
@@ -91,7 +94,8 @@
                                  </th:block>
                              </select>
                           </div>
-                      </div>       
+                      </div>  
+                      </div>     
   
   
   

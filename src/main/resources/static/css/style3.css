@@ -2,6 +2,36 @@
     DEMO STYLE
 */
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+/* Create two unequal columns that floats next to each other */
+        .columna {
+            float: left;
+            padding: 10px;
+            width: 50%;
+        }
+
+        .columnb {
+            float: left;
+            padding: 10px;
+            width: 50%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+            .columna {
+                width: 100%;
+            }
+            
+            .columnb {
+                width: 100%;
+            }
+        }
 
 .thead-dark {
   
