@@ -86,7 +86,7 @@ public class CustomerController {
 		
 		
 		
-		return "redirect:/customers";
+		return "redirect:/home";
 	}
 	
 	@GetMapping("/customers/edit/{id}")
