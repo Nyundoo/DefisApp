@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity(name = "Customer")
 @Table(name = "customer")
@@ -22,8 +25,8 @@ public class Customer {
 	private Integer id;
 	
 	@Column(length = 128, nullable = false, unique = true)
-	private Integer identification_no;
-	private Integer age;
+	private String identification;
+	private String age;
 	private String name;
 	private String email;
 	private String county;
@@ -33,6 +36,9 @@ public class Customer {
 	private String gender;
 	private String chief_name;
 	private String chief_contact;
+	
+	@Transient
+	private MultipartFile itemImage;
 	
 	@ManyToOne
 	@JoinColumn(name = "agent_id")
@@ -48,21 +54,21 @@ public class Customer {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}	
+
+	public String getIdentification() {
+		return identification;
 	}
 
-	public Integer getIdentification_no() {
-		return identification_no;
+	public void setIdentification(String identification_no) {
+		this.identification = identification_no;
 	}
 
-	public void setIdentification_no(Integer identification_no) {
-		this.identification_no = identification_no;
-	}
-
-	public Integer getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(Integer age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 
@@ -160,6 +166,21 @@ public class Customer {
 	
 	public void setDetail(Integer id, String cname, String ccontact, String cnational_id, String crelationship, String cemail, String ccounty, String cward, String ccurrent_residence) {
 		this.details.add(new CustomerDetails(id, cname, ccontact, cnational_id, crelationship, cemail, ccounty, cward, ccurrent_residence, this));
+	}
+
+	public MultipartFile getItemImage() {
+		return itemImage;
+	}
+
+	public void setItemImage(MultipartFile itemImage) {
+		this.itemImage = itemImage;
+	}
+	
+	@Transient
+	public String getMainImagePath() {
+		if(id == null) return null;
+		
+		return "/customer-images/customer/" + id +".jpg";
 	}
 	
 }

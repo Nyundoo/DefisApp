@@ -96,8 +96,8 @@
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-left">
-                            <form action="/action_page.php" style="margin-top: 10px;">
-                              <input type="text" placeholder="Enter Applicantion Number" name="search">
+                            <form th:action="@{/searchCustomer}" style="margin-top: 10px;">
+                              <input type="search" name="keyword" placeholder="Enter Applicantion Number" aria-label="Search">
                               <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </ul>
@@ -105,7 +105,6 @@
                             <li><a th:href="@{/}">Home page</a></li>
                             <li><a th:href="@{/agents}">List Agents</a></li>
                             <li><a th:href="@{/agents/new}">New Agent</a></li>
-                            <li><a th:href="@{/customers}">List Applicants</a></li>
                             <li><a th:href="@{/customers/new}">Add a New Applicant</a></li>
                         </ul>
                     </div>

@@ -1,5 +1,8 @@
 package com.Defis.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.Defis.domain.Agent;
 import com.Defis.domain.Customer;
@@ -18,6 +25,8 @@ import com.Defis.repository.CustomerRepository;
 
 @Controller
 public class CustomerController {
+	
+	
 	
 	@Autowired
 	private CustomerRepository customerRepo;
@@ -35,8 +44,8 @@ public class CustomerController {
 		return "customer_form";
 	}
 	
-	@PostMapping("/customers/save")
-	public String saveCustomer(Customer customer, HttpServletRequest request) {
+	@RequestMapping(value = "/customers/save", method = RequestMethod.POST)
+	public String saveCustomer(@ModelAttribute("customer") Customer customer, HttpServletRequest request) {
 		String[] detailIDs = request.getParameterValues("detailID");
 		String[] detailCnames = request.getParameterValues("detailCname");
 		String[] detailCcontacts = request.getParameterValues("detailCcontact");
@@ -57,15 +66,27 @@ public class CustomerController {
 		
 		customerRepo.save(customer);
 		
-		return "redirect:/customers";
-	}
-	
-	@GetMapping("/customers")
-	public String lisCustomers(Model model) {
-		List<Customer> listCustomers = customerRepo.findAll();
-		model.addAttribute("listCustomers", listCustomers);
 		
-		return "customers";
+		MultipartFile itemImage = customer.getItemImage();
+		
+		if(!itemImage.isEmpty()) {
+			try {
+				byte[] bytes = itemImage.getBytes();
+				String name = customer.getId() + ".jpg";
+				
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(new File("./customer-images/customer/" + name)));
+				stream.write(bytes);
+				stream.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		
+		return "redirect:/customers";
 	}
 	
 	@GetMapping("/customers/edit/{id}")
@@ -86,6 +107,16 @@ public class CustomerController {
 		
 		return "redirect:/customers";
 		
+	}
+	
+
+	@GetMapping("/customerInfo/edit/{id}")
+	public String customerInfo(@PathVariable("id") Integer id, Model model) {
+		Customer customer = customerRepo.findById(id).get();
+		model.addAttribute("customer", customer);
+
+		
+		return "customerInfo";
 	}
 
 }

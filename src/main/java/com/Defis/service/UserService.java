@@ -2,10 +2,13 @@ package com.Defis.service;
 
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import com.Defis.domain.User;
 import com.Defis.domain.security.PasswordResetToken;
 import com.Defis.domain.security.UserRole;
 
+@Service
 public interface UserService {
 	PasswordResetToken getPasswordResetToken(final String token);
 	
@@ -18,7 +21,6 @@ void createPasswordResetTokenForUser(final User user, final String token);
 	User findById(Long id);
 	
 	User createUser(User user, Set<UserRole> userRoles) throws Exception;
-	
 	
 	User save(User user);
 	

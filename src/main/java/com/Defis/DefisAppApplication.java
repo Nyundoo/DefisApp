@@ -27,16 +27,17 @@ public class DefisAppApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		User user1 = new User();
-		user1.setUsername("admin");
-		user1.setPassword(SecurityUtility.passwordEncoder().encode("admin"));
-		user1.setEmail("admin@gmail.com");
+		user1.setFirstName("Arthur");
+		user1.setLastName("Lukhoni");
+		user1.setUsername("a");
+		user1.setPassword(SecurityUtility.passwordEncoder().encode("p"));
+		user1.setEmail("lukhoniarthur@gmail.com");
 		Set<UserRole> userRoles = new HashSet<>();
 		Role role1= new Role();
-		role1.setRoleId(0);
-		role1.setName("ROLE_ADMIN");
+		role1.setRoleId(1);
+		role1.setName("ROLE_USER");
 		userRoles.add(new UserRole(user1, role1));
 		
 		userService.createUser(user1, userRoles);
 	}
-
 }

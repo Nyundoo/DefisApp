@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
 			"/newUser",
 			"/forgetPassword",
 			"/login",
-			"/item-images/**",
+			"/customer-images/**",
 			"/fonts/**"
 	};
 
@@ -69,10 +69,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
 	
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-		Path itemUploadDir = Paths.get("./item-images");
+		Path itemUploadDir = Paths.get("./customer-images");
 		String itemUploadPath = itemUploadDir.toFile().getAbsolutePath();
 		
-	    registry.addResourceHandler("/item-images/**").addResourceLocations("file:" + itemUploadPath + "/");
+	    registry.addResourceHandler("/customer-images/**").addResourceLocations("file:" + itemUploadPath + "/");
 	}
 
 	@Autowired
