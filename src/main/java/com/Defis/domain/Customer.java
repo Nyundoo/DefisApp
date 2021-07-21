@@ -35,7 +35,7 @@ public class Customer {
 	private Integer huduma_no;
 	private String gender;
 	private String chief_name;
-	private String chief_contact;
+	private String contact;
 	
 	@Transient
 	private MultipartFile itemImage;
@@ -134,14 +134,14 @@ public class Customer {
 
 	public void setChief_name(String chief_name) {
 		this.chief_name = chief_name;
+	}	
+
+	public String getContact() {
+		return contact;
 	}
 
-	public String getChief_contact() {
-		return chief_contact;
-	}
-
-	public void setChief_contact(String chief_contact) {
-		this.chief_contact = chief_contact;
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
 
 	public Agent getAgent() {
