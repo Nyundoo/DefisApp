@@ -15,18 +15,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.Defis.domain.Agent;
 import com.Defis.domain.Customer;
 import com.Defis.repository.AgentRepository;
 import com.Defis.repository.CustomerRepository;
+import com.Defis.service.CustomerService;
 
 @Controller
 public class CustomerController {
 	
-	
+	@Autowired
+	private CustomerService customerService;
 	
 	@Autowired
 	private CustomerRepository customerRepo;
@@ -87,6 +88,14 @@ public class CustomerController {
 		
 		
 		return "redirect:/home";
+	}
+	
+	@RequestMapping("/customers")
+	public String customerList(Model model) {
+		List<Customer> customerList = customerService.findAll();
+		model.addAttribute("customerList", customerList);	
+		return "customerList";
+		
 	}
 	
 	@GetMapping("/customers/edit/{id}")

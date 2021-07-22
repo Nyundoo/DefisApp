@@ -28,6 +28,8 @@ public class Customer {
 	private String identification;
 	private String age;
 	private String name;
+	private String job_country;
+	private String job;
 	private String email;
 	private String county;
 	private String ward;
@@ -78,6 +80,22 @@ public class Customer {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getJob_country() {
+		return job_country;
+	}
+
+	public void setJob_country(String job_country) {
+		this.job_country = job_country;
+	}
+
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
 	}
 
 	public String getEmail() {
