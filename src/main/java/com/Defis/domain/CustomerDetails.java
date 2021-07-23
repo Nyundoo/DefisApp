@@ -28,12 +28,6 @@ public class CustomerDetails {
 	@Column(length = 45, nullable = false)
 	private String crelationship;
 	
-	private String cemail;
-	
-	private String ccounty;
-	
-	private String cward;
-	
 	private String ccurrent_residence;
 	
 	@Column(length = 45, nullable = true)
@@ -46,16 +40,13 @@ public class CustomerDetails {
 	
 	
 	
-	public CustomerDetails(Integer id, String cname, String ccontact, String cnational_id, String crelationship, String cemail, String ccounty, String cward, String ccurrent_residence, Customer customer) {
+	public CustomerDetails(Integer id, String cname, String ccontact, String cnational_id, String crelationship, String ccurrent_residence, Customer customer) {
 		super();
 		this.id = id;
 		this.cname = cname;
 		this.ccontact = ccontact;
 		this.cnational_id = cnational_id;
 		this.crelationship = crelationship;
-		this.cemail = cemail;
-		this.ccounty = ccounty;
-		this.cward = cward;
 		this.ccurrent_residence = ccurrent_residence;
 		this.customer = customer;
 	}
@@ -64,14 +55,11 @@ public class CustomerDetails {
 		
 	}
 	
-	public CustomerDetails(String cname, String ccontact, String cnational_id, String crelationship, String cemail, String ccounty, String cward, String ccurrent_residence, Customer customer) {		
+	public CustomerDetails(String cname, String ccontact, String cnational_id, String crelationship, String ccurrent_residence, Customer customer) {		
 		this.cname = cname;
 		this.ccontact = ccontact;
 		this.cnational_id = cnational_id;
 		this.crelationship = crelationship;
-		this.cemail = cemail;
-		this.ccounty = ccounty;
-		this.cward = cward;
 		this.ccurrent_residence = ccurrent_residence;
 		this.customer = customer;
 	}	
@@ -114,30 +102,6 @@ public class CustomerDetails {
 
 	public void setCrelationship(String crelationship) {
 		this.crelationship = crelationship;
-	}
-
-	public String getCemail() {
-		return cemail;
-	}
-
-	public void setCemail(String cemail) {
-		this.cemail = cemail;
-	}
-
-	public String getCcounty() {
-		return ccounty;
-	}
-
-	public void setCcounty(String ccounty) {
-		this.ccounty = ccounty;
-	}
-
-	public String getCward() {
-		return cward;
-	}
-
-	public void setCward(String cward) {
-		this.cward = cward;
 	}
 
 	public String getCcurrent_residence() {

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity(name = "Agent")
@@ -13,15 +15,21 @@ public class Agent {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+	private String id_no;
 	private String name;
 	
+	private String phone_number1;
+	private String phone_number2;
 	private String current_residence;
 	private String email;
 	private String county;
 	private String ward;
 	private String village_name;
 	
+	
+	@ManyToOne
+	@JoinColumn(name = "agent_id")
+	private Agent agent;
 	
 	public Agent() {
 	}
@@ -30,6 +38,14 @@ public class Agent {
 		this.id = id;
 	}
 	
+	public String getId_no() {
+		return id_no;
+	}
+
+	public void setId_no(String id_no) {
+		this.id_no = id_no;
+	}
+
 	public Agent(String name) {
 		this.name = name;
 	}
@@ -47,6 +63,30 @@ public class Agent {
 		this.name = name;
 	}
 			
+	public String getPhone_number1() {
+		return phone_number1;
+	}
+
+	public void setPhone_number1(String phone_number1) {
+		this.phone_number1 = phone_number1;
+	}
+	
+	public String getPhone_number2() {
+		return phone_number2;
+	}
+
+	public void setPhone_number2(String phone_number2) {
+		this.phone_number2 = phone_number2;
+	}
+
+	public Agent getAgent() {
+		return agent;
+	}
+
+	public void setAgent(Agent agent) {
+		this.agent = agent;
+	}
+
 	public String getCurrent_residence() {
 		return current_residence;
 	}

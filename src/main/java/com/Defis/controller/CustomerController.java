@@ -19,8 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.Defis.domain.Agent;
 import com.Defis.domain.Customer;
+import com.Defis.domain.Job;
 import com.Defis.repository.AgentRepository;
 import com.Defis.repository.CustomerRepository;
+import com.Defis.repository.JobRepository;
 import com.Defis.service.CustomerService;
 
 @Controller
@@ -34,13 +36,17 @@ public class CustomerController {
 	
 	@Autowired
 	private AgentRepository agentRepo;
+	@Autowired
+	private JobRepository jobRepo;
 	
 	@GetMapping("customers/new")
 	public String showNewCustomerForm(Model model) {
 		List<Agent> listAgents = agentRepo.findAll();
+		List<Job> listJobs = jobRepo.findAll();
 		
 		model.addAttribute("customer", new Customer());
 		model.addAttribute("listAgents", listAgents);
+		model.addAttribute("listJobs", listJobs);
 		
 		return "customer_form";
 	}
@@ -104,8 +110,10 @@ public class CustomerController {
 		model.addAttribute("customer", customer);
 		
 		List<Agent> listAgents = agentRepo.findAll();
+		List<Job> listJobs = jobRepo.findAll();
 		
 		model.addAttribute("listAgents", listAgents);
+		model.addAttribute("listjobs", listJobs);
 		
 		return "customer_form";
 	}

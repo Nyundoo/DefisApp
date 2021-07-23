@@ -28,8 +28,11 @@ public class Customer {
 	private String identification;
 	private String age;
 	private String name;
-	private String job_country;
-	private String job;
+
+	@ManyToOne
+	@JoinColumn(name = "job_id")
+	private Job job;
+	
 	private String email;
 	private String county;
 	private String ward;
@@ -41,6 +44,8 @@ public class Customer {
 	
 	@Transient
 	private MultipartFile itemImage;
+	
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "agent_id")
@@ -80,21 +85,13 @@ public class Customer {
 
 	public void setName(String name) {
 		this.name = name;
-	}
+	}	
 
-	public String getJob_country() {
-		return job_country;
-	}
-
-	public void setJob_country(String job_country) {
-		this.job_country = job_country;
-	}
-
-	public String getJob() {
+	public Job getJob() {
 		return job;
 	}
 
-	public void setJob(String job) {
+	public void setJob(Job job) {
 		this.job = job;
 	}
 
@@ -171,7 +168,7 @@ public class Customer {
 	}
 
 	public void addDetail(String cname, String ccontact, String cnational_id, String crelationship, String cemail, String ccounty, String cward, String ccurrent_residence) {
-		this.details.add(new CustomerDetails(cname, ccontact, cnational_id, crelationship, cemail, ccounty, cward, ccurrent_residence, this));
+		this.details.add(new CustomerDetails(cname, ccontact, cnational_id, crelationship, ccurrent_residence, this));
 	}
 
 	public List<CustomerDetails> getDetails() {
@@ -183,7 +180,7 @@ public class Customer {
 	}
 	
 	public void setDetail(Integer id, String cname, String ccontact, String cnational_id, String crelationship, String cemail, String ccounty, String cward, String ccurrent_residence) {
-		this.details.add(new CustomerDetails(id, cname, ccontact, cnational_id, crelationship, cemail, ccounty, cward, ccurrent_residence, this));
+		this.details.add(new CustomerDetails(id, cname, ccontact, cnational_id, crelationship, ccurrent_residence, this));
 	}
 
 	public MultipartFile getItemImage() {
