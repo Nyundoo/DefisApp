@@ -64,7 +64,7 @@ public class MedicalController {
 		model.addAttribute("listMedicals", listMedicals);
 		model.addAttribute("listCustomers", listCustomers);
 		
-		return "medical_form";
+		return "medical_formedit";
 	}
 	
 	@GetMapping("/medicals/delete/{id}")

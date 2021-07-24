@@ -8,7 +8,7 @@
 <body>
     <div th:replace="common/header :: navbar" />
           <div class="container text-center">
-              <h1>Create New Medical</h1>
+              <h1>Edit Medical</h1>
   
               <form th:action="@{/medicals/save}" th:object="${medical}" method="post" style="max-width: 600px; margin: 0 auto;">
                   <input type="hidden" th:field="*{id}" th:value="${medical.id}" />
@@ -194,56 +194,7 @@
               </form>
               
           </div>       
-          <script>
-              
-var date = new Date();
-
-var day = date.getDate();
-var month = date.getMonth() + 1;
-var year = date.getFullYear();
-
-if (month < 10) month = "0" + month;
-if (day < 10) day = "0" + day;
-
-var today = year + "-" + month + "-" + day;
-
-
-document.getElementById('theDate').value = today;
-
-
-
-var date2 = new Date();
-
-var day2= date2.getDate();
-var month2 = date2.getMonth() + 1;
-var year2 = date2.getFullYear();
-
-if (month2 < 10) month2 = "0" + month2;
-if (day2 < 10) day2 = "0" + day2;
-
-var today2 = year2 + "-" + month2 + "-" + day2;
-
-
-document.getElementById('theDate2').value = today2;
-
-
-
-var date3 = new Date();
-
-var day3= date3.getDate();
-var month3 = date3.getMonth() + 1;
-var year3 = date3.getFullYear();
-
-if (month3 < 10) month3 = "0" + month3;
-if (day3 < 10) day3 = "0" + day3;
-
-var today3 = year3 + "-" + month3 + "-" + day3;
-
-
-document.getElementById('theDate3').value = today3;
-
-
-
+          <script>        
 
 var checkBox1 = document.getElementById("myCheck");
   var text1 = document.getElementById("myDIV");
