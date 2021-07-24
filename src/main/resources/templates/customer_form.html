@@ -3,9 +3,15 @@
 	xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="common/header :: common-header" />
 
+
 <!-- /GetBu
 <!-- /GetButton.io widget -->
 <body>
+    <!-- <style>
+        #thumbnail{
+            background-image: url("images/pro.jpg");
+        }
+    </style> -->
     <div th:replace="common/header :: navbar" />
           <div class="container text-center">
               <div th:if="${customer.id == null}"><h1>Create New Applicant</h1></div>
@@ -31,7 +37,7 @@
 							<label for="itemImage">Upload item image1</label>
 						</div>
 						<div class="">
-						<img src="./images/pro.jpg" alt="Main Image preview" id="thumbnail" style="width:200px; height:200px;" />
+						<img src="images/pro.jpg" alt="Main Image preview" id="thumbnail" style="width:200px; height:200px;" />
 						</div>
 					</div>
                     </div>
@@ -228,7 +234,7 @@
                                       <TD><input type="text" name="detailCcurrent_residence" placeholder="Current Res" th:value="${detail.ccurrent_residence}" class="form-control" required /></TD>
                                       <TD><input type="text" name="detailCcontact" placeholder="Contact" th:value="${detail.ccontact}" class="form-control" required /></TD>
                                       <TD>
-                                          <SELECT name="detailCrelationship" style="text-align: center; width: 33px;">
+                                          <SELECT class="form-control" name="detailCrelationship">
                                               <OPTION value="Parent">Parent</OPTION>
                                               <OPTION value="Guardian">Guardian</OPTION>
                                               <OPTION value="Next of Kin">Next of Kin</OPTION>
@@ -247,7 +253,7 @@
                                       <TD><input type="text" name="detailCcurrent_residence" placeholder="Current Res" class="form-control" required /></TD>
                                       <TD><input type="text" name="detailCcontact" placeholder="Contact" class="form-control" required /></TD>
                                       <TD>
-                                          <SELECT name="detailCrelationship">
+                                          <SELECT class="form-control" name="detailCrelationship">
                                               <OPTION value="Parent">Parent</OPTION>
                                               <OPTION value="Guardian">Guardian</OPTION>
                                               <OPTION value="Next of Kin">Next of Kin</OPTION>

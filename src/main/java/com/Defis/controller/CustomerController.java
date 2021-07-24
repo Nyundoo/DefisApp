@@ -36,6 +36,7 @@ public class CustomerController {
 	
 	@Autowired
 	private AgentRepository agentRepo;
+	
 	@Autowired
 	private JobRepository jobRepo;
 	
@@ -58,16 +59,13 @@ public class CustomerController {
 		String[] detailCcontacts = request.getParameterValues("detailCcontact");
 		String[] detailCnationalIds = request.getParameterValues("detailCnationalId");
 		String[] detailCrelationships = request.getParameterValues("detailCrelationship");
-		String[] detailCemails = request.getParameterValues("detailCemail");
-		String[] detailCcounties = request.getParameterValues("detailCcounty");
-		String[] detailCwards = request.getParameterValues("detailCward");
 		String[] detailCcurrent_residences = request.getParameterValues("detailCcurrent_residence");
 		
 		for (int i  = 0; i < detailCnames.length; i++) {
 			if(detailIDs != null && detailIDs.length > 0) {
-				customer.setDetail(Integer.valueOf(detailIDs[i]), detailCnames[i], detailCcontacts[i], detailCnationalIds[i], detailCrelationships[i], detailCemails[i], detailCcounties[i], detailCwards[i], detailCcurrent_residences[i]);
+				customer.setDetail(Integer.valueOf(detailIDs[i]), detailCnames[i], detailCcontacts[i], detailCnationalIds[i], detailCrelationships[i], detailCcurrent_residences[i]);
 			}else {
-			customer.addDetail(detailCnames[i], detailCcontacts[i], detailCnationalIds[i], detailCrelationships[i], detailCemails[i], detailCcounties[i], detailCwards[i], detailCcurrent_residences[i]);
+			customer.addDetail(detailCnames[i], detailCcontacts[i], detailCnationalIds[i], detailCrelationships[i], detailCcurrent_residences[i]);
 			}
 		}
 		
@@ -93,7 +91,7 @@ public class CustomerController {
 		
 		
 		
-		return "redirect:/home";
+		return "redirect:/customers";
 	}
 	
 	@RequestMapping("/customers")
@@ -113,7 +111,7 @@ public class CustomerController {
 		List<Job> listJobs = jobRepo.findAll();
 		
 		model.addAttribute("listAgents", listAgents);
-		model.addAttribute("listjobs", listJobs);
+		model.addAttribute("listJobs", listJobs);
 		
 		return "customer_form";
 	}

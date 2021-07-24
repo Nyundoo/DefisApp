@@ -23,7 +23,8 @@ public class Job {
 	private String country;
 	
 	private String job_title;
-	private Float payment;
+	private double payment;
+	
 	@Column(columnDefinition="text")
 	private String job_description;
 
@@ -54,10 +55,10 @@ public class Job {
 	public void setJob_title(String job_title) {
 		this.job_title = job_title;
 	}
-	public Float getPayment() {
+	public double getPayment() {
 		return payment;
 	}
-	public void setPayment(Float payment) {
+	public void setPayment(double payment) {
 		this.payment = payment;
 	}
 	public String getJob_description() {

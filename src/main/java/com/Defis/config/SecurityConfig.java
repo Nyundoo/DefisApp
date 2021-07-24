@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
 	private static final String[] PUBLIC_MATCHERS = {
 			"/css/**",
 			"/js/**",
-			"/image/**",
+			"/images/**",
 			"/newUser",
 			"/forgetPassword",
 			"/login",

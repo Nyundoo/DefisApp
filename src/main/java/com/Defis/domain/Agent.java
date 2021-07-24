@@ -27,9 +27,6 @@ public class Agent {
 	private String village_name;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "agent_id")
-	private Agent agent;
 	
 	public Agent() {
 	}
@@ -77,14 +74,6 @@ public class Agent {
 
 	public void setPhone_number2(String phone_number2) {
 		this.phone_number2 = phone_number2;
-	}
-
-	public Agent getAgent() {
-		return agent;
-	}
-
-	public void setAgent(Agent agent) {
-		this.agent = agent;
 	}
 
 	public String getCurrent_residence() {

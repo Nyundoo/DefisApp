@@ -1,17 +1,20 @@
 package com.Defis.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -19,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Entity(name = "Customer")
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -51,13 +54,28 @@ public class Customer {
 	@JoinColumn(name = "agent_id")
 	private Agent agent;
 	
+	@OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "customer")
+    private Medical medical;
+	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private List<CustomerDetails> details = new ArrayList<>();
 	
 	
 	public Integer getId() {
 		return id;
+	}	
+
+	public Medical getMedical() {
+		return medical;
 	}
+
+	public void setMedical(Medical medical) {
+		this.medical = medical;
+	}
+
+
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -167,7 +185,7 @@ public class Customer {
 		this.agent = agent;
 	}
 
-	public void addDetail(String cname, String ccontact, String cnational_id, String crelationship, String cemail, String ccounty, String cward, String ccurrent_residence) {
+	public void addDetail(String cname, String ccontact, String cnational_id, String crelationship, String ccurrent_residence) {
 		this.details.add(new CustomerDetails(cname, ccontact, cnational_id, crelationship, ccurrent_residence, this));
 	}
 
@@ -179,7 +197,7 @@ public class Customer {
 		this.details = details;
 	}
 	
-	public void setDetail(Integer id, String cname, String ccontact, String cnational_id, String crelationship, String cemail, String ccounty, String cward, String ccurrent_residence) {
+	public void setDetail(Integer id, String cname, String ccontact, String cnational_id, String crelationship, String ccurrent_residence) {
 		this.details.add(new CustomerDetails(id, cname, ccontact, cnational_id, crelationship, ccurrent_residence, this));
 	}
 
