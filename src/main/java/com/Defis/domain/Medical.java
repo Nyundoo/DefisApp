@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Medical implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
@@ -36,7 +36,7 @@ public class Medical implements Serializable {
 
     }
 	
-	public Medical(Long id, Customer customer, String client_info, String medical_center, String medical_type,
+	public Medical(Integer id, Customer customer, String client_info, String medical_center, String medical_type,
 			double amount_paid, Date application_date, boolean active) {
 		super();
 		this.id = id;
@@ -55,13 +55,15 @@ public class Medical implements Serializable {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
 	public String getClient_info() {
 		return client_info;
 	}
-	
+
 	public void setClient_info(String client_info) {
-		client_info = client_info;
+		this.client_info = client_info;
 	}
+
 	public String getMedical_center() {
 		return medical_center;
 	}
@@ -86,10 +88,10 @@ public class Medical implements Serializable {
 	public void setApplication_date(Date application_date) {
 		this.application_date = application_date;
 	}
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public boolean isActive() {

@@ -35,9 +35,9 @@
                                       <td>[[${medical.application_date}]]</td>
                                       <td>[[${medical.active}]]</td>
                                       <td>
-                                          <a th:href="@{'/medicals/edit/' + ${medical.id}}">Edit</a>
+                                        <a th:href="@{'/medicals/edit/' + ${medical.id}}" style="text-decoration:underline; color: blue; font-size: medium;">Edit</a>
                                       
-                                          <a th:href="@{'/medicals/delete/' + ${medical.id}}">Delete</a>
+                                        <a th:href="@{'/medicals/delete/' + ${medical.id}}" style="text-decoration:underline; color: blue; font-size: medium;">Delete</a>
                                       </td>
                                   </tr>                                
                               </th:block>
