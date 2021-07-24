@@ -74,16 +74,10 @@
 								Fail </label> <span class="help-block">Whether the client has pass the medical test or failed</span>
 						</div>
 					</div>
-<div id="myDIV" style="display:none">
+<div id="myDIV">
                     <legend style="text-align: left;">Registration of Birth Certificate:</legend>
   
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-4" style="text-align: right;">Cert Number: </label>
-                        
-                        <div class="col-sm-8">
-                            <input type="text" th:field="*{cert_no}" class="form-control"  />
-                        </div>
-                    </div> 
+                    
                     
                     <!-- status of medical -->
 					<div class="form-group">
@@ -96,6 +90,14 @@
 						</div>
 					</div>
         <div id="myDIV2" style="display:none">
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4" style="text-align: right;">Cert Number: </label>
+                
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{cert_no}" class="form-control"  />
+                </div>
+            </div> 
+
                     <div class="form-group row">
                         <label class="col-form-label col-sm-4" style="text-align: right;">Paid: </label>
                         <div class="col-sm-8">
@@ -107,6 +109,7 @@
                           </datalist>
                         </div>
                     </div>
+
 
                     <div class="form-group row">
                         <label class="col-form-label col-sm-4" style="text-align: right;">Cert Application Date: </label>
@@ -127,13 +130,7 @@
 
                     <legend style="text-align: left;">Passport Registration:</legend>
                     
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-4" style="text-align: right;">Passport Number: </label>
-                        
-                        <div class="col-sm-8">
-                            <input type="text" th:field="*{passport_no}" class="form-control"  />
-                        </div>
-                    </div> 
+                    
                 
                      <!-- status of medical -->
 					<div class="form-group">
@@ -147,6 +144,14 @@
 					</div>
 
                     <div id="myDIV3" style="display:none">
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-4" style="text-align: right;">Passport Number: </label>
+                            
+                            <div class="col-sm-8">
+                                <input type="text" th:field="*{passport_no}" class="form-control"  />
+                            </div>
+                        </div> 
+
                         <div class="form-group row">
                             <label class="col-form-label col-sm-4" style="text-align: right;">Paid: </label>
                             <div class="col-sm-8">
@@ -191,6 +196,58 @@
               
           </div>       
           <script>
+
+var checkBox1 = document.getElementById("myCheck");
+  var text1 = document.getElementById("myDIV");
+  if (checkBox1.checked == true){
+    text1.style.display = "block";
+  } else {
+     text1.style.display = "none";
+  }
+
+
+  var checkBox2 = document.getElementById("myCheck2");
+  var text2 = document.getElementById("myDIV");
+  if (checkBox2.checked == true){
+    text2.style.display = "none";
+  } else {
+     text2.style.display = "block";
+  }
+
+
+  var checkBox3 = document.getElementById("myCheck3");
+  var text3 = document.getElementById("myDIV2");
+  if (checkBox3.checked == true){
+    text3.style.display = "block";
+  } else {
+     text3.style.display = "none";
+  }
+
+
+  var checkBox4 = document.getElementById("myCheck4");
+  var text4 = document.getElementById("myDIV2");
+  if (checkBox4.checked == true){
+    text4.style.display = "none";
+  } else {
+     text4.style.display = "block";
+  }
+
+
+  var checkBox5 = document.getElementById("myCheck5");
+  var text5 = document.getElementById("myDIV3");
+  if (checkBox5.checked == true){
+    text5.style.display = "block";
+  } else {
+     text5.style.display = "none";
+  }
+
+  var checkBox6 = document.getElementById("myCheck6");
+  var text6 = document.getElementById("myDIV3");
+  if (checkBox6.checked == true){
+    text6.style.display = "none";
+  } else {
+     text6.style.display = "block";
+  }
 
 function myFunction() {
   var checkBox = document.getElementById("myCheck");
