@@ -14,6 +14,7 @@
               <form th:action="@{/medicals/save}" th:object="${medical}" method="post" style="max-width: 600px; margin: 0 auto;">
                   <input type="hidden" th:field="*{id}" th:value="${medical.id}" />
                   <div class="m-3">
+                    <legend style="text-align: left;">Medical Examination:</legend>
                     <div class="form-group row">
                         <label class="col-form-label col-sm-4" style="text-align: right;">Client: </label>
                         <div class="col-sm-8">
@@ -27,28 +28,28 @@
                     </div>  
 
                       <div class="form-group row">
-                          <label class="col-form-label col-sm-4">Client Information: </label>
+                          <label class="col-form-label col-sm-4" style="text-align: right;">Client Information: </label>
                           <div class="col-sm-8">
                               <input type="text" th:field="*{client_info}" class="form-control" required />
                           </div>
                           </div>
 
                       <div class="form-group row">
-                        <label class="col-form-label col-sm-4">Medical Center: </label>
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Medical Center: </label>
                         <div class="col-sm-8">
                             <input type="text" th:field="*{medical_center}" class="form-control" required />
                         </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-form-label col-sm-4">Medical Type: </label>
+                            <label class="col-form-label col-sm-4" style="text-align: right;">Medical Type: </label>
                             <div class="col-sm-8">
                                 <input type="text" th:field="*{medical_type}" class="form-control" required />
                             </div>
                             </div>
                      
                       <div class="form-group row">
-                          <label class="col-form-label col-sm-4">Amount Paid: </label>
+                          <label class="col-form-label col-sm-4" style="text-align: right;">Amount Paid: </label>
                           
                           <div class="col-sm-8">
                               <input type="text" th:field="*{amount_paid}" class="form-control" required />
@@ -56,7 +57,7 @@
                       </div>
   
                       <div class="form-group row">
-                          <label class="col-form-label col-sm-4">Application Date: </label>
+                          <label class="col-form-label col-sm-4" style="text-align: right;">Application Date: </label>
                           
                           <div class="col-sm-8">
                               <input type="date" th:field="*{application_date}" class="form-control" required />
@@ -65,16 +66,121 @@
   
                       <!-- status of medical -->
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="status">Status</label>
+						<label class="col-md-2 control-label" for="status" style="text-align: right;">Status</label>
 						<div class="col-md-8">
-							<label><input value="true" type="radio" name="active"
-								th:checked="${medical.active}" /> Pass </label> <label><input
-								value="false" type="radio" th:checked="${!medical.active}" name="active" />
+							<label><input onclick="myFunction()" value="true" type="radio" name="active"
+								th:checked="${medical.active}" id="myCheck" /> Pass </label> <label><input id="myCheck2"
+                                    onclick="myFunctionx()" value="false" type="radio" th:checked="${!medical.active}" name="active" />
 								Fail </label> <span class="help-block">Whether the client has pass the medical test or failed</span>
 						</div>
 					</div>
+<div id="myDIV" style="display:none">
+                    <legend style="text-align: left;">Registration of Birth Certificate:</legend>
   
-                                            
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Cert Number: </label>
+                        
+                        <div class="col-sm-8">
+                            <input type="text" th:field="*{cert_no}" class="form-control"  />
+                        </div>
+                    </div> 
+                    
+                    <!-- status of medical -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="status" style="text-align: right;">Status</label>
+						<div class="col-md-8">
+							<label><input onclick="myFunction2()" value="true" type="radio" name="cert_status"
+								th:checked="${medical.cert_status}" id="myCheck3" /> Pass </label> <label><input
+                                    onclick="myFunctionx2()" value="false" type="radio" th:checked="${!medical.cert_status}" name="cert_status" id="myCheck4" />
+								Fail </label> <span class="help-block">Whether the client has a birth certificate or not</span>
+						</div>
+					</div>
+        <div id="myDIV2" style="display:none">
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Paid: </label>
+                        <div class="col-sm-8">
+                          <input list="genders" type="text" th:field="*{paid}" class="form-control"  />
+                          <datalist id="genders">
+                            <option value="Company">
+                            <option value="Self">
+                            <option value="Agent">
+                          </datalist>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Cert Application Date: </label>
+                        
+                        <div class="col-sm-8">
+                            <input type="date" th:field="*{cert_application_date}" class="form-control"  />
+                        </div>
+                    </div> 
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Assign To: </label>
+                        
+                        <div class="col-sm-8">
+                            <input type="text" th:field="*{assign_to}" class="form-control"  />
+                        </div>
+                    </div> 
+                </div>
+
+                    <legend style="text-align: left;">Passport Registration:</legend>
+                    
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Passport Number: </label>
+                        
+                        <div class="col-sm-8">
+                            <input type="text" th:field="*{passport_no}" class="form-control"  />
+                        </div>
+                    </div> 
+                
+                     <!-- status of medical -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="status" style="text-align: right;">Status</label>
+						<div class="col-md-8">
+							<label><input onclick="myFunction3()" value="true" type="radio" name="pass_status"
+								th:checked="${medical.pass_status}" id="myCheck5" /> Pass </label> <label><input
+                                    onclick="myFunctionx3()" value="false" type="radio" th:checked="${!medical.pass_status}" name="pass_status" id="myCheck6" />
+								Fail </label> <span class="help-block">Whether the client has a passport or not</span>
+						</div>
+					</div>
+
+                    <div id="myDIV3" style="display:none">
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-4" style="text-align: right;">Paid: </label>
+                            <div class="col-sm-8">
+                              <input list="pass" type="text" th:field="*{pass_paid}" class="form-control"  />
+                              <datalist id="pass">
+                                <option value="Company">
+                                <option value="Self">
+                                <option value="Agent">
+                              </datalist>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-4" style="text-align: right;">Application Date: </label>
+                            
+                            <div class="col-sm-8">
+                                <input type="date" th:field="*{pass_application_date}" class="form-control"  />
+                            </div>
+                        </div> 
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-4" style="text-align: right;">Assign To: </label>
+                            
+                            <div class="col-sm-8">
+                                <input type="text" th:field="*{pass_assign_to}" class="form-control"  />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
   
                       <div class="text-center p-3">
                           <button type="submit" class="btn btn-primary">Save</button>
@@ -84,7 +190,73 @@
               </form>
               
           </div>       
+          <script>
+
+function myFunction() {
+  var checkBox = document.getElementById("myCheck");
+  var text = document.getElementById("myDIV");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+
+function myFunctionx() {
+  var checkBox = document.getElementById("myCheck2");
+  var text = document.getElementById("myDIV");
+  if (checkBox.checked == true){
+    text.style.display = "none";
+  } else {
+     text.style.display = "block";
+  }
+}
+    
+function myFunction2() {
+  var checkBox = document.getElementById("myCheck3");
+  var text = document.getElementById("myDIV2");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+
+function myFunctionx2() {
+  var checkBox = document.getElementById("myCheck4");
+  var text = document.getElementById("myDIV2");
+  if (checkBox.checked == true){
+    text.style.display = "none";
+  } else {
+     text.style.display = "block";
+  }
+}
+
           
+
+function myFunction3() {
+  var checkBox = document.getElementById("myCheck5");
+  var text = document.getElementById("myDIV3");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+
+function myFunctionx3() {
+  var checkBox = document.getElementById("myCheck6");
+  var text = document.getElementById("myDIV3");
+  if (checkBox.checked == true){
+    text.style.display = "none";
+  } else {
+     text.style.display = "block";
+  }
+}
+            
+            </script>
+
+    
       </body>
 
 
