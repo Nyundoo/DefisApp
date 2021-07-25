@@ -83,19 +83,24 @@
 						<label class="col-md-2 control-label" for="status" style="text-align: right;">Status</label>
 						<div class="col-md-8">
 							<label><input onclick="myFunction2()" value="true" type="radio" name="cert_status"
-								th:checked="${medical.cert_status}" id="myCheck3" /> Pass </label> <label><input
+								th:checked="${medical.cert_status}" id="myCheck3" /> Dont Have </label> <label><input
                                     onclick="myFunctionx2()" value="false" type="radio" th:checked="${!medical.cert_status}" name="cert_status" id="myCheck4" />
-								Fail </label> <span class="help-block">Whether the client has a birth certificate or not</span>
+								Have</label> <span class="help-block">Whether the client has a birth certificate or not</span>
 						</div>
 					</div>
-        <div id="myDIV2" style="display:none">
+          <div id="myDIV2x" style="display:none">
+
             <div class="form-group row">
-                <label class="col-form-label col-sm-4" style="text-align: right;">Cert Number: </label>
-                
-                <div class="col-sm-8">
-                    <input type="text" th:field="*{cert_no}" class="form-control"  />
-                </div>
-            </div> 
+              <label class="col-form-label col-sm-4" style="text-align: right;">Cert Number: </label>
+              
+              <div class="col-sm-8">
+                  <input type="text" th:field="*{cert_no}" class="form-control"  />
+              </div>
+          </div> 
+            
+          </div>
+        <div id="myDIV2" style="display:none">
+            
 
                     <div class="form-group row">
                         <label class="col-form-label col-sm-4" style="text-align: right;">Paid: </label>
@@ -136,20 +141,24 @@
 						<label class="col-md-2 control-label" for="status" style="text-align: right;">Status</label>
 						<div class="col-md-8">
 							<label><input onclick="myFunction3()" value="true" type="radio" name="pass_status"
-								th:checked="${medical.pass_status}" id="myCheck5" /> Pass </label> <label><input
+								th:checked="${medical.pass_status}" id="myCheck5" /> Have Not </label> <label><input
                                     onclick="myFunctionx3()" value="false" type="radio" th:checked="${!medical.pass_status}" name="pass_status" id="myCheck6" />
-								Fail </label> <span class="help-block">Whether the client has a passport or not</span>
+								Have </label> <span class="help-block">Whether the client has a passport or not</span>
 						</div>
 					</div>
+          <div id="myDIV3x" style="display:none">
+          
+            <div class="form-group row">
+              <label class="col-form-label col-sm-4" style="text-align: right;">Passport Number: </label>
+              
+              <div class="col-sm-8">
+                  <input type="text" th:field="*{passport_no}" class="form-control"  />
+              </div>
+          </div> 
 
-                    <div id="myDIV3" style="display:none">
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-4" style="text-align: right;">Passport Number: </label>
-                            
-                            <div class="col-sm-8">
-                                <input type="text" th:field="*{passport_no}" class="form-control"  />
-                            </div>
-                        </div> 
+          </div>
+
+                    <div id="myDIV3" style="display:none">                        
 
                         <div class="form-group row">
                             <label class="col-form-label col-sm-4" style="text-align: right;">Paid: </label>
@@ -265,36 +274,48 @@ var checkBox1 = document.getElementById("myCheck");
 
   var checkBox3 = document.getElementById("myCheck3");
   var text3 = document.getElementById("myDIV2");
+  var text3x = document.getElementById("myDIV2x");
   if (checkBox3.checked == true){
-    text3.style.display = "block";
+    text3.style.display = "none";
+    text3x.style.display = "block";
   } else {
-     text3.style.display = "none";
+     text3.style.display = "block";
+     text3x.style.display = "none";
   }
 
 
   var checkBox4 = document.getElementById("myCheck4");
   var text4 = document.getElementById("myDIV2");
+  var text4x = document.getElementById("myDIV2x");
   if (checkBox4.checked == true){
     text4.style.display = "none";
+    text4x.style.display = "block";
   } else {
      text4.style.display = "block";
+     text4x.style.display = "none";
   }
 
 
   var checkBox5 = document.getElementById("myCheck5");
   var text5 = document.getElementById("myDIV3");
+  var text5x = document.getElementById("myDIV3x");
   if (checkBox5.checked == true){
     text5.style.display = "block";
+    text5x.style.display = "none";
   } else {
      text5.style.display = "none";
+     text5x.style.display = "block";
   }
 
   var checkBox6 = document.getElementById("myCheck6");
   var text6 = document.getElementById("myDIV3");
+  var text6x = document.getElementById("myDIV3x");
   if (checkBox6.checked == true){
     text6.style.display = "none";
+    text6x.style.display = "block";
   } else {
      text6.style.display = "block";
+     text6x.style.display = "none";
   }
 
 function myFunction() {
@@ -320,20 +341,26 @@ function myFunctionx() {
 function myFunction2() {
   var checkBox = document.getElementById("myCheck3");
   var text = document.getElementById("myDIV2");
+  var textx = document.getElementById("myDIV2x");
   if (checkBox.checked == true){
     text.style.display = "block";
+    textx.style.display = "none";
   } else {
      text.style.display = "none";
+     textx.style.display = "block";
   }
 }
 
 function myFunctionx2() {
   var checkBox = document.getElementById("myCheck4");
   var text = document.getElementById("myDIV2");
+  var textx = document.getElementById("myDIV2x");
   if (checkBox.checked == true){
     text.style.display = "none";
+    textx.style.display = "block";
   } else {
      text.style.display = "block";
+     textx.style.display = "none";
   }
 }
 
@@ -342,20 +369,26 @@ function myFunctionx2() {
 function myFunction3() {
   var checkBox = document.getElementById("myCheck5");
   var text = document.getElementById("myDIV3");
+  var textx = document.getElementById("myDIV3x");
   if (checkBox.checked == true){
     text.style.display = "block";
+    textx.style.display = "none";
   } else {
      text.style.display = "none";
+     textx.style.display = "block";
   }
 }
 
 function myFunctionx3() {
   var checkBox = document.getElementById("myCheck6");
   var text = document.getElementById("myDIV3");
+  var textx = document.getElementById("myDIV3x");
   if (checkBox.checked == true){
     text.style.display = "none";
+    textx.style.display = "block";
   } else {
      text.style.display = "block";
+     textx.style.display = "none";
   }
 }
             
