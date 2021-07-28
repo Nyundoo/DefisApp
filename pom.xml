@@ -89,11 +89,7 @@
 			<artifactId>webjars-locator-core</artifactId>
 		</dependency>
 		
-		<dependency>
-			<groupId>com.nyundoo</groupId>
-			<artifactId>NyundooCommon</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		
 	</dependencies>
 
 	<build>
