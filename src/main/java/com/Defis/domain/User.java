@@ -1,134 +1,143 @@
 package com.Defis.domain;
 
-import java.util.Collection;
+import java.beans.Transient;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import com.Defis.domain.security.Authority;
-import com.Defis.domain.security.UserRole;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-@Table(name="user_details")
-public class User implements UserDetails{
-	
+@Table(name = "users")
+public class User {
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id", nullable = false, updatable = false)
-	private Long id;
-	private String username;
-	private String password;
-	private String firstName;
-	private String lastName;
-	
-	@Column(name="email", nullable = false, updatable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	@Column(length = 128, nullable = false, unique = true)
 	private String email;
-	private String phone;
-	private boolean enabled=true;
-	
-	
-	
-	
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnore
-	private Set<UserRole> userRoles = new HashSet<>();
-	
-	public Long getId() {
-		return id;
+
+	@Column(length = 64, nullable = false)
+	private String password;
+
+	@Column(name = "first_name", length = 45, nullable = false)
+	private String firstName;
+
+	@Column(name = "last_name", length = 45, nullable = false)
+	private String lastName;
+
+	@Column(length = 64)
+	private String photos;
+
+	private boolean enabled;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
+
+	public User() {
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
+
+	public User(String email, String password, String firstName, String lastName) {
+		super();
+		this.email = email;
 		this.password = password;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
 		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPhone() {
-		return phone;
+
+	public String getPassword() {
+		return password;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+
+	public String getFirstName() {
+		return firstName;
 	}
-	public Set<UserRole> getUserRoles() {
-		return userRoles;
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public void setUserRoles(Set<UserRole> userRoles) {
-		this.userRoles = userRoles;
+
+	public String getLastName() {
+		return lastName;
 	}
-	
-	
-	
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Set<GrantedAuthority> authorites = new HashSet<>();
-		userRoles.forEach(ur -> authorites.add(new Authority(ur.getRole().getName())));
-		
-		return authorites;
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
+
+	public String getPhotos() {
+		return photos;
 	}
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	
-	@Override
+
 	public boolean isEnabled() {
 		return enabled;
 	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 	
+	public void addRole(Role role) {
+		this.roles.add(role);
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", roles=" + roles + "]";
+	}
 	
+	@Transient
+	public String getPhotosImagePath() {
+		if(id == null || photos == null) return "/images/default-user.png";
+		
+		return "/user-photos/" + this.id + "/" + this.photos;
+	}
+	
+	@Transient
+	public String getFullName() {
+		return firstName + " " + lastName;
+	}
 }
