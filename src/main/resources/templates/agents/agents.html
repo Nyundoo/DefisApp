@@ -71,7 +71,12 @@
         </div>
         <div class="col-8">
             <div>[[${agent.fullName}]]</div>
+            <div class="mt-2">
+               
+                <a class="fas fa-user-edit icon-green mr-4" th:href="@{'/agents/edit/' + ${agent.id}}" title="Edit this agent"></a>
+                <a class="far fa-trash-alt icon-red link-delete" th:href="@{'/agents/delete/' + ${agent.id}}" th:userId="${agent.id}" title="Delete this agent"></a>
            
+            </div>
         </div>
         <div>&nbsp;</div>
     </div>

@@ -82,11 +82,6 @@
             <div>[[${user.roles}]]</div>
             
             <div class="mt-2">
-
-                    <a th:if="${user.enabled == true}" class="far fa-check-square icon-green mr-5" 
-                    th:href="@{'/users/' + ${user.id} + '/enabled/false'}" title="Disable this user" ></a>
-                    <a th:if="${user.enabled == false}" class="far fa-check-square icon-silver mr-5" 
-                    th:href="@{'/users/' + ${user.id} + '/enabled/true'}" title="Enable this user" ></a>
                
                 <a class="fas fa-user-edit icon-green mr-4" th:href="@{'/users/edit/' + ${user.id}}" title="Edit this user"></a>
                 <a class="far fa-trash-alt icon-red link-delete" th:href="@{'/users/delete/' + ${user.id}}" th:userId="${user.id}" title="Delete this user"></a>
