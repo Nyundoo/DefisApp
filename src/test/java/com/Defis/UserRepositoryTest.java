@@ -24,9 +24,9 @@ import com.Defis.repository.UserRepository;
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
 public class UserRepositoryTest {
-//	@Autowired
-//	private UserRepository repo;
-//	
+	@Autowired
+	private UserRepository repo;
+	
 //	@Autowired
 //	private TestEntityManager entityManager;
 
