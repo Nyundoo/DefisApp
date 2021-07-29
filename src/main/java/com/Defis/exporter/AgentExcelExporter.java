@@ -42,8 +42,6 @@ public class AgentExcelExporter extends AbstractExporter {
 		createCell(row, 1, "E-mail", cellStyle);
 		createCell(row, 2, "First Name", cellStyle);
 		createCell(row, 3, "Last Name", cellStyle);
-		createCell(row, 4, "Roles", cellStyle);
-		createCell(row, 5, "Enabled", cellStyle);
 	}
 	
 	private void createCell(XSSFRow row, int columnIndex, Object value, CellStyle style) {

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.Defis.domain.Agent;
-import com.Defis.domain.User;
 import com.lowagie.text.Document;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
@@ -32,7 +31,7 @@ public class AgentPDFExporter extends AbstractExporter {
 		font.setSize(18);
 		font.setColor(Color.BLUE);
 		
-		Paragraph paragraph = new Paragraph("List of User", font);
+		Paragraph paragraph = new Paragraph("List of Agent", font);
 		paragraph.setAlignment(Paragraph.ALIGN_CENTER);
 		
 		document.add(new Paragraph(paragraph));
@@ -40,7 +39,7 @@ public class AgentPDFExporter extends AbstractExporter {
 		PdfPTable table = new PdfPTable(6);
 		table.setWidthPercentage(100f);
 		table.setSpacingBefore(10);
-		table.setWidths(new float[] {1.2f, 3.5f, 3.0f, 3.0f, 3.0f, 1.7f});
+		table.setWidths(new float[] {1.9f, 5.0f, 4.5f, 4.0f});
 		
 		writeTableHeader(table);
 		writeTableData(table, listAgents);
@@ -51,11 +50,11 @@ public class AgentPDFExporter extends AbstractExporter {
 	}
 
 	private void writeTableData(PdfPTable table, List<Agent> listAgents) {
-		for(Agent user : listAgents) {
-			table.addCell(String.valueOf(user.getId()));
-			table.addCell(user.getEmail());
-			table.addCell(user.getFirstName());
-			table.addCell(user.getLastName());
+		for(Agent agent : listAgents) {
+			table.addCell(String.valueOf(agent.getId()));
+			table.addCell(agent.getEmail());
+			table.addCell(agent.getFirstName());
+			table.addCell(agent.getLastName());
 		}
 		
 	}
@@ -79,12 +78,6 @@ public class AgentPDFExporter extends AbstractExporter {
 		table.addCell(cell);
 		
 		cell.setPhrase(new Phrase("Last Name", font));				
-		table.addCell(cell);
-		
-		cell.setPhrase(new Phrase("Roles", font));				
-		table.addCell(cell);
-		
-		cell.setPhrase(new Phrase("Enabled", font));				
 		table.addCell(cell);
 	}
 

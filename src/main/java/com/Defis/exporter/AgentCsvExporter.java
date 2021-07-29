@@ -17,8 +17,8 @@ public class AgentCsvExporter extends AbstractExporter {
 		
 		ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
 		
-		String[] csvHeader = {"Agent ID", "E-mail", "First Name", "Last Name", "Roles", "Enabled"};
-		String[] fieldMapping = {"id", "email", "firstName", "lastName", "roles", "enabled"};
+		String[] csvHeader = {"Agent ID", "E-mail", "First Name", "Last Name"};
+		String[] fieldMapping = {"id", "email", "firstName", "lastName"};
 		
 		csvWriter.writeHeader(csvHeader);
 		
