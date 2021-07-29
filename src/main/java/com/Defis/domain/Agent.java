@@ -1,5 +1,7 @@
 package com.Defis.domain;
 
+import java.beans.Transient;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,73 +17,94 @@ public class Agent {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String id_no;
-	private String name;
-	
-	private String phone_number1;
-	private String phone_number2;
-	private String current_residence;
+
+	@Column(name = "id_no", length = 20, nullable = false)
+	private String idNo;
+
+	@Column(name = "first_name", length = 45, nullable = false)
+	private String firstName;
+
+	@Column(name = "last_name", length = 45, nullable = false)
+	private String lastName;
+
+	@Column(name = "phone_number1", length = 16, nullable = true)
+	private String phoneNumber1;
+
+	@Column(name = "phone_number2", length = 16, nullable = true)
+	private String phoneNumber2;
+
+	@Column(name = "current_residence", length = 20, nullable = true)
+	private String currentResidence;
+
+	@Column(length = 128, nullable = false, unique = true)
 	private String email;
+
+	@Column(length = 40, nullable = true)
 	private String county;
+
+	@Column(length = 40, nullable = true)
 	private String ward;
-	private String village_name;
-	
-	
-	
-	public Agent() {
-	}
-	
-	public Agent(Integer id) {
-		this.id = id;
-	}
-	
-	public String getId_no() {
-		return id_no;
-	}
 
-	public void setId_no(String id_no) {
-		this.id_no = id_no;
-	}
+	@Column(name = "village_name", length = 40, nullable = true)
+	private String villageName;
 
-	public Agent(String name) {
-		this.name = name;
-	}
-	
+	@Column(length = 64)
+	private String photos;
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-			
-	public String getPhone_number1() {
-		return phone_number1;
+
+	public String getIdNo() {
+		return idNo;
 	}
 
-	public void setPhone_number1(String phone_number1) {
-		this.phone_number1 = phone_number1;
-	}
-	
-	public String getPhone_number2() {
-		return phone_number2;
+	public void setIdNo(String idNo) {
+		this.idNo = idNo;
 	}
 
-	public void setPhone_number2(String phone_number2) {
-		this.phone_number2 = phone_number2;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public String getCurrent_residence() {
-		return current_residence;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public void setCurrent_residence(String current_residence) {
-		this.current_residence = current_residence;
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getPhoneNumber1() {
+		return phoneNumber1;
+	}
+
+	public void setPhoneNumber1(String phoneNumber1) {
+		this.phoneNumber1 = phoneNumber1;
+	}
+
+	public String getPhoneNumber2() {
+		return phoneNumber2;
+	}
+
+	public void setPhoneNumber2(String phoneNumber2) {
+		this.phoneNumber2 = phoneNumber2;
+	}
+
+	public String getCurrentResidence() {
+		return currentResidence;
+	}
+
+	public void setCurrentResidence(String currentResidence) {
+		this.currentResidence = currentResidence;
 	}
 
 	public String getEmail() {
@@ -108,15 +131,32 @@ public class Agent {
 		this.ward = ward;
 	}
 
-	public String getVillage_name() {
-		return village_name;
+	public String getVillageName() {
+		return villageName;
 	}
 
-	public void setVillage_name(String village_name) {
-		this.village_name = village_name;
+	public void setVillageName(String villageName) {
+		this.villageName = villageName;
 	}
 
-	
-	
-	
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
+	}
+
+	@Transient
+	public String getPhotosImagePath() {
+		if (id == null || photos == null)
+			return "/images/default-user.png";
+
+		return "/agent-photos/" + this.id + "/" + this.photos;
+	}
+
+	@Transient
+	public String getFullName() {
+		return firstName + " " + lastName;
+	}
 }
