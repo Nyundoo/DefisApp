@@ -24,11 +24,11 @@ import com.Defis.repository.UserRepository;
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
 public class UserRepositoryTest {
-	@Autowired
-	private UserRepository repo;
-	
-	@Autowired
-	private TestEntityManager entityManager;
+//	@Autowired
+//	private UserRepository repo;
+//	
+//	@Autowired
+//	private TestEntityManager entityManager;
 
 //	@Test
 //	public void testCreateNewUserWithOneRole() {
@@ -47,25 +47,25 @@ public class UserRepositoryTest {
 //	}
 //	
 //	
-	@Test
-	public void testCreateNewUserWithTwoRoles() {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String rawPassword = "admin2021";
-		String encodedPassword = passwordEncoder.encode(rawPassword); 
-		
-		System.out.print(encodedPassword);
-		
-		User userRavi = new User("admin@gmail.com",encodedPassword, "admin", "admin");
-		Role roleEditor = new Role(1);
-		Role roleAssistant = new Role(5);
-		
-		userRavi.addRole(roleEditor);
-		userRavi.addRole(roleAssistant);
-		
-		User savedUser = repo.save(userRavi);
-		
-		assertThat(savedUser.getId()).isGreaterThan(0);
-	}
+//	@Test
+//	public void testCreateNewUserWithTwoRoles() {
+//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//		String rawPassword = "admin2021";
+//		String encodedPassword = passwordEncoder.encode(rawPassword); 
+//		
+//		System.out.print(encodedPassword);
+//		
+//		User userRavi = new User("admin@gmail.com",encodedPassword, "admin", "admin");
+//		Role roleEditor = new Role(1);
+//		Role roleAssistant = new Role(5);
+//		
+//		userRavi.addRole(roleEditor);
+//		userRavi.addRole(roleAssistant);
+//		
+//		User savedUser = repo.save(userRavi);
+//		
+//		assertThat(savedUser.getId()).isGreaterThan(0);
+//	}
 //	
 //	@Test
 //	public void testListAllUsers() {
