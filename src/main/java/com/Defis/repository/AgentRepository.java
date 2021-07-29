@@ -16,7 +16,7 @@ public interface AgentRepository extends PagingAndSortingRepository<Agent, Integ
 	
 	public Long countById(Integer id);	
 	
-	@Query("SELECT u FROM Agent u WHERE CONCAT(u.id, ' ',u.email, ' ',firstName, ' ',lastName) LIKE %?1%")
+	@Query("SELECT u FROM Agent u WHERE CONCAT(u.id, ' ',u.email, ' ',u.firstName, ' ',u.lastName, ' ',u.phoneNumber1, ' ',u.phoneNumber2, ' ',u.currentResidence, ' ',u.ward, ' ',u.villageName) LIKE %?1%")
 	public Page<Agent> findAll(String keyword, Pageable pageable);
 		
 

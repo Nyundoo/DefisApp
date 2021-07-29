@@ -112,8 +112,8 @@ public class AgentController {
 	}
 
 	private String getRedirectURLToAffectedAgent(Agent agent) {
-		String firstPartEmail = agent.getEmail().split("@")[0];
-		return "redirect:/agents/page/1?sortField=id&sortDir=asc&keyword=" + firstPartEmail;
+		Integer agentId = agent.getId();
+		return "redirect:/agents/page/1?sortField=id&sortDir=asc&keyword=" + agentId;
 	}
 	
 	@GetMapping("/agents/edit/{id}")

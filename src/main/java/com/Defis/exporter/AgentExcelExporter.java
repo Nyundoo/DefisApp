@@ -42,6 +42,13 @@ public class AgentExcelExporter extends AbstractExporter {
 		createCell(row, 1, "E-mail", cellStyle);
 		createCell(row, 2, "First Name", cellStyle);
 		createCell(row, 3, "Last Name", cellStyle);
+		createCell(row, 4, "Phone Number1", cellStyle);
+		createCell(row, 5, "Phone Number2", cellStyle);
+		createCell(row, 6, "Current Residence", cellStyle);
+		createCell(row, 7, "Email", cellStyle);
+		createCell(row, 8, "County", cellStyle);
+		createCell(row, 9, "Ward", cellStyle);
+		createCell(row, 10, "Village Name", cellStyle);
 	}
 	
 	private void createCell(XSSFRow row, int columnIndex, Object value, CellStyle style) {
@@ -81,14 +88,21 @@ public class AgentExcelExporter extends AbstractExporter {
 		font.setFontHeight(14);
 		cellStyle.setFont(font);
 		
-		for (Agent user : listAgents) {
+		for (Agent agent : listAgents) {
 			XSSFRow row = sheet.createRow(rowIndex++);
 			int columnIndex = 0;
 			
-			createCell(row, columnIndex++, user.getId(), cellStyle);
-			createCell(row, columnIndex++, user.getEmail(), cellStyle);
-			createCell(row, columnIndex++, user.getFirstName(), cellStyle);
-			createCell(row, columnIndex++, user.getLastName(), cellStyle);
+			createCell(row, columnIndex++, agent.getIdNo(), cellStyle);
+			createCell(row, columnIndex++, agent.getFirstName(), cellStyle);
+			createCell(row, columnIndex++, agent.getFirstName(), cellStyle);
+			createCell(row, columnIndex++, agent.getLastName(), cellStyle);
+			createCell(row, columnIndex++, agent.getPhoneNumber1(), cellStyle);
+			createCell(row, columnIndex++, agent.getPhoneNumber2(), cellStyle);
+			createCell(row, columnIndex++, agent.getCurrentResidence(), cellStyle);
+			createCell(row, columnIndex++, agent.getEmail(), cellStyle);
+			createCell(row, columnIndex++, agent.getCounty(), cellStyle);
+			createCell(row, columnIndex++, agent.getWard(), cellStyle);
+			createCell(row, columnIndex++, agent.getVillageName(), cellStyle);
 		}
 	}
 }

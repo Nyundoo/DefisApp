@@ -39,7 +39,7 @@ public class AgentPDFExporter extends AbstractExporter {
 		PdfPTable table = new PdfPTable(6);
 		table.setWidthPercentage(100f);
 		table.setSpacingBefore(10);
-		table.setWidths(new float[] {1.9f, 5.0f, 4.5f, 4.0f});
+		table.setWidths(new float[] {1.2f, 3.5f, 3.0f, 3.0f, 3.0f, 1.7f});
 		
 		writeTableHeader(table);
 		writeTableData(table, listAgents);
@@ -55,9 +55,17 @@ public class AgentPDFExporter extends AbstractExporter {
 			table.addCell(agent.getEmail());
 			table.addCell(agent.getFirstName());
 			table.addCell(agent.getLastName());
+			table.addCell(agent.getPhoneNumber1());
+			table.addCell(agent.getPhoneNumber2());
+			table.addCell(agent.getCurrentResidence());
+			table.addCell(agent.getEmail());
+			table.addCell(agent.getCounty());
+			table.addCell(agent.getWard());
+			table.addCell(agent.getVillageName());
+		}
 		}
 		
-	}
+	
 
 	private void writeTableHeader(PdfPTable table) {
 		PdfPCell cell = new PdfPCell();
@@ -78,6 +86,27 @@ public class AgentPDFExporter extends AbstractExporter {
 		table.addCell(cell);
 		
 		cell.setPhrase(new Phrase("Last Name", font));				
+		table.addCell(cell);
+		
+		cell.setPhrase(new Phrase("Phone Number1", font));				
+		table.addCell(cell);
+		
+		cell.setPhrase(new Phrase("Phone Number2", font));				
+		table.addCell(cell);
+		
+		cell.setPhrase(new Phrase("Current Residence", font));				
+		table.addCell(cell);
+		
+		cell.setPhrase(new Phrase("Email", font));				
+		table.addCell(cell);
+		
+		cell.setPhrase(new Phrase("County", font));				
+		table.addCell(cell);
+		
+		cell.setPhrase(new Phrase("Ward", font));				
+		table.addCell(cell);
+		
+		cell.setPhrase(new Phrase("Village Name", font));				
 		table.addCell(cell);
 	}
 
