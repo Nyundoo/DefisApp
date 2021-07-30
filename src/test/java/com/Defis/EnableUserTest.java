@@ -14,13 +14,13 @@ import com.Defis.repository.UserRepository;
 @Rollback(false)
 public class EnableUserTest {
 	
-	@Autowired
-	private UserRepository repo;
-	
-	@Test
-	public void testEnableUser() {
-		Integer id = 1;
-		repo.updateEnabledStatus(id, true);
-	}
+//	@Autowired
+//	private UserRepository repo;
+//	
+//	@Test
+//	public void testEnableUser() {
+//		Integer id = 1;
+//		repo.updateEnabledStatus(id, true);
+//	}
 
 }
