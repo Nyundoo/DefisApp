@@ -55,7 +55,7 @@ public class UserRepositoryTest {
 		
 		System.out.print(encodedPassword);
 		
-		User userRavi = new User("admin@gmail.com",encodedPassword, "admin", "admin");
+		User userRavi = new User("admin2@gmail.com",encodedPassword, "admin2", "admin2");
 		Role roleEditor = new Role(1);
 		Role roleAssistant = new Role(5);
 		
