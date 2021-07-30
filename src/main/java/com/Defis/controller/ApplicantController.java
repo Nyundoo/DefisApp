@@ -20,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Applicant;
 import com.Defis.domain.ApplicantNotFoundException;
-import com.Defis.domain.Role;
 import com.Defis.exporter.ApplicantCsvExporter;
 import com.Defis.exporter.ApplicantExcelExporter;
 import com.Defis.exporter.ApplicantPDFExporter;
@@ -123,11 +122,8 @@ public class ApplicantController {
 		try {
 		Applicant applicant = service.get(id);
 		
-		List<Role> listRoles = service.listRoles();
-		
 		model.addAttribute("applicant", applicant);
 		model.addAttribute("pageTitle", "Edit Applicant (ID: " + id + ")");
-		model.addAttribute("listRoles", listRoles);
 		
 		return "applicants/applicant_form";
 		
