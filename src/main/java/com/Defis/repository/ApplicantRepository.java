@@ -7,6 +7,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.Defis.domain.Applicant;
+import com.Defis.domain.User;
 
 public interface ApplicantRepository extends PagingAndSortingRepository<Applicant, Integer> {
 	@Query("SELECT u FROM Applicant u WHERE u.email = :email")
@@ -14,7 +15,7 @@ public interface ApplicantRepository extends PagingAndSortingRepository<Applican
 	
 	public Long countById(Integer id);	
 	
-	@Query("SELECT u FROM Applicant u WHERE CONCAT(u.id, ' ',u.identification, ' ',u.age, ' ',u.job ,u.email, ' ',u.county, ' ',u.villageName, ' ',u.hudumaNo, ' ',u.gender, ' ',u.chiefName,  ' ',u.contact) LIKE %?1%")
+	@Query("SELECT u FROM Applicant u WHERE CONCAT(u.id, ' ',u.email, ' ',u.firstName, ' ',u.lastName) LIKE %?1%")
 	public Page<Applicant> findAll(String keyword, Pageable pageable);
 	
 	

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -66,13 +65,13 @@ public class UserRepositoryTest {
 		
 		assertThat(savedUser.getId()).isGreaterThan(0);
 	}
-//	
-//	@Test
-//	public void testListAllUsers() {
-//		Iterable<User> listUsers = repo.findAll();
-//		listUsers.forEach(user -> System.out.print(user));
-//		
-//	}
+	
+	@Test
+	public void testListAllUsers() {
+		Iterable<User> listUsers = repo.findAll();
+		listUsers.forEach(user -> System.out.print(user));
+		
+	}
 //	
 //	@Test
 //	public void testUserById() {
@@ -154,20 +153,20 @@ public class UserRepositoryTest {
 //		assertThat(listUsers.size()).isEqualTo(pageSize);
 //	}
 //	
-//	@Test
-//	public void testListSearchUsers() {
-//		String keyword = "admin";
-//		
-//		int pageNumber = 0;
-//		int pageSize = 4;
-//		
-//		Pageable pageable = PageRequest.of(pageNumber, pageSize);
-//		Page<User> page = repo.findAll(keyword, pageable);
-//		
-//		List<User> listUsers = page.getContent();
-//		
-//		listUsers.forEach(user -> System.out.println(user));
-//		
-//		assertThat(listUsers.size()).isGreaterThan(0);
-//	}
+	@Test
+	public void testListSearchUsers() {
+		String keyword = "admin";
+		
+		int pageNumber = 0;
+		int pageSize = 4;
+		
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		Page<User> page = repo.findAll(keyword, pageable);
+		
+		List<User> listUsers = page.getContent();
+		
+		listUsers.forEach(user -> System.out.println(user));
+		
+		assertThat(listUsers.size()).isGreaterThan(0);
+	}
 }

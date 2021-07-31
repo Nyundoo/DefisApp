@@ -25,10 +25,10 @@ public class Applicant {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(length = 45, nullable = false, unique = true)
+	@Column(length = 45, nullable = true, unique = true)
 	private String identification;
 
-	@Column(length = 3, nullable = false, unique = false)
+	@Column(length = 3, nullable = true, unique = false)
 	private Integer age;
 
 	@Column(name = "first_name", length = 45, nullable = false)
@@ -41,10 +41,10 @@ public class Applicant {
 	@JoinColumn(name = "job_id")
 	private Job job;
 
-	@Column(length = 128, nullable = false, unique = true)
+	@Column(length = 128, nullable = true, unique = true)
 	private String email;
 
-	@Column(length = 200, nullable = false, unique = false)
+	@Column(length = 200, nullable = true, unique = false)
 	private String county;
 
 	@Column(length = 45, nullable = true, unique = false)
@@ -56,13 +56,13 @@ public class Applicant {
 	@Column(name = "huduma_no", length = 45, nullable = true, unique = false)
 	private Integer hudumaNo;
 
-	@Column(length = 7, nullable = false, unique = false)
+	@Column(length = 7, nullable = true, unique = false)
 	private String gender;
 
 	@Column(name = "chief_name", length = 45, nullable = true, unique = false)
 	private String chiefName;
 
-	@Column(length = 45, nullable = false, unique = false)
+	@Column(length = 45, nullable = true, unique = false)
 	private String contact;
 
 	@Column(length = 64)
@@ -77,6 +77,18 @@ public class Applicant {
 
 	@OneToMany(mappedBy = "applicant", cascade = CascadeType.ALL)
 	private List<ApplicantDetails> details = new ArrayList<>();
+	
+	
+
+	public Applicant() {
+	}
+
+	public Applicant( String firstName, String lastName, String email) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
 
 	public Integer getId() {
 		return id;
@@ -221,11 +233,13 @@ public class Applicant {
 	public void setDetails(List<ApplicantDetails> details) {
 		this.details = details;
 	}
+	
+	public void addDetail(String cname, Integer ccontact, Integer cnational_id, String crelationship, String ccurrent_residence) {
+		this.details.add(new ApplicantDetails(cname, ccontact, cnational_id, crelationship, ccurrent_residence, this));
+	}
 
-	public void setDetail(Integer id, String reFirstName, String reLastName, String reContact, String reNationalId,
-			String reRelationship, String reCurrentResidence, String reHudumaNo) {
-		this.details.add(new ApplicantDetails(id, reFirstName, reLastName, reContact, reNationalId, reRelationship,
-				reCurrentResidence, reHudumaNo, this));
+	public void setDetail(Integer id, String cname, Integer ccontact, Integer cnational_id, String crelationship, String ccurrent_residence) {
+		this.details.add(new ApplicantDetails(id, cname, ccontact, cnational_id, crelationship, ccurrent_residence, this));
 	}
 
 	@Transient

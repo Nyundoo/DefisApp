@@ -3,6 +3,7 @@ package com.Defis.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +13,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.Defis.domain.Agent;
 import com.Defis.domain.Applicant;
 import com.Defis.domain.ApplicantNotFoundException;
+import com.Defis.domain.Job;
 import com.Defis.exporter.ApplicantCsvExporter;
 import com.Defis.exporter.ApplicantExcelExporter;
 import com.Defis.exporter.ApplicantPDFExporter;
+import com.Defis.repository.AgentRepository;
+import com.Defis.repository.JobRepository;
 import com.Defis.service.ApplicantService;
 import com.Defis.utility.FileUploadUtil;
 
@@ -30,6 +36,12 @@ import com.Defis.utility.FileUploadUtil;
 public class ApplicantController {
 	@Autowired
 	private ApplicantService service;
+	
+	@Autowired
+	private AgentRepository agentRepo;
+	
+	@Autowired
+	private JobRepository jobRepo;
 	
 	@GetMapping("/applicants")
 	public String listFirstPage(Model model) {
@@ -75,6 +87,8 @@ public class ApplicantController {
 	
 	@GetMapping("/applicants/new")
 	public String newApplicant(Model model) {	
+		List<Agent> listAgents = (List<Agent>) agentRepo.findAll();
+		List<Job> listJobs = (List<Job>) jobRepo.findAll();
 		
 		Applicant applicants = new Applicant();
 		
@@ -82,15 +96,36 @@ public class ApplicantController {
 
 		model.addAttribute("pageTitle", "Create New Applicant");
 		
+		model.addAttribute("listAgents", listAgents);
+		
+		model.addAttribute("listJobs", listJobs);
+		
 		return "applicants/applicant_form";
 	}
 	
 	@PostMapping("/applicants/save")
-	public String saveApplicant(Applicant applicant, 
+	public String saveApplicant(@ModelAttribute("applicant") Applicant applicant, 
 			RedirectAttributes redirectAttributes,
-			@RequestParam("image") MultipartFile multipartFile) throws IOException {
+			@RequestParam("image") MultipartFile multipartFile, 
+			HttpServletRequest request) throws IOException {
 		
 		if(!multipartFile.isEmpty()) {
+			
+			String[] detailIDs = request.getParameterValues("detailID");
+			String[] detailCnames = request.getParameterValues("detailCname");
+			String[] detailCcontacts = request.getParameterValues("detailCcontact");
+			String[] detailCnationalIds = request.getParameterValues("detailCnationalId");
+			String[] detailCrelationships = request.getParameterValues("detailCrelationship");
+			String[] detailCcurrent_residences = request.getParameterValues("detailCcurrent_residence");
+			
+			for (int i  = 0; i < detailCnames.length; i++) {
+				if(detailIDs != null && detailIDs.length > 0) {
+					applicant.setDetail(Integer.valueOf(detailIDs[i]), detailCnames[i], Integer.valueOf(detailCcontacts[i]), Integer.valueOf(detailCnationalIds[i]), detailCrelationships[i], detailCcurrent_residences[i]);
+				}else {
+					applicant.addDetail(detailCnames[i], Integer.valueOf(detailCcontacts[i]), Integer.valueOf(detailCnationalIds[i]), detailCrelationships[i], detailCcurrent_residences[i]);
+				}
+			}	
+			
 			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 			applicant.setPhotos(fileName);
 			
@@ -100,8 +135,27 @@ public class ApplicantController {
 			
 			FileUploadUtil.cleanDir(uploadDir);
 			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-		}else {
+		}else {				
+			
+			
 			if (applicant.getPhotos().isEmpty()) applicant.setPhotos(null);
+			
+
+			String[] detailIDs = request.getParameterValues("detailID");
+			String[] detailCnames = request.getParameterValues("detailCname");
+			String[] detailCcontacts = request.getParameterValues("detailCcontact");
+			String[] detailCnationalIds = request.getParameterValues("detailCnationalId");
+			String[] detailCrelationships = request.getParameterValues("detailCrelationship");
+			String[] detailCcurrent_residences = request.getParameterValues("detailCcurrent_residence");
+			
+			for (int i  = 0; i < detailCnames.length; i++) {
+				if(detailIDs != null && detailIDs.length > 0) {
+					applicant.setDetail(Integer.valueOf(detailIDs[i]), detailCnames[i], Integer.valueOf(detailCcontacts[i]), Integer.valueOf(detailCnationalIds[i]), detailCrelationships[i], detailCcurrent_residences[i]);
+				}else {
+					applicant.addDetail(detailCnames[i], Integer.valueOf(detailCcontacts[i]), Integer.valueOf(detailCnationalIds[i]), detailCrelationships[i], detailCcurrent_residences[i]);
+				}
+			}
+			
 			service.save(applicant);
 		}
 				
@@ -121,9 +175,15 @@ public class ApplicantController {
 			RedirectAttributes redirectAttributes) {
 		try {
 		Applicant applicant = service.get(id);
+
+		List<Agent> listAgents = (List<Agent>) agentRepo.findAll();
+		List<Job> listJobs = (List<Job>) jobRepo.findAll();
 		
 		model.addAttribute("applicant", applicant);
-		model.addAttribute("pageTitle", "Edit Applicant (ID: " + id + ")");
+		model.addAttribute("pageTitle", "Edit Applicant (ID: " + id + ")");		
+		
+		model.addAttribute("listAgents", listAgents);
+		model.addAttribute("listJobs", listJobs);
 		
 		return "applicants/applicant_form";
 		

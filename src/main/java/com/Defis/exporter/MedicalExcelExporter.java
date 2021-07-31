@@ -14,13 +14,13 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.Defis.domain.Applicant;
+import com.Defis.domain.Medical;
 
-public class ApplicantExcelExporter extends AbstractExporter {
+public class MedicalExcelExporter extends AbstractExporter {
 	private XSSFWorkbook workbook;
 	private XSSFSheet sheet;
 	
-	public ApplicantExcelExporter() {
+	public MedicalExcelExporter() {
 		workbook = new XSSFWorkbook();
 	}
 	
@@ -36,16 +36,12 @@ public class ApplicantExcelExporter extends AbstractExporter {
 		font.setFontHeight(16);
 		cellStyle.setFont(font);
 		
-		createCell(row, 0, "getIdentification", cellStyle);
-		createCell(row, 1, "Age", cellStyle);
-		createCell(row, 2, "First Name", cellStyle);
-		createCell(row, 3, "Last Name", cellStyle);
-		createCell(row, 0, "County", cellStyle);
-		createCell(row, 1, "Ward", cellStyle);
-		createCell(row, 3, "Email", cellStyle);
-		createCell(row, 0, "Huduma No.", cellStyle);
-		createCell(row, 1, "Chief Name", cellStyle);
-		createCell(row, 2, "Contact", cellStyle);
+		createCell(row, 0, "Applicant Id", cellStyle);
+		createCell(row, 1, "Client Info", cellStyle);
+		createCell(row, 2, "Medical Center", cellStyle);
+		createCell(row, 3, "Medical Type", cellStyle);
+		createCell(row, 4, "Amount Paid", cellStyle);
+		createCell(row, 5, "Application Date", cellStyle);
 	}
 	
 	private void createCell(XSSFRow row, int columnIndex, Object value, CellStyle style) {
@@ -63,11 +59,11 @@ public class ApplicantExcelExporter extends AbstractExporter {
 		cell.setCellStyle(style);
 	}
 	
-	public void export(List<Applicant> listApplicants, HttpServletResponse response) throws IOException {
+	public void export(List<Medical> listMedicals, HttpServletResponse response) throws IOException {
 		super.setResponseHeader(response, "application/octet", ".xlsx");
 		
 		writeHeaderLine();
-		writeDataLines(listApplicants);
+		writeDataLines(listMedicals);
 		
 		ServletOutputStream outputStream = response.getOutputStream();	
 		workbook.write(outputStream);
@@ -76,7 +72,7 @@ public class ApplicantExcelExporter extends AbstractExporter {
 
 	}
 
-	private void writeDataLines(List<Applicant> listApplicants) {
+	private void writeDataLines(List<Medical> listMedicals) {
 		int rowIndex = 1;
 		
 		XSSFCellStyle cellStyle = workbook.createCellStyle();
@@ -85,20 +81,16 @@ public class ApplicantExcelExporter extends AbstractExporter {
 		font.setFontHeight(14);
 		cellStyle.setFont(font);
 		
-		for (Applicant applicant : listApplicants) {
+		for (Medical medical : listMedicals) {
 			XSSFRow row = sheet.createRow(rowIndex++);
 			int columnIndex = 0;
 			
-			createCell(row, columnIndex++, applicant.getIdentification(), cellStyle);
-			createCell(row, columnIndex++, applicant.getAge(), cellStyle);
-			createCell(row, columnIndex++, applicant.getFirstName(), cellStyle);
-			createCell(row, columnIndex++, applicant.getLastName(), cellStyle);
-			createCell(row, columnIndex++, applicant.getCounty(), cellStyle);
-			createCell(row, columnIndex++, applicant.getWard(), cellStyle);
-			createCell(row, columnIndex++, applicant.getEmail(), cellStyle);
-			createCell(row, columnIndex++, applicant.getHudumaNo(), cellStyle);
-			createCell(row, columnIndex++, applicant.getChiefName(), cellStyle);
-			createCell(row, columnIndex++, applicant.getContact(), cellStyle);
-		}
+			createCell(row, columnIndex++, medical.getApplicantId(), cellStyle);
+			createCell(row, columnIndex++, medical.getClientInfo(), cellStyle);
+			createCell(row, columnIndex++, medical.getMedicalCenter(), cellStyle);
+			createCell(row, columnIndex++, medical.getMedicalType(), cellStyle);
+			createCell(row, columnIndex++, medical.getAmountPaid(), cellStyle);
+			createCell(row, columnIndex++, medical.getApplicationDate(), cellStyle);
 	}
+}
 }

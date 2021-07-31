@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import com.Defis.domain.Applicant;
+import com.Defis.domain.Medical;
 import com.lowagie.text.Document;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
@@ -17,10 +17,8 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
-public class ApplicantPDFExporter extends AbstractExporter {
-
-
-	public void export(List<Applicant> listApplicants, HttpServletResponse response) throws IOException {
+public class MedicalPDFExporter extends AbstractExporter {
+	public void export(List<Medical> listMedicals, HttpServletResponse response) throws IOException {
 		super.setResponseHeader(response, "application/pdf", ".pdf");
 		
 		Document document = new Document(PageSize.A4);
@@ -32,7 +30,7 @@ public class ApplicantPDFExporter extends AbstractExporter {
 		font.setSize(18);
 		font.setColor(Color.BLUE);
 		
-		Paragraph paragraph = new Paragraph("List of Applicant", font);
+		Paragraph paragraph = new Paragraph("List of Medical", font);
 		paragraph.setAlignment(Paragraph.ALIGN_CENTER);
 		
 		document.add(new Paragraph(paragraph));
@@ -43,22 +41,21 @@ public class ApplicantPDFExporter extends AbstractExporter {
 		table.setWidths(new float[] {1.2f, 3.5f, 3.0f, 3.0f, 3.0f, 1.7f});
 		
 		writeTableHeader(table);
-		writeTableData(table, listApplicants);
+		writeTableData(table, listMedicals);
 		
 		document.add(table);
 		
 		document.close();
 	}
 
-	private void writeTableData(PdfPTable table, List<Applicant> listApplicants) {
-		for(Applicant applicant : listApplicants) {
-			table.addCell(String.valueOf(applicant.getIdentification()));
-			table.addCell(applicant.getEmail());
-			table.addCell(applicant.getFirstName());
-			table.addCell(applicant.getLastName());
-			table.addCell(applicant.getContact());
-			table.addCell(applicant.getCounty());
-			table.addCell(applicant.getWard());
+	private void writeTableData(PdfPTable table, List<Medical> listMedicals) {
+		for(Medical medical : listMedicals) {
+			table.addCell(String.valueOf(medical.getApplicantId()));
+			table.addCell(medical.getClientInfo());
+			table.addCell(medical.getMedicalCenter());
+			table.addCell(medical.getMedicalType());
+			table.addCell(String.valueOf(medical.getAmountPaid()));
+			table.addCell(String.valueOf(medical.getApplicationDate()));
 		}
 		}
 		
@@ -73,32 +70,22 @@ public class ApplicantPDFExporter extends AbstractExporter {
 		font.setSize(14);
 		font.setColor(Color.WHITE);
 		
-		cell.setPhrase(new Phrase("ID", font));				
+		cell.setPhrase(new Phrase("Applicant Id", font));				
 		table.addCell(cell);
 		
-		cell.setPhrase(new Phrase("Email", font));				
+		cell.setPhrase(new Phrase("Client Info", font));				
 		table.addCell(cell);
 		
-		cell.setPhrase(new Phrase("First Name", font));				
+		cell.setPhrase(new Phrase("Medical Center", font));				
 		table.addCell(cell);
 		
-		cell.setPhrase(new Phrase("Last Name", font));				
+		cell.setPhrase(new Phrase("Medical Type", font));				
 		table.addCell(cell);
 		
-		cell.setPhrase(new Phrase("getContact", font));				
+		cell.setPhrase(new Phrase("Amount Paid", font));				
 		table.addCell(cell);
 		
-		cell.setPhrase(new Phrase("County", font));				
-		table.addCell(cell);
-		
-		cell.setPhrase(new Phrase("Email", font));				
-		table.addCell(cell);
-		
-		cell.setPhrase(new Phrase("County", font));				
-		table.addCell(cell);
-		
-		cell.setPhrase(new Phrase("Ward", font));				
+		cell.setPhrase(new Phrase("Application Date", font));				
 		table.addCell(cell);
 	}
-
 }

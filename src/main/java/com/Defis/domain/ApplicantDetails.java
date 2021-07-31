@@ -16,59 +16,57 @@ public class ApplicantDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "re_first_name", length = 45, nullable = false)
-	private String reFirstName;
+	@Column(name = "re_first_name", length = 45, nullable = true)
+	private String cname;
 
-	@Column(name = "re_last_name", length = 45, nullable = false)
-	private String reLastName;
+	@Column(name = "re_contact", length = 16, nullable = true)
+	private Integer ccontact;
 
-	@Column(name = "re_contact", length = 16, nullable = false)
-	private String reContact;
+	@Column(name = "re_national_id", length = 16, nullable = true)
+	private Integer cnational_id;
 
-	@Column(name = "re_national_id", length = 16, nullable = false)
-	private String reNationalId;
+	@Column(name = "re_relationship", length = 15, nullable = true)
+	private String crelationship;
 
-	@Column(name = "re_relationship", length = 15, nullable = false)
-	private String reRelationship;
+	@Column(name = "re_current_residence", length = 45, nullable = true)
+	private String ccurrent_residence;
 
-	@Column(name = "re_current_residence", length = 45, nullable = false)
-	private String reCurrentResidence;
-
-	@Column(name = "re_huduma_no", length = 45, nullable = false)
-	private String reHudumaNo;
+	@Column(name = "re_huduma_no", length = 45, nullable = true)
+	private Integer chuduma_no;
 
 	@ManyToOne
 	@JoinColumn(name = "applicant_id")
 	private Applicant applicant;
 
+	
+
+	
+
+	public ApplicantDetails(Integer id, String cname, Integer ccontact, Integer cnational_id, String crelationship, String ccurrent_residence, Applicant applicant) {
+		super();
+		this.id = id;
+		this.cname = cname;
+		this.ccontact = ccontact;
+		this.cnational_id = cnational_id;
+		this.crelationship = crelationship;
+		this.ccurrent_residence = ccurrent_residence;
+		this.applicant = applicant;
+	}
+
 	public ApplicantDetails() {
 	}
 
-	public ApplicantDetails(Integer id, String reFirstName, String reLastName, String reContact, String reNationalId,
-			String reRelationship, String reCurrentResidence, String reHudumaNo, Applicant applicant) {
-		super();
-		this.id = id;
-		this.reFirstName = reFirstName;
-		this.reLastName = reLastName;
-		this.reContact = reContact;
-		this.reNationalId = reNationalId;
-		this.reRelationship = reRelationship;
-		this.reCurrentResidence = reCurrentResidence;
-		this.reHudumaNo = reHudumaNo;
-		this.applicant = applicant;
-	}
 
-	public ApplicantDetails(String reFirstName, String reLastName, String reContact, String reNationalId,
-			String reRelationship, String reCurrentResidence, String reHudumaNo, Applicant applicant) {
-		this.reFirstName = reFirstName;
-		this.reLastName = reLastName;
-		this.reContact = reContact;
-		this.reNationalId = reNationalId;
-		this.reRelationship = reRelationship;
-		this.reCurrentResidence = reCurrentResidence;
-		this.reHudumaNo = reHudumaNo;
+	public ApplicantDetails(String cname, Integer ccontact, Integer cnational_id, String crelationship, String ccurrent_residence, Applicant applicant) {		
+		this.cname = cname;
+		this.ccontact = ccontact;
+		this.cnational_id = cnational_id;
+		this.crelationship = crelationship;
+		this.ccurrent_residence = ccurrent_residence;
 		this.applicant = applicant;
-	}
+	}	
+
+
 
 	public Integer getId() {
 		return id;
@@ -78,60 +76,52 @@ public class ApplicantDetails {
 		this.id = id;
 	}
 
-	public String getReFirstName() {
-		return reFirstName;
+	public String getCname() {
+		return cname;
 	}
 
-	public void setReFirstName(String reFirstName) {
-		this.reFirstName = reFirstName;
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
 
-	public String getReLastName() {
-		return reLastName;
+	public Integer getCcontact() {
+		return ccontact;
 	}
 
-	public void setReLastName(String reLastName) {
-		this.reLastName = reLastName;
+	public void setCcontact(Integer ccontact) {
+		this.ccontact = ccontact;
 	}
 
-	public String getReContact() {
-		return reContact;
+	public Integer getCnational_id() {
+		return cnational_id;
 	}
 
-	public void setReContact(String reContact) {
-		this.reContact = reContact;
+	public void setCnational_id(Integer cnational_id) {
+		this.cnational_id = cnational_id;
 	}
 
-	public String getReNationalId() {
-		return reNationalId;
+	public String getCrelationship() {
+		return crelationship;
 	}
 
-	public void setReNationalId(String reNationalId) {
-		this.reNationalId = reNationalId;
+	public void setCrelationship(String crelationship) {
+		this.crelationship = crelationship;
 	}
 
-	public String getReRelationship() {
-		return reRelationship;
+	public String getCcurrent_residence() {
+		return ccurrent_residence;
 	}
 
-	public void setReRelationship(String reRelationship) {
-		this.reRelationship = reRelationship;
+	public void setCcurrent_residence(String ccurrent_residence) {
+		this.ccurrent_residence = ccurrent_residence;
 	}
 
-	public String getReCurrentResidence() {
-		return reCurrentResidence;
+	public Integer getChuduma_no() {
+		return chuduma_no;
 	}
 
-	public void setReCurrentResidence(String reCurrentResidence) {
-		this.reCurrentResidence = reCurrentResidence;
-	}
-
-	public String getReHudumaNo() {
-		return reHudumaNo;
-	}
-
-	public void setReHudumaNo(String reHudumaNo) {
-		this.reHudumaNo = reHudumaNo;
+	public void setChuduma_no(Integer chuduma_no) {
+		this.chuduma_no = chuduma_no;
 	}
 
 	public Applicant getApplicant() {
@@ -144,7 +134,7 @@ public class ApplicantDetails {
 
 	@Override
 	public String toString() {
-		return reFirstName + " " + reLastName + " " + reRelationship + " " + reContact;
+		return cname + " " + crelationship + " " + ccontact;
 	}
 
 }

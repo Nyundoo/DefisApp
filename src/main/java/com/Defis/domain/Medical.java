@@ -105,7 +105,7 @@ public class Medical {
 		this.id = id;
 	}
 
-	public Applicant getApplicant() {
+	public Applicant getApplicantId() {
 		return applicant;
 	}
 
