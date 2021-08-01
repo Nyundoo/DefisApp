@@ -9,6 +9,11 @@
         <h2>[[${pageTitle}]]</h2>
     </div>
 </div>
+ <style>
+                td {
+                    padding: 0px !important;
+                }
+            </style>
 <form enctype="multipart/form-data" th:action="@{/applicants/save}" method="post" style="max-width: 700px; margin: 0 auto;" th:object="${applicant}" onsubmit="return checkEmailUnique(this);">
     <input type="hidden" th:field="*{id}" />
     <div class="border border-secondary rounded p-3">
@@ -201,17 +206,17 @@
             </thead> 
             <th:block th:unless="${applicant.id == null}" th:each="detail, status : ${applicant.details}">
             <input type="hidden" name="detailID" th:value="${detail.id}" />                               
-            
+           
             <tbody>                                   
             <TR>
                 <th:block th:if="${applicant.id == null}">
                 <TD><INPUT type="checkbox" name="chk"/></TD>
             </th:block>
-                <TD style="padding: 0.5px !important;"><input type="text" name="detailCnationalId" placeholder="National ID" th:value="${detail.cnational_id}" class="form-control" required /></TD>
-                <TD style="padding: 0.5px !important;"><input type="text" name="detailCname" placeholder="Name" th:value="${detail.cname}" class="form-control" required /></TD>
-                <TD style="padding: 0.5px !important;"><input type="text" name="detailCcurrent_residence" placeholder="Current Res" th:value="${detail.ccurrent_residence}" class="form-control" required /></TD>
-                <TD style="padding: 0.5px !important;"><input type="text" name="detailCcontact" placeholder="Contact" th:value="${detail.ccontact}" class="form-control" required /></TD>
-                <TD style="padding: 0.5px !important;">
+                <TD><input type="text" name="detailCnationalId" placeholder="National ID" th:value="${detail.cnational_id}" class="form-control" required /></TD>
+                <TD><input type="text" name="detailCname" placeholder="Name" th:value="${detail.cname}" class="form-control" required /></TD>
+                <TD><input type="text" name="detailCcurrent_residence" placeholder="Current Res" th:value="${detail.ccurrent_residence}" class="form-control" required /></TD>
+                <TD><input type="text" name="detailCcontact" placeholder="Contact" th:value="${detail.ccontact}" class="form-control" required /></TD>
+                <TD>
                     <SELECT class="form-control" name="detailCrelationship">
                         <OPTION value="Parent">Parent</OPTION>
                         <OPTION value="Guardian">Guardian</OPTION>
@@ -225,12 +230,12 @@
             <th:block th:if="${applicant.id == null}">
             <tbody id="dataTable">
             <TR>
-                <TD style="padding: 0.5px !important;"><INPUT type="checkbox" name="chk"/></TD>
-                <TD style="padding: 0.5px !important;"><input type="text" name="detailCnationalId" placeholder="National ID" class="form-control" required /></TD>
-                <TD style="padding: 0.5px !important;"><input type="text" name="detailCname" placeholder="Name" class="form-control" required /></TD>
-                <TD style="padding: 0.5px !important;"><input type="text" name="detailCcurrent_residence" placeholder="Current Res" class="form-control" required /></TD>
-                <TD style="padding: 0.5px !important;"><input type="text" name="detailCcontact" placeholder="Contact" class="form-control" required /></TD>
-                <TD style="padding: 0.5px !important;">
+                <TD><INPUT type="checkbox" name="chk"/></TD>
+                <TD><input type="text" name="detailCnationalId" placeholder="National ID" class="form-control" required /></TD>
+                <TD><input type="text" name="detailCname" placeholder="Name" class="form-control" required /></TD>
+                <TD><input type="text" name="detailCcurrent_residence" placeholder="Current Res" class="form-control" required /></TD>
+                <TD><input type="text" name="detailCcontact" placeholder="Contact" class="form-control" required /></TD>
+                <TD>
                     <SELECT class="form-control" name="detailCrelationship">
                         <OPTION value="Parent">Parent</OPTION>
                         <OPTION value="Guardian">Guardian</OPTION>
