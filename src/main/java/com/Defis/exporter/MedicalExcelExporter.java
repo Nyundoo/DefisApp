@@ -85,12 +85,12 @@ public class MedicalExcelExporter extends AbstractExporter {
 			XSSFRow row = sheet.createRow(rowIndex++);
 			int columnIndex = 0;
 			
-			createCell(row, columnIndex++, medical.getApplicantId(), cellStyle);
-			createCell(row, columnIndex++, medical.getClientInfo(), cellStyle);
-			createCell(row, columnIndex++, medical.getMedicalCenter(), cellStyle);
-			createCell(row, columnIndex++, medical.getMedicalType(), cellStyle);
-			createCell(row, columnIndex++, medical.getAmountPaid(), cellStyle);
-			createCell(row, columnIndex++, medical.getApplicationDate(), cellStyle);
+			createCell(row, columnIndex++, medical.getApplicant(), cellStyle);
+			createCell(row, columnIndex++, medical.getClient_info(), cellStyle);
+			createCell(row, columnIndex++, medical.getMedical_center(), cellStyle);
+			createCell(row, columnIndex++, medical.getMedical_center(), cellStyle);
+			createCell(row, columnIndex++, medical.getAmount_paid(), cellStyle);
+			createCell(row, columnIndex++, medical.getApplication_date(), cellStyle);
 	}
 }
 }

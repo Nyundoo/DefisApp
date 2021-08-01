@@ -50,12 +50,12 @@ public class MedicalPDFExporter extends AbstractExporter {
 
 	private void writeTableData(PdfPTable table, List<Medical> listMedicals) {
 		for(Medical medical : listMedicals) {
-			table.addCell(String.valueOf(medical.getApplicantId()));
-			table.addCell(medical.getClientInfo());
-			table.addCell(medical.getMedicalCenter());
-			table.addCell(medical.getMedicalType());
-			table.addCell(String.valueOf(medical.getAmountPaid()));
-			table.addCell(String.valueOf(medical.getApplicationDate()));
+			table.addCell(String.valueOf(medical.getApplicant()));
+			table.addCell(medical.getClient_info());
+			table.addCell(medical.getMedical_center());
+			table.addCell(medical.getMedical_type());
+			table.addCell(String.valueOf(medical.getAmount_paid()));
+			table.addCell(String.valueOf(medical.getApplication_date()));
 		}
 		}
 		

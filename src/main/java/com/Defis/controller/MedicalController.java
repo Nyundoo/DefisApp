@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.Defis.domain.Applicant;
 import com.Defis.domain.Medical;
 import com.Defis.domain.MedicalNotFoundException;
 import com.Defis.exporter.MedicalCsvExporter;
 import com.Defis.exporter.MedicalExcelExporter;
 import com.Defis.exporter.MedicalPDFExporter;
+import com.Defis.repository.ApplicantRepository;
 import com.Defis.service.MedicalService;
 
 @Controller
@@ -27,10 +29,13 @@ public class MedicalController {
 	@Autowired
 	private MedicalService service;
 	
+	@Autowired
+	private ApplicantRepository applicantRepo;
+	
 	@GetMapping("/medicals")
 	public String listFirstPage(Model model) {
 		
-		return listByPage(1, model, "firstName", "asc", null);
+		return listByPage(1, model, "applicant", "asc", null);
 	}
 	
 	@GetMapping("/medicals/page/{pageNum}")
@@ -45,6 +50,7 @@ public class MedicalController {
 		
 		Page<Medical> page = service.listByPage(pageNum, sortField, sortDir, keyword);
 		List<Medical> listMedicals = page.getContent();
+		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
 		
 		long startCount = (pageNum - 1) * MedicalService.MEDICALS_PER_PAGE + 1;
 		long endCount = startCount + MedicalService.MEDICALS_PER_PAGE - 1;		
@@ -59,6 +65,7 @@ public class MedicalController {
 		model.addAttribute("startCount", startCount);
 		model.addAttribute("endCount", endCount);
 		model.addAttribute("totalItems", page.getTotalElements());
+		model.addAttribute("listApplicants", listApplicants);
 		model.addAttribute("listMedicals", listMedicals);	
 		model.addAttribute("sortField", sortField);	
 		model.addAttribute("sortDir", sortDir);
@@ -71,10 +78,13 @@ public class MedicalController {
 	
 	@GetMapping("/medicals/new")
 	public String newMedical(Model model) {
+		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
 		
 		Medical medical = new Medical();
 		model.addAttribute("medical", medical);
 		model.addAttribute("pageTitle", "Create New Medical");
+
+		model.addAttribute("listApplicants", listApplicants);
 		
 		return "medicals/medical_form";
 	}
@@ -87,7 +97,7 @@ public class MedicalController {
 		service.save(medical);
 	
 			
-	redirectAttributes.addFlashAttribute("message", "The job has been saved successfully!");
+	redirectAttributes.addFlashAttribute("message", "The medical has been saved successfully!");
 	
 	return getRedirectURLToAffectedMedical(medical);
 	}

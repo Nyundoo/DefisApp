@@ -25,24 +25,24 @@ public class Medical {
 	private Applicant applicant;
 
 	@Column(name = "client_info", columnDefinition = "text")
-	private String clientInfo;
+	private String client_info;
 
 	@Column(name = "medical_center", length = 45, nullable = false)
-	private String medicalCenter;
+	private String medical_center;
 
 	@Column(name = "medical_type", length = 45, nullable = false)
-	private String medicalType;
+	private String medical_type;
 
 	@Column(name = "amount_paid", length = 20, nullable = false)
-	private double amountPaid;
+	private double amount_paid;
 
 	@Column(name = "application_date", length = 16, nullable = false)
-	private Date applicationDate;
+	private Date application_date;
 
 	private boolean active = false;
 
 	@Column(name = "cert_no", length = 16, nullable = true)
-	private String certNo;
+	private String cert_no;
 
 	private boolean cert_status = false;
 
@@ -50,21 +50,21 @@ public class Medical {
 	private String paid;
 
 	@Column(name = "cert_application_date", length = 16, nullable = true)
-	private Date certApplicationDate;
+	private Date cert_application_date;
 
 	@Column(name = "assign_to", length = 45, nullable = true)
-	private String assignTo;
+	private String assign_to;
 
 	@Column(name = "passport_no", length = 30, nullable = true)
-	private String passportNo;
+	private String passport_no;
 
 	private boolean pass_status = false;
 
 	@Column(name = "pass_paid", length = 16, nullable = true)
-	private String passPaid;
+	private String pass_paid;
 
 	@Column(name = "pass_application_date", length = 16, nullable = true)
-	private Date passApplicationDate;
+	private Date pass_application_date;
 
 	@Column(name = "passAssignTo", length = 16, nullable = true)
 	private String pass_assign_to;
@@ -72,28 +72,28 @@ public class Medical {
 	public Medical() {
 	}
 
-	public Medical(Integer id, Applicant applicant, String clientInfo, String medicalCenter, String medicalType,
-			double amountPaid, Date applicationDate, boolean active, String certNo, boolean cert_status, String paid,
-			Date certApplicationDate, String assignTo, String passportNo, boolean pass_status, String passPaid,
-			Date passApplicationDate, String pass_assign_to) {
+	public Medical(Integer id, Applicant applicant, String client_info, String medical_center, String medical_type,
+			double amount_paid, Date application_date, boolean active, String cert_no, boolean cert_status, String paid,
+			Date cert_application_date, String assign_to, String passport_no, boolean pass_status, String pass_paid,
+			Date pass_application_date, String pass_assign_to) {
 		super();
 		this.id = id;
 		this.applicant = applicant;
-		this.clientInfo = clientInfo;
-		this.medicalCenter = medicalCenter;
-		this.medicalType = medicalType;
-		this.amountPaid = amountPaid;
-		this.applicationDate = applicationDate;
+		this.client_info = client_info;
+		this.medical_center = medical_center;
+		this.medical_type = medical_type;
+		this.amount_paid = amount_paid;
+		this.application_date = application_date;
 		this.active = active;
-		this.certNo = certNo;
+		this.cert_no = cert_no;
 		this.cert_status = cert_status;
 		this.paid = paid;
-		this.certApplicationDate = certApplicationDate;
-		this.assignTo = assignTo;
-		this.passportNo = passportNo;
+		this.cert_application_date = cert_application_date;
+		this.assign_to = assign_to;
+		this.passport_no = passport_no;
 		this.pass_status = pass_status;
-		this.passPaid = passPaid;
-		this.passApplicationDate = passApplicationDate;
+		this.pass_paid = pass_paid;
+		this.pass_application_date = pass_application_date;
 		this.pass_assign_to = pass_assign_to;
 	}
 
@@ -105,7 +105,7 @@ public class Medical {
 		this.id = id;
 	}
 
-	public Applicant getApplicantId() {
+	public Applicant getApplicant() {
 		return applicant;
 	}
 
@@ -113,44 +113,44 @@ public class Medical {
 		this.applicant = applicant;
 	}
 
-	public String getClientInfo() {
-		return clientInfo;
+	public String getClient_info() {
+		return client_info;
 	}
 
-	public void setClientInfo(String clientInfo) {
-		this.clientInfo = clientInfo;
+	public void setClient_info(String client_info) {
+		this.client_info = client_info;
 	}
 
-	public String getMedicalCenter() {
-		return medicalCenter;
+	public String getMedical_center() {
+		return medical_center;
 	}
 
-	public void setMedicalCenter(String medicalCenter) {
-		this.medicalCenter = medicalCenter;
+	public void setMedical_center(String medical_center) {
+		this.medical_center = medical_center;
 	}
 
-	public String getMedicalType() {
-		return medicalType;
+	public String getMedical_type() {
+		return medical_type;
 	}
 
-	public void setMedicalType(String medicalType) {
-		this.medicalType = medicalType;
+	public void setMedical_type(String medical_type) {
+		this.medical_type = medical_type;
 	}
 
-	public double getAmountPaid() {
-		return amountPaid;
+	public double getAmount_paid() {
+		return amount_paid;
 	}
 
-	public void setAmountPaid(double amountPaid) {
-		this.amountPaid = amountPaid;
+	public void setAmount_paid(double amount_paid) {
+		this.amount_paid = amount_paid;
 	}
 
-	public Date getApplicationDate() {
-		return applicationDate;
+	public Date getApplication_date() {
+		return application_date;
 	}
 
-	public void setApplicationDate(Date applicationDate) {
-		this.applicationDate = applicationDate;
+	public void setApplication_date(Date application_date) {
+		this.application_date = application_date;
 	}
 
 	public boolean isActive() {
@@ -161,12 +161,12 @@ public class Medical {
 		this.active = active;
 	}
 
-	public String getCertNo() {
-		return certNo;
+	public String getCert_no() {
+		return cert_no;
 	}
 
-	public void setCertNo(String certNo) {
-		this.certNo = certNo;
+	public void setCert_no(String cert_no) {
+		this.cert_no = cert_no;
 	}
 
 	public boolean isCert_status() {
@@ -185,28 +185,28 @@ public class Medical {
 		this.paid = paid;
 	}
 
-	public Date getCertApplicationDate() {
-		return certApplicationDate;
+	public Date getCert_application_date() {
+		return cert_application_date;
 	}
 
-	public void setCertApplicationDate(Date certApplicationDate) {
-		this.certApplicationDate = certApplicationDate;
+	public void setCert_application_date(Date cert_application_date) {
+		this.cert_application_date = cert_application_date;
 	}
 
-	public String getAssignTo() {
-		return assignTo;
+	public String getAssign_to() {
+		return assign_to;
 	}
 
-	public void setAssignTo(String assignTo) {
-		this.assignTo = assignTo;
+	public void setAssign_to(String assign_to) {
+		this.assign_to = assign_to;
 	}
 
-	public String getPassportNo() {
-		return passportNo;
+	public String getPassport_no() {
+		return passport_no;
 	}
 
-	public void setPassportNo(String passportNo) {
-		this.passportNo = passportNo;
+	public void setPassport_no(String passport_no) {
+		this.passport_no = passport_no;
 	}
 
 	public boolean isPass_status() {
@@ -217,20 +217,20 @@ public class Medical {
 		this.pass_status = pass_status;
 	}
 
-	public String getPassPaid() {
-		return passPaid;
+	public String getPass_paid() {
+		return pass_paid;
 	}
 
-	public void setPassPaid(String passPaid) {
-		this.passPaid = passPaid;
+	public void setPass_paid(String pass_paid) {
+		this.pass_paid = pass_paid;
 	}
 
-	public Date getPassApplicationDate() {
-		return passApplicationDate;
+	public Date getPass_application_date() {
+		return pass_application_date;
 	}
 
-	public void setPassApplicationDate(Date passApplicationDate) {
-		this.passApplicationDate = passApplicationDate;
+	public void setPass_application_date(Date pass_application_date) {
+		this.pass_application_date = pass_application_date;
 	}
 
 	public String getPass_assign_to() {
