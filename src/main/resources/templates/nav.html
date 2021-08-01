@@ -19,16 +19,16 @@
                     <li class="nav-item" sec:authorize="hasAuthority('Admin')">
                         <a class="nav-link" th:href="@{/users}">Users</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAuthority('Admin')">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'ICT', 'Assistant', 'Receptionist', 'Manager')">
                         <a class="nav-link" th:href="@{/medicals}">List Medicals</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAuthority('Admin')">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'ICT', 'Assistant', 'Receptionist', 'Manager')">
                         <a class="nav-link" th:href="@{/jobs}">List Jobs</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAuthority('Admin')">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'ICT', 'Assistant', 'Receptionist', 'Manager')">
                         <a class="nav-link" th:href="@{/agents}">List Agents</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAuthority('Admin')">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'ICT', 'Assistant', 'Receptionist', 'Manager')">
                         <a class="nav-link" th:href="@{/applicants}">List Applicants</a>
                     </li>
                     <li>
