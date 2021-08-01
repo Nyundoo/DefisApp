@@ -22,17 +22,14 @@
                     <li class="nav-item" sec:authorize="hasAuthority('Admin')">
                         <a class="nav-link" th:href="@{/medicals}">List Medicals</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasAuthority('Admin')">
                         <a class="nav-link" th:href="@{/jobs}">List Jobs</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasAuthority('Admin')">
                         <a class="nav-link" th:href="@{/agents}">List Agents</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasAuthority('Admin')">
                         <a class="nav-link" th:href="@{/applicants}">List Applicants</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/users}">Menus</a>
                     </li>
                     <li>
                         <span class="far fa-user fa-2x icon-silver"></span>
