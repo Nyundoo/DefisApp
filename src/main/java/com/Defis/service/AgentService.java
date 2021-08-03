@@ -14,9 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.Defis.domain.Agent;
 import com.Defis.domain.AgentNotFoundException;
-import com.Defis.domain.Role;
 import com.Defis.repository.AgentRepository;
-import com.Defis.repository.RoleRepository;
 
 
 @Service
@@ -27,9 +25,6 @@ public static final int AGENTS_PER_PAGE = 6;
 	
 	@Autowired
 	private AgentRepository agentRepo;
-	
-	@Autowired
-	private RoleRepository roleRepo;
 	
 
 	public Agent getByEmail(String email) {
@@ -42,11 +37,11 @@ public static final int AGENTS_PER_PAGE = 6;
 	}
 	
 	public Page<Agent> listByPage(int pageNum, String sortField, String sortDir, String keyword){
-		Sort sort = Sort.by(sortField);
+			Sort sort = Sort.by(sortField);
 		
-		sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
+			sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
 		
-		Pageable pageable = PageRequest.of(pageNum - 1, AGENTS_PER_PAGE, sort);
+			Pageable pageable = PageRequest.of(pageNum - 1, AGENTS_PER_PAGE, sort);
 		
 		if(keyword != null) {
 			return agentRepo.findAll(keyword, pageable);
@@ -55,19 +50,12 @@ public static final int AGENTS_PER_PAGE = 6;
 		return agentRepo.findAll(pageable);
 	}
 	
-	public List<Role> listRoles(){
-		return (List<Role>) roleRepo.findAll();
-	}
 
 	public Agent save(Agent agent) {		
 	
 		return agentRepo.save(agent);
 		
 	}
-	
-
-	
-
 	
 	public boolean isEmailUnique(Integer id, String email) {
 		Agent agentByEmail = agentRepo.getAgentByEmail(email);

@@ -54,7 +54,7 @@ public class UserRepositoryTest {
 		
 		System.out.print(encodedPassword);
 		
-		User userRavi = new User("admin2@gmail.com",encodedPassword, "admin2", "admin2");
+		User userRavi = new User("admin3@gmail.com",encodedPassword, "admin3", "admin3");
 		Role roleEditor = new Role(1);
 		Role roleAssistant = new Role(5);
 		
@@ -93,7 +93,7 @@ public class UserRepositoryTest {
 //	@Test
 //	public void testUpdateUserRoles() {
 //		User userRavi = repo.findById(2).get();
-//		Role roleEditor = new Role(3);
+//		Role roleEditor = new Role(1);
 //		Role roleSalesPerson = new Role(2);
 //		
 //		userRavi.getRoles().remove(roleEditor);

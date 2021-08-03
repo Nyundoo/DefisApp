@@ -20,10 +20,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Agent;
 import com.Defis.domain.AgentNotFoundException;
-import com.Defis.domain.Role;
+import com.Defis.domain.Agent;
 import com.Defis.exporter.AgentCsvExporter;
 import com.Defis.exporter.AgentExcelExporter;
 import com.Defis.exporter.AgentPDFExporter;
+import com.Defis.service.AgentService;
 import com.Defis.service.AgentService;
 import com.Defis.utility.FileUploadUtil;
 
@@ -125,11 +126,8 @@ public class AgentController {
 		try {
 		Agent agent = service.get(id);
 		
-		List<Role> listRoles = service.listRoles();
-		
 		model.addAttribute("agent", agent);
 		model.addAttribute("pageTitle", "Edit Agent (ID: " + id + ")");
-		model.addAttribute("listRoles", listRoles);
 		
 		return "agents/agent_form";
 		
