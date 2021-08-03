@@ -46,32 +46,32 @@ public class UserRepositoryTest {
 //	}
 //	
 //	
-	@Test
-	public void testCreateNewUserWithTwoRoles() {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String rawPassword = "admin2021";
-		String encodedPassword = passwordEncoder.encode(rawPassword); 
-		
-		System.out.print(encodedPassword);
-		
-		User userRavi = new User("admin3@gmail.com",encodedPassword, "admin3", "admin3");
-		Role roleEditor = new Role(1);
-		Role roleAssistant = new Role(5);
-		
-		userRavi.addRole(roleEditor);
-		userRavi.addRole(roleAssistant);
-		
-		User savedUser = repo.save(userRavi);
-		
-		assertThat(savedUser.getId()).isGreaterThan(0);
-	}
-	
-	@Test
-	public void testListAllUsers() {
-		Iterable<User> listUsers = repo.findAll();
-		listUsers.forEach(user -> System.out.print(user));
-		
-	}
+//	@Test
+//	public void testCreateNewUserWithTwoRoles() {
+//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//		String rawPassword = "admin2021";
+//		String encodedPassword = passwordEncoder.encode(rawPassword); 
+//		
+//		System.out.print(encodedPassword);
+//		
+//		User userRavi = new User("admin3@gmail.com",encodedPassword, "admin3", "admin3");
+//		Role roleEditor = new Role(1);
+//		Role roleAssistant = new Role(5);
+//		
+//		userRavi.addRole(roleEditor);
+//		userRavi.addRole(roleAssistant);
+//		
+//		User savedUser = repo.save(userRavi);
+//		
+//		assertThat(savedUser.getId()).isGreaterThan(0);
+//	}
+//	
+//	@Test
+//	public void testListAllUsers() {
+//		Iterable<User> listUsers = repo.findAll();
+//		listUsers.forEach(user -> System.out.print(user));
+//		
+//	}
 //	
 //	@Test
 //	public void testUserById() {
@@ -153,20 +153,20 @@ public class UserRepositoryTest {
 //		assertThat(listUsers.size()).isEqualTo(pageSize);
 //	}
 //	
-	@Test
-	public void testListSearchUsers() {
-		String keyword = "admin";
-		
-		int pageNumber = 0;
-		int pageSize = 4;
-		
-		Pageable pageable = PageRequest.of(pageNumber, pageSize);
-		Page<User> page = repo.findAll(keyword, pageable);
-		
-		List<User> listUsers = page.getContent();
-		
-		listUsers.forEach(user -> System.out.println(user));
-		
-		assertThat(listUsers.size()).isGreaterThan(0);
-	}
+//	@Test
+//	public void testListSearchUsers() {
+//		String keyword = "admin";
+//		
+//		int pageNumber = 0;
+//		int pageSize = 4;
+//		
+//		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+//		Page<User> page = repo.findAll(keyword, pageable);
+//		
+//		List<User> listUsers = page.getContent();
+//		
+//		listUsers.forEach(user -> System.out.println(user));
+//		
+//		assertThat(listUsers.size()).isGreaterThan(0);
+//	}
 }
