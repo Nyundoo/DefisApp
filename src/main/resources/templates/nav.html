@@ -31,6 +31,9 @@
                     <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'ICT', 'Assistant', 'Receptionist', 'Manager')">
                         <a class="nav-link" th:href="@{/applicants}">List Applicants</a>
                     </li>
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'ICT', 'Assistant', 'Receptionist', 'Manager')">
+                        <a class="nav-link" th:href="@{/trainings}">List Trainings</a>
+                    </li>
                     <li>
                         <span class="far fa-user fa-2x icon-silver"></span>
                     </li>

@@ -73,8 +73,8 @@
                                 th:checked="${medical.active}" id="myCheck" /> Pass </label> <label><input id="myCheck2"
                                 onclick="myFunctionx()" value="false" type="radio" th:checked="${!medical.active}"
                                 name="active" />
-                            Fail </label> <span class="help-block">Whether the client has pass the medical test or
-                            failed</span>
+                            Fail </label><br/><span class="help-block">(Whether the client has pass the medical test or
+                            failed)</span>
                     </div>
                 </div>
                 <div id="myDIV">
@@ -90,8 +90,8 @@
                                     th:checked="${medical.cert_status}" id="myCheck3" /> Dont Have </label>
                             <label><input onclick="myFunctionx2()" value="false" type="radio"
                                     th:checked="${!medical.cert_status}" name="cert_status" id="myCheck4" />
-                                Have</label> <span class="help-block">Whether the client has a birth certificate or
-                                not</span>
+                                Have</label><br/><span class="help-block">(Whether the client has a birth certificate or
+                                not)</span>
                         </div>
                     </div>
                     <div id="myDIV2x" style="display:none">
@@ -152,7 +152,7 @@
                                     th:checked="${medical.pass_status}" id="myCheck5" /> Have Not </label> <label><input
                                     onclick="myFunctionx3()" value="false" type="radio"
                                     th:checked="${!medical.pass_status}" name="pass_status" id="myCheck6" />
-                                Have </label> <span class="help-block">Whether the client has a passport or not</span>
+                                Have </label><br/><span class="help-block">(Whether the client has a passport or not)</span>
                         </div>
                     </div>
                     <div id="myDIV3x" style="display:none">
@@ -198,9 +198,34 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <div id="myDIV4" style="display:none">
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Type of Visa: </label>
 
+                        <div class="col-sm-8">
+                            <input type="text" th:field="*{type_of_visa}" class="form-control" />
+                        </div>
+                    </div>
 
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Visa Application Date: </label>
+
+                        <div class="col-sm-8">
+                            <input type="date" th:field="*{visa_apply_date}" class="form-control" id="theDate4" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="status" style="text-align: right;">Visa Status</label>
+                        <div class="col-md-8">
+                            <label><input value="true" type="radio" name="status"
+                                    th:checked="${medical.status}" id="myCheck5" /> Have Not </label> <label><input value="false" type="radio"
+                                    th:checked="${!medical.status}" name="status" id="myCheck6" />
+                                Have </label><br/><span class="help-block">(Whether the client receive the visa)</span>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -289,6 +314,21 @@
         document.getElementById('theDate3').value = today3;
 
 
+        var date4 = new Date();
+
+        var day4 = date4.getDate();
+        var month4 = date4.getMonth() + 1;
+        var year4 = date4.getFullYear();
+
+        if (month4 < 10) month4 = "0" + month4;
+        if (day4 < 10) day4 = "0" + day4;
+
+        var today4 = year4 + "-" + month4 + "-" + day4;
+
+
+        document.getElementById('theDate4').value = today4;
+
+
 
 
         var checkBox1 = document.getElementById("myCheck");
@@ -331,28 +371,34 @@
             text4.style.display = "block";
             text4x.style.display = "none";
         }
-
+       
 
         var checkBox5 = document.getElementById("myCheck5");
         var text5 = document.getElementById("myDIV3");
         var text5x = document.getElementById("myDIV3x");
+        var text6xxx = document.getElementById("myDIV4");
         if (checkBox5.checked == true) {
             text5.style.display = "block";
             text5x.style.display = "none";
+            text6xxx.style.display = "none"
         } else {
             text5.style.display = "none";
             text5x.style.display = "block";
+            text6xxx.style.display = "block";
         }
 
         var checkBox6 = document.getElementById("myCheck6");
         var text6 = document.getElementById("myDIV3");
         var text6x = document.getElementById("myDIV3x");
+        var text6xx = document.getElementById("myDIV4");
         if (checkBox6.checked == true) {
             text6.style.display = "none";
             text6x.style.display = "block";
+            text6xx.style.display = "block";
         } else {
             text6.style.display = "block";
             text6x.style.display = "none";
+            text6xx.style.display = "none";
         }
 
         function myFunction() {
@@ -407,12 +453,15 @@
             var checkBox = document.getElementById("myCheck5");
             var text = document.getElementById("myDIV3");
             var textx = document.getElementById("myDIV3x");
+            var text4xx = document.getElementById("myDIV4");
             if (checkBox.checked == true) {
                 text.style.display = "block";
                 textx.style.display = "none";
+                text4xx.style.display = "none";
             } else {
                 text.style.display = "none";
                 textx.style.display = "block";
+                text4xx.style.display = "block";
             }
         }
 
@@ -420,12 +469,15 @@
             var checkBox = document.getElementById("myCheck6");
             var text = document.getElementById("myDIV3");
             var textx = document.getElementById("myDIV3x");
+            var text4xx = document.getElementById("myDIV4");
             if (checkBox.checked == true) {
                 text.style.display = "none";
                 textx.style.display = "block";
+                text4xx.style.display = "block";
             } else {
                 text.style.display = "block";
                 textx.style.display = "none";
+                text4xx.style.display = "none";
             }
         }
 

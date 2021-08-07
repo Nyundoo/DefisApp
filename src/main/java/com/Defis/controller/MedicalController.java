@@ -114,6 +114,10 @@ public class MedicalController {
 		try {
 		Medical medical = service.get(id);
 		
+		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
+		
+
+		model.addAttribute("listApplicants", listApplicants);
 		
 		model.addAttribute("medical", medical);
 		model.addAttribute("pageTitle", "Edit Medical (ID: " + id + ")");

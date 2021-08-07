@@ -74,6 +74,12 @@ public class Applicant {
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "applicant")
 	private Medical medical;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "applicant")
+	private Medical tickets;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "applicant")
+	private Medical training;
 
 	@OneToMany(mappedBy = "applicant", cascade = CascadeType.ALL)
 	private List<ApplicantDetails> details = new ArrayList<>();
@@ -232,8 +238,28 @@ public class Applicant {
 
 	public void setDetails(List<ApplicantDetails> details) {
 		this.details = details;
-	}
+	}	
 	
+	public Medical getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(Medical tickets) {
+		this.tickets = tickets;
+	}
+
+	public Medical getTraining() {
+		return training;
+	}
+
+	public void setTraining(Medical training) {
+		this.training = training;
+	}
+
+	public void setVillageName(String villageName) {
+		this.villageName = villageName;
+	}
+
 	public void addDetail(String cname, Integer ccontact, Integer cnational_id, String crelationship, String ccurrent_residence) {
 		this.details.add(new ApplicantDetails(cname, ccontact, cnational_id, crelationship, ccurrent_residence, this));
 	}

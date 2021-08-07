@@ -6,66 +6,57 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.test.annotation.Rollback;
 
-import com.Defis.domain.Role;
-import com.Defis.domain.User;
-import com.Defis.repository.UserRepository;
+import com.Defis.domain.Agent;
+import com.Defis.repository.AgentRepository;
 
-@DataJpaTest(showSql = false)
-@AutoConfigureTestDatabase(replace = Replace.NONE)
-@Rollback(false)
-public class UserRepositoryTest {
+public class AgentRepositoryTest {
 	@Autowired
-	private UserRepository repo;
+	private AgentRepository repo;
 	
 //	@Autowired
 //	private TestEntityManager entityManager;
 
 //	@Test
-//	public void testCreateNewUserWithOneRole() {
+//	public void testCreateNewAgentWithOneRole() {
 //		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 //		String rawPassword = "12345678";
 //		String encodedPassword = passwordEncoder.encode(rawPassword); 
 //		
 //		System.out.print(encodedPassword);
 //		Role roleAdmin = entityManager.find(Role.class, 1);
-//		User userName = new User("arthur@gmail.com", "art2021", "Arthur", "Lukhoni");
-//		userName.addRole(roleAdmin);
+//		Agent agentName = new Agent("arthur@gmail.com", "art2021", "Arthur", "Lukhoni");
+//		agentName.addRole(roleAdmin);
 //		
-//		User savedUser = repo.save(userName);
+//		Agent savedAgent = repo.save(agentName);
 //		
-//		assertThat(savedUser.getId()).isGreaterThan(0);
+//		assertThat(savedAgent.getId()).isGreaterThan(0);
 //	}
 //	
 //	
-	@Test
-	public void testCreateNewUserWithTwoRoles() {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String rawPassword = "admin2021";
-		String encodedPassword = passwordEncoder.encode(rawPassword); 
-		
-		System.out.print(encodedPassword);
-		
-		User userRavi = new User("admin@gmail.com",encodedPassword, "admin", "admin");
-		Role roleEditor = new Role(1);
-		Role roleAssistant = new Role(5);
-		
-		userRavi.addRole(roleEditor);
-		userRavi.addRole(roleAssistant);
-		
-		User savedUser = repo.save(userRavi);
-		
-		assertThat(savedUser.getId()).isGreaterThan(0);
-	}
-//	
+//	@Test
+//	public void testCreateNewAgentWithTwoRoles() {
+//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//		String rawPassword = "admin2021";
+//		String encodedPassword = passwordEncoder.encode(rawPassword); 
+//		
+//		System.out.print(encodedPassword);
+//		
+//		Agent agentRavi = new Agent("admin2@gmail.com",encodedPassword, "admin2", "admin2");
+//		Role roleEditor = new Role(1);
+//		Role roleAssistant = new Role(5);
+//		
+//		agentRavi.addRole(roleEditor);
+//		userRavi.addRole(roleAssistant);
+//		
+//		User savedUser = repo.save(userRavi);
+//		
+//		assertThat(savedUser.getId()).isGreaterThan(0);
+//	}
+	
 //	@Test
 //	public void testListAllUsers() {
 //		Iterable<User> listUsers = repo.findAll();
@@ -93,7 +84,7 @@ public class UserRepositoryTest {
 //	@Test
 //	public void testUpdateUserRoles() {
 //		User userRavi = repo.findById(2).get();
-//		Role roleEditor = new Role(1);
+//		Role roleEditor = new Role(3);
 //		Role roleSalesPerson = new Role(2);
 //		
 //		userRavi.getRoles().remove(roleEditor);
@@ -131,42 +122,36 @@ public class UserRepositoryTest {
 //	}
 //	
 //	
-//	@Test
-//	public void testEnableUser() {
-//		Integer id = 1;
-//		repo.updateEnabledStatus(id, true);
-//	}
-//	
-//	
+	
 //	@Test
 //	public void testListFirstPage() {
 //		int pageNumber = 0;
 //		int pageSize = 4;
 //		
 //		PageRequest pageable = PageRequest.of(pageNumber, pageSize);
-//		Page<User> page = repo.findAll(pageable);
+//		Page<Agent> page = repo.findAll(pageable);
 //		
-//		List<User> listUsers = page.getContent();
+//		List<Agent> listAgents = page.getContent();
 //		
-//		listUsers.forEach(user -> System.out.println(user));
+//		listAgents.forEach(agent -> System.out.println(agent));
 //		
-//		assertThat(listUsers.size()).isEqualTo(pageSize);
+//		assertThat(listAgents.size()).isEqualTo(pageSize);
 //	}
 //	
 //	@Test
-//	public void testListSearchUsers() {
+//	public void testListSearchAgents() {
 //		String keyword = "admin";
 //		
 //		int pageNumber = 0;
 //		int pageSize = 4;
 //		
 //		Pageable pageable = PageRequest.of(pageNumber, pageSize);
-//		Page<User> page = repo.findAll(keyword, pageable);
+//		Page<Agent> page = repo.findAll(keyword, pageable);
 //		
-//		List<User> listUsers = page.getContent();
+//		List<Agent> listAgents = page.getContent();
 //		
-//		listUsers.forEach(user -> System.out.println(user));
+//		listAgents.forEach(agent -> System.out.println(agent));
 //		
-//		assertThat(listUsers.size()).isGreaterThan(0);
+//		assertThat(listAgents.size()).isGreaterThan(0);
 //	}
 }

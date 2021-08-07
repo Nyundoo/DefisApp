@@ -60,14 +60,25 @@ public class Medical {
 
 	private boolean pass_status = false;
 
-	@Column(name = "pass_paid", length = 16, nullable = true)
+	@Column(name = "pass_paid", length = 20, nullable = true)
 	private String pass_paid;
 
 	@Column(name = "pass_application_date", length = 16, nullable = true)
 	private Date pass_application_date;
 
-	@Column(name = "passAssignTo", length = 16, nullable = true)
+	@Column(name = "pass_assign_to", length = 16, nullable = true)
 	private String pass_assign_to;
+
+	@Column(name = "type_of_visa", length = 64, nullable = true)
+	private String type_of_visa;
+
+	@Column(name = "visa_apply_date", length = 16, nullable = true)
+	private Date visa_apply_date;
+
+	private boolean status = false;
+
+	@Column(name = "agent_or_company", length = 64, nullable = true)
+	private String agent_or_company;
 
 	public Medical() {
 	}
@@ -75,7 +86,8 @@ public class Medical {
 	public Medical(Integer id, Applicant applicant, String client_info, String medical_center, String medical_type,
 			double amount_paid, Date application_date, boolean active, String cert_no, boolean cert_status, String paid,
 			Date cert_application_date, String assign_to, String passport_no, boolean pass_status, String pass_paid,
-			Date pass_application_date, String pass_assign_to) {
+			Date pass_application_date, String pass_assign_to, String type_of_visa, Date visa_apply_date,
+			boolean status, String agent_or_company) {
 		super();
 		this.id = id;
 		this.applicant = applicant;
@@ -95,6 +107,10 @@ public class Medical {
 		this.pass_paid = pass_paid;
 		this.pass_application_date = pass_application_date;
 		this.pass_assign_to = pass_assign_to;
+		this.type_of_visa = type_of_visa;
+		this.visa_apply_date = visa_apply_date;
+		this.status = status;
+		this.agent_or_company = agent_or_company;
 	}
 
 	public Integer getId() {
@@ -239,6 +255,38 @@ public class Medical {
 
 	public void setPass_assign_to(String pass_assign_to) {
 		this.pass_assign_to = pass_assign_to;
+	}
+
+	public String getType_of_visa() {
+		return type_of_visa;
+	}
+
+	public void setType_of_visa(String type_of_visa) {
+		this.type_of_visa = type_of_visa;
+	}
+
+	public Date getVisa_apply_date() {
+		return visa_apply_date;
+	}
+
+	public void setVisa_apply_date(Date visa_apply_date) {
+		this.visa_apply_date = visa_apply_date;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public String getAgent_or_company() {
+		return agent_or_company;
+	}
+
+	public void setAgent_or_company(String agent_or_company) {
+		this.agent_or_company = agent_or_company;
 	}
 
 }
