@@ -50,7 +50,6 @@ public class MedicalController {
 		
 		Page<Medical> page = service.listByPage(pageNum, sortField, sortDir, keyword);
 		List<Medical> listMedicals = page.getContent();
-		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
 		
 		long startCount = (pageNum - 1) * MedicalService.MEDICALS_PER_PAGE + 1;
 		long endCount = startCount + MedicalService.MEDICALS_PER_PAGE - 1;		
@@ -65,7 +64,6 @@ public class MedicalController {
 		model.addAttribute("startCount", startCount);
 		model.addAttribute("endCount", endCount);
 		model.addAttribute("totalItems", page.getTotalElements());
-		model.addAttribute("listApplicants", listApplicants);
 		model.addAttribute("listMedicals", listMedicals);	
 		model.addAttribute("sortField", sortField);	
 		model.addAttribute("sortDir", sortDir);

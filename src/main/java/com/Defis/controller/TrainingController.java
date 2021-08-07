@@ -23,14 +23,10 @@ import com.Defis.exporter.TrainingCsvExporter;
 import com.Defis.exporter.TrainingExcelExporter;
 import com.Defis.exporter.TrainingPDFExporter;
 import com.Defis.repository.ApplicantRepository;
-import com.Defis.repository.TrainingRepository;
 import com.Defis.service.TrainingService;
 
 @Controller
 public class TrainingController {
-	
-	@Autowired
-	private TrainingRepository trainingRepo;
 
 	@Autowired
 	private TrainingService service;
@@ -56,7 +52,6 @@ public class TrainingController {
 		
 		Page<Training> page = service.listByPage(pageNum, sortField, sortDir, keyword);
 		List<Training> listTrainings = page.getContent();
-		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
 		
 		long startCount = (pageNum - 1) * TrainingService.TRAININGS_PER_PAGE + 1;
 		long endCount = startCount + TrainingService.TRAININGS_PER_PAGE - 1;		
@@ -71,7 +66,6 @@ public class TrainingController {
 		model.addAttribute("startCount", startCount);
 		model.addAttribute("endCount", endCount);
 		model.addAttribute("totalItems", page.getTotalElements());
-		model.addAttribute("listApplicants", listApplicants);
 		model.addAttribute("listTrainings", listTrainings);	
 		model.addAttribute("sortField", sortField);	
 		model.addAttribute("sortDir", sortDir);

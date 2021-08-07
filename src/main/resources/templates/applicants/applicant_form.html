@@ -125,7 +125,7 @@
                 <div class="col-sm-8">
                     <select th:field="*{agent}" class="form-control" required>
                         <th:block th:each="cat : ${listAgents}">
-                            <option th:text="${cat.idNo}+' : '+${cat.firstName}" th:value="${cat.id}" />
+                            <option th:text="${cat.idNo}+' : '+${cat.firstName}+' '+${cat.lastName}" th:value="${cat.id}" />
                         </th:block>
                     </select>
                     <a style="text-decoration:underline; color: blue; font-size: medium;" th:href="@{/agents/new}">Add

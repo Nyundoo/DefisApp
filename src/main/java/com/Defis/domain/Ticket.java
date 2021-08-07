@@ -12,9 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity(name = "Tickets")
-@Table(name = "tickets")
-public class Tickets {
+@Entity(name = "Ticket")
+@Table(name = "ticket")
+public class Ticket {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,10 +41,10 @@ public class Tickets {
 
 	private boolean travel_status = false;
 
-	public Tickets() {
+	public Ticket() {
 	}
 
-	public Tickets(Integer id, Date ticket_date, String destination, Date date_travel, String flight_name,
+	public Ticket(Integer id, Date ticket_date, String destination, Date date_travel, String flight_name,
 			Date expected_arrival_date, boolean travel_status) {
 		super();
 		this.id = id;

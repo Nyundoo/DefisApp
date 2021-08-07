@@ -34,21 +34,19 @@
         <table class="table table-bordered table-striped table-hover table-responsive-xl">
             <thead class="thead-dark">
                 <tr>
-                    <th class="hideable-column">
-                        <th th:replace="fragments :: column_link4('id', 'Job ID', 'tag')" />
-                    <th class="hideable-column">
-                        <th th:replace="fragments :: column_link4('country', 'Country', 'tag')" />
+                        <th class="hideable-column" th:replace="fragments :: column_link4('id', 'Job ID', 'tag')" />
+                        <th th:replace="fragments :: column_link4('country', 'Country', 'none')" />
                         <th th:replace="fragments :: column_link4('jobTitle', 'Job Title', 'none')" />
                         <th th:replace="fragments :: column_link4('payment', 'Payment', 'none')" />
-                        <th th:replace="fragments :: column_link4('jobDescription', 'Job Description', 'none')" />
-                    <th></th>
+                        <th th:replace="fragments :: column_link4('jobDescription', 'Job Description', 'none')" />  
+                        <th></th>                  
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="job : ${listJobs}">
                     <td class="hideable-column">[[${job.id}]]</td>
-                    <td class="hideable-column">[[${job.country}]]</td>
-                    <td class="hideable-column">[[${job.jobTitle}]]</td>
+                    <td>[[${job.country}]]</td>
+                    <td>[[${job.jobTitle}]]</td>
                     <td>[[${job.payment}]]</td>
                     <td>[[${job.jobDescription}]]</td>
 

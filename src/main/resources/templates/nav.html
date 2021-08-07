@@ -15,7 +15,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="topNavbar">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav navbar-right">
                     <li class="nav-item" sec:authorize="hasAuthority('Admin')">
                         <a class="nav-link" th:href="@{/users}">Users</a>
                     </li>
@@ -33,6 +33,9 @@
                     </li>
                     <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'ICT', 'Assistant', 'Receptionist', 'Manager')">
                         <a class="nav-link" th:href="@{/trainings}">List Trainings</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'ICT', 'Assistant', 'Receptionist', 'Manager')">
+                        <a class="nav-link" th:href="@{/tickets}">List Tickets</a>
                     </li>
                     <li>
                         <span class="far fa-user fa-2x icon-silver"></span>

@@ -18,8 +18,6 @@ import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
 public class TrainingPDFExporter extends AbstractExporter {
-	
-
 
 	public void export(List<Training> listTrainings, HttpServletResponse response) throws IOException {
 		super.setResponseHeader(response, "application/pdf", ".pdf");

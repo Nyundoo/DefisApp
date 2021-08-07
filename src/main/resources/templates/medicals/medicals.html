@@ -68,7 +68,9 @@
     <div class="less-details">
         <div th:each="medical : ${listMedicals}" class="row m-1">
             <div class="col-8">
-                <div>[[${medical.applicant}]]</div>
+                <div>[[${medical.applicant.identification}+' :
+                    '+${medical.applicant.firstName}+' 
+                    '+${medical.applicant.lastName}]]</div>
                 <div>[[${medical.medical_center}]]</div>
                 <div class="mt-2">
 

@@ -34,12 +34,8 @@
         <table class="table table-bordered table-striped table-hover table-responsive-xl">
             <thead class="thead-dark">
                 <tr>
-                    <th class="hideable-column">
-                        <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'tag')" />
-                    </th>
-                    <th class="hideable-column">
-                        <th th:replace="fragments :: column_link6('start_date', 'Start Date', 'tag')" />
-                    </th>
+                    <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
+                    <th th:replace="fragments :: column_link6('start_date', 'Start Date', 'none')" />
                     <th th:replace="fragments :: column_link6('finish_date', 'Finish Date', 'none')" />
                     <th th:replace="fragments :: column_link6('cert_no', 'Cert No', 'none')" />
                     <th></th>
@@ -50,7 +46,7 @@
                     <td>[[${training.applicant.identification}+' :
                         '+${training.applicant.firstName}+' 
                         '+${training.applicant.lastName}]]</td>
-                    <td class="hideable-column">[[${training.start_date}]]</td>
+                    <td>[[${training.start_date}]]</td>
                     <td>[[${training.finish_date}]]</td>
                     <td>[[${training.cert_no}]]</td>
 
@@ -67,7 +63,9 @@
     <div class="less-details">
         <div th:each="training : ${listTrainings}" class="row m-1">
             <div class="col-8">
-                <div>[[${training.applicant}]]</div>
+                <div>[[${training.applicant.identification}+' :
+                    '+${training.applicant.firstName}+' 
+                    '+${training.applicant.lastName}]]</div>
                 <div class="mt-2">
 
                     <a class="fas fa-user-edit icon-green mr-4" th:href="@{'/trainings/edit/' + ${training.id}}"
