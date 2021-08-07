@@ -48,8 +48,9 @@
                 <tr th:each="medical : ${listMedicals}">
                     <td class="hideable-column">[[${medical.id}]]</td>
                     <td class="hideable-column">[[${medical.client_info}]]</td>
-                    <td th:each="applicant : ${listApplicants}">[[${applicant.identification}+' :
-                        '+${applicant.firstName}]]</td>
+                    <td>[[${medical.applicant.identification}+' :
+                        '+${medical.applicant.firstName}+' 
+                        '+${medical.applicant.lastName}]]</td>
                     <td>[[${medical.medical_center}]]</td>
                     <td>[[${medical.medical_type}]]</td>
 

@@ -65,6 +65,16 @@
             th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
     </th>
 
+    <th th:fragment="column_link6(fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
+        <a class="text-white"
+            th:href="@{'/trainings/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+            [[${columnLabel}]]
+        </a>
+
+        <span th:if="${sortField == fieldName}"
+            th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+    </th>
+
     <a th:fragment="page_link(pageNum, label)" class="page-link"
         th:href="@{'/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
 
@@ -79,6 +89,9 @@
         
         <a th:fragment="page_link5(pageNum, label)" class="page-link"
         th:href="@{'/medicals/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
+
+        <a th:fragment="page_link6(pageNum, label)" class="page-link"
+        th:href="@{'/trainings/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
 
     <div th:fragment="footer" class="text-center m-3">
         <p>Defis Control Panel - Copyright &copy; Defis</p>
