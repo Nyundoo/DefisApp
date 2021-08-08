@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragments :: page_head('Payment - Defis Admin')" />
+
+<body>
+    <div class="container-fluid">
+        <div th:replace="nav :: menu"></div>
+        <div class="m-3">
+            <h2>Manage Payments</h2>
+            <a th:href="@{/payments/new}"><i class="fas fa-user-plus fa-2x mr-4"></i></a>
+            <a th:href="@{/payments/export/csv}"><i class="fas fa-file-csv fa-2x mr-4"></i></a>
+            <a th:href="@{/payments/export/excel}"><i class="far fa-file-excel fa-2x mr-4"></i></a>
+            <a th:href="@{/payments/export/pdf}"><i class="far fa-file-pdf fa-2x mr-4"></i></a>
+        </div>
+        <div th:if="${message != null}" class="alert alert-success text-center">
+            [[${message}]]
+        </div>
+
+        <div class="m-3">
+            <form th:action="@{/payments/page/1}" class="form-inline">
+                <input type="hidden" name="sortField" th:value="${sortField}" />
+                <input type="hidden" name="sortDir" th:value="${sortDir}" />
+
+                <input type="search" name="keyword" th:value="${keyword}" class="form-control mr-2" required />
+                <button type="submit" class="btn btn-primary mr-2"><i class="fas fa-search"></i></button>
+                <button type="button" class="btn btn-secondary" onclick="clearFilter()"><i
+                        class="fas fa-eraser"></i></button>
+            </form>
+        </div>
+
+    </div>
+    <div class="full-details m-3">
+        <table class="table table-bordered table-striped table-hover table-responsive-xl">
+            <thead class="thead-dark">
+                <tr>
+                        <th th:replace="fragments :: column_link3('applicant', 'Applicant', 'none')" />
+                   
+                        <th th:replace="fragments :: column_link3('amount_paid', 'Amount Paid', 'none')" />
+                   
+                    <th th:replace="fragments :: column_link3('date_paid', 'Date Paid', 'none')" />
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="payment : ${listPayments}">
+                    <td>[[${payment.applicant.identification}+' :
+                    '+${payment.applicant.firstName}+' 
+                    '+${payment.applicant.lastName}]]</td>
+                    <td>[[${payment.amount_paid}]]</td>
+                    <td>[[${payment.date_paid}]]</td>
+
+                    <td>
+                        <a class="fas fa-user-edit icon-green m-3" th:href="@{'/payments/edit/' + ${payment.id}}"
+                            title="Edit this payment"></a>
+                        <a class="far fa-trash-alt icon-red link-delete" th:href="@{'/payments/delete/' + ${payment.id}}"
+                            th:paymentId="${payment.id}" title="Delete this payment"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="less-details">
+        <div th:each="payment : ${listPayments}" class="row m-1">
+            <div class="col-8">
+                <div>[[${payment.applicant.identification}+' :
+                    '+${payment.applicant.firstName}+' 
+                    '+${payment.applicant.lastName}]]</div>
+                <div class="mt-2">
+
+                    <a class="fas fa-user-edit icon-green mr-4" th:href="@{'/payments/edit/' + ${payment.id}}"
+                        title="Edit this payment"></a>
+                    <a class="far fa-trash-alt icon-red link-delete" th:href="@{'/payments/delete/' + ${payment.id}}"
+                        th:userId="${payment.id}" title="Delete this payment"></a>
+
+                </div>
+            </div>
+            <div>&nbsp;</div>
+        </div>
+    </div>
+    </div>
+
+    <div class="text-center m-1" th:if="${totalItems > 0}">
+        <span>Showing payments # [[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
+    </div>
+    <div class="text-center m-1" th:unless="${totalItems > 0}">
+        <span>No payments found!</span>
+    </div>
+
+    <div th:if="${totalPages > 1}">
+        <nav>
+            <ul class="pagination justify-content-center flex-wrap">
+                <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                    <a th:replace="fragments :: page_link3(1, 'First')"></a>
+                </li>
+
+                <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                    <a th:replace="fragments :: page_link3(${currentPage - 1}, 'Previous')"></a>
+                </li>
+
+                <li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+                    th:each="i : ${#numbers.sequence(1, totalPages)}">
+                    <a th:replace="fragments :: page_link3(${i}, ${i})"></a>
+                </li>
+
+                <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                    <a th:replace="fragments :: page_link3(${currentPage + 1}, 'Next')"></a>
+                </li>
+
+                <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                    <a th:replace="fragments :: page_link3(${totalPages}, 'Last')"></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="modal fade text-center" id="confirmModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <span id="confirmText">Are you sure you want ot delete this payment ID</span>
+                </div>
+
+                <div class="modal-footer">
+                    <a class="btn btn-success" href="" id="yesButton">Yes</a>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div th:replace="fragments :: footer"></div>
+
+    </div>
+    <script th:src="@{/js/common.js}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".link-delete").on("click", function (e) {
+                e.preventDefault();
+                link = $(this);
+                // alert($(this).attr("href"));
+                paymentId = link.attr("paymentId");
+                $("#yesButton").attr("href", link.attr("href"));
+                $("#confirmText").text("Are you sure you want to delete this ID " + paymentId + "?");
+                $("#confirmModal").modal();
+            });
+        });
+
+        function clearFilter() {
+            window.location = "[[@{/payments}]]";
+        }
+    </script>
+</body>
+
+</html>
