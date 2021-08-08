@@ -52,8 +52,9 @@ public class Medical {
 	@Column(name = "cert_application_date", length = 16, nullable = true)
 	private Date cert_application_date;
 
-	@Column(name = "assign_to", length = 45, nullable = true)
-	private String assign_to;
+	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "user_id1", nullable = false)
+	private User user1;
 
 	@Column(name = "passport_no", length = 30, nullable = true)
 	private String passport_no;
@@ -66,8 +67,9 @@ public class Medical {
 	@Column(name = "pass_application_date", length = 16, nullable = true)
 	private Date pass_application_date;
 
-	@Column(name = "pass_assign_to", length = 16, nullable = true)
-	private String pass_assign_to;
+	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "user_id2", nullable = false)
+	private User user2;
 
 	@Column(name = "type_of_visa", length = 64, nullable = true)
 	private String type_of_visa;
@@ -85,9 +87,9 @@ public class Medical {
 
 	public Medical(Integer id, Applicant applicant, String client_info, String medical_center, String medical_type,
 			double amount_paid, Date application_date, boolean active, String cert_no, boolean cert_status, String paid,
-			Date cert_application_date, String assign_to, String passport_no, boolean pass_status, String pass_paid,
-			Date pass_application_date, String pass_assign_to, String type_of_visa, Date visa_apply_date,
-			boolean status, String agent_or_company) {
+			Date cert_application_date, User user1, String passport_no, boolean pass_status, String pass_paid,
+			Date pass_application_date, User user2, String type_of_visa, Date visa_apply_date, boolean status,
+			String agent_or_company) {
 		super();
 		this.id = id;
 		this.applicant = applicant;
@@ -101,12 +103,12 @@ public class Medical {
 		this.cert_status = cert_status;
 		this.paid = paid;
 		this.cert_application_date = cert_application_date;
-		this.assign_to = assign_to;
+		this.user1 = user1;
 		this.passport_no = passport_no;
 		this.pass_status = pass_status;
 		this.pass_paid = pass_paid;
 		this.pass_application_date = pass_application_date;
-		this.pass_assign_to = pass_assign_to;
+		this.user2 = user2;
 		this.type_of_visa = type_of_visa;
 		this.visa_apply_date = visa_apply_date;
 		this.status = status;
@@ -209,12 +211,12 @@ public class Medical {
 		this.cert_application_date = cert_application_date;
 	}
 
-	public String getAssign_to() {
-		return assign_to;
+	public User getUser1() {
+		return user1;
 	}
 
-	public void setAssign_to(String assign_to) {
-		this.assign_to = assign_to;
+	public void setUser1(User user1) {
+		this.user1 = user1;
 	}
 
 	public String getPassport_no() {
@@ -249,12 +251,12 @@ public class Medical {
 		this.pass_application_date = pass_application_date;
 	}
 
-	public String getPass_assign_to() {
-		return pass_assign_to;
+	public User getUser2() {
+		return user2;
 	}
 
-	public void setPass_assign_to(String pass_assign_to) {
-		this.pass_assign_to = pass_assign_to;
+	public void setUser2(User user2) {
+		this.user2 = user2;
 	}
 
 	public String getType_of_visa() {

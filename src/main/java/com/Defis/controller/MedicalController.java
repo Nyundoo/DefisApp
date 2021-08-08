@@ -18,10 +18,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.Defis.domain.Applicant;
 import com.Defis.domain.Medical;
 import com.Defis.domain.MedicalNotFoundException;
+import com.Defis.domain.User;
 import com.Defis.exporter.MedicalCsvExporter;
 import com.Defis.exporter.MedicalExcelExporter;
 import com.Defis.exporter.MedicalPDFExporter;
 import com.Defis.repository.ApplicantRepository;
+import com.Defis.repository.UserRepository;
 import com.Defis.service.MedicalService;
 
 @Controller
@@ -31,6 +33,9 @@ public class MedicalController {
 	
 	@Autowired
 	private ApplicantRepository applicantRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 	
 	@GetMapping("/medicals")
 	public String listFirstPage(Model model) {
@@ -77,12 +82,14 @@ public class MedicalController {
 	@GetMapping("/medicals/new")
 	public String newMedical(Model model) {
 		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
+		List<User> listUsers = (List<User>) userRepo.findAll();
 		
 		Medical medical = new Medical();
 		model.addAttribute("medical", medical);
 		model.addAttribute("pageTitle", "Create New Medical");
 
 		model.addAttribute("listApplicants", listApplicants);
+		model.addAttribute("listUsers", listUsers);
 		
 		return "medicals/medical_form";
 	}
@@ -113,9 +120,11 @@ public class MedicalController {
 		Medical medical = service.get(id);
 		
 		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
+		List<User> listUsers = (List<User>) userRepo.findAll();
 		
 
 		model.addAttribute("listApplicants", listApplicants);
+		model.addAttribute("listUsers", listUsers);
 		
 		model.addAttribute("medical", medical);
 		model.addAttribute("pageTitle", "Edit Medical (ID: " + id + ")");

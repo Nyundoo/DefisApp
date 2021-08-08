@@ -20,7 +20,8 @@
                     <div class="col-sm-8">
                         <select th:field="*{applicant}" class="form-control" required>
                             <th:block th:each="cat : ${listApplicants}">
-                                <option th:text="${cat.identification}+' : '+${cat.firstName}+' '+${cat.lastName}" th:value="${cat.id}" />
+                                <option th:text="${cat.identification}+' : '+${cat.firstName}+' '+${cat.lastName}"
+                                    th:value="${cat.id}" />
                             </th:block>
                         </select>
                         <a style="text-decoration:underline; color: blue; font-size: medium;"
@@ -73,173 +74,190 @@
                                 th:checked="${medical.active}" id="myCheck" /> Pass </label> <label><input id="myCheck2"
                                 onclick="myFunctionx()" value="false" type="radio" th:checked="${!medical.active}"
                                 name="active" />
-                            Fail </label><br/><span class="help-block">(Whether the client has pass the medical test or
+                            Fail </label><br /><span class="help-block">(Whether the client has pass the medical test or
                             failed)</span>
                     </div>
                 </div>
-                <div id="myDIV">
-                    <legend style="text-align: left;">Registration of Birth Certificate:</legend>
-
-
-
-                    <!-- status of medical -->
-                    <div class="form-group">
-                        <label class="col-md-2 control-label" for="status" style="text-align: right;">Status</label>
-                        <div class="col-md-8">
-                            <label><input onclick="myFunction2()" value="true" type="radio" name="cert_status"
-                                    th:checked="${medical.cert_status}" id="myCheck3" /> Dont Have </label>
-                            <label><input onclick="myFunctionx2()" value="false" type="radio"
-                                    th:checked="${!medical.cert_status}" name="cert_status" id="myCheck4" />
-                                Have</label><br/><span class="help-block">(Whether the client has a birth certificate or
-                                not)</span>
-                        </div>
-                    </div>
-                    <div id="myDIV2x" style="display:none">
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-4" style="text-align: right;">Cert Number: </label>
-
-                            <div class="col-sm-8">
-                                <input type="text" th:field="*{cert_no}" class="form-control" />
-                            </div>
-                        </div>
-
-                    </div>
-                    <div id="myDIV2" style="display:none">
-
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-4" style="text-align: right;">Paid: </label>
-                            <div class="col-sm-8">
-                                <input list="genders" type="text" th:field="*{paid}" class="form-control" />
-                                <datalist id="genders">
-                                    <option value="Company">
-                                    <option value="Self">
-                                    <option value="Agent">
-                                </datalist>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-4" style="text-align: right;">Cert Application Date:
-                            </label>
-
-                            <div class="col-sm-8">
-                                <input type="date" th:field="*{cert_application_date}" class="form-control"
-                                    id="theDate" />
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-4" style="text-align: right;">Assign To: </label>
-
-                            <div class="col-sm-8">
-                                <input type="text" th:field="*{assign_to}" class="form-control" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <legend style="text-align: left;">Passport Registration:</legend>
-
-
-
-                    <!-- status of medical -->
-                    <div class="form-group">
-                        <label class="col-md-2 control-label" for="status" style="text-align: right;">Status</label>
-                        <div class="col-md-8">
-                            <label><input onclick="myFunction3()" value="true" type="radio" name="pass_status"
-                                    th:checked="${medical.pass_status}" id="myCheck5" /> Have Not </label> <label><input
-                                    onclick="myFunctionx3()" value="false" type="radio"
-                                    th:checked="${!medical.pass_status}" name="pass_status" id="myCheck6" />
-                                Have </label><br/><span class="help-block">(Whether the client has a passport or not)</span>
-                        </div>
-                    </div>
-                    <div id="myDIV3x" style="display:none">
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-4" style="text-align: right;">Passport Number: </label>
-
-                            <div class="col-sm-8">
-                                <input type="text" th:field="*{passport_no}" class="form-control" />
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div id="myDIV3" style="display:none">
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-4" style="text-align: right;">Paid: </label>
-                            <div class="col-sm-8">
-                                <input list="pass" type="text" th:field="*{pass_paid}" class="form-control" />
-                                <datalist id="pass">
-                                    <option value="Company">
-                                    <option value="Self">
-                                    <option value="Agent">
-                                </datalist>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-4" style="text-align: right;">Application Date: </label>
-
-                            <div class="col-sm-8">
-                                <input type="date" th:field="*{pass_application_date}" class="form-control"
-                                    id="theDate2" />
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-form-label col-sm-4" style="text-align: right;">Assign To: </label>
-
-                            <div class="col-sm-8">
-                                <input type="text" th:field="*{pass_assign_to}" class="form-control" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="myDIV4" style="display:none">
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-4" style="text-align: right;">Type of Visa: </label>
-
-                        <div class="col-sm-8">
-                            <input type="text" th:field="*{type_of_visa}" class="form-control" />
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-4" style="text-align: right;">Visa Application Date: </label>
-
-                        <div class="col-sm-8">
-                            <input type="date" th:field="*{visa_apply_date}" class="form-control" id="theDate4" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-2 control-label" for="status" style="text-align: right;">Visa Status</label>
-                        <div class="col-md-8">
-                            <label><input value="true" type="radio" name="status"
-                                    th:checked="${medical.status}" id="myCheck5" /> Have Not </label> <label><input value="false" type="radio"
-                                    th:checked="${!medical.status}" name="status" id="myCheck6" />
-                                Have </label><br/><span class="help-block">(Whether the client receive the visa)</span>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="text-center p-3">
-                    <a th:href="@{/medicals}" class="btn btn-secondary m-3"> Cancel </a>
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                </div>
-
             </div>
+            </div>
+            <div id="myDIV" style="margin-top: 20px;" class="border border-secondary rounded p-3">
+                <legend style="text-align: left;">Registration of Birth Certificate:</legend>
+
+
+
+                <!-- status of medical -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="status" style="text-align: right;">Status</label>
+                    <div class="col-md-8">
+                        <label><input onclick="myFunction2()" value="true" type="radio" name="cert_status"
+                                th:checked="${medical.cert_status}" id="myCheck3" /> Dont Have </label>
+                        <label><input onclick="myFunctionx2()" value="false" type="radio"
+                                th:checked="${!medical.cert_status}" name="cert_status" id="myCheck4" />
+                            Have</label><br /><span class="help-block">(Whether the client has a birth certificate
+                            or
+                            not)</span>
+                    </div>
+                </div>
+                <div id="myDIV2x" style="display:none" class="border border-secondary rounded p-3">
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Cert Number: </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" th:field="*{cert_no}" class="form-control" />
+                        </div>
+                    </div>
+
+                </div>
+                <div id="myDIV2" style="display:none" class="border border-secondary rounded p-3">
+
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Paid: </label>
+                        <div class="col-sm-8">
+                            <input list="genders" type="text" th:field="*{paid}" class="form-control" />
+                            <datalist id="genders">
+                                <option value="Company">
+                                <option value="Self">
+                                <option value="Agent">
+                            </datalist>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Cert Application Date:
+                        </label>
+
+                        <div class="col-sm-8">
+                            <input type="date" th:field="*{cert_application_date}" class="form-control" id="theDate" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Assign To: </label>
+                        <div class="col-sm-8">
+                            <select th:field="*{user1}" class="form-control" required>
+                                <th:block th:each="cat : ${listUsers}">
+                                    <option th:text="${cat.firstName}+' '+${cat.lastName}"
+                                        th:value="${cat.id}" />
+                                </th:block>
+                            </select>
+                            <a style="text-decoration:underline; color: blue; font-size: medium;"
+                                th:href="@{/users/new}">Add New User</a>
+                        </div>
+                    </div>
+                </div>
+
+                <legend style="text-align: left;">Passport Registration:</legend>
+
+
+
+                <!-- status of medical -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="status" style="text-align: right;">Status</label>
+                    <div class="col-md-8">
+                        <label><input onclick="myFunction3()" value="true" type="radio" name="pass_status"
+                                th:checked="${medical.pass_status}" id="myCheck5" /> Have Not </label> <label><input
+                                onclick="myFunctionx3()" value="false" type="radio" th:checked="${!medical.pass_status}"
+                                name="pass_status" id="myCheck6" />
+                            Have </label><br /><span class="help-block">(Whether the client has a passport or
+                            not)</span>
+                    </div>
+                </div>
+                <div id="myDIV3x" style="display:none" class="border border-secondary rounded p-3">
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Passport Number: </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" th:field="*{passport_no}" class="form-control" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="myDIV3" style="display:none" class="border border-secondary rounded p-3">
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Paid: </label>
+                        <div class="col-sm-8">
+                            <input list="pass" type="text" th:field="*{pass_paid}" class="form-control" />
+                            <datalist id="pass">
+                                <option value="Company">
+                                <option value="Self">
+                                <option value="Agent">
+                            </datalist>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Application Date: </label>
+
+                        <div class="col-sm-8">
+                            <input type="date" th:field="*{pass_application_date}" class="form-control" id="theDate2" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-4" style="text-align: right;">Assign To: </label>
+                        <div class="col-sm-8">
+                            <select th:field="*{user2}" class="form-control" required>
+                                <th:block th:each="cat : ${listUsers}">
+                                    <option th:text="${cat.firstName}+' '+${cat.lastName}"
+                                        th:value="${cat.id}" />
+                                </th:block>
+                            </select>
+                            <a style="text-decoration:underline; color: blue; font-size: medium;"
+                                th:href="@{/users/new}">Add New User</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="myDIV4" style="display:none; margin-top: 20px;" class="border border-secondary rounded p-3">
+                <legend style="text-align: left;">Visa Registration:</legend>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4" style="text-align: right;">Type of Visa: </label>
+
+                    <div class="col-sm-8">
+                        <input type="text" th:field="*{type_of_visa}" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4" style="text-align: right;">Visa Application Date:
+                    </label>
+
+                    <div class="col-sm-8">
+                        <input type="date" th:field="*{visa_apply_date}" class="form-control" id="theDate4" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="status" style="text-align: right;">Visa
+                        Status</label>
+                    <div class="col-md-8">
+                        <label><input value="true" type="radio" name="status" th:checked="${medical.status}"
+                                id="myCheck5" /> Have Not </label> <label><input value="false" type="radio"
+                                th:checked="${!medical.status}" name="status" id="myCheck6" />
+                            Have </label><br /><span class="help-block">(Whether the client receive the visa)</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="text-center p-3">
+                <a th:href="@{/medicals}" class="btn btn-secondary m-3"> Cancel </a>
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+
         </div>
+
         </div>
     </form>
-    </div>
+
 
     <div class="modal fade text-center" id="modalDialog">
         <div class="modal-dialog">
@@ -371,7 +389,7 @@
             text4.style.display = "block";
             text4x.style.display = "none";
         }
-       
+
 
         var checkBox5 = document.getElementById("myCheck5");
         var text5 = document.getElementById("myDIV3");

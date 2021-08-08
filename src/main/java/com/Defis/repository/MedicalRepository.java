@@ -10,6 +10,6 @@ import com.Defis.domain.Medical;
 public interface MedicalRepository extends PagingAndSortingRepository<Medical, Integer> {
 public Long countById(Integer id);	
 	
-	@Query("SELECT u FROM Medical u WHERE CONCAT(u.id, ' ',u.client_info, ' ',u.medical_center, ' ',u.medical_type, ' ',u.cert_no, ' ',u.cert_application_date, ' ',u.assign_to, ' ',u.passport_no, ' ',u.pass_assign_to) LIKE %?1%")
+	@Query("SELECT u FROM Medical u WHERE CONCAT(u.id, ' ',u.client_info, ' ',u.medical_center, ' ',u.medical_type, ' ',u.cert_no, ' ',u.cert_application_date, ' ',u.passport_no) LIKE %?1%")
 	public Page<Medical> findAll(String keyword, Pageable pageable);
 }
