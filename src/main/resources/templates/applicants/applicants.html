@@ -59,6 +59,8 @@
                     <td>[[${applicant.lastName}]]</td>
 
                     <td>
+                        <a class="fas fa-user-alt icon-green mr-4" th:href="@{'/applicants/view/' + ${applicant.id}}"
+                    title="View this applicant"></a>
                         <a class="fas fa-user-edit icon-green m-3" th:href="@{'/applicants/edit/' + ${applicant.id}}"
                             title="Edit this applicant"></a>
                         <a class="far fa-trash-alt icon-red link-delete"
@@ -79,7 +81,8 @@
             <div class="col-8">
                 <div>[[${applicant.fullName}]]</div>
                 <div class="mt-2">
-
+                    <a class="fas fa-user-alt icon-green mr-4" th:href="@{'/applicants/view/' + ${applicant.id}}"
+                    title="View this applicant"></a>
                     <a class="fas fa-user-edit icon-green mr-4" th:href="@{'/applicants/edit/' + ${applicant.id}}"
                         title="Edit this applicant"></a>
                     <a class="far fa-trash-alt icon-red link-delete"

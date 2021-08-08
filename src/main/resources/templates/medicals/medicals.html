@@ -8,7 +8,7 @@
         <div th:replace="nav :: menu"></div>
         <div class="m-3">
             <h2>Manage Medicals</h2>
-            <a th:href="@{/medicals/new}"><i class="fas fa-user-plus fa-2x mr-4"></i></a>
+            <a th:href="@{/medicals/new}"><i class="fas fa-folder-plus fa-2x mr-4"></i></a>
             <a th:href="@{/medicals/export/csv}"><i class="fas fa-file-csv fa-2x mr-4"></i></a>
             <a th:href="@{/medicals/export/excel}"><i class="far fa-file-excel fa-2x mr-4"></i></a>
             <a th:href="@{/medicals/export/pdf}"><i class="far fa-file-pdf fa-2x mr-4"></i></a>
@@ -55,8 +55,10 @@
                     <td>[[${medical.medical_type}]]</td>
 
                     <td>
-                        <a class="fas fa-user-edit icon-green m-3" th:href="@{'/medicals/edit/' + ${medical.id}}"
-                            title="Edit this medical"></a>
+                        <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/medicals/view/' + ${medical.id}}"
+                        title="Edit this medical"></a>
+                        <a class="far fa-edit icon-green mr-4" th:href="@{'/medicals/edit/' + ${medical.id}}"
+                        title="Edit this medical"></a>
                         <a class="far fa-trash-alt icon-red link-delete"
                             th:href="@{'/medicals/delete/' + ${medical.id}}" th:medicalId="${medical.id}"
                             title="Delete this medical"></a>
@@ -73,8 +75,9 @@
                     '+${medical.applicant.lastName}]]</div>
                 <div>[[${medical.medical_center}]]</div>
                 <div class="mt-2">
-
-                    <a class="fas fa-user-edit icon-green mr-4" th:href="@{'/medicals/edit/' + ${medical.id}}"
+                    <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/medicals/view/' + ${medical.id}}"
+                    title="Edit this medical"></a>
+                    <a class="far fa-edit icon-green mr-4" th:href="@{'/medicals/edit/' + ${medical.id}}"
                         title="Edit this medical"></a>
                     <a class="far fa-trash-alt icon-red link-delete" th:href="@{'/medicals/delete/' + ${medical.id}}"
                         th:userId="${medical.id}" title="Delete this medical"></a>

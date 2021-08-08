@@ -158,7 +158,7 @@
                             <option th:text="${cat.country}+' : '+${cat.jobTitle}" th:value="${cat.id}" />
                         </th:block>
                     </select>
-                    <a style="text-decoration:underline; color: blue; font-size: medium;" th:href="@{/jobs/new}">Add New
+                    <a style="text-decoration:underline; color: blue; font-size: medium;" th:href="@{/jobs/new}" target="_blank">Add New
                         Job</a>
                 </div>
             </div>
@@ -171,7 +171,7 @@
                             <option th:text="${cat.idNo}+' : '+${cat.firstName}+' '+${cat.lastName}" th:value="${cat.id}" />
                         </th:block>
                     </select>
-                    <a style="text-decoration:underline; color: blue; font-size: medium;" th:href="@{/agents/new}">Add
+                    <a style="text-decoration:underline; color: blue; font-size: medium;" th:href="@{/agents/new}" target="_blank">Add
                         New Agent</a>
                 </div>
             </div>

@@ -8,7 +8,7 @@
         <div th:replace="nav :: menu"></div>
         <div class="m-3">
             <h2>Manage Tickets</h2>
-            <a th:href="@{/tickets/new}"><i class="fas fa-user-plus fa-2x mr-4"></i></a>
+            <a th:href="@{/tickets/new}"><i class="fas fa-folder-plus fa-2x mr-4"></i></i></a>
             <a th:href="@{/tickets/export/csv}"><i class="fas fa-file-csv fa-2x mr-4"></i></a>
             <a th:href="@{/tickets/export/excel}"><i class="far fa-file-excel fa-2x mr-4"></i></a>
             <a th:href="@{/tickets/export/pdf}"><i class="far fa-file-pdf fa-2x mr-4"></i></a>
@@ -65,7 +65,9 @@
                     <td>[[${travel.travel_status}]]</td>
 
                     <td>
-                        <a class="fas fa-user-edit icon-green m-3" th:href="@{'/tickets/edit/' + ${travel.id}}"
+                        <a class="fas fa-file-alt icon-green m-3" th:href="@{'/tickets/view/' + ${travel.id}}"
+                    title="Edit this travel"></a>
+                        <a class="far fa-edit icon-green m-3" th:href="@{'/tickets/edit/' + ${travel.id}}"
                             title="Edit this travel"></a>
                         <a class="far fa-trash-alt icon-red link-delete" th:href="@{'/tickets/delete/' + ${travel.id}}"
                             th:travelId="${travel.id}" title="Delete this travel"></a>
@@ -81,9 +83,10 @@
                     '+${travel.applicant.firstName}+' 
                     '+${travel.applicant.lastName}]]</div>
                 <div class="mt-2">
-
-                    <a class="fas fa-user-edit icon-green mr-4" th:href="@{'/tickets/edit/' + ${travel.id}}"
-                        title="Edit this travel"></a>
+                    <a class="fas fa-file-alt icon-green m-3" th:href="@{'/tickets/view/' + ${travel.id}}"
+                    title="Edit this travel"></a>
+                    <a class="far fa-edit icon-green m-3" th:href="@{'/tickets/edit/' + ${travel.id}}"
+                            title="Edit this travel"></a>
                     <a class="far fa-trash-alt icon-red link-delete" th:href="@{'/tickets/delete/' + ${travel.id}}"
                         th:userId="${travel.id}" title="Delete this travel"></a>
 

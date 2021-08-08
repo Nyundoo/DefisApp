@@ -8,7 +8,7 @@
         <div th:replace="nav :: menu"></div>
         <div class="m-3">
             <h2>Manage Jobs</h2>
-            <a th:href="@{/jobs/new}"><i class="fas fa-user-plus fa-2x mr-4"></i></a>
+            <a th:href="@{/jobs/new}"><i class="fas fa-folder-plus fa-2x mr-4"></i></a>
             <a th:href="@{/jobs/export/csv}"><i class="fas fa-file-csv fa-2x mr-4"></i></a>
             <a th:href="@{/jobs/export/excel}"><i class="far fa-file-excel fa-2x mr-4"></i></a>
             <a th:href="@{/jobs/export/pdf}"><i class="far fa-file-pdf fa-2x mr-4"></i></a>
@@ -54,8 +54,10 @@
                     <td>[[${job.jobDescription}]]</td>
 
                     <td>
-                        <a class="fas fa-user-edit icon-green m-3" th:href="@{'/jobs/edit/' + ${job.id}}"
-                            title="Edit this job"></a>
+                        <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/jobs/edit/' + ${job.id}}"
+                        title="Edit this job"></a>
+                        <a class="far fa-edit icon-green mr-4" th:href="@{'/jobs/edit/' + ${job.id}}"
+                        title="Edit this job"></a>
                         <a class="far fa-trash-alt icon-red link-delete" th:href="@{'/jobs/delete/' + ${job.id}}"
                             th:jobId="${job.id}" title="Delete this job"></a>
                     </td>
@@ -69,8 +71,9 @@
                 <div>[[${job.country}]]</div>
                 <div>[[${job.jobTitle}]]</div>
                 <div class="mt-2">
-
-                    <a class="fas fa-user-edit icon-green mr-4" th:href="@{'/jobs/edit/' + ${job.id}}"
+                    <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/jobs/edit/' + ${job.id}}"
+                    title="Edit this job"></a>
+                    <a class="far fa-edit icon-green mr-4" th:href="@{'/jobs/edit/' + ${job.id}}"
                         title="Edit this job"></a>
                     <a class="far fa-trash-alt icon-red link-delete" th:href="@{'/jobs/delete/' + ${job.id}}"
                         th:userId="${job.id}" title="Delete this job"></a>
