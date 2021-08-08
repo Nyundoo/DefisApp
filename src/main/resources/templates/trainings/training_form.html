@@ -15,7 +15,7 @@
         <input type="hidden" th:field="*{id}" />
         <div class="border border-secondary rounded p-3">
             <div class="form-group row">
-                <label class="col-form-label col-sm-4" style="text-align: right;">Client: </label>
+                <label class="col-form-label col-sm-4">Client: </label>
                 <div class="col-sm-8">
                     <select th:field="*{applicant}" class="form-control" required>
                         <th:block th:each="cat : ${listApplicants}">

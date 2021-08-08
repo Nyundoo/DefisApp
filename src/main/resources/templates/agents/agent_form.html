@@ -72,8 +72,57 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">County:</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" th:field="*{county}" required minlength="2"
-                        maxlength="45" />
+                    <input list="countytxt" th:field="*{county}" class="form-control" required minlength="2"
+                    maxlength="45">
+                    <datalist id="countytxt">
+                        <option value="01Mombasa">Mombasa</option>
+                        <option value="02Kwale">Kwale</option>
+                        <option value="03Kilifi">Kilifi</option>
+                        <option value="04Tana River">Tana River</option>
+                        <option value="05Lamu">Lamu</option>
+                        <option value="06Taita/Taveta">Taita/Taveta</option>
+                        <option value="07Garissa">Garissa</option>
+                        <option value="08Wajir">Wajir</option>
+                        <option value="09Mandera">Mandera</option>
+                        <option value="10Marsabit">Marsabit</option>
+                        <option value="11Isiolo">Isiolo</option>
+                        <option value="12Meru">Meru</option>
+                        <option value="13Tharaka-Nithi">Tharaka-Nithi</option>
+                        <option value="14Embu">Embu</option>
+                        <option value="15Kitui">Kitui</option>
+                        <option value="16Machakos">Machakos</option>
+                        <option value="17Makueni">Makueni</option>
+                        <option value="18Nyandarua">Nyandarua</option>
+                        <option value="19Nyeri">Nyeri</option>
+                        <option value="20Kirinyaga">Kirinyaga</option>
+                        <option value="21Murang'a">Murang'a</option>
+                        <option value="22Kiambu">Kiambu</option>
+                        <option value="23Turkana">Turkana</option>
+                        <option value="24West Pokot">West Pokot</option>
+                        <option value="25Samburu">Samburu</option>
+                        <option value="26Trans Nzoia">Trans Nzoia</option>
+                        <option value="27Uasin Gishu">Uasin Gishu</option>
+                        <option value="28Elgeyo/Marakwet">Elgeyo/Marakwet</option>
+                        <option value="29Nandi">Nandi</option>
+                        <option value="30Baringo">Baringo</option>
+                        <option value="31Laikipia">Laikipia</option>
+                        <option value="32Nakuru">Nakuru</option>
+                        <option value="33Narok">Narok</option>
+                        <option value="34Kajiado">Kajiado</option>
+                        <option value="35Kericho">Kericho</option>
+                        <option value="36Bomet">Bomet</option>
+                        <option value="37Kakamega">Kakamega</option>
+                        <option value="38Vihiga">Vihiga</option>
+                        <option value="39Bungoma">Bungoma</option>
+                        <option value="40Busia">Busia</option>
+                        <option value="41Siaya">Siaya</option>
+                        <option value="42Kisumu">Kisumu</option>
+                        <option value="43Homa Bay">Homa Bay</option>
+                        <option value="44Migori">Migori</option>
+                        <option value="45Kisii">Kisii</option>
+                        <option value="46Nyamira">Nyamira</option>
+                        <option value="47Nairobi City">Nairobi City</option>
+                    </datalist>
                 </div>
             </div>
 

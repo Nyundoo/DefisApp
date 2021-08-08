@@ -22,6 +22,8 @@ public class Job {
 
 	@Column(name = "job_title", length = 45, nullable = false)
 	private String jobTitle;
+	
+	private boolean pay = false;
 
 	@Column(length = 10, nullable = false)
 	private double payment;
@@ -63,6 +65,14 @@ public class Job {
 
 	public void setJobTitle(String jobTitle) {
 		this.jobTitle = jobTitle;
+	}
+
+	public boolean isPay() {
+		return pay;
+	}
+
+	public void setPay(boolean pay) {
+		this.pay = pay;
 	}
 
 	public double getPayment() {
