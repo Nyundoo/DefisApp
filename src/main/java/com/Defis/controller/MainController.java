@@ -26,6 +26,9 @@ public class MainController {
 		model.addAttribute("applicant3", applicantRepo.countById3());
 		model.addAttribute("applicant4", applicantRepo.countById4());
 		model.addAttribute("applicant5", applicantRepo.countById5());
+		model.addAttribute("applicant6", applicantRepo.countById6());
+		model.addAttribute("applicant7", applicantRepo.countById7());
+		model.addAttribute("applicant8", applicantRepo.countById8());
 			
 		return "index";
 	}

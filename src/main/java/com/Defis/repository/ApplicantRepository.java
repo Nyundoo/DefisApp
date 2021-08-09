@@ -25,6 +25,15 @@ public interface ApplicantRepository extends PagingAndSortingRepository<Applican
 	@Query("SELECT count(u.applicant) FROM Training u WHERE u.t_status=true")
 	long countById5 ();
 	
+	@Query("SELECT count(u.id) FROM Job u")
+	long countById7 ();
+	
+	@Query("SELECT count(u.applicant) FROM Ticket u WHERE u.travel_status=true")
+	long countById6 ();
+	
+	@Query("SELECT count(u.applicant) FROM Medical u WHERE u.active=true")
+	long countById8 ();
+	
 	@Query("SELECT u FROM Applicant u WHERE u.email = :email")
 	public Applicant getApplicantByEmail(@Param("email") String email);
 	
