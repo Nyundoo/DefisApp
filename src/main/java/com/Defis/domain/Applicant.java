@@ -25,7 +25,7 @@ public class Applicant {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(length = 45, nullable = true, unique = true)
+	@Column(length = 45, nullable = true, unique = false)
 	private String identification;
 
 	@Column(length = 3, nullable = true, unique = false)

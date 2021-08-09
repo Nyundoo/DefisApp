@@ -10,18 +10,19 @@
             <h2>[[${pageTitle}]]</h2>
         </div>
     </div>
-    <form th:action="@{/medicals/save}" th:object="${medical}" method="post" style="max-width: 600px; margin: 0 auto;">
-        <input type="hidden" th:field="*{id}" th:value="${medical.id}" />
-        <div class="border border-secondary rounded p-3">
+    <form enctype="multipart/form-data" th:action="@{/medicals/save}" method="post"
+        style="max-width: 700px; margin: 0 auto;" th:object="${medical}" >
+        <input type="hidden" th:field="*{id}" />
+        <div class="border border-s
+        econdary rounded p-3">
             <div class="m-3">
                 <legend style="text-align: left;">Medical Examination:</legend>
                 <div class="form-group row">
-                    <label class="col-form-label col-sm-4" style="text-align: right;">Client: </label>
+                    <label class="col-form-label col-sm-4">Client: </label>
                     <div class="col-sm-8">
                         <select th:field="*{applicant}" class="form-control" required>
                             <th:block th:each="cat : ${listApplicants}">
-                                <option th:text="${cat.identification}+' : '+${cat.firstName}+' '+${cat.lastName}"
-                                    th:value="${cat.id}" />
+                                <option th:text="${cat.identification}+' : '+${cat.firstName}+' '+${cat.lastName}" th:value="${cat.id}" />
                             </th:block>
                         </select>
                         <a style="text-decoration:underline; color: blue; font-size: medium;"

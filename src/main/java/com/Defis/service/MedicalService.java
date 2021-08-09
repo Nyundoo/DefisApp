@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,18 +15,21 @@ import org.springframework.stereotype.Service;
 
 import com.Defis.domain.Medical;
 import com.Defis.domain.MedicalNotFoundException;
+import com.Defis.domain.Ticket;
+import com.Defis.domain.TicketNotFoundException;
 import com.Defis.repository.MedicalRepository;
 
 @Service
 @Transactional
 public class MedicalService {
+	
 public static final int MEDICALS_PER_PAGE = 6;
 	
 	@Autowired
 	private MedicalRepository medicalRepo;
 	
 	public List<Medical> listAll()	{
-		return (List<Medical>) medicalRepo.findAll(Sort.by("firstName").ascending());
+		return (List<Medical>) medicalRepo.findAll(Sort.by("applicant").ascending());
 		
 	}
 
@@ -34,6 +38,14 @@ public static final int MEDICALS_PER_PAGE = 6;
 			return medicalRepo.findById(id).get();
 		}catch (NoSuchElementException ex) {
 			throw new MedicalNotFoundException("Could not find any medical with ID " + id);
+		}
+	}
+	
+	public Medical getApplicant(Integer applicant) throws MedicalNotFoundException {
+		try {
+			return medicalRepo.findById(applicant).get();
+		}catch (DataIntegrityViolationException e) {
+			throw new MedicalNotFoundException("Applicant with ID " + applicant + "already exist");
 		}
 	}
 	

@@ -32,6 +32,8 @@ public class Training {
 
 	@Column(name = "cert_no", length = 16, nullable = true)
 	private Integer cert_no;
+	
+	private boolean t_status = false;
 
 	public Training() {
 	}
@@ -84,5 +86,14 @@ public class Training {
 	public void setCert_no(Integer cert_no) {
 		this.cert_no = cert_no;
 	}
+
+	public boolean isT_status() {
+		return t_status;
+	}
+
+	public void setT_status(boolean t_status) {
+		this.t_status = t_status;
+	}
+	
 
 }

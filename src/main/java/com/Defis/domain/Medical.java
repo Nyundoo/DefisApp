@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -52,8 +53,8 @@ public class Medical {
 	@Column(name = "cert_application_date", length = 16, nullable = true)
 	private Date cert_application_date;
 
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id1", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "user_id1")
 	private User user1;
 
 	@Column(name = "passport_no", length = 30, nullable = true)
@@ -67,8 +68,8 @@ public class Medical {
 	@Column(name = "pass_application_date", length = 16, nullable = true)
 	private Date pass_application_date;
 
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id2", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "user_id2")
 	private User user2;
 
 	@Column(name = "type_of_visa", length = 64, nullable = true)

@@ -50,6 +50,17 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="status" style="text-align: right;">Visa
+                    Status</label>
+                <div class="col-md-8">
+                    <label><input value="true" type="radio" name="t_status" th:checked="${training.t_status}"
+                            id="myCheck5" /> Have Not </label> <label><input value="false" type="radio"
+                            th:checked="${!training.t_status}" name="t_status" id="myCheck6" />
+                        Have </label><br /><span class="help-block">(Whether the client completed training)</span>
+                </div>
+            </div>
+
 
 
             <div class="text-center">

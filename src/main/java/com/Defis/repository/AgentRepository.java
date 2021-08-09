@@ -10,7 +10,9 @@ import org.springframework.data.repository.query.Param;
 import com.Defis.domain.Agent;
 
 public interface AgentRepository extends PagingAndSortingRepository<Agent, Integer> {
-
+	@Query("SELECT count(u.id) FROM Agent u")
+			long countById ();
+	
 	@Query("SELECT u FROM Agent u WHERE u.email = :email")
 	public Agent getAgentByEmail(@Param("email") String email);
 	

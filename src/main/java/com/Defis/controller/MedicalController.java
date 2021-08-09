@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -95,16 +96,22 @@ public class MedicalController {
 	}
 	
 	@PostMapping("/medicals/save")
-	public String saveMedical(Medical medical, 
+	public String saveMedical(Medical medical,
+			Integer applicant,
 			RedirectAttributes redirectAttributes) throws IOException {
+
 		
-		
-		service.save(medical);
-	
+			service.save(medical);
 			
-	redirectAttributes.addFlashAttribute("message", "The medical has been saved successfully!");
+			
+			redirectAttributes.addFlashAttribute("message", "The ticket has been saved successfully!");
+			
+			return getRedirectURLToAffectedMedical(medical);
+			
+			
+		
+		
 	
-	return getRedirectURLToAffectedMedical(medical);
 	}
 
 	private String getRedirectURLToAffectedMedical(Medical medical) {

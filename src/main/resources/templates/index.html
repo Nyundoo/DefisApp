@@ -2,20 +2,117 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head th:replace="fragments :: page_head('Home - Defis Admin')" />
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Create three equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 31%;
+        padding: 20px;
+        background-color: black !important;
+        color: white !important;
+        opacity: 0.9;
+        margin: 10.5px;
+    }
+
+    /* 
+    .column:after {
+    content: '';
+    height: 5px;
+    width: 100%;
+    border-radius: 0 0 6px 6px;
+    background-color: #80e064;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+} */
+
+    .column2 {
+        float: left;
+        width: 100%;
+        height: 250px;
+        /* Should be removed. Only for demonstration */
+        margin-top: 20px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 600px) {
+        .column {
+            width: 100%;
+        }
+    }
+
+    h2,
+    .h2 {
+        font-size: 1.125rem;
+    }
+
+    .small {
+        font-size: 80%;
+        font-weight: 400;
+        color: #a7afb7 !important;
+    }
+</style>
 
 <body>
     <div class="container-fluid">
         <div th:replace="nav :: menu"></div>
-        <div>
+        <div style="max-width:960px; margin: 0 auto;">
             <h1>Defis Control Panel</h1>
             Welcome <a th:href="@{/account}" sec:authentication="principal.fullname"></a>
             &nbsp;
             <span sec:authentication="principal.authorities"></span>
+            <div class="row" style="margin: 0 auto;">
+                <div class="column" style="background-color:#aaa;">
+                    <h2 style="font-weight: 700 !important;">APPLICANTS</h2>
+                    <p style="font-weight: 700 !important;"><span th:text="${applicant}"> </span></p>
+                    <p class="small">Registered applicants</p>
+                </div>
+                <div class="column" style="background-color:#ccc;">
+                    <h2 style="font-weight: 700 !important;">AGENTS</h2>
+                    <p style="font-weight: 700 !important;"><span th:text="${agent}"> </span></p>
+                    <p class="small">This are total agents</p>
+                </div>
+                <div class="column" style="background-color:#bbb;">
+                    <h2 style="font-weight: 700 !important;">BIRTH CERTS SCHEDULE</h2>
+                    <p style="font-weight: 700 !important;"><span th:text="${applicant2}"> </span></p>
+                    <p class="small">Total birth certificate scheduled</p>
+                </div>
+                <div class="column" style="background-color:#bbb;">
+                    <h2 style="font-weight: 700 !important;">PASSPORTS SCHEDULE</h2>
+                    <p style="font-weight: 700 !important;"><span th:text="${applicant3}"> </span></p>
+                    <p class="small">Total passport scheduled</p>
+                </div>
+                <div class="column" style="background-color:#bbb;">
+                    <h2 style="font-weight: 700 !important;">VISA SCHEDULE</h2>
+                    <p style="font-weight: 700 !important;"><span th:text="${applicant4}"> </span></p>
+                    <p class="small">Total visa scheduled made</p>
+                </div>
+                <div class="column" style="background-color:#bbb;">
+                    <h2 style="font-weight: 700 !important;">TRAINING</h2>
+                    <p style="font-weight: 700 !important;"><span th:text="${applicant5}"> </span></p>
+                    <p class="small">Total applicant on training</p>
+                </div>
 
+            </div>
+
+            <div class="column2" style="background-color:#ddd;">
+
+            </div>
+
+
+            <div th:replace="fragments :: footer"></div>
         </div>
-
-        <div th:replace="fragments :: footer"></div>
-
     </div>
     <script th:src="@{/js/common.js}"></script>
 </body>
