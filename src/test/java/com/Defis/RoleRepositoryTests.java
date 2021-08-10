@@ -39,9 +39,10 @@ public class RoleRepositoryTests {
 		Role roleAgent = new Role(null, "Agents", "Input agent information");
 		Role roleApplicant = new Role(null, "Applicants", "Input new applicant information");
 		Role roleTraining = new Role(null, "Trainings", "Input training time schedules");
-		Role roleTicket = new Role(null, "Tickets", "Inpu applicant traveling schedule");
+		Role roleTicket = new Role(null, "Tickets", "Input applicant traveling schedule");
+		Role roleMarketer = new Role(null, "Marketer", "Deign poster for new job posting");
 		
-		 repo.saveAll(List.of(rolePayment, roleMedical, roleJob, roleAgent, roleApplicant, roleTraining, roleTicket));
+		 repo.saveAll(List.of(rolePayment, roleMedical, roleJob, roleAgent, roleApplicant, roleTraining, roleTicket, roleMarketer));
 		
 	}
 
