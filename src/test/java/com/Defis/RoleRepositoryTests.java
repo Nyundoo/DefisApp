@@ -20,29 +20,29 @@ import com.Defis.repository.RoleRepository;
 @Rollback(false)
 public class RoleRepositoryTests {
 	
-//	@Autowired
-//	private RoleRepository repo;
-//	
-//	@Test
-//	public void testCreateFirstRole() {
-//		Role roleAdmin = new Role(null, "Admin", "manage everything");
-//		Role savedRole = repo.save(roleAdmin);
-//		
-//		assertThat(savedRole.getId()).isGreaterThan(0);
-//	}
-//	
-//	@Test
-//	public void testCreateRestRoles() {
-//		Role roleSalesPerson = new Role(null, "ICT", "input users data, Update records,"
-//				+ "customers");
-//		Role roleEditor = new Role(null, "Assistant", "Carry out timely required tasks,"
-//				+ "articles and menus");
-//		Role roleShipper = new Role(null, "Receptionist", "welcomes clients, maintain documents,"
-//				+ "and update customers status");
-//		Role roleAssistance = new Role(null, "Manager", "manage questions and reviews");
-//		
-//		 repo.saveAll(List.of(roleSalesPerson, roleEditor, roleShipper, roleAssistance));
-//		
-//	}
+	@Autowired
+	private RoleRepository repo;
+	
+	@Test
+	public void testCreateFirstRole() {
+		Role roleAdmin = new Role(null, "Admin", "manage everything");
+		Role savedRole = repo.save(roleAdmin);
+		
+		assertThat(savedRole.getId()).isGreaterThan(0);
+	}
+	
+	@Test
+	public void testCreateRestRoles() {
+		Role rolePayment = new Role(null, "Payments", "Input users payment");
+		Role roleMedical = new Role(null, "Medicals", "Input users medicals");
+		Role roleJob = new Role(null, "Jobs", "Input user jobs");
+		Role roleAgent = new Role(null, "Agents", "Input agent information");
+		Role roleApplicant = new Role(null, "Applicants", "Input new applicant information");
+		Role roleTraining = new Role(null, "Trainings", "Input training time schedules");
+		Role roleTicket = new Role(null, "Tickets", "Inpu applicant traveling schedule");
+		
+		 repo.saveAll(List.of(rolePayment, roleMedical, roleJob, roleAgent, roleApplicant, roleTraining, roleTicket));
+		
+	}
 
 }
