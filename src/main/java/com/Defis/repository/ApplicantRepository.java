@@ -7,19 +7,18 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.Defis.domain.Applicant;
-import com.Defis.domain.User;
 
 public interface ApplicantRepository extends PagingAndSortingRepository<Applicant, Integer> {
 	@Query("SELECT count(u.id) FROM Applicant u")
 	long countById ();
 	
-	@Query("SELECT count(u.applicant) FROM Medical u WHERE u.cert_status=true")
+	@Query("SELECT count(u.applicant) FROM Birth u WHERE u.status=true")
 	long countById2 ();
 	
-	@Query("SELECT count(u.applicant) FROM Medical u WHERE u.pass_status=true")
+	@Query("SELECT count(u.applicant) FROM Passport u WHERE u.status=true")
 	long countById3 ();
 	
-	@Query("SELECT count(u.applicant) FROM Medical u WHERE u.status=true")
+	@Query("SELECT count(u.applicant) FROM Visa u WHERE u.status=true")
 	long countById4 ();
 	
 	@Query("SELECT count(u.applicant) FROM Training u WHERE u.t_status=true")
@@ -31,7 +30,7 @@ public interface ApplicantRepository extends PagingAndSortingRepository<Applican
 	@Query("SELECT count(u.applicant) FROM Ticket u WHERE u.travel_status=true")
 	long countById6 ();
 	
-	@Query("SELECT count(u.applicant) FROM Medical u WHERE u.active=true")
+	@Query("SELECT count(u.applicant) FROM Medical u WHERE u.status=true")
 	long countById8 ();
 	
 	@Query("SELECT u FROM Applicant u WHERE u.email = :email")

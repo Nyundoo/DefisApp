@@ -16,10 +16,10 @@ public interface MedicalRepository extends PagingAndSortingRepository<Medical, I
 	
 public Long countById(Integer id);	
 
-@Query("SELECT u FROM Medical u WHERE u.user3.id=?#{ principal.id }")
+@Query("SELECT u FROM Medical u WHERE u.user1.id=?#{ principal.id }")
 public List<Medical> getUserById(@Param("id") long id);
 	
-	@Query("SELECT u FROM Medical u WHERE CONCAT(u.id, ' ',u.client_info, ' ',u.medical_center, ' ',u.medical_type, ' ',u.cert_no, ' ',u.cert_application_date, ' ',u.passport_no) LIKE %?1%")
+	@Query("SELECT u FROM Medical u WHERE CONCAT(u.id, ' ',u.client_info, ' ',u.medical_center, ' ',u.medical_type) LIKE %?1%")
 	public Page<Medical> findAll(String keyword, Pageable pageable);
 
 	

@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -17,20 +16,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Applicant;
-import com.Defis.domain.Medical;
-import com.Defis.domain.MedicalNotFoundException;
+import com.Defis.domain.Birth;
+import com.Defis.domain.BirthNotFoundException;
 import com.Defis.domain.User;
-import com.Defis.exporter.MedicalCsvExporter;
-import com.Defis.exporter.MedicalExcelExporter;
-import com.Defis.exporter.MedicalPDFExporter;
+import com.Defis.exporter.BirthCsvExporter;
+import com.Defis.exporter.BirthExcelExporter;
+import com.Defis.exporter.BirthPDFExporter;
 import com.Defis.repository.ApplicantRepository;
 import com.Defis.repository.UserRepository;
-import com.Defis.service.MedicalService;
+import com.Defis.service.BirthService;
 
 @Controller
-public class MedicalController {
+public class BirthController {
+
 	@Autowired
-	private MedicalService service;
+	private BirthService service;
 	
 	@Autowired
 	private ApplicantRepository applicantRepo;
@@ -38,13 +38,13 @@ public class MedicalController {
 	@Autowired
 	private UserRepository userRepo;
 	
-	@GetMapping("/medicals")
+	@GetMapping("/births")
 	public String listFirstPage(Model model) {
 		
 		return listByPage(1, model, "applicant", "asc", null);
 	}
 	
-	@GetMapping("/medicals/page/{pageNum}")
+	@GetMapping("/births/page/{pageNum}")
 	public String listByPage(@PathVariable(name = "pageNum") int pageNum, Model model,
 			@Param("sortField") String sortField, 
 			@Param("sortDir") String sortDir,
@@ -54,11 +54,11 @@ public class MedicalController {
 		System.out.println("Sort Field: " + sortField);
 		System.out.println("Sort Order: " + sortDir);
 		
-		Page<Medical> page = service.listByPage(pageNum, sortField, sortDir, keyword);
-		List<Medical> listMedicals = page.getContent();
+		Page<Birth> page = service.listByPage(pageNum, sortField, sortDir, keyword);
+		List<Birth> listBirths = page.getContent();
 		
-		long startCount = (pageNum - 1) * MedicalService.MEDICALS_PER_PAGE + 1;
-		long endCount = startCount + MedicalService.MEDICALS_PER_PAGE - 1;		
+		long startCount = (pageNum - 1) * BirthService.BIRTHCERTS_PER_PAGE + 1;
+		long endCount = startCount + BirthService.BIRTHCERTS_PER_PAGE - 1;		
 		if (endCount > page.getTotalElements()) {
 			endCount = page.getTotalElements();
 		}
@@ -70,57 +70,57 @@ public class MedicalController {
 		model.addAttribute("startCount", startCount);
 		model.addAttribute("endCount", endCount);
 		model.addAttribute("totalItems", page.getTotalElements());
-		model.addAttribute("listMedicals", listMedicals);	
+		model.addAttribute("listBirths", listBirths);	
 		model.addAttribute("sortField", sortField);	
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("reverseSortDir", reverseSortDir);
 		model.addAttribute("keyword", keyword);
 		
 		
-		return "medicals/medicals";
+		return "births/births";
 	}
 	
-	@GetMapping("/medicals/new")
-	public String newMedical(Model model) {
+	@GetMapping("/births/new")
+	public String newBirth(Model model) {
 		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
 		List<User> listUsers = (List<User>) userRepo.findAll();
 		
-		Medical medical = new Medical();
-		model.addAttribute("medical", medical);
-		model.addAttribute("pageTitle", "Create New Medical");
+		Birth birthcert = new Birth();
+		model.addAttribute("birthcert", birthcert);
+		model.addAttribute("pageTitle", "Create New Birth");
 
 		model.addAttribute("listApplicants", listApplicants);
 		model.addAttribute("listUsers", listUsers);
 		
-		return "medicals/medical_form";
+		return "births/birth_form";
 	}
 	
-	@PostMapping("/medicals/save")
-	public String saveMedical(Medical medical,
+	@PostMapping("/births/save")
+	public String saveBirth(Birth birthcert,
 			Integer applicant,
 			RedirectAttributes redirectAttributes) throws IOException {
 
 		
-			service.save(medical);
+			service.save(birthcert);
 			
 			
 			redirectAttributes.addFlashAttribute("message", "The ticket has been saved successfully!");
 			
-			return getRedirectURLToAffectedMedical(medical);		
+			return getRedirectURLToAffectedBirth(birthcert);		
 	
 	}
 
-	private String getRedirectURLToAffectedMedical(Medical medical) {
-		Integer medicalId = medical.getId();
-		return "redirect:/medicals/page/1?sortField=id&sortDir=asc&keyword=" + medicalId;
+	private String getRedirectURLToAffectedBirth(Birth birthcert) {
+		Integer birthcertId = birthcert.getId();
+		return "redirect:/births/page/1?sortField=id&sortDir=asc&keyword=" + birthcertId;
 	}
 	
-	@GetMapping("/medicals/edit/{id}")
-	public String editMedical(@PathVariable(name = "id") Integer id,
+	@GetMapping("/births/edit/{id}")
+	public String editBirth(@PathVariable(name = "id") Integer id,
 			Model model,
 			RedirectAttributes redirectAttributes) {
 		try {
-		Medical medical = service.get(id);
+		Birth birthcert = service.get(id);
 		
 		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
 		List<User> listUsers = (List<User>) userRepo.findAll();
@@ -129,68 +129,68 @@ public class MedicalController {
 		model.addAttribute("listApplicants", listApplicants);
 		model.addAttribute("listUsers", listUsers);
 		
-		model.addAttribute("medical", medical);
-		model.addAttribute("pageTitle", "Edit Medical (ID: " + id + ")");
+		model.addAttribute("birthcert", birthcert);
+		model.addAttribute("pageTitle", "Edit Birth (ID: " + id + ")");
 		
-		return "medicals/medical_form";
+		return "births/birth_form";
 		
-		} catch (MedicalNotFoundException ex) {
+		} catch (BirthNotFoundException ex) {
 			redirectAttributes.addFlashAttribute("message", ex.getMessage());
 			
-			return "redirect:/medicals";
+			return "redirect:/births";
 		}
 		
 	}
 	
 	
-	@GetMapping("/medicals/delete/{id}")
-	public String deleteMedical(@PathVariable(name = "id") Integer id,
+	@GetMapping("/births/delete/{id}")
+	public String deleteBirth(@PathVariable(name = "id") Integer id,
 			Model model,
 			RedirectAttributes redirectAttributes) {
 		try {
 		service.delete(id);	
 		
-		redirectAttributes.addFlashAttribute("message", "The medical ID" + id + " has been deleted successfully!");
+		redirectAttributes.addFlashAttribute("message", "The birthcert ID" + id + " has been deleted successfully!");
 		
 		
-		} catch (MedicalNotFoundException ex) {
+		} catch (BirthNotFoundException ex) {
 			redirectAttributes.addFlashAttribute("message", ex.getMessage());
 			
 		}
 
-		return "redirect:/medicals";
+		return "redirect:/births";
 		
 	}
 	
-	@GetMapping("/medicals/{id}/enabled/{status}")
-	public String updateMedicalEnabledStatus(@PathVariable("id") Integer id, 
+	@GetMapping("/births/{id}/enabled/{status}")
+	public String updateBirthEnabledStatus(@PathVariable("id") Integer id, 
 			@PathVariable("status") boolean enabled, RedirectAttributes redirectAttributes) {
 		String status =  enabled ? "enabled" : "disabled";
-		String message = "The medical ID" + id + " has been " + status;
+		String message = "The birthcert ID" + id + " has been " + status;
 		
 		redirectAttributes.addFlashAttribute("message", message);
 		
-		return "redirect:/medicals";
+		return "redirect:/births";
 	}
 	
-	@GetMapping("/medicals/export/csv")
+	@GetMapping("/births/export/csv")
 	public void exportToCSV(HttpServletResponse response) throws IOException {
-		List<Medical> listMedicals = service.listAll();
-		MedicalCsvExporter exporter = new MedicalCsvExporter();
-		exporter.export(listMedicals, response);
+		List<Birth> listBirths = service.listAll();
+		BirthCsvExporter exporter = new BirthCsvExporter();
+		exporter.export(listBirths, response);
 	}
 	
-	@GetMapping("/medicals/export/excel")
+	@GetMapping("/births/export/excel")
 	public void exportToExcel(HttpServletResponse response) throws IOException {
-		List<Medical> listMedicals = service.listAll();
-		MedicalExcelExporter exporter = new MedicalExcelExporter();
-		exporter.export(listMedicals, response);
+		List<Birth> listBirths = service.listAll();
+		BirthExcelExporter exporter = new BirthExcelExporter();
+		exporter.export(listBirths, response);
 	}
 	
-	@GetMapping("/medicals/export/pdf")
+	@GetMapping("/births/export/pdf")
 	public void exportToPDF(HttpServletResponse response) throws IOException {
-		List<Medical> listMedicals = service.listAll();
-		MedicalPDFExporter exporter = new MedicalPDFExporter();
-		exporter.export(listMedicals, response);
+		List<Birth> listBirths = service.listAll();
+		BirthPDFExporter exporter = new BirthPDFExporter();
+		exporter.export(listBirths, response);
 	}
 }

@@ -48,7 +48,7 @@ public class User {
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
-	@OneToMany(mappedBy = "user3", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user1", cascade = CascadeType.ALL)
 	private List<Medical> details = new ArrayList<>();
 
 	public User() {
@@ -134,11 +134,6 @@ public class User {
 		this.details = details;
 	}
 
-	public void setDetail(Applicant applicant, Integer id, String client_info, String medical_center,
-			String medical_type, double amount_paid) {
-		this.details.add(new Medical(applicant, id, client_info, medical_center, medical_type, amount_paid, this));
-	}
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
@@ -157,6 +152,5 @@ public class User {
 	public String getFullName() {
 		return firstName + " " + lastName;
 	}
-
 
 }

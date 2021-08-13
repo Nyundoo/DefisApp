@@ -62,10 +62,12 @@
         font-weight: 400;
         color: #a7afb7 !important;
     }
+
+    
 </style>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-bottom: 40px;">
         <div th:replace="nav :: menu"></div>
         <div style="max-width:960px; margin: 0 auto;">
             <h1>Defis Control Panel</h1>
@@ -119,43 +121,93 @@
                     <p class="small">Total applicant traveling</p>
                 </div>
 
-            </div>
-
-            <div class="full-details m-3">
+            </div>               
+         
+            <div class="full-details m-3"  style="margin-bottom: 40px;">
+                <div class="m-3">
+                    <h2  style="text-align: center;">Manage Applicant Medical Tasks</h2>
+                </div>
                 <table class="table table-bordered table-striped table-hover table-responsive-xl">
                     <thead class="thead-dark">
                         <tr>
-                            <th th:replace="fragments :: column_link5('user3', 'User', 'none')" />
-        
+                            <th th:replace="fragments :: column_link5('user1', 'User', 'none')" />
+
                             <th class="hideable-column">
                                 <th th:replace="fragments :: column_link5('id', 'Medical ID', 'tag')" />
-                                </th>
-        
+                            </th>
+
                             <th class="hideable-column">
                                 <th th:replace="fragments :: column_link5('client_info', 'Client Info', 'tag')" />
-                                </th>
-        
-                                <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
-                                <th th:replace="fragments :: column_link5('medical_center', 'Medical Center', 'none')" />
-                                <th th:replace="fragments :: column_link5('application_date', 'Application Date', 'none')" />
-                                <th th:replace="fragments :: column_link5('result_date', 'Results Date', 'none')" />
-                                <th th:replace="fragments :: column_link5('active', 'Status', 'none')" />
-        
+                            </th>
+
+                            <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
+                            <th th:replace="fragments :: column_link5('medical_center', 'Medical Center', 'none')" />
+                            <th
+                                th:replace="fragments :: column_link5('application_date', 'Application Date', 'none')" />
+                            <th th:replace="fragments :: column_link5('result_date', 'Results Date', 'none')" />
+                            <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="medical : ${listMedicals}">
-                            <td>[[${medical.user3.firstName}]]</td>
+                            <td>[[${medical.user1.firstName}+'
+                                '+${medical.user1.lastName}]]</td>
                             <td class="hideable-column">[[${medical.id}]]</td>
                             <td class="hideable-column">[[${medical.client_info}]]</td>
                             <td>[[${medical.applicant.identification}+' :
-                                '+${medical.applicant.firstName}+' 
+                                '+${medical.applicant.firstName}+'
                                 '+${medical.applicant.lastName}]]</td>
                             <td>[[${medical.medical_center}]]</td>
                             <td>[[${medical.application_date}]]</td>
                             <td>[[${medical.result_date}]]</td>
-                            <td th:if="${medical.active == false}">Onging!</td>
-                           
+                            <td th:if="${medical.status == false}"><a class="btn btn-warning btn-sm"
+                                th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Ongoing</a></td>
+                            <td th:unless="${medical.status == false}"><a class="btn btn-warning btn-sm"
+                                th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Complete</a></td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+            <div class="full-details m-3">
+                <div class="m-3">
+                    <h2  style="text-align: center;">Manage Applicant Birth Certs Tasks</h2>
+                </div>
+                <table class="table table-bordered table-striped table-hover table-responsive-xl">
+                    <thead class="thead-dark">
+                        <tr>
+                                <th th:replace="fragments :: column_link5('user2', 'User', 'none')" />
+
+                              <th class="hideable-column">                          
+                            <th th:replace="fragments :: column_link5('cert_no', 'Cert No', 'tag')" />
+                        </th>
+                            
+                            <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
+                            <th th:replace="fragments :: column_link5('paid', 'paid', 'none')" />
+                            <th th:replace="fragments :: column_link5('cert_application_date', 'Cert Application Date', 'none')" />
+                            <th th:replace="fragments :: column_link5('cert_reception_date', 'Cert Reception Date', 'none')" />
+                            <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="birth : ${listBirths}">
+                            <td>[[${birth.user2.firstName}+'
+                                '+${birth.user2.lastName}]]</td>
+                            <td  class="hideable-column">[[${birth.cert_no}]]</td>
+                            <td>[[${birth.applicant.identification}+' :
+                                '+${birth.applicant.firstName}+'
+                                '+${birth.applicant.lastName}]]</td>
+                            <td>[[${birth.paid}]]</td>
+                            <td>[[${birth.cert_application_date}]]</td>
+                            <td>[[${birth.cert_reception_date}]]</td>
+                            <td th:if="${birth.status == false}"><a class="btn btn-warning btn-sm"
+                                th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Ongoing</a></td>
+                            <td th:unless="${birth.status == false}"><a class="btn btn-warning btn-sm"
+                                th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Complete</a></td>
+                            
                         </tr>
                     </tbody>
                 </table>
@@ -166,6 +218,73 @@
         </div>
     </div>
     <script th:src="@{/js/common.js}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#buttonCancel").on("click", function () {
+                window.location = "[[@{/medicals}]]";
+            });
+
+            $("#fileImage").change(function () {
+                fileSize = this.files[0].size;
+                //alert("File size: " + fileSize);
+
+                if (fileSize > 1048576) {
+                    this.setCustomValidity("You must choose an image less than 1MB!");
+                    this.reportValidity();
+                } else {
+                    this.setCustomValidity("");
+                    showImageThumbnail(this);
+                }
+
+
+            });
+        });
+
+        function showImageThumbnail(fileInput) {
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#thumbnail").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+
+        function showModalDialog(title, message) {
+            $("#modalTitle").text(title);
+            $("#modalBody").text(message);
+            $("#modalDialog").modal();
+        }
+    </script>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Bootstrap Js CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#dismiss, .overlay').on('click', function () {
+                $('#sidebar').removeClass('active');
+                $('.overlay').fadeOut();
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').addClass('active');
+                $('.overlay').fadeIn();
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
 </body>
 
 </html>

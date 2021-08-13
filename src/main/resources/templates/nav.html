@@ -25,6 +25,9 @@
                     <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Medicals')">
                         <a class="nav-link" th:href="@{/medicals}">List Medicals</a>
                     </li>
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Medicals')">
+                        <a class="nav-link" th:href="@{/births}">List Birth Cert</a>
+                    </li>
                     <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Jobs')">
                         <a class="nav-link" th:href="@{/jobs}">List Jobs</a>
                     </li>
