@@ -1,6 +1,5 @@
 package com.Defis.controller;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.Defis.domain.Medical;
+import com.Defis.domain.security.NyundooUserDetails;
 import com.Defis.repository.AgentRepository;
 import com.Defis.repository.ApplicantRepository;
 import com.Defis.repository.UserRepository;
@@ -28,15 +28,22 @@ public class MainController {
 	
 	@Autowired
 	private ApplicantRepository applicantRepo;
+	
+	@Autowired
+	private MedicalService medicalRepo;
 
 	
 	@GetMapping("/")
-	public String viewHomePage(@AuthenticationPrincipal Principal principal, Model model) {	
+	public String viewHomePage(@AuthenticationPrincipal NyundooUserDetails loggedUser, Model model) {	
 		
+	
+		Long id = loggedUser.getId();
 		
-		List<Medical> listMedicals =  service.listAll();
+
+		List<Medical> listMedicals =  medicalRepo.getById(id);
 		
-		   model.addAttribute("listMedicals",listMedicals);
+		  model.addAttribute("listMedicals",listMedicals);
+		
 
 		model.addAttribute("agent", agentRepo.countById());
 		model.addAttribute("applicant", applicantRepo.countById());

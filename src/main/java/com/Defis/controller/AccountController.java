@@ -43,21 +43,7 @@ public class AccountController {
 		return "users/account_form";
 		
 	}
-	
-	@GetMapping("/task")
-	public String viewTasks(@AuthenticationPrincipal NyundooUserDetails loggedUser,
-			Model model) {
-		
-		Long id = loggedUser.getId();
-		
 
-		List<Medical> listMedicals =  medicalRepo.getById(id);
-		
-		  model.addAttribute("listMedicals",listMedicals);
-		
-		return "users/task";
-		
-	}
 	
 	@PostMapping("/account/update")
 	public String saveDetails(User user, 
