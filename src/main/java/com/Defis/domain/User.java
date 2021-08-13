@@ -1,9 +1,12 @@
 package com.Defis.domain;
 
 import java.beans.Transient;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,7 +25,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	@Column(length = 128, nullable = false, unique = true)
 	private String email;
@@ -38,11 +42,14 @@ public class User {
 	@Column(length = 64)
 	private String photos;
 
-	private boolean enabled=true;
+	private boolean enabled = true;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+
+	@OneToMany(mappedBy = "user3", cascade = CascadeType.ALL)
+	private List<Medical> details = new ArrayList<>();
 
 	public User() {
 	}
@@ -55,11 +62,11 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -118,9 +125,18 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-	
-	public void addRole(Role role) {
-		this.roles.add(role);
+
+	public List<Medical> getDetails() {
+		return details;
+	}
+
+	public void setDetails(List<Medical> details) {
+		this.details = details;
+	}
+
+	public void setDetail(Applicant applicant, Integer id, String client_info, String medical_center,
+			String medical_type, double amount_paid) {
+		this.details.add(new Medical(applicant, id, client_info, medical_center, medical_type, amount_paid, this));
 	}
 
 	@Override
@@ -128,16 +144,19 @@ public class User {
 		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", roles=" + roles + "]";
 	}
-	
+
 	@Transient
 	public String getPhotosImagePath() {
-		if(id == null || photos == null) return "/images/default-user.png";
-		
+		if (id == null || photos == null)
+			return "/images/default-user.png";
+
 		return "/user-photos/" + this.id + "/" + this.photos;
 	}
-	
+
 	@Transient
 	public String getFullName() {
 		return firstName + " " + lastName;
 	}
+
+
 }

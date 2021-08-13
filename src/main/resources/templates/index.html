@@ -122,7 +122,45 @@
             </div>
 
             <div class="column2" style="background-color:#ddd;">
+                <div class="full-details m-3">
+                    <table class="table table-bordered table-striped table-hover table-responsive-xl">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th th:replace="fragments :: column_link5('user3', 'User', 'none')" />
 
+                                <th class="hideable-column">
+                                    <th th:replace="fragments :: column_link5('id', 'Medical ID', 'tag')" />
+                                    </th>
+
+                                <th class="hideable-column">
+                                    <th th:replace="fragments :: column_link5('client_info', 'Client Info', 'tag')" />
+                                    </th>
+
+                                    <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
+                                    <th th:replace="fragments :: column_link5('medical_center', 'Medical Center', 'none')" />
+                                    <th th:replace="fragments :: column_link5('application_date', 'Application Date', 'none')" />
+                                    <th th:replace="fragments :: column_link5('result_date', 'Results Date', 'none')" />
+                                    <th th:replace="fragments :: column_link5('active', 'Status', 'none')" />
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="medical : ${listMedicals}">
+                                <td>[[${medical.user3.firstName}]]</td>
+                                <td class="hideable-column">[[${medical.id}]]</td>
+                                <td class="hideable-column">[[${medical.client_info}]]</td>
+                                <td>[[${medical.applicant.identification}+' :
+                                    '+${medical.applicant.firstName}+' 
+                                    '+${medical.applicant.lastName}]]</td>
+                                <td>[[${medical.medical_center}]]</td>
+                                <td>[[${medical.application_date}]]</td>
+                                <td>[[${medical.result_date}]]</td>
+                                <td th:if="${medical.active == false}">Onging!</td>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
 

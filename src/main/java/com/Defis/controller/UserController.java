@@ -114,12 +114,12 @@ public class UserController {
 	}
 
 	private String getRedirectURLToAffectedUser(User user) {
-		Integer userId = user.getId();
+		Long userId = user.getId();
 		return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword=" + userId;
 	}
 	
 	@GetMapping("/users/edit/{id}")
-	public String editUser(@PathVariable(name = "id") Integer id,
+	public String editUser(@PathVariable(name = "id") Long id,
 			Model model,
 			RedirectAttributes redirectAttributes) {
 		try {
@@ -143,7 +143,7 @@ public class UserController {
 	
 	
 	@GetMapping("/users/delete/{id}")
-	public String deleteUser(@PathVariable(name = "id") Integer id,
+	public String deleteUser(@PathVariable(name = "id") Long id,
 			Model model,
 			RedirectAttributes redirectAttributes) {
 		try {

@@ -1,7 +1,10 @@
 package com.Defis.domain;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -39,6 +43,9 @@ public class Medical {
 
 	@Column(name = "application_date", length = 16, nullable = false)
 	private Date application_date;
+
+	@Column(name = "result_date", length = 16, nullable = false)
+	private Date result_date;
 
 	private boolean active = false;
 
@@ -78,42 +85,41 @@ public class Medical {
 	@Column(name = "visa_apply_date", length = 16, nullable = true)
 	private Date visa_apply_date;
 
+	@ManyToOne
+	@JoinColumn(name = "user_id4")
+	private User user4;
+
 	private boolean status = false;
 
 	@Column(name = "agent_or_company", length = 64, nullable = true)
 	private String agent_or_company;
 
+	@ManyToOne
+	@JoinColumn(name = "user_id3")
+	private User user3;
+
 	public Medical() {
 	}
 
-	public Medical(Integer id, Applicant applicant, String client_info, String medical_center, String medical_type,
-			double amount_paid, Date application_date, boolean active, String cert_no, boolean cert_status, String paid,
-			Date cert_application_date, User user1, String passport_no, boolean pass_status, String pass_paid,
-			Date pass_application_date, User user2, String type_of_visa, Date visa_apply_date, boolean status,
-			String agent_or_company) {
-		super();
+	public Medical(Applicant applicant, String client_info, String medical_center, String medical_type,
+			double amount_paid, User user3) {
+		this.applicant = applicant;
+		this.client_info = client_info;
+		this.medical_center = medical_center;
+		this.medical_type = medical_type;
+		this.amount_paid = amount_paid;
+		this.user3 = user3;
+	}
+
+	public Medical(Applicant applicant, Integer id, String client_info, String medical_center, String medical_type,
+			double amount_paid, User user3) {
 		this.id = id;
 		this.applicant = applicant;
 		this.client_info = client_info;
 		this.medical_center = medical_center;
 		this.medical_type = medical_type;
 		this.amount_paid = amount_paid;
-		this.application_date = application_date;
-		this.active = active;
-		this.cert_no = cert_no;
-		this.cert_status = cert_status;
-		this.paid = paid;
-		this.cert_application_date = cert_application_date;
-		this.user1 = user1;
-		this.passport_no = passport_no;
-		this.pass_status = pass_status;
-		this.pass_paid = pass_paid;
-		this.pass_application_date = pass_application_date;
-		this.user2 = user2;
-		this.type_of_visa = type_of_visa;
-		this.visa_apply_date = visa_apply_date;
-		this.status = status;
-		this.agent_or_company = agent_or_company;
+		this.user3 = user3;
 	}
 
 	public Integer getId() {
@@ -170,6 +176,14 @@ public class Medical {
 
 	public void setApplication_date(Date application_date) {
 		this.application_date = application_date;
+	}
+
+	public Date getResult_date() {
+		return result_date;
+	}
+
+	public void setResult_date(Date result_date) {
+		this.result_date = result_date;
 	}
 
 	public boolean isActive() {
@@ -276,6 +290,14 @@ public class Medical {
 		this.visa_apply_date = visa_apply_date;
 	}
 
+	public User getUser4() {
+		return user4;
+	}
+
+	public void setUser4(User user4) {
+		this.user4 = user4;
+	}
+
 	public boolean isStatus() {
 		return status;
 	}
@@ -290,6 +312,14 @@ public class Medical {
 
 	public void setAgent_or_company(String agent_or_company) {
 		this.agent_or_company = agent_or_company;
+	}
+
+	public User getUser3() {
+		return user3;
+	}
+
+	public void setUser3(User user3) {
+		this.user3 = user3;
 	}
 
 }

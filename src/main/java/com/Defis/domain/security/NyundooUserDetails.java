@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.Defis.domain.Role;
 import com.Defis.domain.User;
 
+@SuppressWarnings("serial")
 public class NyundooUserDetails implements UserDetails {
 	
 	private User user;	
@@ -42,6 +43,10 @@ public class NyundooUserDetails implements UserDetails {
 	@Override
 	public String getUsername() {
 		return user.getEmail();
+	}
+	
+	public Long getId() {
+		return user.getId();
 	}
 
 	@Override

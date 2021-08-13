@@ -1,5 +1,6 @@
 package com.Defis.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -15,8 +16,8 @@ import org.springframework.stereotype.Service;
 
 import com.Defis.domain.Medical;
 import com.Defis.domain.MedicalNotFoundException;
-import com.Defis.domain.Ticket;
-import com.Defis.domain.TicketNotFoundException;
+import com.Defis.domain.User;
+import com.Defis.domain.security.NyundooUserDetails;
 import com.Defis.repository.MedicalRepository;
 
 @Service
@@ -31,6 +32,10 @@ public static final int MEDICALS_PER_PAGE = 6;
 	public List<Medical> listAll()	{
 		return (List<Medical>) medicalRepo.findAll(Sort.by("applicant").ascending());
 		
+	}
+	
+	public List<Medical> getById(Long id) {
+		return medicalRepo.getUserById(id);
 	}
 
 	public Medical get(Integer id) throws MedicalNotFoundException {
@@ -77,5 +82,10 @@ public static final int MEDICALS_PER_PAGE = 6;
 		
 		return medicalRepo.findAll(pageable);
 	}
+
+
+
+	
+
 
 }

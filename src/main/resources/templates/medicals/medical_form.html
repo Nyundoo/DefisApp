@@ -67,6 +67,28 @@
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4" style="text-align: right;">Results Date: </label>
+
+                    <div class="col-sm-8">
+                        <input type="date" th:field="*{result_date}" class="form-control" required id="theDate5" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4" style="text-align: right;">Assign To: </label>
+                    <div class="col-sm-8">
+                        <select th:field="*{user3}" class="form-control" required>
+                            <th:block th:each="cat : ${listUsers}">
+                                <option th:text="${cat.firstName}+' '+${cat.lastName}"
+                                    th:value="${cat.id}" />
+                            </th:block>
+                        </select>
+                        <a style="text-decoration:underline; color: blue; font-size: medium;"
+                            th:href="@{/users/new}">Add New User</a>
+                    </div>
+                </div>
+
                 <!-- status of medical -->
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="status" style="text-align: right;">Status</label>
@@ -235,6 +257,20 @@
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4" style="text-align: right;">Assign To: </label>
+                    <div class="col-sm-8">
+                        <select th:field="*{user4}" class="form-control" required>
+                            <th:block th:each="cat : ${listUsers}">
+                                <option th:text="${cat.firstName}+' '+${cat.lastName}"
+                                    th:value="${cat.id}" />
+                            </th:block>
+                        </select>
+                        <a style="text-decoration:underline; color: blue; font-size: medium;"
+                            th:href="@{/users/new}">Add New User</a>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="status" style="text-align: right;">Visa
                         Status</label>
@@ -346,6 +382,22 @@
 
 
         document.getElementById('theDate4').value = today4;
+
+
+
+        var date5 = new Date();
+
+        var day5 = date5.getDate();
+        var month5 = date5.getMonth() + 1;
+        var year5 = date5.getFullYear();
+
+        if (month5 < 10) month5 = "0" + month5;
+        if (day5 < 10) day5 = "0" + day5;
+
+        var today5 = year5 + "-" + month5 + "-" + day5;
+
+
+        document.getElementById('theDate5').value = today5;
 
 
 

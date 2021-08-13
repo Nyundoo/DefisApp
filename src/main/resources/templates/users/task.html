@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragments :: page_head('Your Account Details')" />
+
+<body>
+<div class="full-details m-3">
+        <table class="table table-bordered table-striped table-hover table-responsive-xl">
+            <thead class="thead-dark">
+                <tr>
+                    <th th:replace="fragments :: column_link5('user3', 'User', 'none')" />
+
+                    <th class="hideable-column">
+                        <th th:replace="fragments :: column_link5('id', 'Medical ID', 'tag')" />
+                        </th>
+
+                    <th class="hideable-column">
+                        <th th:replace="fragments :: column_link5('client_info', 'Client Info', 'tag')" />
+                        </th>
+
+                        <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
+                        <th th:replace="fragments :: column_link5('medical_center', 'Medical Center', 'none')" />
+                        <th th:replace="fragments :: column_link5('application_date', 'Application Date', 'none')" />
+                        <th th:replace="fragments :: column_link5('result_date', 'Results Date', 'none')" />
+                        <th th:replace="fragments :: column_link5('active', 'Status', 'none')" />
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="medical : ${listMedicals}">
+                    <td>[[${medical.user3.firstName}]]</td>
+                    <td class="hideable-column">[[${medical.id}]]</td>
+                    <td class="hideable-column">[[${medical.client_info}]]</td>
+                    <td>[[${medical.applicant.identification}+' :
+                        '+${medical.applicant.firstName}+' 
+                        '+${medical.applicant.lastName}]]</td>
+                    <td>[[${medical.medical_center}]]</td>
+                    <td>[[${medical.application_date}]]</td>
+                    <td>[[${medical.result_date}]]</td>
+                    <td th:if="${medical.active == false}">Onging!</td>
+                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:replace="fragments :: footer"></div>
+
+    </div>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#buttonCancel").on("click", function () {
+                window.location = "[[@{/users}]]";
+            });
+
+            $("#fileImage").change(function () {
+                fileSize = this.files[0].size;
+                //alert("File size: " + fileSize);
+
+                if (fileSize > 1048576) {
+                    this.setCustomValidity("You must choose an image less than 1MB!");
+                    this.reportValidity();
+                } else {
+                    this.setCustomValidity("");
+                    showImageThumbnail(this);
+                }
+
+
+            });
+        });
+
+        function showImageThumbnail(fileInput) {
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#thumbnail").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        function checkPasswordMatch() {
+            if (confirmPassword.value != $("#password").val()) {
+                confirmPassword.setCustomValidity("Password do not match");
+            } else {
+                confirmPassword.setCustomValidity("");
+            }
+        }
+    </script>
+</body>
+
+</html>

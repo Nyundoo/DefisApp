@@ -1,6 +1,7 @@
 package com.Defis.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.Defis.domain.Medical;
 import com.Defis.domain.User;
 import com.Defis.domain.security.NyundooUserDetails;
+import com.Defis.service.MedicalService;
 import com.Defis.service.UserService;
 import com.Defis.utility.FileUploadUtil;
 
@@ -24,18 +27,37 @@ public class AccountController {
 	@Autowired
 	private UserService service;
 	
+	@Autowired
+	private MedicalService medicalRepo;
+	
 	@GetMapping("/account")
 	public String viewDetails(@AuthenticationPrincipal NyundooUserDetails loggedUser,
 			Model model) {
 		String email = loggedUser.getUsername();
+		
 		
 		User user = service.getByEmail(email);
 		
 		model.addAttribute("user", user);
 		
 		return "users/account_form";
+		
 	}
 	
+	@GetMapping("/task")
+	public String viewTasks(@AuthenticationPrincipal NyundooUserDetails loggedUser,
+			Model model) {
+		
+		Long id = loggedUser.getId();
+		
+
+		List<Medical> listMedicals =  medicalRepo.getById(id);
+		
+		  model.addAttribute("listMedicals",listMedicals);
+		
+		return "users/task";
+		
+	}
 	
 	@PostMapping("/account/update")
 	public String saveDetails(User user, 
