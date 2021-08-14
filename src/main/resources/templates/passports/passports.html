@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragments :: page_head('Passport - Defis Admin')" />
+
+<body>
+    <div class="container-fluid">
+        <div th:replace="nav :: menu"></div>
+        <div class="m-3">
+            <h2>Manage Passports</h2>
+            <a th:href="@{/passports/new}"><i class="fas fa-folder-plus fa-2x mr-4"></i></a>
+            <a th:href="@{/passports/export/csv}"><i class="fas fa-file-csv fa-2x mr-4"></i></a>
+            <a th:href="@{/passports/export/excel}"><i class="far fa-file-excel fa-2x mr-4"></i></a>
+            <a th:href="@{/passports/export/pdf}"><i class="far fa-file-pdf fa-2x mr-4"></i></a>
+        </div>
+        <div th:if="${message != null}" class="alert alert-success text-center">
+            [[${message}]]
+        </div>
+
+        <div class="m-3">
+            <form th:action="@{/passports/page/1}" class="form-inline">
+                <input type="hidden" name="sortField" th:value="${sortField}" />
+                <input type="hidden" name="sortDir" th:value="${sortDir}" />
+
+                <input type="search" name="keyword" th:value="${keyword}" class="form-control mr-2" required />
+                <button type="submit" class="btn btn-primary mr-2"><i class="fas fa-search"></i></button>
+                <button type="button" class="btn btn-secondary" onclick="clearFilter()"><i
+                        class="fas fa-eraser"></i></button>
+            </form>
+        </div>
+
+    </div>
+    <div class="full-details m-3">
+        <table class="table table-bordered table-striped table-hover table-responsive-xl">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="hideable-column">
+                        <th th:replace="fragments :: column_link5('id', 'Passports ID', 'tag')" />
+                    
+                        <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
+                        <th th:replace="fragments :: column_link5('passport_no', 'Passport Number', 'none')" />
+                        <th th:replace="fragments :: column_link5('pass_paid', 'Amount Paid', 'none')" />
+                        <th th:replace="fragments :: column_link5('user_id3', 'User', 'none')" />
+                        <th></th>
+                
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="passport : ${listPassports}">
+                    <td class="hideable-column">[[${passport.id}]]</td>
+                   <td>[[${passport.applicant.identification}+' :
+                        '+${passport.applicant.firstName}+' 
+                        '+${passport.applicant.lastName}]]</td>
+                    <td>[[${passport.passport_no}]]</td>
+                    <td>[[${passport.pass_paid}]]</td>
+                    <td>[[${passport.user3.firstName}+' 
+                        '+${passport.user3.lastName}]]</td>
+
+                    <td>
+                        <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/passports/view/' + ${passport.id}}"
+                        title="Edit this passport"></a>
+                        <a class="far fa-edit icon-green mr-4" th:href="@{'/passport/edit/' + ${passport.id}}"
+                        title="Edit this passport"></a>
+                        <a class="far fa-trash-alt icon-red link-delete"
+                            th:href="@{'/passports/delete/' + ${passport.id}}" th:passportId="${passport.id}"
+                            title="Delete this passportical"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="less-details">
+        <div th:each="passport : ${listPassports}" class="row m-1">
+            <div class="col-8">
+                <div>[[${passport.applicant}]]</div>
+                <div>[[${passport.applicant.identification}+' :
+                    '+${passport.applicant.firstName}+' 
+                    '+${passport.applicant.lastName}]]</div>
+                <div>[[${passport.passport_no}]]</div>
+                <div class="mt-2">
+                    <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/passports/view/' + ${passport.id}}"
+                    title="Edit this passport"></a>
+                    <a class="far fa-edit icon-green mr-4" th:href="@{'/passports/edit/' + ${passport.id}}"
+                        title="Edit this passport"></a>
+                    <a class="far fa-trash-alt icon-red link-delete" th:href="@{'/passports/delete/' + ${passport.id}}"
+                        th:userId="${passport.id}" title="Delete this passport"></a>
+
+                </div>
+            </div>
+            <div>&nbsp;</div>
+        </div>
+    </div>
+    </div>
+
+    <div class="text-center m-1" th:if="${totalItems > 0}">
+        <span>Showing passports # [[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
+    </div>
+    <div class="text-center m-1" th:unless="${totalItems > 0}">
+        <span>No passports found!</span>
+    </div>
+
+    <div th:if="${totalPages > 1}">
+        <nav>
+            <ul class="pagination justify-content-center flex-wrap">
+                <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                    <a th:replace="fragments :: page_link5(1, 'First')"></a>
+                </li>
+
+                <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                    <a th:replace="fragments :: page_link5(${currentPage - 1}, 'Previous')"></a>
+                </li>
+
+                <li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+                    th:each="i : ${#numbers.sequence(1, totalPages)}">
+                    <a th:replace="fragments :: page_link5(${i}, ${i})"></a>
+                </li>
+
+                <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                    <a th:replace="fragments :: page_link5(${currentPage + 1}, 'Next')"></a>
+                </li>
+
+                <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                    <a th:replace="fragments :: page_link5(${totalPages}, 'Last')"></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="modal fade text-center" id="confirmModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <span id="confirmText">Are you sure you want ot delete this passport ID</span>
+                </div>
+
+                <div class="modal-footer">
+                    <a class="btn btn-success" href="" id="yesButton">Yes</a>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div th:replace="fragments :: footer"></div>
+
+    </div>
+    <script th:src="@{/js/common.js}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".link-delete").on("click", function (e) {
+                e.preventDefault();
+                link = $(this);
+                // alert($(this).attr("href"));
+                passportId = link.attr("passportId");
+                $("#yesButton").attr("href", link.attr("href"));
+                $("#confirmText").text("Are you sure you want to delete this ID " + passportId + "?");
+                $("#confirmModal").modal();
+            });
+        });
+
+        function clearFilter() {
+            window.location = "[[@{/passports}]]";
+        }
+    </script>
+</body>
+
+</html>

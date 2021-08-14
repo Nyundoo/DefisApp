@@ -13,7 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.Defis.domain.Agent;
-import com.Defis.domain.AgentNotFoundException;
+import com.Defis.exception.AgentNotFoundException;
 import com.Defis.repository.AgentRepository;
 
 

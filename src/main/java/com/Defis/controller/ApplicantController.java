@@ -22,8 +22,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Agent;
 import com.Defis.domain.Applicant;
-import com.Defis.domain.ApplicantNotFoundException;
 import com.Defis.domain.Job;
+import com.Defis.exception.ApplicantNotFoundException;
 import com.Defis.exporter.ApplicantCsvExporter;
 import com.Defis.exporter.ApplicantExcelExporter;
 import com.Defis.exporter.ApplicantPDFExporter;

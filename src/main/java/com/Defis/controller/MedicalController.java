@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -18,8 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Applicant;
 import com.Defis.domain.Medical;
-import com.Defis.domain.MedicalNotFoundException;
 import com.Defis.domain.User;
+import com.Defis.exception.MedicalNotFoundException;
 import com.Defis.exporter.MedicalCsvExporter;
 import com.Defis.exporter.MedicalExcelExporter;
 import com.Defis.exporter.MedicalPDFExporter;

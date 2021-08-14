@@ -13,7 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.Defis.domain.Job;
-import com.Defis.domain.JobNotFoundException;
+import com.Defis.exception.JobNotFoundException;
 import com.Defis.repository.JobRepository;
 
 @Service

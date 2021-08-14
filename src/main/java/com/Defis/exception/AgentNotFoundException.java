@@ -1,4 +1,4 @@
-package com.Defis.domain;
+package com.Defis.exception;
 
 public class AgentNotFoundException extends Exception {
 

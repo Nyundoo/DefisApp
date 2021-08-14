@@ -28,6 +28,15 @@
                     <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Medicals')">
                         <a class="nav-link" th:href="@{/births}">List Birth Cert</a>
                     </li>
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Passports')">
+                        <a class="nav-link" th:href="@{/passports}">List Passports</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Tickets')">
+                        <a class="nav-link" th:href="@{/tickets}">List Tickets</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Trainings')">
+                        <a class="nav-link" th:href="@{/trainings}">List Trainings</a>
+                    </li>
                     <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Jobs')">
                         <a class="nav-link" th:href="@{/jobs}">List Jobs</a>
                     </li>

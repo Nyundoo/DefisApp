@@ -13,17 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.Defis.domain.Agent;
 import com.Defis.domain.Job;
-import com.Defis.domain.JobNotFoundException;
+import com.Defis.exception.JobNotFoundException;
 import com.Defis.exporter.JobCsvExporter;
 import com.Defis.exporter.JobExcelExporter;
 import com.Defis.exporter.JobPDFExporter;
-import com.Defis.service.AgentService;
 import com.Defis.service.JobService;
 
 @Controller

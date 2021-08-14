@@ -14,7 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.Defis.domain.Ticket;
-import com.Defis.domain.TicketNotFoundException;
+import com.Defis.exception.TicketNotFoundException;
 import com.Defis.repository.TicketRepository;
 
 @Service
@@ -30,6 +30,10 @@ public class TicketService {
 	public List<Ticket> listAll()	{
 		return (List<Ticket>) ticketRepo.findAll(Sort.by("applicant").ascending());
 		
+	}
+	
+	public List<Ticket> getById(Long id) {
+		return ticketRepo.getUserById(id);
 	}
 
 	public Ticket get(Integer id) throws TicketNotFoundException {

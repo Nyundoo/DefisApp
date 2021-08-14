@@ -14,7 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.Defis.domain.Payment;
-import com.Defis.domain.PaymentNotFoundException;
+import com.Defis.exception.PaymentNotFoundException;
 import com.Defis.repository.PaymentRepository;
 
 @Service

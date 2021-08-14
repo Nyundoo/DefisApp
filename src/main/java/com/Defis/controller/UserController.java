@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Role;
 import com.Defis.domain.User;
-import com.Defis.domain.UserNotFoundException;
+import com.Defis.exception.UserNotFoundException;
 import com.Defis.exporter.UserCsvExporter;
 import com.Defis.exporter.UserExcelExporter;
 import com.Defis.exporter.UserPDFExporter;

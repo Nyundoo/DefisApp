@@ -14,7 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.Defis.domain.Applicant;
-import com.Defis.domain.ApplicantNotFoundException;
+import com.Defis.exception.ApplicantNotFoundException;
 import com.Defis.repository.ApplicantRepository;
 
 @Service

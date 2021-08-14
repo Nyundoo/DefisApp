@@ -18,14 +18,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Applicant;
 import com.Defis.domain.Ticket;
-import com.Defis.domain.TicketNotFoundException;
-import com.Defis.domain.Training;
-import com.Defis.domain.TrainingNotFoundException;
+import com.Defis.domain.User;
+import com.Defis.exception.TicketNotFoundException;
 import com.Defis.exporter.TicketCsvExporter;
 import com.Defis.exporter.TicketExcelExporter;
 import com.Defis.exporter.TicketPDFExporter;
 import com.Defis.repository.ApplicantRepository;
 import com.Defis.repository.TicketRepository;
+import com.Defis.repository.UserRepository;
 import com.Defis.service.TicketService;
 
 @Controller
@@ -38,6 +38,9 @@ public class TicketController {
 	
 	@Autowired
 	private TicketRepository ticketRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 	
 	@GetMapping("/tickets")
 	public String listFirstPage(Model model) {
@@ -85,7 +88,7 @@ public class TicketController {
 	public String newTicket(Model model) {
 		
 		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
-		
+		List<User> listUsers = (List<User>) userRepo.findAll();
 		List<Ticket> listTickets = (List<Ticket>) ticketRepo.findAll();
 		
 		Ticket ticket = new Ticket();
@@ -93,7 +96,7 @@ public class TicketController {
 		model.addAttribute("pageTitle", "Create New Ticket");
 
 		model.addAttribute("listTickets", listTickets);
-
+		model.addAttribute("listUsers", listUsers);
 		model.addAttribute("listApplicants", listApplicants);
 		
 		return "tickets/ticket_form";
@@ -133,10 +136,12 @@ public class TicketController {
 			RedirectAttributes redirectAttributes) {
 		try {
 			Ticket ticket = service.get(id);
-		
+			List<User> listUsers = (List<User>) userRepo.findAll();
+
 		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
 		
 
+		model.addAttribute("listUsers", listUsers);
 		model.addAttribute("listApplicants", listApplicants);
 		
 		model.addAttribute("ticket", ticket);

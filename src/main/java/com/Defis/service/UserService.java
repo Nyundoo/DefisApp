@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.Defis.domain.Role;
 import com.Defis.domain.User;
-import com.Defis.domain.UserNotFoundException;
+import com.Defis.exception.UserNotFoundException;
 import com.Defis.repository.RoleRepository;
 import com.Defis.repository.UserRepository;
 

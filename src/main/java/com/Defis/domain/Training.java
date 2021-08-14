@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -30,10 +31,14 @@ public class Training {
 	@Column(name = "finish_date", length = 16, nullable = true)
 	private Date finish_date;
 
-	@Column(name = "cert_no", length = 16, nullable = true)
+	@Column(name = "cert_no", length = 240, nullable = true)
 	private Integer cert_no;
-	
+
 	private boolean t_status = false;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id5")
+	private User user5;
 
 	public Training() {
 	}
@@ -94,6 +99,13 @@ public class Training {
 	public void setT_status(boolean t_status) {
 		this.t_status = t_status;
 	}
-	
+
+	public User getUser5() {
+		return user5;
+	}
+
+	public void setUser5(User user5) {
+		this.user5 = user5;
+	}
 
 }

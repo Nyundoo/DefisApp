@@ -13,12 +13,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.Defis.domain.Birth;
 import com.Defis.domain.Medical;
+import com.Defis.domain.Passport;
+import com.Defis.domain.Ticket;
+import com.Defis.domain.Training;
 import com.Defis.domain.security.NyundooUserDetails;
 import com.Defis.repository.AgentRepository;
 import com.Defis.repository.ApplicantRepository;
 import com.Defis.repository.UserRepository;
 import com.Defis.service.BirthService;
 import com.Defis.service.MedicalService;
+import com.Defis.service.PassportService;
+import com.Defis.service.TicketService;
+import com.Defis.service.TrainingService;
 
 @Controller
 public class MainController {
@@ -39,6 +45,15 @@ public class MainController {
 	
 	@Autowired
 	private BirthService birthRepo;
+	
+	@Autowired
+	private PassportService passportRepo;
+	
+	@Autowired
+	private TicketService ticketRepo;
+	
+	@Autowired
+	private TrainingService trainingRepo;
 
 	
 	@GetMapping("/")
@@ -50,10 +65,16 @@ public class MainController {
 
 		List<Medical> listMedicals =  medicalRepo.getById(id);
 		List<Birth> listBirths =  birthRepo.getById(id);
+		List<Passport> listPassports =  passportRepo.getById(id);
+		List<Ticket> listTickets =  ticketRepo.getById(id);
+		List<Training> listTrainings =  trainingRepo.getById(id);
 		
 		  model.addAttribute("listMedicals",listMedicals);
 		  model.addAttribute("listBirths",listBirths);
-		
+		  model.addAttribute("listPassports",listPassports);
+		  model.addAttribute("listTickets",listTickets);
+		  model.addAttribute("listTrainings",listTrainings);
+
 
 		model.addAttribute("agent", agentRepo.countById());
 		model.addAttribute("applicant", applicantRepo.countById());

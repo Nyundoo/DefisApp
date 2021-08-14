@@ -1,4 +1,4 @@
-package com.Defis.domain;
+package com.Defis.exception;
 
 public class TrainingNotFoundException extends Exception {
 	public TrainingNotFoundException(String message) {

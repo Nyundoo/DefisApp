@@ -18,9 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Applicant;
 import com.Defis.domain.Payment;
-import com.Defis.domain.PaymentNotFoundException;
-import com.Defis.domain.Payment;
-import com.Defis.domain.PaymentNotFoundException;
+import com.Defis.exception.PaymentNotFoundException;
 import com.Defis.exporter.PaymentCsvExporter;
 import com.Defis.exporter.PaymentExcelExporter;
 import com.Defis.exporter.PaymentPDFExporter;

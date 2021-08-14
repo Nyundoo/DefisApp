@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -40,6 +41,10 @@ public class Ticket {
 	private Date expected_arrival_date;
 
 	private boolean travel_status = false;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id4")
+	private User user4;
 
 	public Ticket() {
 	}
@@ -118,6 +123,14 @@ public class Ticket {
 
 	public void setApplicant(Applicant applicant) {
 		this.applicant = applicant;
+	}
+
+	public User getUser4() {
+		return user4;
+	}
+
+	public void setUser4(User user4) {
+		this.user4 = user4;
 	}
 
 }

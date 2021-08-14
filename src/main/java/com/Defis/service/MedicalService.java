@@ -1,6 +1,5 @@
 package com.Defis.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -15,9 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.Defis.domain.Medical;
-import com.Defis.domain.MedicalNotFoundException;
-import com.Defis.domain.User;
-import com.Defis.domain.security.NyundooUserDetails;
+import com.Defis.exception.MedicalNotFoundException;
 import com.Defis.repository.MedicalRepository;
 
 @Service

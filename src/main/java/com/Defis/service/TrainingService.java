@@ -14,7 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.Defis.domain.Training;
-import com.Defis.domain.TrainingNotFoundException;
+import com.Defis.exception.TrainingNotFoundException;
 import com.Defis.repository.TrainingRepository;
 
 @Service
@@ -31,6 +31,10 @@ public class TrainingService {
 	public List<Training> listAll()	{
 		return (List<Training>) trainingRepo.findAll(Sort.by("applicant").ascending());
 		
+	}
+	
+	public List<Training> getById(Long id) {
+		return trainingRepo.getUserById(id);
 	}
 
 	public Training get(Integer id) throws TrainingNotFoundException {

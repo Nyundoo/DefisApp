@@ -61,6 +61,18 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Assign To: </label>
+                <div class="col-sm-8">
+                    <select th:field="*{user5}" class="form-control" required>
+                        <th:block th:each="cat : ${listUsers}">
+                            <option th:text="${cat.firstName}+' '+${cat.lastName}"
+                                th:value="${cat.id}" />
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+
 
 
             <div class="text-center">
