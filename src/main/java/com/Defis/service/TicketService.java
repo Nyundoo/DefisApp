@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.Defis.domain.Passport;
 import com.Defis.domain.Ticket;
 import com.Defis.exception.TicketNotFoundException;
 import com.Defis.repository.TicketRepository;
@@ -34,6 +35,10 @@ public class TicketService {
 	
 	public List<Ticket> getById(Long id) {
 		return ticketRepo.getUserById(id);
+	}
+	
+	public List<Ticket> getByIdView(Long id) {
+		return ticketRepo.getViewById(id);
 	}
 
 	public Ticket get(Integer id) throws TicketNotFoundException {

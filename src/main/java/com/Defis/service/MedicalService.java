@@ -34,6 +34,10 @@ public static final int MEDICALS_PER_PAGE = 6;
 	public List<Medical> getById(Long id) {
 		return medicalRepo.getUserById(id);
 	}
+	
+	public List<Medical> getByIdView(Long id) {
+		return medicalRepo.getViewById(id);
+	}
 
 	public Medical get(Integer id) throws MedicalNotFoundException {
 		try {

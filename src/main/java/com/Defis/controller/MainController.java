@@ -91,6 +91,41 @@ public class MainController {
   
 	}
 	
+	@GetMapping("/tasks")
+	public String viewTask(@AuthenticationPrincipal NyundooUserDetails loggedUser, Model model) {	
+		
+	
+		Long id = loggedUser.getId();
+		
+
+		List<Medical> listMedicals =  medicalRepo.getByIdView(id);
+		List<Birth> listBirths =  birthRepo.getByIdView(id);
+		List<Passport> listPassports =  passportRepo.getByIdView(id);
+		List<Ticket> listTickets =  ticketRepo.getByIdView(id);
+		List<Training> listTrainings =  trainingRepo.getByIdView(id);
+		
+		  model.addAttribute("listMedicals",listMedicals);
+		  model.addAttribute("listBirths",listBirths);
+		  model.addAttribute("listPassports",listPassports);
+		  model.addAttribute("listTickets",listTickets);
+		  model.addAttribute("listTrainings",listTrainings);
+
+
+		model.addAttribute("agent", agentRepo.countById());
+		model.addAttribute("applicant", applicantRepo.countById());
+		model.addAttribute("applicant2", applicantRepo.countById2());
+		model.addAttribute("applicant3", applicantRepo.countById3());
+		model.addAttribute("applicant4", applicantRepo.countById4());
+		model.addAttribute("applicant5", applicantRepo.countById5());
+		model.addAttribute("applicant6", applicantRepo.countById6());
+		model.addAttribute("applicant7", applicantRepo.countById7());
+		model.addAttribute("applicant8", applicantRepo.countById8());
+		
+		
+		return "tasks";
+  
+	}
+	
 	
 	@GetMapping("/index")
 	public String listFirstPage(Model model) {

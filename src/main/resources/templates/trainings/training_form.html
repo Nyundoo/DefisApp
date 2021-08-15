@@ -11,7 +11,7 @@
         </div>
     </div>
     <form enctype="multipart/form-data" th:action="@{/trainings/save}" method="post"
-        style="max-width: 700px; margin: 0 auto;" th:object="${training}" >
+        style="max-width: 700px; margin: 0 auto;" th:object="${training}">
         <input type="hidden" th:field="*{id}" />
         <div class="border border-secondary rounded p-3">
             <div class="form-group row">
@@ -19,7 +19,8 @@
                 <div class="col-sm-8">
                     <select th:field="*{applicant}" class="form-control" required>
                         <th:block th:each="cat : ${listApplicants}">
-                            <option th:text="${cat.identification}+' : '+${cat.firstName}+' '+${cat.lastName}" th:value="${cat.id}" />
+                            <option th:text="${cat.identification}+' : '+${cat.firstName}+' '+${cat.lastName}"
+                                th:value="${cat.id}" />
                         </th:block>
                     </select>
                     <a style="text-decoration:underline; color: blue; font-size: medium;"
@@ -27,38 +28,38 @@
                 </div>
             </div>
 
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Start Date:</label>
-                <div class="col-sm-8">
-                    <input type="date" class="form-control" th:field="*{start_date}" required minlength="2" maxlength="26" />
+            <div class="border border-secondary rounded p-3" style="margin-bottom: 20px;">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Start Date:</label>
+                    <div class="col-sm-8">
+                        <input type="date" class="form-control" th:field="*{start_date}" required minlength="2"
+                            maxlength="26" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Finish Date:</label>
-                <div class="col-sm-8">
-                    <input type="date" class="form-control" th:field="*{finish_date}" required minlength="2"
-                        maxlength="45" />
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Finish Date:</label>
+                    <div class="col-sm-8">
+                        <input type="date" class="form-control" th:field="*{finish_date}" required minlength="2"
+                            maxlength="45" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Certificate Number:</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" th:field="*{cert_no}" required minlength="2"
-                        maxlength="45" />
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Certificate Number:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" th:field="*{cert_no}" required minlength="2"
+                            maxlength="45" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="col-md-2 control-label" for="status" style="text-align: right;">Visa
-                    Status</label>
-                <div class="col-md-8">
-                    <label><input value="true" type="radio" name="t_status" th:checked="${training.t_status}"
-                            id="myCheck5" /> Have Not </label> <label><input value="false" type="radio"
-                            th:checked="${!training.t_status}" name="t_status" id="myCheck6" />
-                        Have </label><br /><span class="help-block">(Whether the client completed training)</span>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Completed?:</label>
+                    <div class="col-sm-8">
+                        <input type="checkbox" id="myCheck" th:field="*{t_status}" onclick="myFunction()" />
+                    </div>
                 </div>
+
             </div>
 
             <div class="form-group row">
@@ -66,8 +67,7 @@
                 <div class="col-sm-8">
                     <select th:field="*{user5}" class="form-control" required>
                         <th:block th:each="cat : ${listUsers}">
-                            <option th:text="${cat.firstName}+' '+${cat.lastName}"
-                                th:value="${cat.id}" />
+                            <option th:text="${cat.firstName}+' '+${cat.lastName}" th:value="${cat.id}" />
                         </th:block>
                     </select>
                 </div>

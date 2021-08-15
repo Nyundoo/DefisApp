@@ -16,6 +16,9 @@ public Long countById(Integer id);
 
 @Query("SELECT u FROM Training u WHERE u.user5.id=?#{ principal.id }")
 public List<Training> getUserById(@Param("id") long id);
+
+@Query("SELECT u FROM Training u")
+public List<Training> getViewById(@Param("id") long id);
 	
 	@Query("SELECT u FROM Training u WHERE CONCAT(u.applicant, ' ',u.start_date, ' ',u.finish_date, ' ',u.cert_no) LIKE %?1%")
 	public Page<Training> findAll(String keyword, Pageable pageable);

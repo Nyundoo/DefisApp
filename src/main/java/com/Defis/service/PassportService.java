@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.Defis.domain.Birth;
 import com.Defis.domain.Passport;
 import com.Defis.exception.PassportNotFoundException;
 import com.Defis.repository.PassportRepository;
@@ -33,6 +34,10 @@ public static final int PASSPORTS_PER_PAGE = 6;
 	
 	public List<Passport> getById(Long id) {
 		return passportRepo.getUserById(id);
+	}
+	
+	public List<Passport> getByIdView(Long id) {
+		return passportRepo.getViewById(id);
 	}
 
 	public Passport get(Integer id) throws PassportNotFoundException {

@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.Defis.domain.Ticket;
 import com.Defis.domain.Training;
 import com.Defis.exception.TrainingNotFoundException;
 import com.Defis.repository.TrainingRepository;
@@ -35,6 +36,10 @@ public class TrainingService {
 	
 	public List<Training> getById(Long id) {
 		return trainingRepo.getUserById(id);
+	}
+	
+	public List<Training> getByIdView(Long id) {
+		return trainingRepo.getViewById(id);
 	}
 
 	public Training get(Integer id) throws TrainingNotFoundException {

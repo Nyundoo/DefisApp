@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-<head th:replace="fragments :: page_head('Tickets Form - Defis Admin')" />
+<head th:replace="fragments :: page_head('Visa Form - Defis Admin')" />
 
 <body>
     <div class="container-fluid">
@@ -10,8 +10,8 @@
             <h2>[[${pageTitle}]]</h2>
         </div>
     </div>
-    <form enctype="multipart/form-data" th:action="@{/tickets/save}" method="post"
-        style="max-width: 700px; margin: 0 auto;" th:object="${ticket}">
+    <form enctype="multipart/form-data" th:action="@{/visas/save}" method="post"
+        style="max-width: 700px; margin: 0 auto;" th:object="${visa}">
         <input type="hidden" th:field="*{id}" />
         <div class="border border-secondary rounded p-3">
             <div class="form-group row">
@@ -29,72 +29,57 @@
             </div>
 
             <div class="border border-secondary rounded p-3" style="margin-bottom: 20px;">
-                <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Ticket Date:</label>
-                    <div class="col-sm-8">
-                        <input type="date" class="form-control" th:field="*{ticket_date}" required minlength="2"
-                            maxlength="26" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Destination:</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" th:field="*{destination}" required minlength="2"
-                            maxlength="45" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Date Travel:</label>
-                    <div class="col-sm-8">
-                        <input type="date" class="form-control" th:field="*{date_travel}" required minlength="2"
-                            maxlength="45" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Flight Name:</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" th:field="*{flight_name}" required minlength="2"
-                            maxlength="45" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Expected Arrival Date:</label>
-                    <div class="col-sm-8">
-                        <input type="date" class="form-control" th:field="*{expected_arrival_date}" required
-                            minlength="2" maxlength="45" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Travel Status(Check the box if Applicant arrived):</label>
-                    <div class="col-sm-8">
-                        <input type="checkbox" th:field="*{travel_status}" />
-                    </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Type of Visa:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" th:field="*{type_of_visa}" required minlength="2"
+                        maxlength="26" />
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-form-label col-sm-4">Assign To: </label>
+                <label class="col-sm-4 col-form-label">Visa Application Date:</label>
                 <div class="col-sm-8">
-                    <select th:field="*{user4}" class="form-control" required>
-                        <th:block th:each="cat : ${listUsers}">
-                            <option th:text="${cat.firstName}+' '+${cat.lastName}" th:value="${cat.id}" />
-                        </th:block>
-                    </select>
+                    <input type="date" class="form-control" th:field="*{visa_apply_date}" required minlength="2"
+                        maxlength="45" />
                 </div>
             </div>
 
-
-
-            <div class="text-center">
-                <a th:href="@{/tickets}" class="btn btn-secondary m-3"> Cancel </a>
-                <input type="submit" value="Save" class="btn btn-primary" />
-
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Visa Reception Date:</label>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control" th:field="*{visa_reception_date}" required minlength="2"
+                        maxlength="45" />
+                </div>
             </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Completed?:</label>
+                <div class="col-sm-8">
+                    <input type="checkbox" id="myCheck" th:field="*{status}" onclick="myFunction()" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-4">Assign To: </label>
+            <div class="col-sm-8">
+                <select th:field="*{user4}" class="form-control" required>
+                    <th:block th:each="cat : ${listUsers}">
+                        <option th:text="${cat.firstName}+' '+${cat.lastName}" th:value="${cat.id}" />
+                    </th:block>
+                </select>
+            </div>
+        </div>
+
+
+
+        <div class="text-center">
+            <a th:href="@{/visas}" class="btn btn-secondary m-3"> Cancel </a>
+            <input type="submit" value="Save" class="btn btn-primary" />
+
+        </div>
         </div>
     </form>
     </div>
@@ -127,7 +112,7 @@
     <script>
         $(document).ready(function () {
             $("#buttonCancel").on("click", function () {
-                window.location = "[[@{/tickets}]]";
+                window.location = "[[@{/visas}]]";
             });
 
             $("#fileImage").change(function () {
