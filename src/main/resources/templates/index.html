@@ -123,11 +123,11 @@
 
             </div>               
          
-            <div class="full-details m-3"  style="margin-bottom: 40px;">
+            <div class="full-details m-3" id="myTable1div5">
                 <div class="m-3">
                     <h2  style="text-align: center;">Medical Schedule</h2>
                 </div>
-                <table class="table table-bordered table-striped table-hover table-responsive-xl">
+                <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table5">
                     <thead class="thead-dark">
                         <tr>
                             <th th:replace="fragments :: column_link5('user1', 'User', 'none')" />
@@ -162,11 +162,11 @@
 
 
 
-            <div class="full-details m-3">
+            <div class="full-details m-3" id="myTable1div4">
                 <div class="m-3">
                     <h2  style="text-align: center;">Birth Certs Schedule</h2>
                 </div>
-                <table class="table table-bordered table-striped table-hover table-responsive-xl">
+                <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table4">
                     <thead class="thead-dark">
                         <tr>
                                 <th th:replace="fragments :: column_link5('user2', 'User', 'none')" />
@@ -201,11 +201,11 @@
 
 
 
-            <div class="full-details m-3">
+            <div class="full-details m-3" id="myTable1div3">
                 <div class="m-3">
                     <h2  style="text-align: center;">Passport Schedule</h2>
                 </div>
-                <table class="table table-bordered table-striped table-hover table-responsive-xl">
+                <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table3">
                     <thead class="thead-dark">
                         <tr>
                                 <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
@@ -241,11 +241,11 @@
 
 
 
-            <div class="full-details m-3">
+            <div class="full-details m-3" id="myTable1div2">
                 <div class="m-3">
                     <h2  style="text-align: center;">Training Schedule</h2>
                 </div>
-                <table class="table table-bordered table-striped table-hover table-responsive-xl">
+                <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table2">
                     <thead class="thead-dark">
                         <tr>
                             <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
@@ -279,11 +279,11 @@
 
 
 
-            <div class="full-details m-3">
+            <div class="full-details m-3" id="myTable1div">
                 <div class="m-3">
                     <h2  style="text-align: center;">Ticket Schedule</h2>
                 </div>
-                <table class="table table-bordered table-striped table-hover table-responsive-xl">
+                <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table1">
                     <thead class="thead-dark">
                         <tr>                    
                             <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
@@ -328,6 +328,88 @@
         </div>
     </div>
     <script th:src="@{/js/common.js}"></script>
+
+    <script>
+        $(function(){
+            var hide = true;
+
+            $('#Table1 td').each(function(){
+                var td_content = $(this).text()
+
+                if(td_content != ""){
+                    hide = false;
+                }
+            });
+            if(hide){
+                $('#myTable1div').hide();
+            }
+        });
+
+
+        $(function(){
+            var hide2 = true;
+
+            $('#Table2 td').each(function(){
+                var td_content2 = $(this).text()
+
+                if(td_content2 != ""){
+                    hide2 = false;
+                }
+            });
+            if(hide2){
+                $('#myTable1div2').hide();
+            }
+        });
+
+
+        $(function(){
+            var hide3 = true;
+
+            $('#Table3 td').each(function(){
+                var td_content3 = $(this).text()
+
+                if(td_content3 != ""){
+                    hide3 = false;
+                }
+            });
+            if(hide3){
+                $('#myTable1div3').hide();
+            }
+        });
+
+
+        $(function(){
+            var hide4 = true;
+
+            $('#Table4 td').each(function(){
+                var td_content4 = $(this).text()
+
+                if(td_content4 != ""){
+                    hide4 = false;
+                }
+            });
+            if(hide4){
+                $('#myTable1div4').hide();
+            }
+        });
+
+
+        $(function(){
+            var hide5 = true;
+
+            $('#Table5 td').each(function(){
+                var td_content5 = $(this).text()
+
+                if(td_content5 != ""){
+                    hide5 = false;
+                }
+            });
+            if(hide5){
+                $('#myTable1div5').hide();
+            }
+        });
+    </script>
+
     <script>
         $(document).ready(function () {
             $("#buttonCancel").on("click", function () {
