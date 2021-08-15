@@ -42,6 +42,8 @@ public class Medical {
 
 	@Column(name = "result_date", length = 16, nullable = true)
 	private Date result_date;
+	
+	private boolean m_status = false;
 
 	private boolean status = false;
 
@@ -127,6 +129,14 @@ public class Medical {
 
 	public void setUser1(User user1) {
 		this.user1 = user1;
+	}
+
+	public boolean isM_status() {
+		return m_status;
+	}
+
+	public void setM_status(boolean m_status) {
+		this.m_status = m_status;
 	}
 
 }

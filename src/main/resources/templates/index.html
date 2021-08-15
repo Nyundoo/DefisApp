@@ -125,23 +125,14 @@
          
             <div class="full-details m-3"  style="margin-bottom: 40px;">
                 <div class="m-3">
-                    <h2  style="text-align: center;">Applicant Medical Schedule</h2>
+                    <h2  style="text-align: center;">Medical Schedule</h2>
                 </div>
                 <table class="table table-bordered table-striped table-hover table-responsive-xl">
                     <thead class="thead-dark">
                         <tr>
                             <th th:replace="fragments :: column_link5('user1', 'User', 'none')" />
 
-                            <th class="hideable-column">
-                                <th th:replace="fragments :: column_link5('id', 'Medical ID', 'tag')" />
-                            </th>
-
-                            <th class="hideable-column">
-                                <th th:replace="fragments :: column_link5('client_info', 'Client Info', 'tag')" />
-                            </th>
-
                             <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
-                            <th th:replace="fragments :: column_link5('medical_center', 'Medical Center', 'none')" />
                             <th
                                 th:replace="fragments :: column_link5('application_date', 'Application Date', 'none')" />
                             <th th:replace="fragments :: column_link5('result_date', 'Results Date', 'none')" />
@@ -152,17 +143,16 @@
                         <tr th:each="medical : ${listMedicals}">
                             <td>[[${medical.user1.firstName}+'
                                 '+${medical.user1.lastName}]]</td>
-                            <td class="hideable-column">[[${medical.id}]]</td>
-                            <td class="hideable-column">[[${medical.client_info}]]</td>
                             <td>[[${medical.applicant.identification}+' :
                                 '+${medical.applicant.firstName}+'
                                 '+${medical.applicant.lastName}]]</td>
-                            <td>[[${medical.medical_center}]]</td>
                             <td>[[${medical.application_date}]]</td>
                             <td>[[${medical.result_date}]]</td>
-                            <td th:if="${medical.status == false}"><a class="btn btn-warning btn-sm"
+                            <td th:if="${medical.m_status == false && medical.result_date > (#dates.createNow()) }"><a class="btn btn-sm" style="background-color: orange;"
                                 th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Ongoing</a></td>
-                            <td th:unless="${medical.status == false}"><a class="btn btn-warning btn-sm"
+                                <td th:if="${medical.m_status == false && medical.result_date < (#dates.createNow())}"><a class="btn btn-sm" style="background-color: red;"
+                                    th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Late</a></td>
+                            <td th:if="${medical.m_status == true}"><a class="btn btn-warning btn-sm"
                                 th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Complete</a></td>
                             
                         </tr>
@@ -174,21 +164,16 @@
 
             <div class="full-details m-3">
                 <div class="m-3">
-                    <h2  style="text-align: center;">Applicant Birth Certs Schedule</h2>
+                    <h2  style="text-align: center;">Birth Certs Schedule</h2>
                 </div>
                 <table class="table table-bordered table-striped table-hover table-responsive-xl">
                     <thead class="thead-dark">
                         <tr>
                                 <th th:replace="fragments :: column_link5('user2', 'User', 'none')" />
-
-                              <th class="hideable-column">                          
-                            <th th:replace="fragments :: column_link5('cert_no', 'Cert No', 'tag')" />
-                        </th>
-                            
+                           
                             <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
-                            <th th:replace="fragments :: column_link5('paid', 'paid', 'none')" />
-                            <th th:replace="fragments :: column_link5('cert_application_date', 'Cert Application Date', 'none')" />
-                            <th th:replace="fragments :: column_link5('cert_reception_date', 'Cert Reception Date', 'none')" />
+                            <th th:replace="fragments :: column_link5('cert_application_date', 'Application Date', 'none')" />
+                            <th th:replace="fragments :: column_link5('cert_reception_date', 'Reception Date', 'none')" />
                             <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
                         </tr>
                     </thead>
@@ -196,17 +181,18 @@
                         <tr th:each="birth : ${listBirths}">
                             <td>[[${birth.user2.firstName}+'
                                 '+${birth.user2.lastName}]]</td>
-                            <td  class="hideable-column">[[${birth.cert_no}]]</td>
                             <td>[[${birth.applicant.identification}+' :
                                 '+${birth.applicant.firstName}+'
                                 '+${birth.applicant.lastName}]]</td>
-                            <td>[[${birth.paid}]]</td>
                             <td>[[${birth.cert_application_date}]]</td>
                             <td>[[${birth.cert_reception_date}]]</td>
-                            <td th:if="${birth.status == false}"><a class="btn btn-warning btn-sm"
+                             <td th:if="${birth.status == false && birth.cert_reception_date > (#dates.createNow()) }"><a class="btn btn-sm" style="background-color: orange;"
                                 th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Ongoing</a></td>
-                            <td th:unless="${birth.status == false}"><a class="btn btn-warning btn-sm"
+                                <td th:if="${birth.status == false && birth.cert_reception_date < (#dates.createNow())}"><a class="btn btn-sm" style="background-color: red;"
+                                    th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Late</a></td>
+                            <td th:if="${birth.status == true}"><a class="btn btn-warning btn-sm"
                                 th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Complete</a></td>
+                            
                             
                         </tr>
                     </tbody>
@@ -217,17 +203,15 @@
 
             <div class="full-details m-3">
                 <div class="m-3">
-                    <h2  style="text-align: center;">Applicant Passport Schedule</h2>
+                    <h2  style="text-align: center;">Passport Schedule</h2>
                 </div>
                 <table class="table table-bordered table-striped table-hover table-responsive-xl">
                     <thead class="thead-dark">
                         <tr>
-                            <th class="hideable-column">
-                                <th th:replace="fragments :: column_link5('id', 'Passports ID', 'tag')" />
-                            
                                 <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
-                                <th th:replace="fragments :: column_link5('passport_no', 'Passport Number', 'none')" />
-                                <th th:replace="fragments :: column_link5('pass_paid', 'Amount Paid', 'none')" />
+                                <th th:replace="fragments :: column_link5('pass_application_date', 'Pass App Date', 'none')" />
+                                <th th:replace="fragments :: column_link5('pass_application_date', 'Pass Recep Date', 'none')" />
+
                                 <th th:replace="fragments :: column_link5('user_id3', 'User', 'none')" />
                                 <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
                         
@@ -235,19 +219,20 @@
                     </thead>
                     <tbody>
                         <tr th:each="passport : ${listPassports}">
-                            <td class="hideable-column">[[${passport.id}]]</td>
                            <td>[[${passport.applicant.identification}+' :
                                 '+${passport.applicant.firstName}+' 
                                 '+${passport.applicant.lastName}]]</td>
-                            <td>[[${passport.passport_no}]]</td>
-                            <td>[[${passport.pass_paid}]]</td>
+                            <td>[[${passport.pass_application_date}]]</td>
+                            <td>[[${passport.pass_reception_date}]]</td>
                             <td>[[${passport.user3.firstName}+' 
                                 '+${passport.user3.lastName}]]</td>
         
-                                <td th:if="${passport.status == false}"><a class="btn btn-warning btn-sm"
-                                    th:href="@{'/passports/edit/' + ${passport.id}}" title="Edit this medical">Ongoing</a></td>
-                                <td th:unless="${passport.status == false}"><a class="btn btn-warning btn-sm"
-                                    th:href="@{'/passports/edit/' + ${passport.id}}" title="Edit this medical">Complete</a></td>
+                                <td th:if="${passport.status == false && passport.pass_reception_date > (#dates.createNow()) }"><a class="btn btn-sm" style="background-color: orange;"
+                                    th:href="@{'/passports/edit/' + ${passport.id}}" title="Edit this passport">Ongoing</a></td>
+                                    <td th:if="${passport.status == false && passport.pass_reception_date < (#dates.createNow())}"><a class="btn btn-sm" style="background-color: red;"
+                                        th:href="@{'/passports/edit/' + ${passport.id}}" title="Edit this passport">Late</a></td>
+                                <td th:if="${passport.status == true}"><a class="btn btn-warning btn-sm"
+                                    th:href="@{'/passports/edit/' + ${passport.id}}" title="Edit this passport">Complete</a></td>
                                 
                         </tr>
                     </tbody>
@@ -255,55 +240,10 @@
             </div>
 
 
-            <div class="full-details m-3">
-                <div class="m-3">
-                    <h2  style="text-align: center;">Applicant Ticket Schedule</h2>
-                </div>
-                <table class="table table-bordered table-striped table-hover table-responsive-xl">
-                    <thead class="thead-dark">
-                        <tr>                    
-                            <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
-                            
-                            <th class="hideable-column">
-                                <th th:replace="fragments :: column_link6('ticket_date', 'Ticket Date', 'tag')" />
-                            </th>
-        
-                            <th th:replace="fragments :: column_link6('destination', 'Destination', 'none')" />
-                            <th th:replace="fragments :: column_link6('date_travel', 'Date Travel', 'none')" />
-                            
-                            <th th:replace="fragments :: column_link6('flight_name', 'Flight Name', 'none')" />
-                            
-                            
-                            <th th:replace="fragments :: column_link6('expected_arrival_date', 'Expected Arrival Date', 'none')" />
-                            <th th:replace="fragments :: column_link6('travel_status', 'Travel Status', 'none')" />
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="travel : ${listTickets}">
-                            <td>[[${travel.applicant.identification}+' :
-                                '+${travel.applicant.firstName}+' 
-                                '+${travel.applicant.lastName}]]</td>
-                            <td class="hideable-column">[[${travel.ticket_date}]]</td>
-                            <td>[[${travel.destination}]]</td>
-                            <td>[[${travel.date_travel}]]</td>
-                            <td>[[${travel.flight_name}]]</td>
-                            <td>[[${travel.expected_arrival_date}]]</td>
-        
-                            <td th:if="${travel.travel_status == false}"><a class="btn btn-warning btn-sm"
-                                th:href="@{'/travels/edit/' + ${travel.id}}" title="Edit this travel">Ongoing</a></td>
-                            <td th:unless="${travel.travel_status == false}"><a class="btn btn-warning btn-sm"
-                                th:href="@{'/travels/edit/' + ${travel.id}}" title="Edit this travel">Complete</a></td>
-                            
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
 
             <div class="full-details m-3">
                 <div class="m-3">
-                    <h2  style="text-align: center;">Applicant Training Schedule</h2>
+                    <h2  style="text-align: center;">Training Schedule</h2>
                 </div>
                 <table class="table table-bordered table-striped table-hover table-responsive-xl">
                     <thead class="thead-dark">
@@ -311,7 +251,7 @@
                             <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
                             <th th:replace="fragments :: column_link6('start_date', 'Start Date', 'none')" />
                             <th th:replace="fragments :: column_link6('finish_date', 'Finish Date', 'none')" />
-                            <th th:replace="fragments :: column_link6('cert_no', 'Cert No', 'none')" />
+                            <th th:replace="fragments :: column_link6('user5', 'User', 'none')" />
                             <th></th>
                         </tr>
                     </thead>
@@ -322,12 +262,61 @@
                                 '+${training.applicant.lastName}]]</td>
                             <td>[[${training.start_date}]]</td>
                             <td>[[${training.finish_date}]]</td>
-                            <td>[[${training.cert_no}]]</td>
+                            <td>[[${training.user5.firstName}+' 
+                                '+${training.user5.lastName}]]</td>
         
-                            <td th:if="${training.t_status == false}"><a class="btn btn-warning btn-sm"
-                                th:href="@{'/trainings/edit/' + ${training.id}}" title="Edit this training">Ongoing</a></td>
-                            <td th:unless="${training.t_status == false}"><a class="btn btn-warning btn-sm"
-                                th:href="@{'/trainings/edit/' + ${training.id}}" title="Edit this training">Complete</a></td>
+                                <td th:if="${training.t_status == false && training.finish_date > (#dates.createNow()) }"><a class="btn btn-sm" style="background-color: orange;"
+                                    th:href="@{'/trainings/edit/' + ${training.id}}" title="Edit this training">Ongoing</a></td>
+                                    <td th:if="${training.t_status == false && training.finish_date < (#dates.createNow())}"><a class="btn btn-sm" style="background-color: red;"
+                                        th:href="@{'/trainings/edit/' + ${training.id}}" title="Edit this training">Late</a></td>
+                                <td th:if="${training.t_status == true}"><a class="btn btn-warning btn-sm"
+                                    th:href="@{'/trainings/edit/' + ${training.id}}" title="Edit this training">Complete</a></td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+            <div class="full-details m-3">
+                <div class="m-3">
+                    <h2  style="text-align: center;">Ticket Schedule</h2>
+                </div>
+                <table class="table table-bordered table-striped table-hover table-responsive-xl">
+                    <thead class="thead-dark">
+                        <tr>                    
+                            <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
+                            
+                                <th th:replace="fragments :: column_link6('ticket_date', 'Ticket Date', 'none')" />
+                            
+
+                            <th th:replace="fragments :: column_link6('date_travel', 'Date Travel', 'none')" />
+                                                        
+                            <th th:replace="fragments :: column_link6('expected_arrival_date', 'Expected Arrival Date', 'none')" />
+                            <th th:replace="fragments :: column_link6('user4', 'User', 'none')" />
+
+                            <th th:replace="fragments :: column_link6('travel_status', 'Travel Status', 'none')" />
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="travel : ${listTickets}">
+                            <td>[[${travel.applicant.identification}+' :
+                                '+${travel.applicant.firstName}+' 
+                                '+${travel.applicant.lastName}]]</td>
+                            <td>[[${travel.ticket_date}]]</td>
+                            <td>[[${travel.date_travel}]]</td>
+                            <td>[[${travel.expected_arrival_date}]]</td>
+                            <td>[[${travel.user4.firstName}+' 
+                                '+${travel.user4.lastName}]]</td>
+        
+                                <td th:if="${travel.travel_status == false && travel.expected_arrival_date > (#dates.createNow()) }"><a class="btn btn-sm" style="background-color: orange;"
+                                    th:href="@{'/travels/edit/' + ${travel.id}}" title="Edit this travel">Ongoing</a></td>
+                                    <td th:if="${travel.travel_status == false && travel.expected_arrival_date < (#dates.createNow())}"><a class="btn btn-sm" style="background-color: red;"
+                                        th:href="@{'/travels/edit/' + ${travel.id}}" title="Edit this travel">Late</a></td>
+                                <td th:if="${travel.travel_status == true}"><a class="btn btn-warning btn-sm"
+                                    th:href="@{'/travels/edit/' + ${travel.id}}" title="Edit this travel">Complete</a></td>
                             
                         </tr>
                     </tbody>
