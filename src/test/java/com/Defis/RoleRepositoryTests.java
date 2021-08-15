@@ -35,16 +35,17 @@ public class RoleRepositoryTests {
 	public void testCreateRestRoles() {
 		Role rolePayment = new Role(null, "Payments", "Input users payment");
 		Role roleMedical = new Role(null, "Medicals", "Input users medicals");
-		Role roleBirth = new Role(null, "Birth", "Insert user birth certificate details");
+		Role roleBirth = new Role(null, "Births", "Insert user birth certificate details");
 		Role roleJob = new Role(null, "Jobs", "Input user jobs");
 		Role roleAgent = new Role(null, "Agents", "Input agent information");
 		Role roleApplicant = new Role(null, "Applicants", "Input new applicant information");
 		Role roleTraining = new Role(null, "Trainings", "Input training time schedules");
 		Role roleTicket = new Role(null, "Tickets", "Input applicant traveling schedule");
-		Role roleMarketer = new Role(null, "Marketer", "Deign poster for new job posting");
+		Role rolePassports = new Role(null, "Passports", "Insert applicant passport information");
+		Role roleMarketers = new Role(null, "Marketers", "Deign poster for new job posting");
 
 		
-		 repo.saveAll(List.of(rolePayment, roleMedical, roleJob, roleAgent, roleApplicant, roleTraining, roleTicket, roleMarketer));
+		 repo.saveAll(List.of(rolePayment, roleMedical, roleJob, roleAgent, roleApplicant, roleTraining, roleTicket, roleMarketers, rolePassports, roleBirth));
 		
 	}
 
