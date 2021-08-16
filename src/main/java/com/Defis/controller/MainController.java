@@ -16,6 +16,7 @@ import com.Defis.domain.Medical;
 import com.Defis.domain.Passport;
 import com.Defis.domain.Ticket;
 import com.Defis.domain.Training;
+import com.Defis.domain.Visa;
 import com.Defis.domain.security.NyundooUserDetails;
 import com.Defis.repository.AgentRepository;
 import com.Defis.repository.ApplicantRepository;
@@ -25,6 +26,7 @@ import com.Defis.service.MedicalService;
 import com.Defis.service.PassportService;
 import com.Defis.service.TicketService;
 import com.Defis.service.TrainingService;
+import com.Defis.service.VisaService;
 
 @Controller
 public class MainController {
@@ -54,6 +56,9 @@ public class MainController {
 	
 	@Autowired
 	private TrainingService trainingRepo;
+	
+	@Autowired
+	private VisaService visaRepo;
 
 	
 	@GetMapping("/")
@@ -66,14 +71,17 @@ public class MainController {
 		List<Medical> listMedicals =  medicalRepo.getById(id);
 		List<Birth> listBirths =  birthRepo.getById(id);
 		List<Passport> listPassports =  passportRepo.getById(id);
-		List<Ticket> listTickets =  ticketRepo.getById(id);
 		List<Training> listTrainings =  trainingRepo.getById(id);
+		List<Visa> listVisas =  visaRepo.getById(id);
+		List<Ticket> listTickets =  ticketRepo.getById(id);
 		
 		  model.addAttribute("listMedicals",listMedicals);
 		  model.addAttribute("listBirths",listBirths);
 		  model.addAttribute("listPassports",listPassports);
-		  model.addAttribute("listTickets",listTickets);
 		  model.addAttribute("listTrainings",listTrainings);
+		  model.addAttribute("listVisas",listVisas);
+		  model.addAttribute("listTickets",listTickets);
+
 
 
 		model.addAttribute("agent", agentRepo.countById());
@@ -102,6 +110,7 @@ public class MainController {
 		List<Birth> listBirths =  birthRepo.getByIdView(id);
 		List<Passport> listPassports =  passportRepo.getByIdView(id);
 		List<Ticket> listTickets =  ticketRepo.getByIdView(id);
+		List<Visa> listVisas =  visaRepo.getByIdView(id);
 		List<Training> listTrainings =  trainingRepo.getByIdView(id);
 		
 		  model.addAttribute("listMedicals",listMedicals);
@@ -109,6 +118,8 @@ public class MainController {
 		  model.addAttribute("listPassports",listPassports);
 		  model.addAttribute("listTickets",listTickets);
 		  model.addAttribute("listTrainings",listTrainings);
+		  model.addAttribute("listVisas",listVisas);
+
 
 
 		model.addAttribute("agent", agentRepo.countById());

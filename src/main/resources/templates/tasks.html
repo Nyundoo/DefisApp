@@ -62,8 +62,6 @@
         font-weight: 400;
         color: #a7afb7 !important;
     }
-
-    
 </style>
 
 <body>
@@ -121,119 +119,140 @@
                     <p class="small">Total applicant traveling</p>
                 </div>
 
-            </div>               
-         
+            </div>
+
             <div class="full-details m-3" id="myTable1div5">
                 <div class="m-3">
-                    <h2  style="text-align: center;">Medical Schedule</h2>
+                    <h2 style="text-align: center;">Medical Schedule</h2>
                 </div>
                 <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table5">
                     <thead class="thead-dark">
                         <tr>
-                            <th th:replace="fragments :: column_link5('user1', 'User', 'none')" />
 
                             <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
                             <th
                                 th:replace="fragments :: column_link5('application_date', 'Application Date', 'none')" />
                             <th th:replace="fragments :: column_link5('result_date', 'Results Date', 'none')" />
+                            <th th:replace="fragments :: column_link5('user1', 'User', 'none')" />
                             <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="medical : ${listMedicals}">
-                            <td>[[${medical.user1.firstName}+'
-                                '+${medical.user1.lastName}]]</td>
+
                             <td>[[${medical.applicant.identification}+' :
                                 '+${medical.applicant.firstName}+'
                                 '+${medical.applicant.lastName}]]</td>
                             <td>[[${medical.application_date}]]</td>
+
                             <td>[[${medical.result_date}]]</td>
-                            <td th:if="${medical.m_status == false && medical.result_date > (#dates.createNow()) }"><a class="btn btn-sm" style="background-color: orange;"
-                                th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Ongoing</a></td>
-                                <td th:if="${medical.m_status == false && medical.result_date < (#dates.createNow())}"><a class="btn btn-sm" style="background-color: red;"
-                                    th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Late</a></td>
+                            <td>[[${medical.user1.firstName}+'
+                                '+${medical.user1.lastName}]]</td>
+
+                            <td th:if="${medical.m_status == false && medical.result_date > (#dates.createNow()) }"><a
+                                    class="btn btn-sm" style="background-color: orange;"
+                                    th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Ongoing</a>
+                            </td>
+                            <td th:if="${medical.m_status == false && medical.result_date < (#dates.createNow())}"><a
+                                    class="btn btn-sm" style="background-color: red;"
+                                    th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Late</a>
+                            </td>
                             <td th:if="${medical.m_status == true}"><a class="btn btn-warning btn-sm"
-                                th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Complete</a></td>
-                            
+                                    th:href="@{'/medicals/edit/' + ${medical.id}}"
+                                    title="Edit this medical">Complete</a></td>
+
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-
-
             <div class="full-details m-3" id="myTable1div4">
                 <div class="m-3">
-                    <h2  style="text-align: center;">Birth Certs Schedule</h2>
+                    <h2 style="text-align: center;">Birth Certs Schedule</h2>
                 </div>
                 <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table4">
                     <thead class="thead-dark">
                         <tr>
-                                <th th:replace="fragments :: column_link5('user2', 'User', 'none')" />
-                           
+
                             <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
-                            <th th:replace="fragments :: column_link5('cert_application_date', 'Application Date', 'none')" />
-                            <th th:replace="fragments :: column_link5('cert_reception_date', 'Reception Date', 'none')" />
+                            <th
+                                th:replace="fragments :: column_link5('cert_application_date', 'Application Date', 'none')" />
+                            <th
+                                th:replace="fragments :: column_link5('cert_reception_date', 'Reception Date', 'none')" />
+
+                            <th th:replace="fragments :: column_link5('user2', 'User', 'none')" />
                             <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="birth : ${listBirths}">
-                            <td>[[${birth.user2.firstName}+'
-                                '+${birth.user2.lastName}]]</td>
+
                             <td>[[${birth.applicant.identification}+' :
                                 '+${birth.applicant.firstName}+'
                                 '+${birth.applicant.lastName}]]</td>
                             <td>[[${birth.cert_application_date}]]</td>
                             <td>[[${birth.cert_reception_date}]]</td>
-                             <td th:if="${birth.status == false && birth.cert_reception_date > (#dates.createNow()) }"><a class="btn btn-sm" style="background-color: orange;"
-                                th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Ongoing</a></td>
-                                <td th:if="${birth.status == false && birth.cert_reception_date < (#dates.createNow())}"><a class="btn btn-sm" style="background-color: red;"
+                            <td>[[${birth.user2.firstName}+'
+                                '+${birth.user2.lastName}]]</td>
+
+                            <td th:if="${birth.status == false && birth.cert_reception_date > (#dates.createNow()) }"><a
+                                    class="btn btn-sm" style="background-color: orange;"
+                                    th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Ongoing</a></td>
+                            <td th:if="${birth.status == false && birth.cert_reception_date < (#dates.createNow())}"><a
+                                    class="btn btn-sm" style="background-color: red;"
                                     th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Late</a></td>
                             <td th:if="${birth.status == true}"><a class="btn btn-warning btn-sm"
-                                th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Complete</a></td>
-                            
-                            
+                                    th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Complete</a></td>
+
+
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-
-
             <div class="full-details m-3" id="myTable1div3">
                 <div class="m-3">
-                    <h2  style="text-align: center;">Passport Schedule</h2>
+                    <h2 style="text-align: center;">Passport Schedule</h2>
                 </div>
                 <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table3">
                     <thead class="thead-dark">
                         <tr>
-                                <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
-                                <th th:replace="fragments :: column_link5('pass_application_date', 'Pass App Date', 'none')" />
-                                <th th:replace="fragments :: column_link5('pass_application_date', 'Pass Recep Date', 'none')" />
+                            <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
+                            <th
+                                th:replace="fragments :: column_link5('pass_application_date', 'Pass App Date', 'none')" />
+                            <th
+                                th:replace="fragments :: column_link5('pass_application_date', 'Pass Recep Date', 'none')" />
 
-                                <th th:replace="fragments :: column_link5('user_id3', 'User', 'none')" />
-                                <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
-                        
+                            <th th:replace="fragments :: column_link5('user_id3', 'User', 'none')" />
+                            <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="passport : ${listPassports}">
-                           <td>[[${passport.applicant.identification}+' :
-                                '+${passport.applicant.firstName}+' 
+                            <td>[[${passport.applicant.identification}+' :
+                                '+${passport.applicant.firstName}+'
                                 '+${passport.applicant.lastName}]]</td>
                             <td>[[${passport.pass_application_date}]]</td>
                             <td>[[${passport.pass_reception_date}]]</td>
-                            <td>[[${passport.user3.firstName}+' 
+                            <td>[[${passport.user3.firstName}+'
                                 '+${passport.user3.lastName}]]</td>
-        
-                                <td th:if="${passport.status == false && passport.pass_reception_date > (#dates.createNow()) }"><a class="btn btn-sm" style="background-color: orange;"
-                                    th:href="@{'/passports/edit/' + ${passport.id}}" title="Edit this passport">Ongoing</a></td>
-                                    <td th:if="${passport.status == false && passport.pass_reception_date < (#dates.createNow())}"><a class="btn btn-sm" style="background-color: red;"
-                                        th:href="@{'/passports/edit/' + ${passport.id}}" title="Edit this passport">Late</a></td>
-                                <td th:if="${passport.status == true}"><a class="btn btn-warning btn-sm"
-                                    th:href="@{'/passports/edit/' + ${passport.id}}" title="Edit this passport">Complete</a></td>
-                                
+
+                            <td
+                                th:if="${passport.status == false && passport.pass_reception_date > (#dates.createNow()) }">
+                                <a class="btn btn-sm" style="background-color: orange;"
+                                    th:href="@{'/passports/edit/' + ${passport.id}}"
+                                    title="Edit this passport">Ongoing</a>
+                            </td>
+                            <td
+                                th:if="${passport.status == false && passport.pass_reception_date < (#dates.createNow())}">
+                                <a class="btn btn-sm" style="background-color: red;"
+                                    th:href="@{'/passports/edit/' + ${passport.id}}" title="Edit this passport">Late</a>
+                            </td>
+                            <td th:if="${passport.status == true}"><a class="btn btn-warning btn-sm"
+                                    th:href="@{'/passports/edit/' + ${passport.id}}"
+                                    title="Edit this passport">Complete</a></td>
+
                         </tr>
                     </tbody>
                 </table>
@@ -243,7 +262,7 @@
 
             <div class="full-details m-3" id="myTable1div2">
                 <div class="m-3">
-                    <h2  style="text-align: center;">Training Schedule</h2>
+                    <h2 style="text-align: center;">Training Schedule</h2>
                 </div>
                 <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table2">
                     <thead class="thead-dark">
@@ -258,66 +277,116 @@
                     <tbody>
                         <tr th:each="training : ${listTrainings}">
                             <td>[[${training.applicant.identification}+' :
-                                '+${training.applicant.firstName}+' 
+                                '+${training.applicant.firstName}+'
                                 '+${training.applicant.lastName}]]</td>
                             <td>[[${training.start_date}]]</td>
                             <td>[[${training.finish_date}]]</td>
-                            <td>[[${training.user5.firstName}+' 
+                            <td>[[${training.user5.firstName}+'
                                 '+${training.user5.lastName}]]</td>
-        
-                                <td th:if="${training.t_status == false && training.finish_date > (#dates.createNow()) }"><a class="btn btn-sm" style="background-color: orange;"
-                                    th:href="@{'/trainings/edit/' + ${training.id}}" title="Edit this training">Ongoing</a></td>
-                                    <td th:if="${training.t_status == false && training.finish_date < (#dates.createNow())}"><a class="btn btn-sm" style="background-color: red;"
-                                        th:href="@{'/trainings/edit/' + ${training.id}}" title="Edit this training">Late</a></td>
-                                <td th:if="${training.t_status == true}"><a class="btn btn-warning btn-sm"
-                                    th:href="@{'/trainings/edit/' + ${training.id}}" title="Edit this training">Complete</a></td>
-                            
+
+                            <td th:if="${training.t_status == false && training.finish_date > (#dates.createNow()) }"><a
+                                    class="btn btn-sm" style="background-color: orange;"
+                                    th:href="@{'/trainings/edit/' + ${training.id}}"
+                                    title="Edit this training">Ongoing</a></td>
+                            <td th:if="${training.t_status == false && training.finish_date < (#dates.createNow())}"><a
+                                    class="btn btn-sm" style="background-color: red;"
+                                    th:href="@{'/trainings/edit/' + ${training.id}}" title="Edit this training">Late</a>
+                            </td>
+                            <td th:if="${training.t_status == true}"><a class="btn btn-warning btn-sm"
+                                    th:href="@{'/trainings/edit/' + ${training.id}}"
+                                    title="Edit this training">Complete</a></td>
+
                         </tr>
                     </tbody>
                 </table>
             </div>
 
+            <div class="full-details m-3" id="myTable1div6">
+                <div class="m-3">
+                    <h2 style="text-align: center;">Visa Schedule</h2>
+                </div>
+                <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table6">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
+                            <th th:replace="fragments :: column_link6('type_of_visa', 'Type of Visa', 'none')" />
+                            <th th:replace="fragments :: column_link6('finish_date', 'Visa Apply Date', 'none')" />
+                            <th th:replace="fragments :: column_link6('cert_no', 'Visa Reception Date', 'none')" />
+                            <th th:replace="fragments :: column_link6('user4', 'User', 'none')" />
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="visa : ${listVisas}">
+                            <td>[[${visa.applicant.identification}+' :
+                                '+${visa.applicant.firstName}+'
+                                '+${visa.applicant.lastName}]]</td>
+                            <td>[[${visa.type_of_visa}]]</td>
+                            <td>[[${visa.visa_apply_date}]]</td>
+                            <td>[[${visa.visa_reception_date}]]</td>
+                            <td>[[${visa.user4.firstName}+'
+                                '+${visa.user4.lastName}]]</td>
 
+                            <td th:if="${visa.status == false && visa.visa_reception_date > (#dates.createNow()) }"><a
+                                    class="btn btn-sm" style="background-color: orange;"
+                                    th:href="@{'/visas/edit/' + ${visa.id}}" title="Edit this visa">Ongoing</a></td>
+                            <td th:if="${visa.status == false && visa.visa_reception_date < (#dates.createNow())}"><a
+                                    class="btn btn-sm" style="background-color: red;"
+                                    th:href="@{'/visas/edit/' + ${visa.id}}" title="Edit this visa">Late</a></td>
+                            <td th:if="${visa.status == true}"><a class="btn btn-warning btn-sm"
+                                    th:href="@{'/visas/edit/' + ${visa.id}}" title="Edit this visa">Complete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <div class="full-details m-3" id="myTable1div">
                 <div class="m-3">
-                    <h2  style="text-align: center;">Ticket Schedule</h2>
+                    <h2 style="text-align: center;">Ticket Schedule</h2>
                 </div>
                 <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table1">
                     <thead class="thead-dark">
-                        <tr>                    
+                        <tr>
                             <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
-                            
-                                <th th:replace="fragments :: column_link6('ticket_date', 'Ticket Date', 'none')" />
-                            
+
+                            <th th:replace="fragments :: column_link6('ticket_date', 'Ticket Date', 'none')" />
+
 
                             <th th:replace="fragments :: column_link6('date_travel', 'Date Travel', 'none')" />
-                                                        
-                            <th th:replace="fragments :: column_link6('expected_arrival_date', 'Expected Arrival Date', 'none')" />
+
+                            <th
+                                th:replace="fragments :: column_link6('expected_arrival_date', 'Expected Arrival Date', 'none')" />
                             <th th:replace="fragments :: column_link6('user4', 'User', 'none')" />
 
                             <th th:replace="fragments :: column_link6('travel_status', 'Travel Status', 'none')" />
-                            
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="travel : ${listTickets}">
                             <td>[[${travel.applicant.identification}+' :
-                                '+${travel.applicant.firstName}+' 
+                                '+${travel.applicant.firstName}+'
                                 '+${travel.applicant.lastName}]]</td>
                             <td>[[${travel.ticket_date}]]</td>
                             <td>[[${travel.date_travel}]]</td>
                             <td>[[${travel.expected_arrival_date}]]</td>
-                            <td>[[${travel.user4.firstName}+' 
+                            <td>[[${travel.user4.firstName}+'
                                 '+${travel.user4.lastName}]]</td>
-        
-                                <td th:if="${travel.travel_status == false && travel.expected_arrival_date > (#dates.createNow()) }"><a class="btn btn-sm" style="background-color: orange;"
-                                    th:href="@{'/travels/edit/' + ${travel.id}}" title="Edit this travel">Ongoing</a></td>
-                                    <td th:if="${travel.travel_status == false && travel.expected_arrival_date < (#dates.createNow())}"><a class="btn btn-sm" style="background-color: red;"
-                                        th:href="@{'/travels/edit/' + ${travel.id}}" title="Edit this travel">Late</a></td>
-                                <td th:if="${travel.travel_status == true}"><a class="btn btn-warning btn-sm"
-                                    th:href="@{'/travels/edit/' + ${travel.id}}" title="Edit this travel">Complete</a></td>
-                            
+
+                            <td
+                                th:if="${travel.travel_status == false && travel.expected_arrival_date > (#dates.createNow()) }">
+                                <a class="btn btn-sm" style="background-color: orange;"
+                                    th:href="@{'/tickets/edit/' + ${travel.id}}" title="Edit this travel">Ongoing</a>
+                            </td>
+                            <td
+                                th:if="${travel.travel_status == false && travel.expected_arrival_date < (#dates.createNow())}">
+                                <a class="btn btn-sm" style="background-color: red;"
+                                    th:href="@{'/tickets/edit/' + ${travel.id}}" title="Edit this travel">Late</a>
+                            </td>
+                            <td th:if="${travel.travel_status == true}"><a class="btn btn-warning btn-sm"
+                                    th:href="@{'/tickets/edit/' + ${travel.id}}" title="Edit this travel">Complete</a>
+                            </td>
+
                         </tr>
                     </tbody>
                 </table>
@@ -330,82 +399,98 @@
     <script th:src="@{/js/common.js}"></script>
 
     <script>
-        $(function(){
+        $(function () {
             var hide = true;
 
-            $('#Table1 td').each(function(){
+            $('#Table1 td').each(function () {
                 var td_content = $(this).text()
 
-                if(td_content != ""){
+                if (td_content != "") {
                     hide = false;
                 }
             });
-            if(hide){
+            if (hide) {
                 $('#myTable1div').hide();
             }
         });
 
 
-        $(function(){
+        $(function () {
             var hide2 = true;
 
-            $('#Table2 td').each(function(){
+            $('#Table2 td').each(function () {
                 var td_content2 = $(this).text()
 
-                if(td_content2 != ""){
+                if (td_content2 != "") {
                     hide2 = false;
                 }
             });
-            if(hide2){
+            if (hide2) {
                 $('#myTable1div2').hide();
             }
         });
 
 
-        $(function(){
+        $(function () {
             var hide3 = true;
 
-            $('#Table3 td').each(function(){
+            $('#Table3 td').each(function () {
                 var td_content3 = $(this).text()
 
-                if(td_content3 != ""){
+                if (td_content3 != "") {
                     hide3 = false;
                 }
             });
-            if(hide3){
+            if (hide3) {
                 $('#myTable1div3').hide();
             }
         });
 
 
-        $(function(){
+        $(function () {
             var hide4 = true;
 
-            $('#Table4 td').each(function(){
+            $('#Table4 td').each(function () {
                 var td_content4 = $(this).text()
 
-                if(td_content4 != ""){
+                if (td_content4 != "") {
                     hide4 = false;
                 }
             });
-            if(hide4){
+            if (hide4) {
                 $('#myTable1div4').hide();
             }
         });
 
 
-        $(function(){
+        $(function () {
             var hide5 = true;
 
-            $('#Table5 td').each(function(){
+            $('#Table5 td').each(function () {
                 var td_content5 = $(this).text()
 
-                if(td_content5 != ""){
+                if (td_content5 != "") {
                     hide5 = false;
                 }
             });
-            if(hide5){
+            if (hide5) {
                 $('#myTable1div5').hide();
+            }
+        });
+
+
+        $(function () {
+            var hide6 = true;
+
+            $('#Table6 td').each(function () {
+                var td_content6 = $(this).text()
+
+                if (td_content6 != "") {
+                    hide6 = false;
+                }
+            });
+            if (hide6) {
+                $('#myTable1div6').hide();
             }
         });
     </script>

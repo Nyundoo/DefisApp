@@ -35,10 +35,10 @@
             <thead class="thead-dark">
                 <tr>
                     <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
-                    <th th:replace="fragments :: column_link6('start_date', 'Start Date', 'none')" />
-                    <th th:replace="fragments :: column_link6('finish_date', 'Finish Date', 'none')" />
-                    <th th:replace="fragments :: column_link6('cert_no', 'Cert No', 'none')" />
-                    <th></th>
+                    <th th:replace="fragments :: column_link6('type_of_visa', 'Type of Visa', 'none')" />
+                    <th th:replace="fragments :: column_link6('finish_date', 'Visa Apply Date', 'none')" />
+                    <th th:replace="fragments :: column_link6('cert_no', 'Visa Reception Date', 'none')" />
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,9 +46,9 @@
                     <td>[[${visa.applicant.identification}+' :
                         '+${visa.applicant.firstName}+' 
                         '+${visa.applicant.lastName}]]</td>
-                    <td>[[${visa.start_date}]]</td>
-                    <td>[[${visa.finish_date}]]</td>
-                    <td>[[${visa.cert_no}]]</td>
+                    <td>[[${visa.type_of_visa}]]</td>
+                    <td>[[${visa.visa_apply_date}]]</td>
+                    <td>[[${visa.visa_reception_date}]]</td>
 
                     <td>
                         <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/visas/view/' + ${visa.id}}"
