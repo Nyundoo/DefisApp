@@ -74,7 +74,7 @@
             <span sec:authentication="principal.authorities"></span>
 
 
-            <div class="full-details m-3" id="myTable1div5">
+            <div class="full-details m-3" th:if="${!listMedicals.isEmpty()}">
                 <div class="m-3">
                     <h2 style="text-align: center;">Medical Schedule</h2>
                 </div>
@@ -121,7 +121,7 @@
 
 
 
-            <div class="full-details m-3" id="myTable1div4">
+            <div class="full-details m-3" th:if="${!listBirths.isEmpty()}">
                 <div class="m-3">
                     <h2 style="text-align: center;">Birth Certs Schedule</h2>
                 </div>
@@ -167,7 +167,7 @@
 
 
 
-            <div class="full-details m-3" id="myTable1div3">
+            <div class="full-details m-3" th:if="${!listPassports.isEmpty()}">
                 <div class="m-3">
                     <h2 style="text-align: center;">Passport Schedule</h2>
                 </div>
@@ -217,7 +217,7 @@
 
 
 
-            <div class="full-details m-3" id="myTable1div2">
+            <div class="full-details m-3" th:if="${!listTrainings.isEmpty()}">
                 <div class="m-3">
                     <h2 style="text-align: center;">Training Schedule</h2>
                 </div>
@@ -258,7 +258,7 @@
                 </table>
             </div>
 
-            <div class="full-details m-3" id="myTable1div6">
+            <div class="full-details m-3" th:if="${!listVisas.isEmpty()}">
                 <div class="m-3">
                     <h2 style="text-align: center;">Visa Schedule</h2>
                 </div>
@@ -297,7 +297,7 @@
                 </table>
             </div>
 
-            <div class="full-details m-3" id="myTable1div">
+            <div class="full-details m-3" th:if="${!listTickets.isEmpty()}">
                 <div class="m-3">
                     <h2 style="text-align: center;">Ticket Schedule</h2>
                 </div>
@@ -358,102 +358,7 @@
     </div>
     <script th:src="@{/js/common.js}"></script>
 
-    <script>
-        $(function () {
-            var hide = true;
 
-            $('#Table1 td').each(function () {
-                var td_content = $(this).text()
-
-                if (td_content != "") {
-                    hide = false;
-                }
-            });
-            if (hide) {
-                $('#myTable1div').hide();
-            }
-        });
-
-
-        $(function () {
-            var hide2 = true;
-
-            $('#Table2 td').each(function () {
-                var td_content2 = $(this).text()
-
-                if (td_content2 != "") {
-                    hide2 = false;
-                }
-            });
-            if (hide2) {
-                $('#myTable1div2').hide();
-            }
-        });
-
-
-        $(function () {
-            var hide3 = true;
-
-            $('#Table3 td').each(function () {
-                var td_content3 = $(this).text()
-
-                if (td_content3 != "") {
-                    hide3 = false;
-                }
-            });
-            if (hide3) {
-                $('#myTable1div3').hide();
-            }
-        });
-
-
-        $(function () {
-            var hide4 = true;
-
-            $('#Table4 td').each(function () {
-                var td_content4 = $(this).text()
-
-                if (td_content4 != "") {
-                    hide4 = false;
-                }
-            });
-            if (hide4) {
-                $('#myTable1div4').hide();
-            }
-        });
-
-
-        $(function () {
-            var hide5 = true;
-
-            $('#Table5 td').each(function () {
-                var td_content5 = $(this).text()
-
-                if (td_content5 != "") {
-                    hide5 = false;
-                }
-            });
-            if (hide5) {
-                $('#myTable1div5').hide();
-            }
-        });
-
-
-        $(function () {
-            var hide6 = true;
-
-            $('#Table6 td').each(function () {
-                var td_content6 = $(this).text()
-
-                if (td_content6 != "") {
-                    hide6 = false;
-                }
-            });
-            if (hide6) {
-                $('#myTable1div6').hide();
-            }
-        });
-    </script>
 
     <script>
         $(document).ready(function () {
