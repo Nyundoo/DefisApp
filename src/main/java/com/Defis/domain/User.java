@@ -30,6 +30,9 @@ public class User {
 	@Column(length = 128, nullable = false, unique = true)
 	private String email;
 
+	@Column(name = "id_no", length = 8, nullable = true)
+	private String idNo;
+
 	@Column(length = 64, nullable = false)
 	private String password;
 
@@ -38,6 +41,9 @@ public class User {
 
 	@Column(name = "last_name", length = 45, nullable = false)
 	private String lastName;
+
+	@Column(length = 64)
+	private String gender;
 
 	@Column(length = 64)
 	private String photos;
@@ -78,6 +84,14 @@ public class User {
 		this.email = email;
 	}
 
+	public String getIdNo() {
+		return idNo;
+	}
+
+	public void setIdNo(String idNo) {
+		this.idNo = idNo;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -100,6 +114,14 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getPhotos() {
@@ -132,6 +154,10 @@ public class User {
 
 	public void setDetails(List<Medical> details) {
 		this.details = details;
+	} 
+	
+	public void addRole(Role role) {
+		this.roles.add(role);
 	}
 
 	@Override

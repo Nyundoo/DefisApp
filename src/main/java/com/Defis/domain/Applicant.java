@@ -25,8 +25,8 @@ public class Applicant {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(length = 45, nullable = true, unique = false)
-	private String identification;
+	@Column(length = 8, nullable = true, unique = false)
+	private Integer identification;
 
 	@Column(length = 3, nullable = true, unique = false)
 	private Integer age;
@@ -104,11 +104,11 @@ public class Applicant {
 		this.id = id;
 	}
 
-	public String getIdentification() {
+	public Integer getIdentification() {
 		return identification;
 	}
 
-	public void setIdentification(String identification) {
+	public void setIdentification(Integer identification) {
 		this.identification = identification;
 	}
 

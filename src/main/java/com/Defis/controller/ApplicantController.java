@@ -196,6 +196,33 @@ public class ApplicantController {
 	}
 	
 	
+	@GetMapping("/applicants/view/{id}")
+	public String viewApplicant(@PathVariable(name = "id") Integer id,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+		Applicant applicant = service.get(id);
+
+		List<Agent> listAgents = (List<Agent>) agentRepo.findAll();
+		List<Job> listJobs = (List<Job>) jobRepo.findAll();
+		
+		model.addAttribute("applicant", applicant);
+		model.addAttribute("pageTitle", "View Applicant (ID: " + id + ")");		
+		
+		model.addAttribute("listAgents", listAgents);
+		model.addAttribute("listJobs", listJobs);
+		
+		return "applicants/applicantprofile";
+		
+		} catch (ApplicantNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message", ex.getMessage());
+			
+			return "redirect:/applicants";
+		}
+		
+	}
+	
+	
 	@GetMapping("/applicants/delete/{id}")
 	public String deleteApplicant(@PathVariable(name = "id") Integer id,
 			Model model,

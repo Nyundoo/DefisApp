@@ -138,6 +138,27 @@ public class AgentController {
 	}
 	
 	
+	@GetMapping("/agents/view/{id}")
+	public String viewAgent(@PathVariable(name = "id") Integer id,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+		Agent agent = service.get(id);
+		
+		model.addAttribute("agent", agent);
+		model.addAttribute("pageTitle", "View Agent (ID: " + id + ")");
+		
+		return "agents/agentprofile";
+		
+		} catch (AgentNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message", ex.getMessage());
+			
+			return "redirect:/agents";
+		}
+		
+	}
+	
+	
 	@GetMapping("/agents/delete/{id}")
 	public String deleteAgent(@PathVariable(name = "id") Integer id,
 			Model model,

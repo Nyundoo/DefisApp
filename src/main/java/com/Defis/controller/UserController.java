@@ -142,6 +142,30 @@ public class UserController {
 	}
 	
 	
+	@GetMapping("/users/view/{id}")
+	public String viewUser(@PathVariable(name = "id") Long id,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+		User user = service.get(id);
+		
+		List<Role> listRoles = service.listRoles();
+		
+		model.addAttribute("user", user);
+		model.addAttribute("pageTitle", "View User (ID: " + id + ")");
+		model.addAttribute("listRoles", listRoles);
+		
+		return "users/userprofile";
+		
+		} catch (UserNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message", ex.getMessage());
+			
+			return "redirect:/users";
+		}
+		
+	}
+	
+	
 	@GetMapping("/users/delete/{id}")
 	public String deleteUser(@PathVariable(name = "id") Long id,
 			Model model,

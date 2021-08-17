@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragments :: page_head('User View - Defis Admin')" />
+
+<body>
+    <div class="container-fluid">
+        <div th:replace="nav :: menu"></div>
+    </div>
+  <div class="rt-container">
+
+    <div class="col-rt-4" id="float-right">
+
+      <!-- Ad Here -->
+
+    </div>
+    <div class="col-rt-2">
+      <ul>
+        <li><a th:href="@{/users}">Back to User list page</a></li>
+        <a class="fas fa-user-edit icon-green m-3" th:href="@{'/users/edit/' + ${user.id}}"
+                            title="Edit this user"></a>
+
+      </ul>
+    </div>
+  </div>
+
+  <header class="ScriptHeader">
+    <div class="rt-container">
+      <div class="col-rt-12">
+        <div class="rt-heading">
+          <h1>
+            [[${pageTitle}]]
+          </h1>
+          <p>User profile page.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="rt-container">
+      <div class="col-rt-12">
+        <div class="Scriptcontent">
+
+          <!-- Student Profile -->
+          <div class="student-profile py-4">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="card shadow-sm" style="margin-bottom: 30px;">
+                    <div class="card-header bg-transparent text-center">
+                      <img id="thumbnail" alt="Photo preview" th:src="@{${user.photosImagePath}}" class="img-fluid" />
+                      <h3>
+                        <div>[[${user.fullName}]]</div>
+                      </h3>
+                    </div>
+                    <div class="card-body">
+                      <p class="mb-0"><strong class="pr-1">User Identification No:</strong>[[${user.idNo}]]</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-8">
+                  <div class="card shadow-sm">
+                    <div class="card-header bg-transparent border-0">
+                      <h3 class="mb-0"><i class="far fa-clone pr-1"></i>General Information</h3>
+                    </div>
+                    <div class="card-body pt-0">
+                      <table class="table table-bordered">
+                        <tr>
+                          <th width="30%">Roles</th>
+                          <td width="2%">:</td>
+                          <td>[[${user.roles}]]</td>
+                        </tr>
+                        <tr>
+                          <th width="30%">Login Permission </th>
+                          <td width="2%">:</td>
+                          <td>[[${user.enabled}]]</td>
+                        </tr>
+                        <tr>
+                          <th width="30%">Gender</th>
+                          <td width="2%">:</td>
+                          <td>[[${user.gender}]]</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                  <div style="height: 26px"></div>
+                  <div class="card shadow-sm">
+                    <div class="card-header bg-transparent border-0">
+                      <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Other Information</h3>
+                    </div>
+                    <div class="card-body pt-0">
+                      <p>.....</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- partial -->
+
+        </div>
+      </div>
+      <div th:replace="fragments :: footer"></div>
+    </div>
+    
+  </section>
+  <!-- Analytics -->
+
+
+  
+</body>
+
+</html>

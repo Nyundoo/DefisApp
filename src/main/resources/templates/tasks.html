@@ -121,6 +121,7 @@
 
             </div>
 
+              <div id="sd2">
             <div class="full-details m-3" th:if="${!listMedicals.isEmpty()}">
                 <div class="m-3">
                     <h2 style="text-align: center;">Medical Schedule</h2>
@@ -395,6 +396,7 @@
                     </tbody>
                 </table>
             </div>
+          </div>
 
 
             <div th:replace="fragments :: footer"></div>
@@ -402,6 +404,13 @@
     </div>
     <script th:src="@{/js/common.js}"></script>
 
+    <script>
+        setInterval(function() {
+            $("#sd2").load("task.html #sd2");    
+            }, 15000);  
+        
+        
+        </script>
 
     <script>
         $(document).ready(function () {
