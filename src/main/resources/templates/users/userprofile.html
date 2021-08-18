@@ -50,8 +50,8 @@
                   <div class="card shadow-sm" style="margin-bottom: 30px;">
                     <div class="card-header bg-transparent text-center">
                       <span th:if="${user.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
-                        <img th:if="${user.photos != null}" th:src="@{${user.photosImagePath}}" style="width: 200px;" />
-                      <h3>
+                      <span th:if="${user.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
+                      <img th:if="${user.photos != null}" th:src="@{${user.photosImagePath}}" style="width: 100px;" />                      <h3>
                         <div>[[${user.fullName}]]</div>
                       </h3>
                     </div>

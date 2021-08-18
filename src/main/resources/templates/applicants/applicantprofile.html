@@ -48,8 +48,9 @@
                 <div class="col-lg-4">
                   <div class="card shadow-sm" style="margin-bottom: 30px;">
                     <div class="card-header bg-transparent text-center">
-                        <img id="thumbnail" alt="Photo preview" th:src="@{${applicant.photosImagePath}}"
-                        <h3>
+                      <span th:if="${applicant.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
+                      <img th:if="${applicant.photos != null}" th:src="@{${applicant.photosImagePath}}"
+                          style="width: 100px;" />                        <h3>
                         <div>[[${applicant.fullName}]]</div>
                       </h3>
                     </div>
