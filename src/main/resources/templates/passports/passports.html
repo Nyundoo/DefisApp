@@ -11,7 +11,6 @@
             <a th:href="@{/passports/new}"><i class="fas fa-folder-plus fa-2x mr-4"></i></a>
             <a th:href="@{/passports/export/csv}"><i class="fas fa-file-csv fa-2x mr-4"></i></a>
             <a th:href="@{/passports/export/excel}"><i class="far fa-file-excel fa-2x mr-4"></i></a>
-            <a th:href="@{/passports/export/pdf}"><i class="far fa-file-pdf fa-2x mr-4"></i></a>
         </div>
         <div th:if="${message != null}" class="alert alert-success text-center">
             [[${message}]]
