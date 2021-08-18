@@ -143,6 +143,34 @@ public class VisaController {
 	}
 	
 	
+	@GetMapping("/visas/view/{id}")
+	public String viewVisa(@PathVariable(name = "id") Integer id,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+		Visa visa = service.get(id);
+		
+		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
+		List<User> listUsers = (List<User>) userRepo.findAll();
+		
+
+		model.addAttribute("listApplicants", listApplicants);
+		model.addAttribute("listUsers", listUsers);
+		
+		model.addAttribute("visa", visa);
+		model.addAttribute("pageTitle", "View Visa (ID: " + id + ")");
+		
+		return "visas/visapreview";
+		
+		} catch (VisaNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message", ex.getMessage());
+			
+			return "redirect:/visas";
+		}
+		
+	}
+	
+	
 	@GetMapping("/visas/delete/{id}")
 	public String deleteVisa(@PathVariable(name = "id") Integer id,
 			Model model,

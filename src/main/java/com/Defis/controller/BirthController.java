@@ -143,6 +143,34 @@ public class BirthController {
 	}
 	
 	
+	@GetMapping("/births/view/{id}")
+	public String viewBirth(@PathVariable(name = "id") Integer id,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+		Birth birth = service.get(id);
+		
+		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
+		List<User> listUsers = (List<User>) userRepo.findAll();
+		
+
+		model.addAttribute("listApplicants", listApplicants);
+		model.addAttribute("listUsers", listUsers);
+		
+		model.addAttribute("birth", birth);
+		model.addAttribute("pageTitle", "View Birth (ID: " + id + ")");
+		
+		return "births/birthpreview";
+		
+		} catch (BirthNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message", ex.getMessage());
+			
+			return "redirect:/births";
+		}
+		
+	}
+	
+	
 	@GetMapping("/births/delete/{id}")
 	public String deleteBirth(@PathVariable(name = "id") Integer id,
 			Model model,

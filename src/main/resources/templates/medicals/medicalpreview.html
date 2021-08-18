@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragments :: page_head('Medical View - Defis Admin')" />
+
+<body>
+    <div class="container-fluid">
+        <div th:replace="nav :: menu"></div>
+    </div>
+  <div class="rt-container">
+
+    <div class="col-rt-4" id="float-right">
+
+      <!-- Ad Here -->
+
+    </div>
+    <div class="col-rt-2">
+      <ul>
+        <li><a th:href="@{/medicals}">Back to Medical list page</a></li>
+        <a class="fas fa-medical-edit icon-green m-3" th:href="@{'/medicals/edit/' + ${medical.id}}"
+                            title="Edit this medical"></a>
+
+      </ul>
+    </div>
+  </div>
+
+  <header class="ScriptHeader">
+    <div class="rt-container">
+      <div class="col-rt-12">
+        <div class="rt-heading">
+          <h1>
+            [[${pageTitle}]]
+          </h1>
+          <p>Medical profile page.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="rt-container">
+      <div class="col-rt-12">
+        <div class="Scriptcontent">
+
+          <!-- Student Profile -->
+          <div class="student-profile py-4">
+            <div class="container">
+              <div class="row">
+                
+                <div class="col-lg-8">
+                  <div class="card shadow-sm">
+                    <div class="card-header bg-transparent border-0">
+                      <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Medical Information</h3>
+                    </div>
+                    <div class="card-body pt-0">
+                      <table class="table table-bordered">
+                        <tr>
+                          <th width="30%">Applicant Name</th>
+                          <td width="2%">:</td>
+                          <td>[[${medical.applicant.fullName}]]</td>
+                        </tr>
+                        <tr>
+                          <th width="30%">Medical Center </th>
+                          <td width="2%">:</td>
+                          <td>[[${medical.medical_center}]]</td>
+                        </tr>
+                        <tr>
+                          <th width="30%">Amount Paid</th>
+                          <td width="2%">:</td>
+                          <td>[[${medical.amount_paid}]]</td>
+                        </tr>
+                        <tr>
+                            <th width="30%">Application Date</th>
+                            <td width="2%">:</td>
+                            <td>[[${medical.application_date}]]</td>
+                        </tr>
+                        <tr>
+                            <th width="30%">Results Date</th>
+                            <td width="2%">:</td>
+                            <td>[[${medical.result_date}]]</td>
+                        </tr>
+                        <tr>
+                            <th width="30%">User</th>
+                            <td width="2%">:</td>
+                            <td>[[${medical.user1.fullName}]]</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                  <div style="height: 26px"></div>
+                  <div class="card shadow-sm">
+                    <div class="card-header bg-transparent border-0">
+                      <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Client Information</h3>
+                    </div>
+                    <div class="card-body pt-0">
+                      <p>[[${medical.client_info}]]</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- partial -->
+
+        </div>
+      </div>
+      <div th:replace="fragments :: footer"></div>
+    </div>
+    
+  </section>
+  <!-- Analytics -->
+
+
+  
+</body>
+
+</html>

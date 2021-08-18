@@ -54,7 +54,7 @@
                     <td>[[${job.jobDescription}]]</td>
 
                     <td>
-                        <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/jobs/edit/' + ${job.id}}"
+                        <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/jobs/view/' + ${job.id}}"
                         title="Edit this job"></a>
                         <a class="far fa-edit icon-green mr-4" th:href="@{'/jobs/edit/' + ${job.id}}"
                         title="Edit this job"></a>
@@ -71,7 +71,7 @@
                 <div>[[${job.country}]]</div>
                 <div>[[${job.jobTitle}]]</div>
                 <div class="mt-2">
-                    <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/jobs/edit/' + ${job.id}}"
+                    <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/jobs/view/' + ${job.id}}"
                     title="Edit this job"></a>
                     <a class="far fa-edit icon-green mr-4" th:href="@{'/jobs/edit/' + ${job.id}}"
                         title="Edit this job"></a>

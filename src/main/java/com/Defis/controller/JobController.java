@@ -121,6 +121,28 @@ public class JobController {
 	}
 	
 	
+	@GetMapping("/jobs/view/{id}")
+	public String viewJob(@PathVariable(name = "id") Integer id,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+		Job job = service.get(id);
+		
+		
+		model.addAttribute("job", job);
+		model.addAttribute("pageTitle", "View Job (ID: " + id + ")");
+		
+		return "jobs/jobpreview";
+		
+		} catch (JobNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message", ex.getMessage());
+			
+			return "redirect:/jobs";
+		}
+		
+	}
+	
+	
 	@GetMapping("/jobs/delete/{id}")
 	public String deleteJob(@PathVariable(name = "id") Integer id,
 			Model model,

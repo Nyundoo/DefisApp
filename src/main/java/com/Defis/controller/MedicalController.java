@@ -142,6 +142,34 @@ public class MedicalController {
 	}
 	
 	
+	@GetMapping("/medicals/view/{id}")
+	public String viewMedical(@PathVariable(name = "id") Integer id,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+		Medical medical = service.get(id);
+		
+		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
+		List<User> listUsers = (List<User>) userRepo.findAll();
+		
+
+		model.addAttribute("listApplicants", listApplicants);
+		model.addAttribute("listUsers", listUsers);
+		
+		model.addAttribute("medical", medical);
+		model.addAttribute("pageTitle", "View Medical (ID: " + id + ")");
+		
+		return "medicals/medicalpreview";
+		
+		} catch (MedicalNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message", ex.getMessage());
+			
+			return "redirect:/medicals";
+		}
+		
+	}
+	
+	
 	@GetMapping("/medicals/delete/{id}")
 	public String deleteMedical(@PathVariable(name = "id") Integer id,
 			Model model,

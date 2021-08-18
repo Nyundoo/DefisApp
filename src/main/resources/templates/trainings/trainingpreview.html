@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragments :: page_head('Training View - Defis Admin')" />
+
+<body>
+    <div class="container-fluid">
+        <div th:replace="nav :: menu"></div>
+    </div>
+  <div class="rt-container">
+
+    <div class="col-rt-4" id="float-right">
+
+      <!-- Ad Here -->
+
+    </div>
+    <div class="col-rt-2">
+      <ul>
+        <li><a th:href="@{/trainings}">Back to Training list page</a></li>
+        <a class="fas fa-edit icon-green m-3" th:href="@{'/trainings/edit/' + ${training.id}}"
+                            title="Edit this training"></a>
+
+      </ul>
+    </div>
+  </div>
+  <span style="font-style: italic;" th:text="${training != null} ? ${#strings.toUpperCase(training.id)} : 'id is null'"></span>
+  <header class="ScriptHeader">
+    <div class="rt-container">
+      <div class="col-rt-12">
+        <div class="rt-heading">
+          <h1>
+            [[${pageTitle}]]
+          </h1>
+          <p>Training profile page.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="rt-container">
+      <div class="col-rt-12">
+        <div class="Scriptcontent">
+
+          <!-- Student Profile -->
+          <div class="student-profile py-4">
+            <div class="container">
+              <div class="row">
+                
+                <div class="col-lg-8">
+                  <div class="card shadow-sm">
+                    <div class="card-header bg-transparent border-0">
+                      <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Training Information</h3>
+                    </div>
+                    <div class="card-body pt-0">
+                      <table class="table table-bordered">
+                        <tr>
+                          <th width="30%">Applicant Name</th>
+                          <td width="2%">:</td>
+                          <td>[[${training.applicant.fullName}]]</td>
+                        </tr>
+                        <tr>
+                            <th width="30%">Start Date </th>
+                            <td width="2%">:</td>
+                            <td>[[${training.start_date}]]</td>
+                        </tr>
+                        <tr>
+                            <th width="30%">Finish Date </th>
+                            <td width="2%">:</td>
+                            <td>[[${training.finish_date}]]</td>
+                        </tr>
+                        <tr>
+                            <th width="30%">Certificate Number</th>
+                            <td width="2%">:</td>
+                            <td>[[${training.cert_no}]]</td>
+                        </tr>
+                        <tr>
+                            <th width="30%">User Assign To </th>
+                            <td width="2%">:</td>
+                            <td>[[${training.user5.fullName}]]</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                  <div style="height: 26px"></div>
+                  <div class="card shadow-sm">
+                    <div class="card-header bg-transparent border-0">
+                      <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Other Information</h3>
+                    </div>
+                    <div class="card-body pt-0">
+                      <p>....</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- partial -->
+
+        </div>
+      </div>
+      <div th:replace="fragments :: footer"></div>
+    </div>
+    
+  </section>
+  <!-- Analytics -->
+
+
+  
+</body>
+
+</html>

@@ -158,6 +158,34 @@ public class TicketController {
 	}
 	
 	
+	@GetMapping("/tickets/view/{id}")
+	public String viewTicket(@PathVariable(name = "id") Integer id,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+			Ticket ticket = service.get(id);
+			List<User> listUsers = (List<User>) userRepo.findAll();
+
+		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
+		
+
+		model.addAttribute("listUsers", listUsers);
+		model.addAttribute("listApplicants", listApplicants);
+		
+		model.addAttribute("ticket", ticket);
+		model.addAttribute("pageTitle", "View Training (ID: " + id + ")");
+		
+		return "tickets/ticketpreview";
+		
+		} catch (TicketNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message", ex.getMessage());
+			
+			return "redirect:/trainings";
+		}
+		
+	}
+	
+	
 	@GetMapping("/tickets/delete/{id}")
 	public String deleteTicket(@PathVariable(name = "id") Integer id,
 			Model model,

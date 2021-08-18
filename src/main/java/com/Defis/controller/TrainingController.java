@@ -156,6 +156,34 @@ public class TrainingController {
 	}
 	
 	
+	@GetMapping("/trainings/view/{id}")
+	public String viewTraining(@PathVariable(name = "id") Integer id,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+		Training training = service.get(id);
+		List<User> listUsers = (List<User>) userRepo.findAll();
+
+		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
+		
+
+		model.addAttribute("listApplicants", listApplicants);
+		model.addAttribute("listUsers", listUsers);
+
+		model.addAttribute("training", training);
+		model.addAttribute("pageTitle", "View Training (ID: " + id + ")");
+		
+		return "trainings/trainingpreview";
+		
+		} catch (TrainingNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message", ex.getMessage());
+			
+			return "redirect:/trainings";
+		}
+		
+	}
+	
+	
 	@GetMapping("/trainings/delete/{id}")
 	public String deleteTraining(@PathVariable(name = "id") Integer id,
 			Model model,

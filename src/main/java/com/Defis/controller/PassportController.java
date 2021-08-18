@@ -143,6 +143,34 @@ public class PassportController {
 	}
 	
 	
+	@GetMapping("/passports/view/{id}")
+	public String viewPassport(@PathVariable(name = "id") Integer id,
+			Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+		Passport passport = service.get(id);
+		
+		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
+		List<User> listUsers = (List<User>) userRepo.findAll();
+		
+
+		model.addAttribute("listApplicants", listApplicants);
+		model.addAttribute("listUsers", listUsers);
+		
+		model.addAttribute("passport", passport);
+		model.addAttribute("pageTitle", "View Passport (ID: " + id + ")");
+		
+		return "passports/passportpreview";
+		
+		} catch (PassportNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message", ex.getMessage());
+			
+			return "redirect:/passports";
+		}
+		
+	}
+	
+	
 	@GetMapping("/passports/delete/{id}")
 	public String deletePassport(@PathVariable(name = "id") Integer id,
 			Model model,
