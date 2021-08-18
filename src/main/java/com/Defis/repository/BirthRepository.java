@@ -17,10 +17,10 @@ public interface BirthRepository extends PagingAndSortingRepository<Birth, Integ
 
 	public Long countById(Integer id);
 
-	@Query("SELECT u FROM Birth u WHERE u.user2.id=?#{ principal.id }")
+	@Query("SELECT u FROM Birth u WHERE u.user2.id=?#{ principal.id } AND (u.status = false) OR (u.status = true AND (day(u.cert_reception_date) - day(CURRENT_DATE) >= -1))")
 	public List<Birth> getBirthById(@Param("id") long id);
 	
-	@Query("SELECT u FROM Birth u")
+	@Query("SELECT u FROM Birth u WHERE (u.status = false) OR (u.status = true AND (day(u.cert_reception_date) - day(CURRENT_DATE) >= -1))")
 	public List<Birth> getViewById(@Param("id") long id);
 
 	@Query("SELECT u FROM Birth u WHERE CONCAT(u.id, ' ',u.applicant, ' ',u.cert_no, ' ',u.user2) LIKE %?1%")

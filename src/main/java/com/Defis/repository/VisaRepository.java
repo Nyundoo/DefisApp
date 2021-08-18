@@ -15,10 +15,10 @@ public interface VisaRepository extends PagingAndSortingRepository<Visa, Integer
 	
 public Long countById(Integer id);	
 
-@Query("SELECT u FROM Visa u WHERE u.user4.id=?#{ principal.id  }")
+@Query("SELECT u FROM Visa u WHERE u.user4.id=?#{ principal.id } AND (u.status = false) OR (u.status = true AND (day(u.visa_reception_date) - day(CURRENT_DATE) >= -1))")
 public List<Visa> getUserById(@Param("id") long id);
 
-@Query("SELECT u FROM Visa u")
+@Query("SELECT u FROM Visa u WHERE (u.status = false) OR (u.status = true AND (day(u.visa_reception_date) - day(CURRENT_DATE) >= -1))")
 public List<Visa> getViewById(@Param("id") long id);
 	
 	@Query("SELECT u FROM Visa u WHERE CONCAT(u.id, ' ',u.type_of_visa, ' ',u.user4) LIKE %?1%")

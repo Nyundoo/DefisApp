@@ -14,10 +14,10 @@ import com.Defis.domain.Training;
 public interface TrainingRepository extends PagingAndSortingRepository<Training, Integer> {
 public Long countById(Integer id);	
 
-@Query("SELECT u FROM Training u WHERE u.user5.id=?#{ principal.id }")
+@Query("SELECT u FROM Training u WHERE u.user5.id=?#{ principal.id } AND (u.t_status = false) OR (u.t_status = true AND (day(u.finish_date) - day(CURRENT_DATE) >= -1))")
 public List<Training> getUserById(@Param("id") long id);
 
-@Query("SELECT u FROM Training u")
+@Query("SELECT u FROM Training u WHERE (u.t_status = false) OR (u.t_status = true AND (day(u.finish_date) - day(CURRENT_DATE) >= -1))")
 public List<Training> getViewById(@Param("id") long id);
 	
 	@Query("SELECT u FROM Training u WHERE CONCAT(u.applicant, ' ',u.start_date, ' ',u.finish_date, ' ',u.cert_no) LIKE %?1%")
