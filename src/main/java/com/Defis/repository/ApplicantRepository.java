@@ -38,7 +38,7 @@ public interface ApplicantRepository extends PagingAndSortingRepository<Applican
 	
 	public Long countById(Integer id);	
 	
-	@Query("SELECT u FROM Applicant u WHERE CONCAT(u.id, ' ',u.email, ' ',u.firstName, ' ',u.lastName) LIKE %?1%")
+	@Query("SELECT u FROM Applicant u WHERE CONCAT(u.id, ' ',u.email, ' ',u.firstName, ' ',u.lastName, ' ',u.job.jobTitle) LIKE %?1%")
 	public Page<Applicant> findAll(String keyword, Pageable pageable);
 	
 	
