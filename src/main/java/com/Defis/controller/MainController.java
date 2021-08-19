@@ -106,7 +106,7 @@ public class MainController {
 		Long id = loggedUser.getId();
 		
 
-		List<Medical> listMedicals =  medicalRepo.getByIdView(id);
+		List<Medical> listMedicals =  medicalRepo.getByIdView();
 		List<Birth> listBirths =  birthRepo.getByIdView(id);
 		List<Passport> listPassports =  passportRepo.getByIdView(id);
 		List<Ticket> listTickets =  ticketRepo.getByIdView(id);

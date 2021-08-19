@@ -16,10 +16,10 @@ public interface PassportRepository extends PagingAndSortingRepository<Passport,
 	
 public Long countById(Integer id);	
 
-@Query("SELECT u FROM Passport u WHERE u.user3.id=?#{ principal.id } AND (u.status = false) OR (u.status = true AND (day(u.pass_reception_date) - day(CURRENT_DATE) >= -1))")
+@Query("SELECT u FROM Passport u WHERE (u.user3.id=?#{ principal.id } AND u.status = false) OR (u.user3.id=?#{ principal.id } AND u.status = true AND year(u.pass_reception_date) - year(CURRENT_DATE) = 0 AND month(u.pass_reception_date) - month(CURRENT_DATE) = 0 AND day(u.pass_reception_date) - day(CURRENT_DATE) BETWEEN -1 AND 1)")
 public List<Passport> getUserById(@Param("id") long id);
 
-@Query("SELECT u FROM Passport u WHERE (u.status = false) OR (u.status = true AND (day(u.pass_reception_date) - day(CURRENT_DATE) >= -1))")
+@Query("SELECT u FROM Passport u WHERE u.status = false OR (u.status = true AND year(u.pass_reception_date) - year(CURRENT_DATE) = 0 AND month(u.pass_reception_date) - month(CURRENT_DATE) = 0 AND day(u.pass_reception_date) - day(CURRENT_DATE) BETWEEN -1 AND 1)")
 public List<Passport> getViewById(@Param("id") long id);
 	
 	@Query("SELECT u FROM Passport u WHERE CONCAT(u.id, ' ',u.applicant, ' ',u.passport_no, ' ',u.pass_paid) LIKE %?1%")
