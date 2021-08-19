@@ -51,7 +51,7 @@
                     <div class="card-header bg-transparent text-center">
                       <span th:if="${user.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
                       <span th:if="${user.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
-                      <img th:if="${user.photos != null}" th:src="@{${user.photosImagePath}}" style="width: 100px;" />                      <h3>
+                      <img th:if="${user.photos != null}" th:src="@{${user.photosImagePath}}" style="width: 330px;" />                      <h3>
                         <div>[[${user.fullName}]]</div>
                       </h3>
                     </div>
