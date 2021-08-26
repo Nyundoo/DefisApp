@@ -1,5 +1,6 @@
 package com.Defis.domain;
 
+import java.math.BigInteger;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -32,7 +33,7 @@ public class Training {
 	private Date finish_date;
 
 	@Column(name = "cert_no", length = 240, nullable = true)
-	private Integer cert_no;
+	private BigInteger cert_no;
 
 	private boolean t_status = false;
 
@@ -43,7 +44,7 @@ public class Training {
 	public Training() {
 	}
 
-	public Training(Integer id, Applicant applicant, Date start_date, Date finish_date, Integer cert_no) {
+	public Training(Integer id, Applicant applicant, Date start_date, Date finish_date, BigInteger cert_no) {
 		super();
 		this.id = id;
 		this.applicant = applicant;
@@ -84,11 +85,11 @@ public class Training {
 		this.finish_date = finish_date;
 	}
 
-	public Integer getCert_no() {
+	public BigInteger getCert_no() {
 		return cert_no;
 	}
 
-	public void setCert_no(Integer cert_no) {
+	public void setCert_no(BigInteger cert_no) {
 		this.cert_no = cert_no;
 	}
 

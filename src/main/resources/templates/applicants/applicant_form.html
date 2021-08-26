@@ -72,10 +72,11 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Gender:</label>
                 <div class="col-sm-8">
-                    <input list="gendertxt" th:field="*{gender}" class="form-control" required minlength="4" maxlength="7" />
+                    <input list="gendertxt" th:field="*{gender}" class="form-control" required minlength="4"
+                        maxlength="7" />
                     <datalist id="gendertxt">
                         <option value="Male">Male</option>
-                        <option value="Female">Female</option>                       
+                        <option value="Female">Female</option>
                     </datalist>
                 </div>
             </div>
@@ -169,7 +170,8 @@
                             <option th:text="${cat.country}+' : '+${cat.jobTitle}" th:value="${cat.id}" />
                         </th:block>
                     </select>
-                    <a style="text-decoration:underline; color: blue; font-size: medium;" th:href="@{/jobs/new}" target="_blank">Add New
+                    <a style="text-decoration:underline; color: blue; font-size: medium;" th:href="@{/jobs/new}"
+                        target="_blank">Add New
                         Job</a>
                 </div>
             </div>
@@ -179,13 +181,15 @@
                 <div class="col-sm-8">
                     <select th:field="*{agent}" class="form-control" required>
                         <th:block th:each="cat : ${listAgents}">
-                            <option th:text="${cat.idNo}+' : '+${cat.firstName}+' '+${cat.lastName}" th:value="${cat.id}" />
+                            <option th:text="${cat.idNo}+' : '+${cat.firstName}+' '+${cat.lastName}"
+                                th:value="${cat.id}" />
                         </th:block>
                     </select>
-                    <a style="text-decoration:underline; color: blue; font-size: medium;" th:href="@{/agents/new}" target="_blank">Add
+                    <a style="text-decoration:underline; color: blue; font-size: medium;" th:href="@{/agents/new}"
+                        target="_blank">Add
                         New Agent</a>
                 </div>
-            </div>            
+            </div>
 
             <SCRIPT language="javascript">
                 function addRow(tableID) {
