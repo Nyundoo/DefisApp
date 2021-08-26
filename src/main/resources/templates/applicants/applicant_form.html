@@ -92,7 +92,7 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">County:</label>
                 <div class="col-sm-8">
-                    <input list="countytxt" th:field="*{county}" class="form-control">
+                    <input list="countytxt" th:field="*{county}" class="form-control" minlength="2" maxlength="45">
                     <datalist id="countytxt">
                         <option value="01Mombasa">Mombasa</option>
                         <option value="02Kwale">Kwale</option>
@@ -277,13 +277,13 @@
                                 <TD><INPUT type="checkbox" name="chk" /></TD>
                             </th:block>
                             <TD><input type="text" name="detailCnationalId" placeholder="National ID"
-                                    th:value="${detail.cnational_id}" class="form-control" required /></TD>
+                                    th:value="${detail.cnational_id}" class="form-control" required minlength="2" maxlength="45" /></TD>
                             <TD><input type="text" name="detailCname" placeholder="Name" th:value="${detail.cname}"
                                     class="form-control" required /></TD>
                             <TD><input type="text" name="detailCcurrent_residence" placeholder="Current Res"
-                                    th:value="${detail.ccurrent_residence}" class="form-control" required /></TD>
+                                    th:value="${detail.ccurrent_residence}" class="form-control" required minlength="2" maxlength="45" /></TD>
                             <TD><input type="text" name="detailCcontact" placeholder="Contact"
-                                    th:value="${detail.ccontact}" class="form-control" required /></TD>
+                                    th:value="${detail.ccontact}" class="form-control" required minlength="2" maxlength="45" /></TD>
                             <TD>
                                 <SELECT class="form-control" name="detailCrelationship">
                                     <OPTION value="Parent">Parent</OPTION>
@@ -300,13 +300,13 @@
                         <TR>
                             <TD><INPUT type="checkbox" name="chk" /></TD>
                             <TD><input type="text" name="detailCnationalId" placeholder="National ID"
-                                    class="form-control" required /></TD>
+                                    class="form-control" required minlength="2" maxlength="45" /></TD>
                             <TD><input type="text" name="detailCname" placeholder="Name" class="form-control"
-                                    required /></TD>
+                                    required minlength="2" maxlength="45" /></TD>
                             <TD><input type="text" name="detailCcurrent_residence" placeholder="Current Res"
-                                    class="form-control" required /></TD>
+                                    class="form-control" required minlength="2" maxlength="45" /></TD>
                             <TD><input type="text" name="detailCcontact" placeholder="Contact" class="form-control"
-                                    required /></TD>
+                                    required minlength="2" maxlength="45" /></TD>
                             <TD>
                                 <SELECT class="form-control" name="detailCrelationship">
                                     <OPTION value="Parent">Parent</OPTION>
