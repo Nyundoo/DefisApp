@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragments :: page_head('Job View - Defis Admin')" />
+
+<body>
+    <div class="container-fluid">
+        <div th:replace="nav :: menu"></div>
+    </div>
+  <div class="rt-container">
+
+    <div class="col-rt-4" id="float-right">
+
+      <!-- Ad Here -->
+
+    </div>
+    <div class="col-rt-2">
+      <ul>
+        <li><a th:href="@{/jobss}">Back to Job list page</a></li>
+        <a class="fas fa-edit icon-green m-3" th:href="@{'/jobss/edit/' + ${jobs.id}}"
+                            title="Edit this job"></a>
+
+      </ul>
+    </div>
+  </div>
+
+  <header class="ScriptHeader">
+    <div class="rt-container">
+      <div class="col-rt-12">
+        <div class="rt-heading">
+          <h1>
+            [[${pageTitle}]]
+          </h1>
+          <p>Job profile page.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="rt-container">
+      <div class="col-rt-12">
+        <div class="Scriptcontent">
+
+          <!-- Student Profile -->
+          <div class="student-profile py-4">
+            <div class="container">
+              <div class="row">
+                
+                <div class="col-lg-8">
+                  <div class="card shadow-sm">
+                    <div class="card-header bg-transparent border-0">
+                      <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Job Information</h3>
+                    </div>
+                    <div class="card-body pt-0">
+                      <table class="table table-bordered">
+                        <tr>
+                          <th width="30%">Country</th>
+                          <td width="2%">:</td>
+                          <td>[[${jobs.country}]]</td>
+                        </tr>
+                        <tr>
+                          <th width="30%">Job Title </th>
+                          <td width="2%">:</td>
+                          <td>[[${jobs.jobTitle}]]</td>
+                        </tr>
+                        <tr>
+                          <th width="30%">Payment </th>
+                          <td width="2%">:</td>
+                          <td>[[${jobs.payment}]]</td>
+                        </tr>
+                        <tr>
+                            <th width="30%">Interview Date</th>
+                            <td width="2%">:</td>
+                            <td>[[${jobs.interviewDate}]]</td>
+                        </tr>
+                        <tr>
+                            <th width="30%">Number of Job Vacancy </th>
+                            <td width="2%">:</td>
+                            <td>[[${jobs.noVacancy}]]</td>
+                        </tr>
+                        <tr>
+                            <th width="30%">Date posted</th>
+                            <td width="2%">:</td>
+                            <td>[[${jobs.datePosted}]]</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                  <div style="height: 26px"></div>
+                  <div class="card shadow-sm">
+                    <div class="card-header bg-transparent border-0">
+                      <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Job Description</h3>
+                    </div>
+                    <div class="card-body pt-0">
+                      <p>[[${jobs.jobDescription}]]</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- partial -->
+
+        </div>
+      </div>
+      <div th:replace="fragments :: footer"></div>
+    </div>
+    
+  </section>
+  <!-- Analytics -->
+
+
+  
+</body>
+
+</html>

@@ -2,5 +2,12 @@
 <workingSetManager>
 <workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1626501635516_0" label="Java Main Sources" name="Java Main Sources"/>
 <workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1626501635533_1" label="Java Test Sources" name="Java Test Sources"/>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1631359814782_3" label="NyundooProject" name="NyundooProject">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NyundooCommon" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NyundooFrontEnd" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NyundooProject" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NyundooBackEnd" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/NyundooWebParent" type="4"/>
+</workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1626501636568_2" label="Window Working Set" name="Aggregate for window 1626501636567"/>
 </workingSetManager>

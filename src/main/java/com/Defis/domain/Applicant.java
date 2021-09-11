@@ -2,7 +2,9 @@ package com.Defis.domain;
 
 import java.beans.Transient;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -40,6 +44,10 @@ public class Applicant {
 	@ManyToOne
 	@JoinColumn(name = "job_id")
 	private Job job;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "applicants_jobs", joinColumns = @JoinColumn(name = "applicant_id"), inverseJoinColumns = @JoinColumn(name = "job_id"))
+	private Set<Jobs> jobs = new HashSet<>();
 
 	@Column(length = 128, nullable = true, unique = true)
 	private String email;
@@ -142,6 +150,14 @@ public class Applicant {
 
 	public void setJob(Job job) {
 		this.job = job;
+	}
+
+	public Set<Jobs> getJobs() {
+		return jobs;
+	}
+
+	public void setJobs(Set<Jobs> jobs) {
+		this.jobs = jobs;
 	}
 
 	public String getEmail() {

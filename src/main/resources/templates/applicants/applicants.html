@@ -42,6 +42,8 @@
                     </th>
                     <th th:replace="fragments :: column_link2('firstName', 'First Name', 'none')" />
                     <th th:replace="fragments :: column_link2('lastName', 'Last Name', 'none')" />
+                    <th th:replace="fragments :: column_link2('jobs', 'Jobs Selected', 'none')" />
+
                     <th></th>
                 </tr>
             </thead>
@@ -56,6 +58,7 @@
                     <td class="hideable-column">[[${applicant.email}]]</td>
                     <td>[[${applicant.firstName}]]</td>
                     <td>[[${applicant.lastName}]]</td>
+                    <td>[[${applicant.jobs}]]</td>
 
                     <td>
                         <a class="fas fa-user-alt icon-green mr-4" th:href="@{'/applicants/view/' + ${applicant.id}}"

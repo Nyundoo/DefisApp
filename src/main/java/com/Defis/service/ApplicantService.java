@@ -14,8 +14,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.Defis.domain.Applicant;
+import com.Defis.domain.Jobs;
 import com.Defis.exception.ApplicantNotFoundException;
 import com.Defis.repository.ApplicantRepository;
+import com.Defis.repository.JobsRepository;
 
 @Service
 @Transactional
@@ -25,6 +27,8 @@ public class ApplicantService {
 	@Autowired
 	private ApplicantRepository applicantRepo;
 
+	@Autowired
+	private JobsRepository jobsRepo;
 
 	public Applicant getByEmail(String email) {
 		return applicantRepo.getApplicantByEmail(email);
@@ -60,6 +64,10 @@ public class ApplicantService {
 		}
 
 		return applicantRepo.findAll(pageable);
+	}
+	
+	public List<Jobs> listJobss(){
+		return (List<Jobs>) jobsRepo.findAll();
 	}
 
 	public Applicant save(Applicant applicant) {

@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.Defis.domain.Agent;
 import com.Defis.domain.Applicant;
 import com.Defis.domain.Job;
+import com.Defis.domain.Jobs;
 import com.Defis.exception.ApplicantNotFoundException;
 import com.Defis.exporter.ApplicantCsvExporter;
 import com.Defis.exporter.ApplicantExcelExporter;
@@ -42,7 +43,7 @@ public class ApplicantController {
 	
 	@Autowired
 	private JobRepository jobRepo;
-	
+		
 	@GetMapping("/applicants")
 	public String listFirstPage(Model model) {
 		
@@ -89,6 +90,7 @@ public class ApplicantController {
 	public String newApplicant(Model model) {	
 		List<Agent> listAgents = (List<Agent>) agentRepo.findAll();
 		List<Job> listJobs = (List<Job>) jobRepo.findAll();
+		List<Jobs> listJobss = service.listJobss();
 		
 		Applicant applicants = new Applicant();
 		
@@ -99,6 +101,8 @@ public class ApplicantController {
 		model.addAttribute("listAgents", listAgents);
 		
 		model.addAttribute("listJobs", listJobs);
+		
+		model.addAttribute("listJobss", listJobss);
 		
 		return "applicants/applicant_form";
 	}
