@@ -40,10 +40,6 @@ public class Applicant {
 
 	@Column(name = "last_name", length = 45, nullable = false)
 	private String lastName;
-
-	@ManyToOne
-	@JoinColumn(name = "job_id")
-	private Job job;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "applicants_jobs", joinColumns = @JoinColumn(name = "applicant_id"), inverseJoinColumns = @JoinColumn(name = "job_id"))
@@ -142,14 +138,6 @@ public class Applicant {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public Job getJob() {
-		return job;
-	}
-
-	public void setJob(Job job) {
-		this.job = job;
 	}
 
 	public Set<Jobs> getJobs() {

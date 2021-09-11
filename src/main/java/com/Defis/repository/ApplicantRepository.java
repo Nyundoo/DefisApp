@@ -24,7 +24,7 @@ public interface ApplicantRepository extends PagingAndSortingRepository<Applican
 	@Query("SELECT count(u.applicant) FROM Training u WHERE u.t_status=false")
 	long countById5 ();
 	
-	@Query("SELECT count(u.id) FROM Job u")
+	@Query("SELECT count(u.id) FROM Jobs u")
 	long countById7 ();
 	
 	@Query("SELECT count(u.applicant) FROM Ticket u WHERE u.travel_status=false")
@@ -38,7 +38,7 @@ public interface ApplicantRepository extends PagingAndSortingRepository<Applican
 	
 	public Long countById(Integer id);	
 	
-	@Query("SELECT u FROM Applicant u WHERE CONCAT(u.id, ' ',u.email, ' ',u.firstName, ' ',u.lastName, ' ',u.job.jobTitle) LIKE %?1%")
+	@Query("SELECT u FROM Applicant u WHERE CONCAT(u.id, ' ',u.email, ' ',u.firstName, ' ',u.lastName) LIKE %?1%")
 	public Page<Applicant> findAll(String keyword, Pageable pageable);
 	
 	

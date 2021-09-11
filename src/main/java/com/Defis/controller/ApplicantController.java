@@ -22,15 +22,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Agent;
 import com.Defis.domain.Applicant;
-import com.Defis.domain.Job;
 import com.Defis.domain.Jobs;
-import com.Defis.domain.Role;
 import com.Defis.exception.ApplicantNotFoundException;
 import com.Defis.exporter.ApplicantCsvExporter;
 import com.Defis.exporter.ApplicantExcelExporter;
 import com.Defis.exporter.ApplicantPDFExporter;
 import com.Defis.repository.AgentRepository;
-import com.Defis.repository.JobRepository;
 import com.Defis.service.ApplicantService;
 import com.Defis.utility.FileUploadUtil;
 
@@ -41,9 +38,6 @@ public class ApplicantController {
 	
 	@Autowired
 	private AgentRepository agentRepo;
-	
-	@Autowired
-	private JobRepository jobRepo;
 		
 	@GetMapping("/applicants")
 	public String listFirstPage(Model model) {
@@ -90,7 +84,6 @@ public class ApplicantController {
 	@GetMapping("/applicants/new")
 	public String newApplicant(Model model) {	
 		List<Agent> listAgents = (List<Agent>) agentRepo.findAll();
-		List<Job> listJobs = (List<Job>) jobRepo.findAll();
 		List<Jobs> listJobss = service.listJobss();
 		
 		Applicant applicants = new Applicant();
@@ -100,8 +93,6 @@ public class ApplicantController {
 		model.addAttribute("pageTitle", "Create New Applicant");
 		
 		model.addAttribute("listAgents", listAgents);
-		
-		model.addAttribute("listJobs", listJobs);
 		
 		model.addAttribute("listJobss", listJobss);
 		
@@ -182,14 +173,12 @@ public class ApplicantController {
 		Applicant applicant = service.get(id);
 
 		List<Agent> listAgents = (List<Agent>) agentRepo.findAll();
-		List<Job> listJobs = (List<Job>) jobRepo.findAll();
 		List<Jobs> listJobss = service.listJobss();
 		
 		model.addAttribute("applicant", applicant);
 		model.addAttribute("pageTitle", "Edit Applicant (ID: " + id + ")");		
 		
 		model.addAttribute("listAgents", listAgents);
-		model.addAttribute("listJobs", listJobs);
 		model.addAttribute("listJobss", listJobss);
 		
 		return "applicants/applicant_form";
@@ -211,13 +200,13 @@ public class ApplicantController {
 		Applicant applicant = service.get(id);
 
 		List<Agent> listAgents = (List<Agent>) agentRepo.findAll();
-		List<Job> listJobs = (List<Job>) jobRepo.findAll();
+		List<Jobs> listJobss = service.listJobss();
 		
 		model.addAttribute("applicant", applicant);
 		model.addAttribute("pageTitle", "View Applicant (ID: " + id + ")");		
 		
 		model.addAttribute("listAgents", listAgents);
-		model.addAttribute("listJobs", listJobs);
+		model.addAttribute("listJobss", listJobss);
 		
 		return "applicants/applicantprofile";
 		
