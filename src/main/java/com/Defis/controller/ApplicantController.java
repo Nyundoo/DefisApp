@@ -24,6 +24,7 @@ import com.Defis.domain.Agent;
 import com.Defis.domain.Applicant;
 import com.Defis.domain.Job;
 import com.Defis.domain.Jobs;
+import com.Defis.domain.Role;
 import com.Defis.exception.ApplicantNotFoundException;
 import com.Defis.exporter.ApplicantCsvExporter;
 import com.Defis.exporter.ApplicantExcelExporter;
@@ -182,12 +183,14 @@ public class ApplicantController {
 
 		List<Agent> listAgents = (List<Agent>) agentRepo.findAll();
 		List<Job> listJobs = (List<Job>) jobRepo.findAll();
+		List<Jobs> listJobss = service.listJobss();
 		
 		model.addAttribute("applicant", applicant);
 		model.addAttribute("pageTitle", "Edit Applicant (ID: " + id + ")");		
 		
 		model.addAttribute("listAgents", listAgents);
 		model.addAttribute("listJobs", listJobs);
+		model.addAttribute("listJobss", listJobss);
 		
 		return "applicants/applicant_form";
 		
