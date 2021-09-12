@@ -100,7 +100,7 @@ public class MainController {
 	}
 	
 	@GetMapping("/schedules")
-	public String viewTask(@AuthenticationPrincipal NyundooUserDetails loggedUser, Model model) {	
+	public String viewSchedules(@AuthenticationPrincipal NyundooUserDetails loggedUser, Model model) {	
 		
 	
 		Long id = loggedUser.getId();
@@ -134,6 +134,32 @@ public class MainController {
 		
 		
 		return "schedules";
+  
+	}
+	
+	
+	@GetMapping("/tasks")
+	public String viewTask(@AuthenticationPrincipal NyundooUserDetails loggedUser, Model model) {	
+		
+	
+		Long id = loggedUser.getId();
+	
+		
+		
+		return "tasks";
+  
+	}
+	
+	
+	@GetMapping("/marketer")
+	public String viewMarketer(@AuthenticationPrincipal NyundooUserDetails loggedUser, Model model) {	
+		
+	
+		Long id = loggedUser.getId();
+	
+		
+		
+		return "marketer";
   
 	}
 	
