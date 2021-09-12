@@ -99,7 +99,7 @@ public class MainController {
   
 	}
 	
-	@GetMapping("/tasks")
+	@GetMapping("/schedules")
 	public String viewTask(@AuthenticationPrincipal NyundooUserDetails loggedUser, Model model) {	
 		
 	
@@ -133,7 +133,7 @@ public class MainController {
 		model.addAttribute("applicant8", applicantRepo.countById8());
 		
 		
-		return "tasks";
+		return "schedules";
   
 	}
 	

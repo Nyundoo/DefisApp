@@ -49,6 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		.antMatchers("/users/**").hasAnyAuthority("Admin")
+		.antMatchers("/schedules/**").hasAnyAuthority("Admin")
 		.antMatchers("/payments/**").hasAnyAuthority("Admin","Payments")
 		.antMatchers("/medicals/**").hasAnyAuthority("Admin","Medicals")
 		.antMatchers("/agents/**").hasAnyAuthority("Admin","Agents")
@@ -75,8 +76,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/medicals/delete/**").hasAnyAuthority("Admin","Medicals")
 		.antMatchers("/births/edit/**").hasAnyAuthority("Admin","Births")
 		.antMatchers("/births/delete/**").hasAnyAuthority("Admin","Births")
-		.antMatchers("/tasks/edit/**").hasAnyAuthority("Admin","Tasks")
-		.antMatchers("/tasks/delete/**").hasAnyAuthority("Admin","Tasks")
+		.antMatchers("/schedules/edit/**").hasAnyAuthority("Admin","Tasks")
+		.antMatchers("/schedules/delete/**").hasAnyAuthority("Admin","Tasks")
 		.antMatchers("/visas/edit/**").hasAnyAuthority("Admin","Visas")
 		.antMatchers("/visas/delete/**").hasAnyAuthority("Admin","Visas")
 		.antMatchers("/payments/edit/**").hasAnyAuthority("Admin","Payments")

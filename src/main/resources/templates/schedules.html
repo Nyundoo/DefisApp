@@ -68,7 +68,7 @@
     <div class="container-fluid" style="margin-bottom: 40px;">
         <div th:replace="nav :: menu"></div>
         <div style="max-width:960px; margin: 0 auto;">
-            <h1>Defis Control Panel</h1>
+            <h1>Defis Schedules Panel</h1>
             Welcome <a th:href="@{/account}" sec:authentication="principal.fullname"></a>
             &nbsp;
             <span sec:authentication="principal.authorities"></span>
@@ -404,13 +404,6 @@
     </div>
     <script th:src="@{/js/common.js}"></script>
 
-    <script>
-        setInterval(function() {
-            $("#sd2").load("task.html #sd2");    
-            }, 15000);  
-        
-        
-        </script>
 
     <script>
         $(document).ready(function () {

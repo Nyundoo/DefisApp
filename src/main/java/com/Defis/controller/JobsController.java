@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Jobs;
+import com.Defis.domain.Medical;
 import com.Defis.exception.JobsNotFoundException;
 import com.Defis.exporter.JobsCsvExporter;
 import com.Defis.exporter.JobsExcelExporter;
@@ -30,7 +31,7 @@ public class JobsController {
 	@GetMapping("/jobss")
 	public String listFirstPage(Model model) {
 		
-		return listByPage(1, model, "jobTitle", "asc", null);
+		return listByPage(1, model, "id", "asc", null);
 	}
 	
 	@GetMapping("/jobss/page/{pageNum}")

@@ -29,7 +29,7 @@ public static final int JOBSS_PER_PAGE = 6;
 
 	
 	public List<Jobs> listAll()	{
-		return (List<Jobs>) jobRepo.findAll(Sort.by("jobTitle").ascending());
+		return (List<Jobs>) jobRepo.findAll(Sort.by("id").ascending());
 		
 	}
 	

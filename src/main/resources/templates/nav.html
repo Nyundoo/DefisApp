@@ -19,7 +19,10 @@
                     <li class="nav-item" sec:authorize="hasAuthority('Admin')">
                         <a class="nav-link" th:href="@{/users}">Users</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin','Tasks')">
+                    <li class="nav-item" sec:authorize="hasAuthority('Admin')">
+                        <a class="nav-link" th:href="@{/schedules}">Schedules</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin','Task')">
                         <a class="nav-link" th:href="@{/tasks}">Tasks</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasAnyAuthority('Admin','Payments')">
