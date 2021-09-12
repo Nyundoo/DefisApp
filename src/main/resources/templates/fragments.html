@@ -49,7 +49,7 @@
 
     <th th:fragment="column_link4(fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
         <a class="text-white"
-            th:href="@{'/jobs/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+            th:href="@{'/jobss/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
             [[${columnLabel}]]
         </a>
 
@@ -87,7 +87,7 @@
         th:href="@{'/agents/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
 
         <a th:fragment="page_link4(pageNum, label)" class="page-link"
-        th:href="@{'/jobs/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
+        th:href="@{'/jobss/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
         
         <a th:fragment="page_link5(pageNum, label)" class="page-link"
         th:href="@{'/medicals/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
