@@ -25,7 +25,7 @@
               <h1>
                 [[${pageTitle}]]
               </h1>
-              <p>User profile page.</p>
+              <p class="heading">User profile page.</p>
             </div>
           </div>
         </div>
@@ -33,10 +33,10 @@
     <form enctype="multipart/form-data" th:action="@{/users/save}" method="post"
         style="max-width: 700px; margin: 0 auto;" th:object="${user}" onsubmit="return checkEmailUnique(this);">
         <input type="hidden" th:field="*{id}" />
-        <div class="border border-secondary rounded p-3">
+        <div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Photo:</label>
+                <label class="col-sm-4 col-form-label heading">Photo:</label>
                 <div class="col-sm-8">
                     <input type="hidden" th:field="*{photos}" />
                     <input type="file" id="fileImage" name="image" accept="image/png, image/jpeg, image/jpg"
@@ -46,7 +46,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">E-mail:</label>
+                <label class="col-sm-4 col-form-label heading">E-mail:</label>
                 <div class="col-sm-8">
                     <input type="email" class="form-control" th:field="*{email}" required minlength="8"
                         maxlength="128" />
@@ -54,7 +54,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Identification Number:</label>
+                <label class="col-sm-4 col-form-label heading">Identification Number:</label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control" th:field="*{idNo}" required minlength="2"
                         maxlength="45" />
@@ -62,7 +62,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">First Name:</label>
+                <label class="col-sm-4 col-form-label heading">First Name:</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" th:field="*{firstName}" required minlength="2"
                         maxlength="45" />
@@ -70,7 +70,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Last Name:</label>
+                <label class="col-sm-4 col-form-label heading">Last Name:</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" th:field="*{lastName}" required minlength="2"
                         maxlength="45" />
@@ -78,7 +78,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Gender:</label>
+                <label class="col-sm-4 col-form-label heading">Gender:</label>
                 <div class="col-sm-8">
                     <input list="gendertxt" th:field="*{gender}" class="form-control" required minlength="4" maxlength="7" />
                     <datalist id="gendertxt">
@@ -89,7 +89,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Password:</label>
+                <label class="col-sm-4 col-form-label heading">Password:</label>
                 <div class="col-sm-8">
                     <input th:if="${user.id == null}" type="password" class="form-control" th:field="*{password}"
                         required minlength="8" maxlength="20" />
@@ -99,19 +99,19 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Roles:</label>
-                <div class="col-sm-8">
+                <label class="col-sm-4 col-form-label heading">Roles:</label>
+                <div class="col-sm-8 heading">
                     <th:block th:each="role : ${listRoles}">
                         <input type="checkbox" th:field="*{roles}" th:text="${role.name}" th:value="${role.id}"
                             class="m-2" />
-                        - <small>[[${role.description}]]</small>
+                        - <small class="heading">[[${role.description}]]</small>
                         <br />
                     </th:block>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Enabled:</label>
+                <label class="col-sm-4 col-form-label heading">Enabled:</label>
                 <div class="col-sm-8">
                     <input type="checkbox" th:field="*{enabled}" />
                 </div>

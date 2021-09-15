@@ -18,9 +18,9 @@
     <form enctype="multipart/form-data" th:action="@{/applicants/save}" method="post"
         style="max-width: 700px; margin: 0 auto;" th:object="${applicant}" onsubmit="return checkEmailUnique(this);">
         <input type="hidden" th:field="*{id}" />
-        <div class="border border-secondary rounded p-3">
+        <div >
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Photo:</label>
+                <label class="col-sm-4 col-form-label heading">Photo:</label>
                 <div class="col-sm-8">
                     <input type="hidden" th:field="*{photos}" />
                     <input type="file" id="fileImage" name="image" accept="image/png, image/jpeg, image/jpg"
@@ -31,7 +31,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">E-mail:</label>
+                <label class="col-sm-4 col-form-label heading">E-mail:</label>
                 <div class="col-sm-8">
                     <input type="email" class="form-control" th:field="*{email}" required minlength="8"
                         maxlength="128" />
@@ -39,7 +39,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Identification Number:</label>
+                <label class="col-sm-4 col-form-label heading">Identification Number:</label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control" th:field="*{identification}" required minlength="2"
                         maxlength="26" />
@@ -47,7 +47,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">First Name:</label>
+                <label class="col-sm-4 col-form-label heading">First Name:</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" th:field="*{firstName}" required minlength="2"
                         maxlength="45" />
@@ -55,7 +55,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Last Name:</label>
+                <label class="col-sm-4 col-form-label heading">Last Name:</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" th:field="*{lastName}" required minlength="2"
                         maxlength="45" />
@@ -63,14 +63,14 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Age:</label>
+                <label class="col-sm-4 col-form-label heading">Age:</label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control" th:field="*{age}" required minlength="2" maxlength="3" />
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Gender:</label>
+                <label class="col-sm-4 col-form-label heading">Gender:</label>
                 <div class="col-sm-8">
                     <input list="gendertxt" th:field="*{gender}" class="form-control" required minlength="4"
                         maxlength="7" />
@@ -82,7 +82,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Phone Number:</label>
+                <label class="col-sm-4 col-form-label heading">Phone Number:</label>
                 <div class="col-sm-8">
                     <input type="tel" class="form-control" th:field="*{contact}" required minlength="2"
                         maxlength="45" />
@@ -90,7 +90,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">County:</label>
+                <label class="col-sm-4 col-form-label heading">County:</label>
                 <div class="col-sm-8">
                     <input list="countytxt" th:field="*{county}" class="form-control" minlength="2" maxlength="45">
                     <datalist id="countytxt">
@@ -146,14 +146,14 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Ward:</label>
+                <label class="col-sm-4 col-form-label heading">Ward:</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" th:field="*{ward}" required minlength="2" maxlength="45" />
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Chief:</label>
+                <label class="col-sm-4 col-form-label heading">Chief:</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" th:field="*{chiefName}" required minlength="2"
                         maxlength="45" />
@@ -162,7 +162,7 @@
             
 
             <div class="form-group row">
-                <label class="col-form-label col-sm-4">Choose one or more Jobs: </label>
+                <label class="col-form-label col-sm-4 heading">Choose one or more Jobs: </label>
                 <div class="col-sm-8">
                     <select th:field="*{jobs}" class="form-control" multiple="multiple" required>
                         <th:block th:each="cats : ${listJobss}">
@@ -177,7 +177,7 @@
 
           
             <div class="form-group row">
-                <label class="col-form-label col-sm-4">Agent: </label>
+                <label class="col-form-label col-sm-4 heading">Agent: </label>
                 <div class="col-sm-8">
                     <select th:field="*{agent}" class="form-control" required>
                         <th:block th:each="cat : ${listAgents}">
@@ -247,7 +247,7 @@
                 }
 
             </SCRIPT>
-            <legend style="text-align: left;">Parent/Guardian and Next of Kin of the Applicant:</legend>
+            <legend class="heading" style="text-align: left;">Parent/Guardian and Next of Kin of the Applicant:</legend>
 
             <th:block th:if="${applicant.id == null}">
                 <INPUT type="button" value="Add Row" onclick="addRow('dataTable')" style="margin: 20px;" />
