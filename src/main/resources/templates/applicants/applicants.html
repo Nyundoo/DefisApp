@@ -3,11 +3,10 @@
 
 <head th:replace="fragments :: page_head('Applicant - Defis Admin')" />
 
-<body>
     <div class="container-fluid">
         <div th:replace="nav :: menu"></div>
         <div class="m-3">
-            <h2>Manage Applicant</h2>
+            <h2 class="heading">Manage Applicant</h2>
             <a th:href="@{/applicants/new}"><i class="fas fa-user-plus fa-2x mr-4"></i></a>
             <a th:href="@{/applicants/export/csv}"><i class="fas fa-file-csv fa-2x mr-4"></i></a>
             <a th:href="@{/applicants/export/excel}"><i class="far fa-file-excel fa-2x mr-4"></i></a>
@@ -30,7 +29,7 @@
 
     </div>
     <div class="full-details m-3">
-        <table class="table table-hover table-responsive-xl">
+        <table class="table table-hover table-responsive-xl back">
             <thead class="thead-dark art">
                 <tr>
                     <th class="hideable-column">
@@ -173,6 +172,5 @@
             window.location = "[[@{/applicants}]]";
         }
     </script>
-</body>
 
 </html>

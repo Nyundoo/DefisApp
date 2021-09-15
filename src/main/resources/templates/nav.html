@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-
 <body>
+
     <div th:fragment="menu">
         <form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
             <input type="submit" />
@@ -77,7 +77,6 @@
             </div>
         </nav>
     </div>
-
 </body>
 
 </html>

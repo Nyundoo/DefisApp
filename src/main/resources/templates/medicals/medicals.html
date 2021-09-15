@@ -3,11 +3,10 @@
 
 <head th:replace="fragments :: page_head('Medical - Defis Admin')" />
 
-<body>
     <div class="container-fluid">
         <div th:replace="nav :: menu"></div>
         <div class="m-3">
-            <h2>Manage Medicals</h2>
+            <h2 class="heading">Manage Medicals</h2>
             <a th:href="@{/medicals/new}"><i class="fas fa-folder-plus fa-2x mr-4"></i></a>
             <a th:href="@{/medicals/export/csv}"><i class="fas fa-file-csv fa-2x mr-4"></i></a>
             <a th:href="@{/medicals/export/excel}"><i class="far fa-file-excel fa-2x mr-4"></i></a>
@@ -30,7 +29,7 @@
 
     </div>
     <div class="full-details m-3">
-        <table class="table table-hover table-responsive-xl">
+        <table class="table table-hover table-responsive-xl back">
             <thead class="thead-dark art">
                 <tr>
                     <th class="hideable-column">
@@ -163,6 +162,5 @@
             window.location = "[[@{/medicals}]]";
         }
     </script>
-</body>
 
 </html>

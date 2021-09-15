@@ -15,8 +15,6 @@
 
 
 </head>
-
-<body>
     <th th:fragment="column_link(fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
         <a class="text-white"
             th:href="@{'/users/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortDir : reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">
@@ -102,6 +100,5 @@
         <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     </div>
 
-</body>
 
 </html>
