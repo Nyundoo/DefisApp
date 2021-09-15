@@ -30,8 +30,8 @@
 
     </div>
     <div class="full-details m-3">
-        <table class="table table-bordered table-striped table-hover table-responsive-xl">
-            <thead class="thead-dark">
+        <table class="table table-hover table-responsive-xl">
+            <thead class="thead-dark art">
                 <tr>
                     <th class="hideable-column">
                         <th th:replace="fragments :: column_link5('id', 'Birth Cert ID', 'tag')" />
@@ -45,7 +45,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="data">
                 <tr th:each="birth : ${listBirths}">
                     <td class="hideable-column">[[${birth.id}]]</td>
                     <td class="hideable-column">[[${birth.cert_no}]]</td>

@@ -30,8 +30,8 @@
 
     </div>
     <div class="full-details m-3">
-        <table class="table table-bordered table-striped table-hover table-responsive-xl">
-            <thead class="thead-dark">
+        <table class="table table-hover table-responsive-xl">
+            <thead class="thead-dark art">
                 <tr>
                         <th th:replace="fragments :: column_link3('applicant', 'Applicant', 'none')" />
                    
@@ -41,7 +41,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="data">
                 <tr th:each="payment : ${listPayments}">
                     <td>[[${payment.applicant.identification}+' :
                     '+${payment.applicant.firstName}+' 

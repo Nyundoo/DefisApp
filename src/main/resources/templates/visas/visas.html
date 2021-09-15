@@ -30,8 +30,8 @@
 
     </div>
     <div class="full-details m-3">
-        <table class="table table-bordered table-striped table-hover table-responsive-xl">
-            <thead class="thead-dark">
+        <table class="table table-hover table-responsive-xl">
+            <thead class="thead-dark art">
                 <tr>
                     <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
                     <th th:replace="fragments :: column_link6('type_of_visa', 'Type of Visa', 'none')" />
@@ -40,7 +40,7 @@
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="data">
                 <tr th:each="visa : ${listVisas}">
                     <td>[[${visa.applicant.identification}+' :
                         '+${visa.applicant.firstName}+' 

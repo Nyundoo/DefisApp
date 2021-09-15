@@ -126,8 +126,8 @@
                 <div class="m-3">
                     <h2 style="text-align: center;">Medical Schedule</h2>
                 </div>
-                <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table5">
-                    <thead class="thead-dark">
+                <table class="table table-hover table-responsive-xl" id="Table5">
+                    <thead class="thead-dark art">
                         <tr>
 
                             <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
@@ -138,7 +138,7 @@
                             <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="data">
                         <tr th:each="medical : ${listMedicals}">
 
                             <td>[[${medical.applicant.identification}+' :
@@ -173,8 +173,8 @@
                 <div class="m-3">
                     <h2 style="text-align: center;">Birth Certs Schedule</h2>
                 </div>
-                <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table4">
-                    <thead class="thead-dark">
+                <table class="table table-hover table-responsive-xl" id="Table4">
+                    <thead class="thead-dark art">
                         <tr>
 
                             <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
@@ -187,7 +187,7 @@
                             <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="data">
                         <tr th:each="birth : ${listBirths}">
 
                             <td>[[${birth.applicant.identification}+' :
@@ -219,8 +219,8 @@
                 <div class="m-3">
                     <h2 style="text-align: center;">Passport Schedule</h2>
                 </div>
-                <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table3">
-                    <thead class="thead-dark">
+                <table class="table table-responsive-xl" id="Table3">
+                    <thead class="thead-dark art">
                         <tr>
                             <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
                             <th
@@ -233,7 +233,7 @@
 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="data">
                         <tr th:each="passport : ${listPassports}">
                             <td>[[${passport.applicant.identification}+' :
                                 '+${passport.applicant.firstName}+'
@@ -269,8 +269,8 @@
                 <div class="m-3">
                     <h2 style="text-align: center;">Training Schedule</h2>
                 </div>
-                <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table2">
-                    <thead class="thead-dark">
+                <table class="table table-hover table-responsive-xl" id="Table2">
+                    <thead class="thead-dark art">
                         <tr>
                             <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
                             <th th:replace="fragments :: column_link6('start_date', 'Start Date', 'none')" />
@@ -279,7 +279,7 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="data">
                         <tr th:each="training : ${listTrainings}">
                             <td>[[${training.applicant.identification}+' :
                                 '+${training.applicant.firstName}+'
@@ -310,8 +310,8 @@
                 <div class="m-3">
                     <h2 style="text-align: center;">Visa Schedule</h2>
                 </div>
-                <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table6">
-                    <thead class="thead-dark">
+                <table class="table table-hover table-responsive-xl" id="Table6">
+                    <thead class="thead-dark art">
                         <tr>
                             <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
                             <th th:replace="fragments :: column_link6('type_of_visa', 'Type of Visa', 'none')" />
@@ -321,7 +321,7 @@
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="data">
                         <tr th:each="visa : ${listVisas}">
                             <td>[[${visa.applicant.identification}+' :
                                 '+${visa.applicant.firstName}+'
@@ -349,8 +349,8 @@
                 <div class="m-3">
                     <h2 style="text-align: center;">Ticket Schedule</h2>
                 </div>
-                <table class="table table-bordered table-striped table-hover table-responsive-xl" id="Table1">
-                    <thead class="thead-dark">
+                <table class="table table-hover table-responsive-xl" id="Table1">
+                    <thead class="thead-dark art">
                         <tr>
                             <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
 
@@ -367,7 +367,7 @@
 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="data">
                         <tr th:each="travel : ${listTickets}">
                             <td>[[${travel.applicant.identification}+' :
                                 '+${travel.applicant.firstName}+'

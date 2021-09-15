@@ -30,8 +30,8 @@
 
     </div>
     <div class="full-details m-3">
-        <table class="table table-bordered table-striped table-hover table-responsive-xl">
-            <thead class="thead-dark">
+        <table class="table table-hover table-responsive-xl">
+            <thead class="thead-dark art">
                 <tr>
                     <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
                     <th th:replace="fragments :: column_link6('start_date', 'Start Date', 'none')" />
@@ -40,7 +40,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="data">
                 <tr th:each="training : ${listTrainings}">
                     <td>[[${training.applicant.identification}+' :
                         '+${training.applicant.firstName}+' 

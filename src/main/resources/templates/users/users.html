@@ -30,8 +30,8 @@
 
     </div>
     <div class="full-details m-3">
-        <table class="table table-bordered table-striped table-hover table-responsive-xl">
-            <thead class="thead-dark">
+        <table class="table table-hover table-responsive-xl">
+            <thead class="thead-dark art">
                 <tr>
                     <th class="hideable-column">
                         <th th:replace="fragments :: column_link('id', 'User ID', 'tag')" />
@@ -47,7 +47,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="data">
                 <tr th:each="user : ${listUsers}">
                     <td class="hideable-column">[[${user.id}]]</td>
                     <td>

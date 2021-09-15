@@ -14,51 +14,51 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="topNavbar">
+            <div class="collapse navbar-collapse space" id="topNavbar">
                 <ul class="navbar-nav navbar-right">
-                    <li class="nav-item" sec:authorize="hasAuthority('Admin')">
+                    <li class="nav-item title" sec:authorize="hasAuthority('Admin')">
                         <a class="nav-link" th:href="@{/users}">Users</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAuthority('Admin')">
+                    <li class="nav-item title" sec:authorize="hasAuthority('Admin')">
                         <a class="nav-link" th:href="@{/schedules}">Schedules</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin','Task')">
+                    <li class="nav-item title" sec:authorize="hasAnyAuthority('Admin','Task')">
                         <a class="nav-link" th:href="@{/tasks}">Tasks</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin','Payments')">
+                    <li class="nav-item title" sec:authorize="hasAnyAuthority('Admin','Payments')">
                         <a class="nav-link" th:href="@{/payments}">Payments</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Medicals')">
+                    <li class="nav-item title" sec:authorize="hasAnyAuthority('Admin', 'Medicals')">
                         <a class="nav-link" th:href="@{/medicals}">Medicals</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Births')">
+                    <li class="nav-item title" sec:authorize="hasAnyAuthority('Admin', 'Births')">
                         <a class="nav-link" th:href="@{/births}">Birth Cert</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Passports')">
+                    <li class="nav-item title" sec:authorize="hasAnyAuthority('Admin', 'Passports')">
                         <a class="nav-link" th:href="@{/passports}">Passports</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Trainings')">
+                    <li class="nav-item title" sec:authorize="hasAnyAuthority('Admin', 'Trainings')">
                         <a class="nav-link" th:href="@{/trainings}">Trainings</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Visas')">
+                    <li class="nav-item title" sec:authorize="hasAnyAuthority('Admin', 'Visas')">
                         <a class="nav-link" th:href="@{/visas}">Visas</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Tickets')">
-                        <a class="nav-link" th:href="@{/tickets}">Tickets</a>
+                        <a class="nav-link title" th:href="@{/tickets}">Tickets</a>
                     </li>
-                        <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Jobs')">
+                        <li class="nav-item title" sec:authorize="hasAnyAuthority('Admin', 'Jobs')">
                             <a class="nav-link" th:href="@{/jobss}">Jobs</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Agents')">
+                    <li class="nav-item title" sec:authorize="hasAnyAuthority('Admin', 'Agents')">
                         <a class="nav-link" th:href="@{/agents}">Agents</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Applicants')">
+                    <li class="nav-item title" sec:authorize="hasAnyAuthority('Admin', 'Applicants')">
                         <a class="nav-link" th:href="@{/applicants}">Applicants</a>
                     </li>
-                    <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Marketers')">
+                    <li class="nav-item title" sec:authorize="hasAnyAuthority('Admin', 'Marketers')">
                         <a class="nav-link" th:href="@{/marketer}">Marketer</a>
                     </li>
-                    <!-- <li class="nav-item" sec:authorize="hasAnyAuthority('Admin', 'Marketers')">
+                    <!-- <li class="nav-item title" sec:authorize="hasAnyAuthority('Admin', 'Marketers')">
                         <button type="button" class="icon-button">
                             <span class="material-icons">notifications</span>
                             <span class="icon-button__badge">2</span>
