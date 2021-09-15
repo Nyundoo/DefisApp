@@ -20,7 +20,7 @@ import com.Defis.repository.PaymentRepository;
 @Service
 @Transactional
 public class PaymentService {
-	public static final int PAYMENTS_PER_PAGE = 6;
+	public static final int PAYMENTS_PER_PAGE = 15;
 
 	@Autowired
 	private PaymentRepository paymentRepo;

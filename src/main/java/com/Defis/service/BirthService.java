@@ -22,7 +22,7 @@ import com.Defis.repository.BirthRepository;
 @Transactional
 public class BirthService {
 
-	public static final int BIRTHCERTS_PER_PAGE = 6;
+	public static final int BIRTHCERTS_PER_PAGE = 15;
 
 	@Autowired
 	private BirthRepository birthcertRepo;

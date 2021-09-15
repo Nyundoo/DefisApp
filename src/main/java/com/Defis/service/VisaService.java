@@ -22,7 +22,7 @@ import com.Defis.repository.VisaRepository;
 public class VisaService {
 
 	
-public static final int VISAS_PER_PAGE = 6;
+public static final int VISAS_PER_PAGE = 15;
 	
 	@Autowired
 	private VisaRepository visaRepo;

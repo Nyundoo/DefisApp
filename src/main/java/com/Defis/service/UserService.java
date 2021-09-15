@@ -22,7 +22,7 @@ import com.Defis.repository.UserRepository;
 @Service
 @Transactional
 public class UserService {
-	public static final int USERS_PER_PAGE = 6;
+	public static final int USERS_PER_PAGE = 15;
 
 	
 	@Autowired

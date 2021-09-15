@@ -22,7 +22,7 @@ import com.Defis.repository.PassportRepository;
 @Transactional
 public class PassportService {
 
-public static final int PASSPORTS_PER_PAGE = 6;
+public static final int PASSPORTS_PER_PAGE = 15;
 	
 	@Autowired
 	private PassportRepository passportRepo;

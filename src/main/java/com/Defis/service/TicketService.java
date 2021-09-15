@@ -22,7 +22,7 @@ import com.Defis.repository.TicketRepository;
 @Transactional
 public class TicketService {
 	
-	public static final int TICKETS_PER_PAGE = 6;
+	public static final int TICKETS_PER_PAGE = 15;
 	@Autowired
 	private TicketRepository ticketRepo;
 	

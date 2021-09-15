@@ -20,7 +20,7 @@ import com.Defis.repository.JobsRepository;
 @Transactional
 public class JobsService {
 
-public static final int JOBSS_PER_PAGE = 6;
+public static final int JOBSS_PER_PAGE = 15;
 
 	
 	@Autowired

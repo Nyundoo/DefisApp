@@ -21,7 +21,7 @@ import com.Defis.repository.MedicalRepository;
 @Transactional
 public class MedicalService {
 	
-public static final int MEDICALS_PER_PAGE = 6;
+public static final int MEDICALS_PER_PAGE = 15;
 	
 	@Autowired
 	private MedicalRepository medicalRepo;

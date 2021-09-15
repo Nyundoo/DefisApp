@@ -22,7 +22,7 @@ import com.Defis.repository.JobsRepository;
 @Service
 @Transactional
 public class ApplicantService {
-	public static final int APPLICANTS_PER_PAGE = 6;
+	public static final int APPLICANTS_PER_PAGE = 15;
 
 	@Autowired
 	private ApplicantRepository applicantRepo;

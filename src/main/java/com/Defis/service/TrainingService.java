@@ -23,7 +23,7 @@ import com.Defis.repository.TrainingRepository;
 public class TrainingService {
 
 
-	public static final int TRAININGS_PER_PAGE = 6;
+	public static final int TRAININGS_PER_PAGE = 15;
 	@Autowired
 	private TrainingRepository trainingRepo;
 	
