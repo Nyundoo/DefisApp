@@ -87,7 +87,6 @@ public class JobsExcelExporter extends AbstractExporter {
 			createCell(row, columnIndex++, jobs.getJobTitle(), cellStyle);
 			createCell(row, columnIndex++, jobs.getPayment(), cellStyle);
 			createCell(row, columnIndex++, jobs.getJobDescription(), cellStyle);
-			createCell(row, columnIndex++, jobs.getQualification(), cellStyle);
 			createCell(row, columnIndex++, jobs.getInterviewDate(), cellStyle);
 			createCell(row, columnIndex++, jobs.getNoVacancy(), cellStyle);
 			createCell(row, columnIndex++, jobs.getDatePosted(), cellStyle);

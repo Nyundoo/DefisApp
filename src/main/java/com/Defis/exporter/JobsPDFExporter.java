@@ -55,7 +55,6 @@ public class JobsPDFExporter extends AbstractExporter {
 			table.addCell(jobs.getCountry());
 			table.addCell(String.valueOf(jobs.getPayment()));
 			table.addCell(jobs.getJobDescription());
-			table.addCell(jobs.getQualification());
 			table.addCell(String.valueOf(jobs.getInterviewDate()));
 			table.addCell(String.valueOf(jobs.getNoVacancy()));
 			table.addCell(String.valueOf(jobs.getDatePosted()));
@@ -84,8 +83,6 @@ public class JobsPDFExporter extends AbstractExporter {
 		cell.setPhrase(new Phrase("Job Description", font));				
 		table.addCell(cell);
 		
-		cell.setPhrase(new Phrase("Qualification", font));				
-		table.addCell(cell);
 		
 		cell.setPhrase(new Phrase("Interview Date", font));				
 		table.addCell(cell);
