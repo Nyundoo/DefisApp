@@ -61,7 +61,6 @@ public class Jobs {
 		this.pay = pay;
 		this.payment = payment;
 		this.jobDescription = jobDescription;
-		this.qualification = qualification;
 		this.interviewDate = interviewDate;
 		this.noVacancy = noVacancy;
 		this.datePosted = datePosted;
@@ -113,14 +112,6 @@ public class Jobs {
 
 	public void setJobDescription(String jobDescription) {
 		this.jobDescription = jobDescription;
-	}
-
-	public String getQualification() {
-		return qualification;
-	}
-
-	public void setQualification(String qualification) {
-		this.qualification = qualification;
 	}
 
 	public String getSkills() {
