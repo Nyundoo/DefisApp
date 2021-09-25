@@ -16,11 +16,11 @@
         <div class="border border-s
         econdary rounded p-3" style="margin-bottom: 20px;">
             <div class="m-3">
-                <legend style="text-align: left;" class="heading">Assign Task:</legend>
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-4 heading">Client: </label>
-                    <div class="col-sm-8">
-                        <select th:field="*{applicant}" class="form-control" required>
+                <legend style="text-align: left;" class="">Assign Task</legend>
+                <div class="form-group">
+                    <label class="col-form-label login">Client *</label>
+                    <div class="">
+                        <select th:field="*{applicant}" class="form-control input" required>
                             <th:block th:each="cat : ${listApplicants}">
                                 <option th:text="${cat.identification}+' : '+${cat.firstName}+' '+${cat.lastName}"
                                     th:value="${cat.id}" />
@@ -32,68 +32,68 @@
                 <div class="border border-s
                 econdary rounded p-3" style="margin-bottom: 20px;">
 
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-4 heading" style="text-align: right;">Application Date: </label>
+                    <div class="form-group">
+                        <label class="col-form-label login" style="text-align: right;">Application Date *</label>
 
-                        <div class="col-sm-8">
-                            <input type="date" th:field="*{application_date}" class="form-control" id="theDate1"
+                        <div class="">
+                            <input type="date" th:field="*{application_date}" class="form-control input" id="theDate1"
                                 required />
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-4 heading" style="text-align: right;">Results Date: </label>
+                    <div class="form-group">
+                        <label class="col-form-label login" style="text-align: right;">Results Date</label>
 
-                        <div class="col-sm-8">
-                            <input type="date" th:field="*{result_date}" class="form-control" id="theDate2" required />
+                        <div class="">
+                            <input type="date" th:field="*{result_date}" class="form-control input" id="theDate2" />
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-4 heading" style="text-align: right;">Client Information: </label>
-                        <div class="col-sm-8">
-                            <input type="text" th:field="*{client_info}" class="form-control" required />
+                    <div class="form-group">
+                        <label class="col-form-label login" style="text-align: right;">Client Information</label>
+                        <div class="">
+                            <input type="text" th:field="*{client_info}" class="form-control input" />
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-4 heading" style="text-align: right;">Medical Center: </label>
-                        <div class="col-sm-8">
-                            <input type="text" th:field="*{medical_center}" class="form-control" required />
+                    <div class="form-group">
+                        <label class="col-form-label login" style="text-align: right;">Medical Center *</label>
+                        <div class="">
+                            <input type="text" th:field="*{medical_center}" class="form-control input" required />
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-4 heading" style="text-align: right;">Medical Type: </label>
-                        <div class="col-sm-8">
-                            <input type="text" th:field="*{medical_type}" class="form-control" required />
+                    <div class="form-group">
+                        <label class="col-form-label login" style="text-align: right;">Medical Type *</label>
+                        <div class="">
+                            <input type="text" th:field="*{medical_type}" class="form-control input" required />
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-4 heading" style="text-align: right;">Amount Paid: </label>
+                    <div class="form-group">
+                        <label class="col-form-label login" style="text-align: right;">Amount Paid </label>
 
-                        <div class="col-sm-8">
-                            <input type="number" th:field="*{amount_paid}" class="form-control" required />
+                        <div class="">
+                            <input type="number" th:field="*{amount_paid}" class="form-control input" />
                         </div>
                     </div>
 
                     <!-- status of medical -->
                     <div class="form-group">
-                        <label class="col-md-2 control-label heading" for="status" style="text-align: right;">Status</label>
+                        <label class="control-label login" for="status" style="text-align: right;">Status</label>
                         <div class="col-md-8">
-                            <label  class="heading"><input onclick="myFunction()" value="true" type="radio" name="status"
-                                    th:checked="${medical.status}" id="myCheck" /> Pass </label> <label  class="heading"><input
+                            <label  class=""><input onclick="myFunction()" value="true" type="radio" name="status"
+                                    th:checked="${medical.status}" id="myCheck" /> Pass </label> <label  class=""><input
                                     id="myCheck2" onclick="myFunctionx()" value="false" type="radio"
                                     th:checked="${!medical.status}" name="status" />
-                                Fail </label><br /><span class="help-block heading">(Whether the client has pass the medical
+                                Fail </label><br /><span class="help-block">(Whether the client has pass the medical
                                 test or
                                 failed)</span>
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label heading">Completed?:</label>
+                    <div class="form-group">
+                        <label class="col-form-label login">Completed?</label></br></br>
                         <div class="col-sm-8">
                             <input type="checkbox" id="myCheck" th:field="*{m_status}" onclick="myFunction()" />
                         </div>
@@ -101,8 +101,8 @@
 
                 </div>
 
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-4 heading">Assign To: </label>
+                <div class="form-group">
+                    <label class="col-form-label login">Assign To *</label>
                     <div class="col-sm-8">
                         <select th:field="*{user1}" class="form-control" required>
                             <th:block th:each="cat : ${listUsers}">

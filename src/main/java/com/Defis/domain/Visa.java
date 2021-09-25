@@ -24,10 +24,10 @@ public class Visa {
 	@JoinColumn(name = "applicant_id", nullable = false)
 	private Applicant applicant;
 
-	@Column(name = "type_of_visa", length = 64, nullable = true)
+	@Column(name = "type_of_visa", length = 64, nullable = false)
 	private String type_of_visa;
 
-	@Column(name = "visa_apply_date", length = 16, nullable = true)
+	@Column(name = "visa_apply_date", length = 16, nullable = false)
 	private Date visa_apply_date;
 
 	@Column(name = "visa_reception_date", length = 16, nullable = true)

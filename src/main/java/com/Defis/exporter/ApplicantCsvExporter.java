@@ -17,8 +17,8 @@ public class ApplicantCsvExporter extends AbstractExporter {
 		
 		ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
 		
-		String[] csvHeader = {"Applicant ID", "E-mail", "First Name", "Last Name"};
-		String[] fieldMapping = {"id", "email", "firstName", "lastName"};
+		String[] csvHeader = {"Applicant ID", "E-mail", "First Name", "Last Name", "Age", "Gender", "Mobile No"};
+		String[] fieldMapping = {"identification", "email", "firstName", "lastName", "age", "gender", "contact"};
 		
 		csvWriter.writeHeader(csvHeader);
 		

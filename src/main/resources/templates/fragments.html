@@ -94,6 +94,7 @@
         th:href="@{'/trainings/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
 
     <div th:fragment="footer" class="text-center m-3">
+        <hr>
         <p>Defis Control Panel - Copyright &copy; Defis</p>
         <script type="text/javascript" th:src="@{/js/common.js}"></script>
         <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>

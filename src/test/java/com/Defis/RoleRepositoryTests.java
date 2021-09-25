@@ -45,6 +45,7 @@ public class RoleRepositoryTests {
 //		Role roleMarketers = new Role(null, "Marketers", "Deign poster for new job posting");
 //		Role roleTasks = new Role(null, "Tasks", "Check for task schedule");
 //		Role roleVisas = new Role(null, "Visas", "Insert applicant visa details");
+//		Role roleInterviews = new Role(null, "Interviews", "Insert applicant visa details");
 //
 //
 //		

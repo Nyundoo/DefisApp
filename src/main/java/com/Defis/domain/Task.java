@@ -25,28 +25,37 @@ public class Task {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "task", length = 16, nullable = true)
-	private String task;
+	@Column(name = "create_task", length = 26, nullable = false)
+	private String createTask;
 
-	@Column(name = "task_description", length = 450, nullable = true)
+	@Column(name = "task_description", length = 500, nullable = true)
 	private String taskDescription;
+
+	@Column(name = "created_by", length = 45, nullable = false, updatable = false)
+	private String createdBy;
 
 	@CreatedDate
 	@Column(name = "created_at", nullable = false, updatable = false)
 	private Date createdAt;
 
-	@Column(name = "deadline_date", length = 16, nullable = true)
+	@Column(name = "deadline_date", length = 16, nullable = false)
 	private Date deadlineDate;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "responsible_applicants", joinColumns = @JoinColumn(name = "task_id"), inverseJoinColumns = @JoinColumn(name = "applicant_id"))
+	private Set<User> responsible = new HashSet<>();
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "participants_applicants", joinColumns = @JoinColumn(name = "task_id"), inverseJoinColumns = @JoinColumn(name = "applicant_id"))
 	private Set<User> participants = new HashSet<>();
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "observers_applicants", joinColumns = @JoinColumn(name = "task_id"), inverseJoinColumns = @JoinColumn(name = "applicant_id"))
 	private Set<User> observers = new HashSet<>();
 
 	private boolean priority = false;
+
+	private boolean task_completed = false;
 
 	public Integer getId() {
 		return id;
@@ -56,12 +65,12 @@ public class Task {
 		this.id = id;
 	}
 
-	public String getTask() {
-		return task;
+	public String getCreateTask() {
+		return createTask;
 	}
 
-	public void setTask(String task) {
-		this.task = task;
+	public void setCreateTask(String createTask) {
+		this.createTask = createTask;
 	}
 
 	public String getTaskDescription() {
@@ -76,6 +85,14 @@ public class Task {
 		return createdAt;
 	}
 
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
@@ -86,6 +103,14 @@ public class Task {
 
 	public void setDeadlineDate(Date deadlineDate) {
 		this.deadlineDate = deadlineDate;
+	}
+
+	public Set<User> getResponsible() {
+		return responsible;
+	}
+
+	public void setResponsible(Set<User> responsible) {
+		this.responsible = responsible;
 	}
 
 	public Set<User> getParticipants() {
@@ -112,6 +137,12 @@ public class Task {
 		this.priority = priority;
 	}
 
+	public boolean isTask_completed() {
+		return task_completed;
+	}
 
+	public void setTask_completed(boolean task_completed) {
+		this.task_completed = task_completed;
+	}
 
 }

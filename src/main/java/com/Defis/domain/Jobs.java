@@ -25,15 +25,18 @@ public class Jobs {
 	
 	private boolean pay = false;
 
-	@Column(length = 10, nullable = false)
+	@Column(length = 10, nullable = true)
 	private double payment;
 
-	@Column(name = "job_description", columnDefinition = "text")
+	@Column(name = "job_description", columnDefinition = "text", nullable = true)
 	private String jobDescription;
-
-	@Column(length = 250, nullable = false)
-	private String qualification;
-
+	
+	@Column(length = 750, nullable = true)
+	private String skills;
+	
+	@Column(length = 750, nullable = true)
+	private String objective;
+	
 	@Column(name = "interview_date", length = 10, nullable = false)
 	private Date interviewDate;
 
@@ -118,6 +121,22 @@ public class Jobs {
 
 	public void setQualification(String qualification) {
 		this.qualification = qualification;
+	}
+
+	public String getSkills() {
+		return skills;
+	}
+
+	public void setSkills(String skills) {
+		this.skills = skills;
+	}
+
+	public String getObjective() {
+		return objective;
+	}
+
+	public void setObjective(String objective) {
+		this.objective = objective;
 	}
 
 	public Date getInterviewDate() {

@@ -24,5 +24,7 @@ public interface BirthRepository extends PagingAndSortingRepository<Birth, Integ
 
 	@Query("SELECT u FROM Birth u WHERE CONCAT(u.id, ' ',u.applicant, ' ',u.cert_no, ' ',u.user2) LIKE %?1%")
 	public Page<Birth> findAll(String keyword, Pageable pageable);
+	
+	
 
 }

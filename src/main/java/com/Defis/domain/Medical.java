@@ -28,16 +28,16 @@ public class Medical {
 	@Column(name = "client_info", columnDefinition = "text", nullable = true)
 	private String client_info;
 
-	@Column(name = "medical_center", length = 45, nullable = true)
+	@Column(name = "medical_center", length = 45, nullable = false)
 	private String medical_center;
 
-	@Column(name = "medical_type", length = 45, nullable = true)
+	@Column(name = "medical_type", length = 45, nullable = false)
 	private String medical_type;
 
 	@Column(name = "amount_paid", length = 20, nullable = true)
 	private double amount_paid;
 
-	@Column(name = "application_date", length = 16, nullable = true)
+	@Column(name = "application_date", length = 16, nullable = false)
 	private Date application_date;
 
 	@Column(name = "result_date", length = 16, nullable = true)

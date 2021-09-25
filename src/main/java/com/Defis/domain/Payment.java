@@ -19,13 +19,13 @@ public class Payment {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "applicant_id")
+	@JoinColumn(name = "applicant_id", nullable = false)
 	private Applicant applicant;
 
 	@Column(length = 20, nullable = false, unique = false)
 	private Integer amount_paid;
 
-	@Column(name = "date_paid", length = 16, nullable = true)
+	@Column(name = "date_paid", length = 16, nullable = false)
 	private Date date_paid;
 
 	public Integer getId() {

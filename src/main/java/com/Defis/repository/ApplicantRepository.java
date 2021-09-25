@@ -33,12 +33,15 @@ public interface ApplicantRepository extends PagingAndSortingRepository<Applican
 	@Query("SELECT count(u.applicant) FROM Medical u WHERE u.m_status=false")
 	long countById8 ();
 	
+	@Query("SELECT count(u.applicant) FROM Interview u WHERE u.i_status=false")
+	long countById9 ();
+	
 	@Query("SELECT u FROM Applicant u WHERE u.email = :email")
 	public Applicant getApplicantByEmail(@Param("email") String email);
 	
 	public Long countById(Integer id);	
 	
-	@Query("SELECT u FROM Applicant u WHERE CONCAT(u.id, ' ',u.email, ' ',u.firstName, ' ',u.lastName) LIKE %?1%")
+	@Query("SELECT u FROM Applicant u WHERE CONCAT(u.id, ' ',u.identification, ' ',u.email, ' ',u.firstName, ' ',u.lastName) LIKE %?1%")
 	public Page<Applicant> findAll(String keyword, Pageable pageable);
 	
 	

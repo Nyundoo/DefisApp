@@ -24,16 +24,16 @@ public class Birth {
 	@JoinColumn(name = "applicant_id", nullable = false)
 	private Applicant applicant;
 
-	@Column(name = "cert_no", length = 16, nullable = true)
+	@Column(name = "cert_no", length = 16, nullable = false)
 	private String cert_no;
 
 	@Column(length = 20, nullable = true)
 	private String paid;
 
-	@Column(name = "cert_application_date", length = 16, nullable = true)
+	@Column(name = "cert_application_date", length = 16, nullable = false)
 	private Date cert_application_date;
 
-	@Column(name = "cert_reception_date", length = 16, nullable = true)
+	@Column(name = "cert_reception_date", length = 16, nullable = false)
 	private Date cert_reception_date;
 
 	@ManyToOne

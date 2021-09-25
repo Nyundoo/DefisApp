@@ -32,7 +32,7 @@ public static final int AGENTS_PER_PAGE = 15;
 	}
 	
 	public List<Agent> listAll()	{
-		return (List<Agent>) agentRepo.findAll(Sort.by("firstName").ascending());
+		return (List<Agent>) agentRepo.findAll(Sort.by("id").ascending());
 		
 	}
 	

@@ -30,7 +30,7 @@ public class User {
 	@Column(length = 128, nullable = false, unique = true)
 	private String email;
 
-	@Column(name = "id_no", length = 8, nullable = true)
+	@Column(name = "id_no", length = 8, nullable = false)
 	private String idNo;
 
 	@Column(length = 64, nullable = false)
@@ -42,13 +42,13 @@ public class User {
 	@Column(name = "last_name", length = 45, nullable = false)
 	private String lastName;
 
-	@Column(length = 64)
+	@Column(length = 6,nullable = false)
 	private String gender;
 
 	@Column(length = 64)
 	private String photos;
 
-	private boolean enabled = true;
+	private boolean enabled = false;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -58,6 +58,10 @@ public class User {
 	private List<Medical> details = new ArrayList<>();
 
 	public User() {
+	}
+
+	public User(Long id) {
+		this.id = id;
 	}
 
 	public User(String email, String password, String firstName, String lastName) {
@@ -154,8 +158,8 @@ public class User {
 
 	public void setDetails(List<Medical> details) {
 		this.details = details;
-	} 
-	
+	}
+
 	public void addRole(Role role) {
 		this.roles.add(role);
 	}

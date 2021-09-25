@@ -14,10 +14,10 @@
         style="max-width: 700px; margin: 0 auto;" th:object="${visa}">
         <input type="hidden" th:field="*{id}" />
         <div class="border border-secondary rounded p-3">
-            <div class="form-group row">
-                <label class="col-form-label col-sm-4">Client: </label>
-                <div class="col-sm-8">
-                    <select th:field="*{applicant}" class="form-control" required>
+            <div class="form-group">
+                <label class="col-form-label login">Client *</label>
+                <div class="">
+                    <select th:field="*{applicant}" class="form-control input" required>
                         <th:block th:each="cat : ${listApplicants}">
                             <option th:text="${cat.identification}+' : '+${cat.firstName}+' '+${cat.lastName}"
                                 th:value="${cat.id}" />
@@ -29,42 +29,42 @@
             </div>
 
             <div class="border border-secondary rounded p-3" style="margin-bottom: 20px;">
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Type of Visa:</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" th:field="*{type_of_visa}" required minlength="2"
+            <div class="form-group">
+                <label class="col-form-label login">Type of Visa *</label>
+                <div class="">
+                    <input type="text" class="form-control input" th:field="*{type_of_visa}" required minlength="2"
                         maxlength="26" />
                 </div>
             </div>
 
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Visa Application Date:</label>
-                <div class="col-sm-8">
-                    <input type="date" class="form-control" th:field="*{visa_apply_date}" required minlength="2"
+            <div class="form-group">
+                <label class="col-form-label login">Visa Application Date *</label>
+                <div class="">
+                    <input type="date" class="form-control input" th:field="*{visa_apply_date}" required minlength="2"
                         maxlength="45" />
                 </div>
             </div>
 
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Visa Reception Date:</label>
-                <div class="col-sm-8">
-                    <input type="date" class="form-control" th:field="*{visa_reception_date}" required minlength="2"
+            <div class="form-group">
+                <label class="col-form-label login">Visa Reception Date</label>
+                <div class="">
+                    <input type="date" class="form-control input" th:field="*{visa_reception_date}" minlength="2"
                         maxlength="45" />
                 </div>
             </div>
 
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Completed?:</label>
-                <div class="col-sm-8">
+            <div class="form-group">
+                <label class="col-form-label login">Completed?</label></br></br>
+                <div class="">
                     <input type="checkbox" id="myCheck" th:field="*{status}" onclick="myFunction()" />
                 </div>
             </div>
         </div>
 
 
-        <div class="form-group row">
-            <label class="col-form-label col-sm-4">Assign To: </label>
-            <div class="col-sm-8">
+        <div class="form-group">
+            <label class="col-form-label login">Assign To *</label>
+            <div class="">
                 <select th:field="*{user4}" class="form-control" required>
                     <th:block th:each="cat : ${listUsers}">
                         <option th:text="${cat.firstName}+' '+${cat.lastName}" th:value="${cat.id}" />

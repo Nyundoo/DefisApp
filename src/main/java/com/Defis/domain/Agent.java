@@ -25,19 +25,19 @@ public class Agent {
 	@Column(name = "last_name", length = 45, nullable = false)
 	private String lastName;
 
-	@Column(name = "phone_number1", length = 16, nullable = true)
+	@Column(name = "phone_number1", length = 16, nullable = false)
 	private String phoneNumber1;
 
 	@Column(name = "phone_number2", length = 16, nullable = true)
 	private String phoneNumber2;
 
-	@Column(name = "current_residence", length = 20, nullable = true)
+	@Column(name = "current_residence", length = 20, nullable = false)
 	private String currentResidence;
 
 	@Column(length = 128, nullable = false, unique = true)
 	private String email;
 
-	@Column(length = 40, nullable = true)
+	@Column(length = 40, nullable = false)
 	private String county;
 
 	@Column(length = 40, nullable = true)

@@ -48,7 +48,7 @@ public class ApplicantService {
 	}
 
 	public List<Applicant> listAll() {
-		return (List<Applicant>) applicantRepo.findAll(Sort.by("firstName").ascending());
+		return (List<Applicant>) applicantRepo.findAll(Sort.by("id").ascending());
 
 	}
 

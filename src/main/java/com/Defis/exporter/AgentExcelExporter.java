@@ -15,7 +15,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.Defis.domain.Agent;
-import com.Defis.domain.User;
 
 
 public class AgentExcelExporter extends AbstractExporter {
@@ -43,12 +42,6 @@ public class AgentExcelExporter extends AbstractExporter {
 		createCell(row, 2, "First Name", cellStyle);
 		createCell(row, 3, "Last Name", cellStyle);
 		createCell(row, 4, "Phone Number1", cellStyle);
-		createCell(row, 5, "Phone Number2", cellStyle);
-		createCell(row, 6, "Current Residence", cellStyle);
-		createCell(row, 7, "Email", cellStyle);
-		createCell(row, 8, "County", cellStyle);
-		createCell(row, 9, "Ward", cellStyle);
-		createCell(row, 10, "Village Name", cellStyle);
 	}
 	
 	private void createCell(XSSFRow row, int columnIndex, Object value, CellStyle style) {
@@ -93,16 +86,10 @@ public class AgentExcelExporter extends AbstractExporter {
 			int columnIndex = 0;
 			
 			createCell(row, columnIndex++, agent.getIdNo(), cellStyle);
-			createCell(row, columnIndex++, agent.getFirstName(), cellStyle);
+			createCell(row, columnIndex++, agent.getEmail(), cellStyle);
 			createCell(row, columnIndex++, agent.getFirstName(), cellStyle);
 			createCell(row, columnIndex++, agent.getLastName(), cellStyle);
 			createCell(row, columnIndex++, agent.getPhoneNumber1(), cellStyle);
-			createCell(row, columnIndex++, agent.getPhoneNumber2(), cellStyle);
-			createCell(row, columnIndex++, agent.getCurrentResidence(), cellStyle);
-			createCell(row, columnIndex++, agent.getEmail(), cellStyle);
-			createCell(row, columnIndex++, agent.getCounty(), cellStyle);
-			createCell(row, columnIndex++, agent.getWard(), cellStyle);
-			createCell(row, columnIndex++, agent.getVillageName(), cellStyle);
 		}
 	}
 }

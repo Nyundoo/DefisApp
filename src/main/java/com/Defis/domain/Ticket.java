@@ -25,16 +25,16 @@ public class Ticket {
 	@JoinColumn(name = "applicant_id", nullable = false)
 	private Applicant applicant;
 
-	@Column(name = "ticket_date", length = 16, nullable = true)
+	@Column(name = "ticket_date", length = 16, nullable = false)
 	private Date ticket_date;
 
-	@Column(name = "destination", length = 64, nullable = true)
+	@Column(name = "destination", length = 64, nullable = false)
 	private String destination;
 
 	@Column(name = "date_travel", length = 16, nullable = true)
 	private Date date_travel;
 
-	@Column(name = "flight_name", length = 64, nullable = true)
+	@Column(name = "flight_name", length = 64, nullable = false)
 	private String flight_name;
 
 	@Column(name = "expected_arrival_date", length = 16, nullable = true)

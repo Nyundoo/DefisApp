@@ -29,10 +29,10 @@ public class Applicant {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(length = 8, nullable = true, unique = false)
+	@Column(length = 8, nullable = false, unique = false)
 	private Integer identification;
 
-	@Column(length = 3, nullable = true, unique = false)
+	@Column(length = 3, nullable = false, unique = false)
 	private Integer age;
 
 	@Column(name = "first_name", length = 45, nullable = false)
@@ -45,7 +45,7 @@ public class Applicant {
 	@JoinTable(name = "applicants_jobs", joinColumns = @JoinColumn(name = "applicant_id"), inverseJoinColumns = @JoinColumn(name = "job_id"))
 	private Set<Jobs> jobs = new HashSet<>();
 
-	@Column(length = 128, nullable = true, unique = true)
+	@Column(length = 128, nullable = false, unique = true)
 	private String email;
 
 	@Column(length = 200, nullable = true, unique = false)
@@ -60,14 +60,20 @@ public class Applicant {
 	@Column(name = "huduma_no", length = 45, nullable = true, unique = false)
 	private Integer hudumaNo;
 
-	@Column(length = 7, nullable = true, unique = false)
+	@Column(length = 7, nullable = false, unique = false)
 	private String gender;
 
 	@Column(name = "chief_name", length = 45, nullable = true, unique = false)
 	private String chiefName;
 
-	@Column(length = 45, nullable = true, unique = false)
+	@Column(length = 45, nullable = false, unique = false)
 	private String contact;
+	
+	@Column(length = 720, nullable = true)
+	private String education;
+	
+	@Column(length = 720, nullable = true)
+	private String experience;
 
 	@Column(length = 64)
 	private String photos;
@@ -210,6 +216,22 @@ public class Applicant {
 
 	public void setContact(String contact) {
 		this.contact = contact;
+	}
+
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) {
+		this.education = education;
+	}
+
+	public String getExperience() {
+		return experience;
+	}
+
+	public void setExperience(String experience) {
+		this.experience = experience;
 	}
 
 	public String getPhotos() {

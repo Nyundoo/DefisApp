@@ -26,10 +26,10 @@ public class Training {
 	@JoinColumn(name = "applicant_id", nullable = false)
 	private Applicant applicant;
 
-	@Column(name = "start_date", length = 16, nullable = true)
+	@Column(name = "start_date", length = 16, nullable = false)
 	private Date start_date;
 
-	@Column(name = "finish_date", length = 16, nullable = true)
+	@Column(name = "finish_date", length = 16, nullable = false)
 	private Date finish_date;
 
 	@Column(name = "cert_no", length = 240, nullable = true)

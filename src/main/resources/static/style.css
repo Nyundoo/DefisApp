@@ -358,14 +358,6 @@ body {
     padding-left: 1px !important;
 }
 
-body {
-	
-  background: url("images/world2.jpg");
-  background-size: cover;
-background-position: center center;
-background-attachment: fixed;
-}
-
 .art{
     padding-right: 21px;
     max-width: 100%;
@@ -415,4 +407,19 @@ background-attachment: fixed;
 
 .heading{
 	color: #ffff;
+}
+
+.login{
+  font-size: 15px;
+  font-weight: 700;
+margin-bottom: 0.5rem;
+text-align: left;
+float: left;
+}
+
+
+  body {
+    background: #f8f9fa !important;
+    font-family: 'LatoRegular', 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, sans-serif !important;
+    line-height: 21px;
 }

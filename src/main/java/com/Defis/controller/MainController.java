@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.Defis.domain.Birth;
+import com.Defis.domain.Interview;
 import com.Defis.domain.Medical;
 import com.Defis.domain.Passport;
 import com.Defis.domain.Ticket;
@@ -20,8 +21,8 @@ import com.Defis.domain.Visa;
 import com.Defis.domain.security.NyundooUserDetails;
 import com.Defis.repository.AgentRepository;
 import com.Defis.repository.ApplicantRepository;
-import com.Defis.repository.UserRepository;
 import com.Defis.service.BirthService;
+import com.Defis.service.InterviewService;
 import com.Defis.service.MedicalService;
 import com.Defis.service.PassportService;
 import com.Defis.service.TicketService;
@@ -30,8 +31,6 @@ import com.Defis.service.VisaService;
 
 @Controller
 public class MainController {
-	@Autowired
-	private UserRepository userRepo;
 	
 	@Autowired
 	private MedicalService service;
@@ -59,6 +58,9 @@ public class MainController {
 	
 	@Autowired
 	private VisaService visaRepo;
+	
+	@Autowired
+	private InterviewService interviewRepo;
 
 	
 	@GetMapping("/")
@@ -74,6 +76,7 @@ public class MainController {
 		List<Training> listTrainings =  trainingRepo.getById(id);
 		List<Visa> listVisas =  visaRepo.getById(id);
 		List<Ticket> listTickets =  ticketRepo.getById(id);
+		List<Interview> listInterviews =  interviewRepo.getById(id);
 		
 		  model.addAttribute("listMedicals",listMedicals);
 		  model.addAttribute("listBirths",listBirths);
@@ -81,6 +84,8 @@ public class MainController {
 		  model.addAttribute("listTrainings",listTrainings);
 		  model.addAttribute("listVisas",listVisas);
 		  model.addAttribute("listTickets",listTickets);
+		  model.addAttribute("listInterviews",listInterviews);
+
 
 
 
@@ -93,6 +98,7 @@ public class MainController {
 		model.addAttribute("applicant6", applicantRepo.countById6());
 		model.addAttribute("applicant7", applicantRepo.countById7());
 		model.addAttribute("applicant8", applicantRepo.countById8());
+		model.addAttribute("applicant9", applicantRepo.countById9());
 		
 		
 		return "index";
@@ -134,19 +140,6 @@ public class MainController {
 		
 		
 		return "schedules";
-  
-	}
-	
-	
-	@GetMapping("/tasks")
-	public String viewTask(@AuthenticationPrincipal NyundooUserDetails loggedUser, Model model) {	
-		
-	
-		Long id = loggedUser.getId();
-	
-		
-		
-		return "tasks";
   
 	}
 	

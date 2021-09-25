@@ -11,7 +11,7 @@ public interface JobsRepository extends PagingAndSortingRepository<Jobs, Integer
 	
 	public Long countById(Integer id);	
 	
-	@Query("SELECT u FROM Jobs u WHERE CONCAT(u.id, ' ',u.country, ' ',u.jobTitle, ' ',u.payment, ' ',u.jobDescription, ' ',u.qualification, ' ',u.interviewDate, ' ',u.noVacancy, ' ',u.datePosted) LIKE %?1%")
+	@Query("SELECT u FROM Jobs u WHERE CONCAT(u.id, ' ',u.country, ' ',u.jobTitle, ' ',u.payment, ' ',u.jobDescription, ' ',u.interviewDate, ' ',u.noVacancy, ' ',u.datePosted) LIKE %?1%")
 	public Page<Jobs> findAll(String keyword, Pageable pageable);
 		
 

@@ -36,16 +36,13 @@ public class ApplicantExcelExporter extends AbstractExporter {
 		font.setFontHeight(16);
 		cellStyle.setFont(font);
 		
-		createCell(row, 0, "getIdentification", cellStyle);
-		createCell(row, 1, "Age", cellStyle);
+		createCell(row, 0, "Applicant ID", cellStyle);
+		createCell(row, 1, "Email", cellStyle);
 		createCell(row, 2, "First Name", cellStyle);
 		createCell(row, 3, "Last Name", cellStyle);
-		createCell(row, 0, "County", cellStyle);
-		createCell(row, 1, "Ward", cellStyle);
-		createCell(row, 3, "Email", cellStyle);
-		createCell(row, 0, "Huduma No.", cellStyle);
-		createCell(row, 1, "Chief Name", cellStyle);
-		createCell(row, 2, "Contact", cellStyle);
+		createCell(row, 4, "Age", cellStyle);
+		createCell(row, 5, "Gender", cellStyle);
+		createCell(row, 6, "Mobile No", cellStyle);
 	}
 	
 	private void createCell(XSSFRow row, int columnIndex, Object value, CellStyle style) {
@@ -90,14 +87,11 @@ public class ApplicantExcelExporter extends AbstractExporter {
 			int columnIndex = 0;
 			
 			createCell(row, columnIndex++, applicant.getIdentification(), cellStyle);
-			createCell(row, columnIndex++, applicant.getAge(), cellStyle);
+			createCell(row, columnIndex++, applicant.getEmail(), cellStyle);
 			createCell(row, columnIndex++, applicant.getFirstName(), cellStyle);
 			createCell(row, columnIndex++, applicant.getLastName(), cellStyle);
-			createCell(row, columnIndex++, applicant.getCounty(), cellStyle);
-			createCell(row, columnIndex++, applicant.getWard(), cellStyle);
-			createCell(row, columnIndex++, applicant.getEmail(), cellStyle);
-			createCell(row, columnIndex++, applicant.getHudumaNo(), cellStyle);
-			createCell(row, columnIndex++, applicant.getChiefName(), cellStyle);
+			createCell(row, columnIndex++, applicant.getAge(), cellStyle);
+			createCell(row, columnIndex++, applicant.getGender(), cellStyle);
 			createCell(row, columnIndex++, applicant.getContact(), cellStyle);
 		}
 	}

@@ -16,10 +16,10 @@
         <div class="border border-s
         econdary rounded p-3" style="margin-bottom: 20px;">
             <div class="m-3">
-                <legend class="heading" style="text-align: left;">Assign Task:</legend>
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-4">Client: </label>
-                    <div class="col-sm-8">
+                <legend class="" style="text-align: left;">Assign Task</legend>
+                <div class="form-group">
+                    <label class="col-form-label login">Client *</label>
+                    <div class="">
                         <select th:field="*{applicant}" class="form-control" required>
                             <th:block th:each="cat : ${listApplicants}">
                                 <option th:text="${cat.identification}+' : '+${cat.firstName}+' '+${cat.lastName}"
@@ -32,33 +32,33 @@
                 <div class="border border-s
                 econdary rounded p-3" style="margin-bottom: 20px;">
 
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-4 heading" style="text-align: right;">Cert Number: </label>
+                    <div class="form-group">
+                        <label class="col-form-label login" style="text-align: right;">Cert Number * </label>
 
-                        <div class="col-sm-8">
-                            <input type="number" th:field="*{cert_no}" class="form-control" id="theDate1" required />
+                        <div class="">
+                            <input type="number" th:field="*{cert_no}" class="form-control input" id="theDate1" required />
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-4 heading" style="text-align: right;">Cert App Date: </label>
+                    <div class="form-group">
+                        <label class="col-form-label login" style="text-align: right;">Cert App Date * </label>
 
-                        <div class="col-sm-8">
-                            <input type="date" th:field="*{cert_application_date}" class="form-control" id="theDate2"
+                        <div class="">
+                            <input type="date" th:field="*{cert_application_date}" class="form-control input" id="theDate2"
                                 required />
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-4 heading" style="text-align: right;">Cert Reception Date: </label>
-                        <div class="col-sm-8">
-                            <input type="date" th:field="*{cert_reception_date}" class="form-control" required />
+                    <div class="form-group">
+                        <label class="col-form-label login" style="text-align: right;">Cert Reception Date *</label>
+                        <div class="">
+                            <input type="date" th:field="*{cert_reception_date}" class="form-control input" required />
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label heading">Completed?:</label>
-                        <div class="col-sm-8">
+                    <div class="form-group">
+                        <label class="col-form-label login">Completed?</label></br></br>
+                        <div class="">
                             <input type="checkbox" id="myCheck" th:field="*{status}" onclick="myFunction()" />
                         </div>
                     </div>
@@ -67,10 +67,10 @@
 
                 </div>
 
-                <div class="form-group row">
-                    <label class="col-form-label col-sm-4 heading">Assign To: </label>
-                    <div class="col-sm-8">
-                        <select th:field="*{user2}" class="form-control" required>
+                <div class="form-group">
+                    <label class="col-form-label login">Assign To *</label>
+                    <div class="">
+                        <select th:field="*{user2}" class="form-control input" required>
                             <th:block th:each="cat : ${listUsers}">
                                 <option th:text="${cat.firstName}+' '+${cat.lastName}" th:value="${cat.id}" />
                             </th:block>

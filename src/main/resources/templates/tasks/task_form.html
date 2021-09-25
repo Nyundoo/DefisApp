@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragments :: page_head('Task Form - Defis Admin')" />
+
+<body>
+    <div class="container-fluid">
+        <div th:replace="nav :: menu"></div>
+        <div>
+            <h2>[[${pageTitle}]]</h2>
+        </div>
+    </div>
+    <form enctype="multipart/form-data" th:action="@{/tasks/save}" method="post"
+        style="max-width: 700px; margin: 0 auto;" th:object="${task}">
+        <input type="hidden" th:field="*{id}" />
+        <div>
+
+            <div class="form-group">
+                <label class="col-form-label login">Task *</label>
+                <div class="">
+                    <input type="text" class="form-control input" th:field="*{createTask}" required minlength="2"
+                        maxlength="26" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label login">Task Description</label>
+                <div class="">
+                    <input type="text" class="form-control input" th:field="*{taskDescription}" minlength="2"
+                        maxlength="500" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label login">Deadline Date *</label>
+                <div class="">
+                    <input type="date" class="form-control input" th:field="*{deadlineDate}" required minlength="2"
+                        maxlength="45" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label login">Created By *</label>
+                <div class="">
+                    <input type="text" value="${principal.fullname}" class="form-control input" th:field="*{createdBy}" required minlength="2"
+                        maxlength="45" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label login">Created At *</label>
+                <div class="">
+                    <input type="date" class="form-control input" th:field="*{createdAt}" required minlength="2"
+                        maxlength="45" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label login">Responsible *</label>
+                <div class="">
+                    <select th:field="*{responsible}" class="form-control" multiple="multiple" required>
+                        <th:block th:each="cats : ${listResponsible}">
+                            <option th:text="${cats.firstName}+' '+${cats.lastName}" th:value="${cats.id}" />
+                        </th:block>
+                    </select>
+                    <a style="text-decoration:underline; color: blue; font-size: medium;" th:href="@{/user/new}"
+                        target="_blank">Add New
+                        User</a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label login">Participants</label>
+                <div class="">
+                    <select th:field="*{participants}" class="form-control" multiple="multiple">
+                        <th:block th:each="cats : ${listParticipants}">
+                            <option th:text="${cats.firstName}+' '+${cats.lastName}" th:value="${cats.id}" />
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label login">Observers</label>
+                <div class="">
+                    <select th:field="*{observers}" class="form-control" multiple="multiple">
+                        <th:block th:each="cats : ${listObservers}">
+                            <option th:text="${cats.firstName}+' '+${cats.lastName}" th:value="${cats.id}" />
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label login">High Priority?</label></br></br>
+                <div class="">
+                    <input type="checkbox" id="myCheck" th:field="*{priority}" onclick="myFunction()" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label login">Task Completed?</label></br></br>
+                <div class="">
+                    <input type="checkbox" id="myCheck" th:field="*{task_completed}" onclick="myFunction()" />
+                </div>
+            </div>
+
+
+
+            <div class="text-center">
+                <a th:href="@{/tasks}" class="btn btn-secondary m-3"> Cancel </a>
+                <input type="submit" value="Save" class="btn btn-primary" />
+
+            </div>
+        </div>
+    </form>
+    </div>
+
+    <div class="modal fade text-center" id="modalDialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalTitle">Warning</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <span id="modalBody"></span>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div th:replace="fragments :: footer"></div>
+
+    </div>
+    <script th:src="@{/js/common.js}"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#buttonCancel").on("click", function () {
+                window.location = "[[@{/tasks}]]";
+            });
+
+            $("#fileImage").change(function () {
+                fileSize = this.files[0].size;
+                //alert("File size: " + fileSize);
+
+                if (fileSize > 1048576) {
+                    this.setCustomValidity("You must choose an image less than 1MB!");
+                    this.reportValidity();
+                } else {
+                    this.setCustomValidity("");
+                    showImageThumbnail(this);
+                }
+
+
+            });
+        });
+
+        function showImageThumbnail(fileInput) {
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#thumbnail").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        function showModalDialog(title, message) {
+            $("#modalTitle").text(title);
+            $("#modalBody").text(message);
+            $("#modalDialog").modal();
+        }
+    </script>
+</body>
+
+</html>

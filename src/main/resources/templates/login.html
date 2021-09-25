@@ -5,12 +5,20 @@
 
 <body>
     <div class="container-fluid text-center">
-
+<style>
+    .login{
+  font-size: 15px;
+  font-weight: 700;
+margin-bottom: 0.5rem;
+text-align: left;
+float: left;
+}
+</style>
         <div>
             Defis
         </div>
 
-        <form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;">
+        <form th:action="@{/login}" method="post" style="max-width: 567px; margin: 0 auto;">
             <div th:if="${param.error}">
                 <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
             </div>
@@ -19,12 +27,18 @@
                 <p class="text-warning">You have been logged out!</p>
             </div>
 
-            <div class="border border-secondary rounded p-3">
+            <div class="border border-secondary p-3">
+                <p><img th:src="@{images/defislogo.JPG}" alt="Defis Logo" width="200" height="100"></p>
+                <p style="font-size: 32px;">One Login</p>
                 <p>Access to Defis Control Panel</p>
+                </div>
+                <div class="border border-secondary p-3">
                 <p>
-                    <input type="email" name="email" class="form-control" placeholder="E-mail" required />
+                    <label class="login">Email Address</label>
+                    <input type="email" name="email" class="form-control" placeholder="you@example.com" required />
                 </p>
                 <p>
+                    <label class="login">Password</label>
                     <input type="password" name="password" class="form-control" placeholder="Password" required />
                 </p>
                 <p>
@@ -35,6 +49,7 @@
                 </p>
             </div>
         </form>
+        <hr>
 
         <div th:replace="fragments :: footer"></div>
 

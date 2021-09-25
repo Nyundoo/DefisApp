@@ -103,7 +103,7 @@ public class MedicalController {
 			service.save(medical);
 			
 			
-			redirectAttributes.addFlashAttribute("message", "The ticket has been saved successfully!");
+			redirectAttributes.addFlashAttribute("message", "The medical record has been saved successfully!");
 			
 			return getRedirectURLToAffectedMedical(medical);		
 	

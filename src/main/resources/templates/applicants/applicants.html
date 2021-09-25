@@ -36,6 +36,7 @@
                         <th th:replace="fragments :: column_link2('id', 'Applicant ID', 'tag')" />
                     </th>
                     <th>Photos</th>
+                    <th th:replace="fragments :: column_link2('identification', 'Identification', 'none')" />
                     <th class="hideable-column">
                         <th th:replace="fragments :: column_link2('email', 'Email', 'tag')" />
                     </th>
@@ -54,6 +55,7 @@
                         <img th:if="${applicant.photos != null}" th:src="@{${applicant.photosImagePath}}"
                             style="width: 100px;" />
                     </td>
+                    <td>[[${applicant.identification}]]</td>
                     <td class="hideable-column">[[${applicant.email}]]</td>
                     <td>[[${applicant.firstName}]]</td>
                     <td>[[${applicant.lastName}]]</td>

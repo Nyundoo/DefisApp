@@ -62,15 +62,122 @@
         font-weight: 400;
         color: #a7afb7 !important;
     }
+
+    .pageheader {
+        margin-top: 12px;
+    padding: 15px;
+    border-bottom: 1px solid #d3d7db;
+    border-top: 1px solid #eee;
+    background: #f7f7f7;
+    position: relative;
+}
+
+.pageheader h2 {
+    font-size: 17px;
+    color: #2B2C30;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.pageheader .breadcrumb-wrapper {
+    position: absolute;
+    top: 14px;
+    right: 25px;
+}
+
+.pageheader .breadcrumb-wrapper .label {
+    color: #999;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: normal;
+    display: inline-block;
+}
+
+.pageheader .breadcrumb {
+    background: none;
+    display: inline-block;
+    padding: 0;
+}
 </style>
 
     <div class="container-fluid" style="margin-bottom: 40px;">
         <div th:replace="nav :: menu"></div>
         <div style="max-width:960px; margin: 0 auto;">
-            <h1 class="heading">Defis Control Panel</h1>
-            Welcome <a th:href="@{/account}" sec:authentication="principal.fullname"></a>
-            &nbsp;
-            <span sec:authentication="principal.authorities"></span>
+            <div class="pageheader">
+                <h2>
+                    <i class="fa fa-home"></i> Dashboard
+                </h2>
+                <div class="breadcrumb-wrapper">
+                    <span class="label">You are here:</span>
+                    <ol class="breadcrumb">
+                        <li>Defis LTD Dashboard</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 0 auto;">
+                <div class="column" style="background-color:#aaa;" sec:authorize="hasAuthority('Admin')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/users}">Users</a></h2>
+                    <p class="small">Register, Edit and view users</p>
+                </div>
+                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Agents')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/agents}">Agents</a></h2>
+                    <p class="small">Register, Edit and view agents</p>
+                </div>
+                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Applicants')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/applicants}">Applicants</a></h2>
+                    <p class="small">Register, Edit and view applicants</p>
+                </div>
+                <div class="column" style="background-color:#ccc;" sec:authorize="hasAuthority('Admin')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/schedules}">Schedules</a></h2>
+                    <p class="small">Monitor Schedules</p>
+                </div>
+                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin','Task')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/tasks}">Tasks</a></h2>
+                    <p class="small">Insert, Edit and view tasks</p>
+                </div>
+                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Births')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/births}">Birth Cert</a></h2>
+                    <p class="small">Insert, Edit and view users birth certificates</p>
+                </div>
+                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Passports')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/passports}">Passports</a></h2>
+                    <p class="small">Insert, Edit and view users passports</p>
+                </div>
+                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Medicals')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/medicals}">Medicals</a></h2>
+                    <p class="small">Insert, Edit and view users medical information</p>
+                </div>
+                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Trainings')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/trainings}">Trainings</a></h2>
+                    <p class="small">Create, Edit and view users training session</p>
+                </div>
+                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Jobs')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/jobss}">Jobs</a></h2>
+                    <p class="small">Insert, Edit and view current job available details</p>
+                </div>
+                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Interviews')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/interviews}">Interview</a></h2>
+                    <p class="small">Insert, Edit and view interviews informations</p>
+                </div>
+                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Visas')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/visas}">Visas</a></h2>
+                    <p class="small">Total applicant traveling</p>
+                </div>
+                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Tickets')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/tickets}">Tickets</a></h2>
+                    <p class="small">Insert, Edit and view tickets details</p>
+                </div>
+                <div class="column" style="background-color:#bbb;" sec:authorize="hasAuthority('Admin')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/payments}">Payments</a></h2>
+                    <p class="small">Insert, Edit and view payments information</p>
+                </div>
+                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Marketers')">
+                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/marketer}">Marketer</a></h2>
+                    <p class="small">Comming Soon!</p>
+                </div>
+
+            </div>
 
 
             <div class="full-details m-3" th:if="${!listMedicals.isEmpty()}">
