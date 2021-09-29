@@ -35,7 +35,7 @@
                     <th class="hideable-column">
                         <th th:replace="fragments :: column_link4('id', 'Job ID', 'tag')" />
                     </th>
-
+                        <th>Photos</th>
                         <th th:replace="fragments :: column_link4('country', 'Country', 'none')" />
                         <th th:replace="fragments :: column_link4('jobTitle', 'Job Title', 'none')" />
                         <th th:replace="fragments :: column_link4('payment', 'Commision(Ksh)', 'none')" />
@@ -46,6 +46,11 @@
             <tbody class="data">
                 <tr th:each="jobs : ${listJobss}">
                     <td class="hideable-column">[[${jobs.id}]]</td>
+                    <td>
+                        <span th:if="${jobs.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
+                        <img th:if="${jobs.photos != null}" th:src="@{${jobs.photosImagePath}}"
+                            style="width: 100px;" />
+                    </td>
                     <td>[[${jobs.country}]]</td>
                     <td>[[${jobs.jobTitle}]]</td>
                     <td>[[${jobs.payment}]]</td>

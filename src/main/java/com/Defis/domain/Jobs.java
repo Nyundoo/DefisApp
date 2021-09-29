@@ -1,5 +1,6 @@
 package com.Defis.domain;
 
+import java.beans.Transient;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -46,6 +47,9 @@ public class Jobs {
 	@Column(name = "date_posted", length = 10, nullable = false)
 	private Date datePosted;	
 	
+	@Column(length = 64)
+	private String photos;
+	
 	public Jobs() {
 	}
 
@@ -54,7 +58,7 @@ public class Jobs {
 	}
 
 	public Jobs(Integer id, String country, String jobTitle, boolean pay, double payment, String jobDescription,
-			String qualification, Date interviewDate, Integer noVacancy, Date datePosted) {
+			 Date interviewDate, Integer noVacancy, Date datePosted) {
 		this.id = id;
 		this.country = country;
 		this.jobTitle = jobTitle;
@@ -152,6 +156,22 @@ public class Jobs {
 
 	public void setDatePosted(Date datePosted) {
 		this.datePosted = datePosted;
+	}	
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
+	}
+	
+	@Transient
+	public String getPhotosImagePath() {
+		if (id == null || photos == null)
+			return "/images/default-image.png";
+
+		return "/job-photos/" + this.id + "/" + this.photos;
 	}
 
 	@Override
