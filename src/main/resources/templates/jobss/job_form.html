@@ -10,6 +10,12 @@
             <h2>[[${pageTitle}]]</h2>
         </div>
     </div>
+    <div class="col-rt-2">
+        <ul>
+            <li><a th:href="@{/jobss}">Back to jobs list page</a></li>
+        </ul>
+    </div>
+    <div th:fragment="jobs">
     <form enctype="multipart/form-data" th:action="@{/jobss/save}" method="post"
         style="max-width: 700px; margin: 0 auto;" th:object="${jobs}">
         <input type="hidden" th:field="*{id}" />
@@ -359,6 +365,24 @@
                 </div>
             </div>
 
+            <div class="form-group" style="display: none">
+                <label class="col-form-label login">Assign To *</label>
+                <div class="">
+                    <select th:field="*{user9}" class="form-control input" required>
+                        <th:block th:each="cat : ${listUsers}">
+                            <option th:text="${cat.firstName}+' '+${cat.lastName}" th:value="${#request.userPrincipal.principal.id}" />
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label login" style="text-align: right;">Created By</label>
+                <div class="">
+                    <input type="text" th:value="${#request.userPrincipal.principal.fullname}" class="form-control input" required readonly="readonly" />
+                </div>
+            </div>
+
 
 
             <div class="text-center">
@@ -453,6 +477,7 @@
             }
         }
     </script>
+    </div>
 </body>
 
 </html>

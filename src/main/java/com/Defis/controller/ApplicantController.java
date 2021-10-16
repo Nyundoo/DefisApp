@@ -23,12 +23,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.Defis.domain.Agent;
 import com.Defis.domain.Applicant;
 import com.Defis.domain.Jobs;
+import com.Defis.domain.User;
 import com.Defis.exception.ApplicantNotFoundException;
 import com.Defis.exporter.ApplicantCsvExporter;
 import com.Defis.exporter.ApplicantExcelExporter;
 import com.Defis.exporter.ApplicantPDFExporter;
 import com.Defis.repository.AgentRepository;
+import com.Defis.repository.UserRepository;
 import com.Defis.service.ApplicantService;
+import com.Defis.service.JobsService;
 import com.Defis.utility.FileUploadUtil;
 
 @Controller
@@ -37,7 +40,13 @@ public class ApplicantController {
 	private ApplicantService service;
 	
 	@Autowired
+	private JobsService jobRepo;
+	
+	@Autowired
 	private AgentRepository agentRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 		
 	@GetMapping("/applicants")
 	public String listFirstPage(Model model) {
@@ -83,8 +92,20 @@ public class ApplicantController {
 	
 	@GetMapping("/applicants/new")
 	public String newApplicant(Model model) {	
+		
+		Jobs jobs = new Jobs();
+		List<User> listUsers = (List<User>) userRepo.findAll();
 		List<Agent> listAgents = (List<Agent>) agentRepo.findAll();
 		List<Jobs> listJobss = service.listJobss();
+		
+		model.addAttribute("jobs", jobs);
+		
+		Agent agent = new Agent();
+		
+		model.addAttribute("agent", agent);
+		
+		
+		model.addAttribute("listUsers", listUsers);
 		
 		Applicant applicants = new Applicant();
 		
@@ -133,9 +154,7 @@ public class ApplicantController {
 			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		}else {				
 			
-			
-			if (applicant.getPhotos().isEmpty()) applicant.setPhotos(null);
-			
+			if (applicant.getPhotos().isEmpty()) applicant.setPhotos(null);			
 
 			String[] detailIDs = request.getParameterValues("detailID");
 			String[] detailCnames = request.getParameterValues("detailCname");
@@ -165,6 +184,64 @@ public class ApplicantController {
 		return "redirect:/applicants/page/1?sortField=id&sortDir=asc&keyword=" + applicantId;
 	}
 	
+	@PostMapping("/jobs/save")
+	public String saveJob(@ModelAttribute("applicant") Jobs jobs, 
+			RedirectAttributes redirectAttributes,
+			@RequestParam("image") MultipartFile multipartFile, 
+			HttpServletRequest request) throws IOException {
+		
+		if(!multipartFile.isEmpty()) {	
+			
+			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+			jobs.setPhotos(fileName);
+			
+			Jobs savedJob = jobRepo.save(jobs);
+			
+			String uploadDir = "job-photos/" + savedJob.getId();
+			
+			FileUploadUtil.cleanDir(uploadDir);
+			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		}else {				
+			
+			
+			if (jobs.getPhotos().isEmpty()) jobs.setPhotos(null);
+			
+			
+			
+			jobRepo.save(jobs);
+		}
+				
+		
+		    redirectAttributes.addFlashAttribute("success", "The job was added successfully!");
+		    return "redirect:/applicants/new";
+	}
+	
+	@PostMapping("/agentz/save")
+	public String saveAgent(Agent agent, 
+			RedirectAttributes redirectAttributes,
+			@RequestParam("image") MultipartFile multipartFile) throws IOException {
+		
+		if(!multipartFile.isEmpty()) {
+			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+			agent.setPhotos(fileName);
+			
+			Agent savedAgent = agentRepo.save(agent);
+			
+			String uploadDir = "agent-photos/" + savedAgent.getId();
+			
+			FileUploadUtil.cleanDir(uploadDir);
+			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		}else {
+			if (agent.getPhotos().isEmpty()) agent.setPhotos(null);
+			agentRepo.save(agent);
+		}
+				
+		 redirectAttributes.addFlashAttribute("success", "The Agent was added successfully!");
+		    return "redirect:/applicants/new";
+	}
+	
+	
+	
 	@GetMapping("/applicants/edit/{id}")
 	public String editApplicant(@PathVariable(name = "id") Integer id,
 			Model model,
@@ -174,12 +251,14 @@ public class ApplicantController {
 
 		List<Agent> listAgents = (List<Agent>) agentRepo.findAll();
 		List<Jobs> listJobss = service.listJobss();
+		List<User> listUsers = (List<User>) userRepo.findAll();
 		
 		model.addAttribute("applicant", applicant);
 		model.addAttribute("pageTitle", "Edit Applicant (ID: " + id + ")");		
 		
 		model.addAttribute("listAgents", listAgents);
-		model.addAttribute("listJobss", listJobss);
+		model.addAttribute("listJobss", listJobss);		
+		model.addAttribute("listUsers", listUsers);
 		
 		return "applicants/applicant_form";
 		
@@ -198,7 +277,7 @@ public class ApplicantController {
 			RedirectAttributes redirectAttributes) {
 		try {
 		Applicant applicant = service.get(id);
-
+		List<User> listUsers = (List<User>) userRepo.findAll();
 		List<Agent> listAgents = (List<Agent>) agentRepo.findAll();
 		List<Jobs> listJobss = service.listJobss();
 		
@@ -207,6 +286,7 @@ public class ApplicantController {
 		
 		model.addAttribute("listAgents", listAgents);
 		model.addAttribute("listJobss", listJobss);
+		model.addAttribute("listUsers", listUsers);
 		
 		return "applicants/applicantprofile";
 		

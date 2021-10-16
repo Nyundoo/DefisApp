@@ -46,6 +46,9 @@ public class Medical {
 	private boolean m_status = false;
 
 	private boolean status = false;
+	
+	@Column(length = 64)
+	private String photos;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id1")
@@ -137,6 +140,14 @@ public class Medical {
 
 	public void setM_status(boolean m_status) {
 		this.m_status = m_status;
+	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
 
 }

@@ -1,8 +1,10 @@
 package com.Defis.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +12,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Applicant;
@@ -25,6 +31,7 @@ import com.Defis.exporter.BirthPDFExporter;
 import com.Defis.repository.ApplicantRepository;
 import com.Defis.repository.UserRepository;
 import com.Defis.service.BirthService;
+import com.Defis.utility.FileUploadUtil;
 
 @Controller
 public class BirthController {
@@ -96,24 +103,43 @@ public class BirthController {
 	}
 	
 	@PostMapping("/births/save")
-	public String saveBirth(Birth birthcert,
-			Integer applicant,
-			RedirectAttributes redirectAttributes) throws IOException {
-
+	public String saveJob(@ModelAttribute("applicant") Birth birthcert, 
+			RedirectAttributes redirectAttributes,
+			@RequestParam("image") MultipartFile multipartFile, 
+			HttpServletRequest request) throws IOException {
 		
+		if(!multipartFile.isEmpty()) {	
+			
+			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+			birthcert.setPhotos(fileName);
+			
+			Birth savedJob = service.save(birthcert);
+			
+			String uploadDir = "birth-photos/" + savedJob.getId();
+			
+			FileUploadUtil.cleanDir(uploadDir);
+			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		}else {				
+			
+			
+			if (birthcert.getPhotos().isEmpty()) birthcert.setPhotos(null);
+			
+			
+			
 			service.save(birthcert);
-			
-			
-			redirectAttributes.addFlashAttribute("message", "The ticket has been saved successfully!");
-			
-			return getRedirectURLToAffectedBirth(birthcert);		
-	
+		}
+				
+		redirectAttributes.addFlashAttribute("message", "The job has been saved successfully!");
+		
+		return getRedirectURLToAffectedBirth(birthcert);
 	}
 
 	private String getRedirectURLToAffectedBirth(Birth birthcert) {
 		Integer birthcertId = birthcert.getId();
 		return "redirect:/births/page/1?sortField=id&sortDir=asc&keyword=" + birthcertId;
 	}
+	
+	
 	
 	@GetMapping("/births/edit/{id}")
 	public String editBirth(@PathVariable(name = "id") Integer id,
@@ -147,6 +173,7 @@ public class BirthController {
 	public String viewBirth(@PathVariable(name = "id") Integer id,
 			Model model,
 			RedirectAttributes redirectAttributes) {
+		
 		try {
 		Birth birth = service.get(id);
 		

@@ -11,8 +11,6 @@
     .column {
         float: left;
         width: 31%;
-        padding: 20px;
-        background-color: black !important;
         color: white !important;
         opacity: 0.9;
         margin: 10.5px;
@@ -62,476 +60,882 @@
         font-weight: 400;
         color: #a7afb7 !important;
     }
-
-    .pageheader {
-        margin-top: 12px;
-    padding: 15px;
-    border-bottom: 1px solid #d3d7db;
-    border-top: 1px solid #eee;
-    background: #f7f7f7;
-    position: relative;
-}
-
-.pageheader h2 {
-    font-size: 17px;
-    color: #2B2C30;
-    letter-spacing: -0.5px;
-    margin: 0;
-}
-
-.pageheader .breadcrumb-wrapper {
-    position: absolute;
-    top: 14px;
-    right: 25px;
-}
-
-.pageheader .breadcrumb-wrapper .label {
-    color: #999;
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: normal;
-    display: inline-block;
-}
-
-.pageheader .breadcrumb {
-    background: none;
-    display: inline-block;
-    padding: 0;
-}
 </style>
 
-    <div class="container-fluid" style="margin-bottom: 40px;">
-        <div th:replace="nav :: menu"></div>
-        <div style="max-width:960px; margin: 0 auto;">
-            <div class="pageheader">
-                <h2>
-                    <i class="fa fa-home"></i> Dashboard
-                </h2>
-                <div class="breadcrumb-wrapper">
-                    <span class="label">You are here:</span>
-                    <ol class="breadcrumb">
-                        <li>Defis LTD Dashboard</li>
-                    </ol>
-                </div>
+<div class="container-fluid" style="margin-bottom: 40px;">
+    <div th:replace="nav :: menu"></div>
+    <div style="max-width:960px; margin: 0 auto;">
+        <div class="pageheader">
+            <h2>
+                <i class="fa fa-home"></i> Dashboard
+            </h2>
+            <div class="breadcrumb-wrapper">
+                <span class="label">You are here:</span>
+                <ol class="breadcrumb">
+                    <li>Dashboard</li>
+                </ol>
             </div>
-
-            <div class="row" style="margin: 0 auto;">
-                <div class="column" style="background-color:#aaa;" sec:authorize="hasAuthority('Admin')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/users}">Users</a></h2>
-                    <p class="small">Register, Edit and view users</p>
-                </div>
-                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Agents')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/agents}">Agents</a></h2>
-                    <p class="small">Register, Edit and view agents</p>
-                </div>
-                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Applicants')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/applicants}">Applicants</a></h2>
-                    <p class="small">Register, Edit and view applicants</p>
-                </div>
-                <div class="column" style="background-color:#ccc;" sec:authorize="hasAuthority('Admin')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/schedules}">Schedules</a></h2>
-                    <p class="small">Monitor Schedules</p>
-                </div>
-                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin','Task')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/tasks}">Tasks</a></h2>
-                    <p class="small">Insert, Edit and view tasks</p>
-                </div>
-                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Births')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/births}">Birth Cert</a></h2>
-                    <p class="small">Insert, Edit and view users birth certificates</p>
-                </div>
-                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Passports')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/passports}">Passports</a></h2>
-                    <p class="small">Insert, Edit and view users passports</p>
-                </div>
-                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Medicals')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/medicals}">Medicals</a></h2>
-                    <p class="small">Insert, Edit and view users medical information</p>
-                </div>
-                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Trainings')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/trainings}">Trainings</a></h2>
-                    <p class="small">Create, Edit and view users training session</p>
-                </div>
-                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Jobs')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/jobss}">Jobs</a></h2>
-                    <p class="small">Insert, Edit and view current job available details</p>
-                </div>
-                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Interviews')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/interviews}">Interview</a></h2>
-                    <p class="small">Insert, Edit and view interviews informations</p>
-                </div>
-                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Visas')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/visas}">Visas</a></h2>
-                    <p class="small">Total applicant traveling</p>
-                </div>
-                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Tickets')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/tickets}">Tickets</a></h2>
-                    <p class="small">Insert, Edit and view tickets details</p>
-                </div>
-                <div class="column" style="background-color:#bbb;" sec:authorize="hasAuthority('Admin')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/payments}">Payments</a></h2>
-                    <p class="small">Insert, Edit and view payments information</p>
-                </div>
-                <div class="column" style="background-color:#bbb;" sec:authorize="hasAnyAuthority('Admin', 'Marketers')">
-                    <h2 style="font-weight: 700 !important;"><a class="nav-link" th:href="@{/marketer}">Marketer</a></h2>
-                    <p class="small">Comming Soon!</p>
-                </div>
-
-            </div>
-
-
-            <div class="full-details m-3" th:if="${!listMedicals.isEmpty()}">
-                <div class="m-3">
-                    <h2 style="text-align: center;">Medical Schedule</h2>
-                </div>
-                <table class="table table-hover table-responsive-xl back" id="Table5">
-                    <thead class="thead-dark art">
-                        <tr>
-
-                            <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
-                            <th
-                                th:replace="fragments :: column_link5('application_date', 'Application Date', 'none')" />
-                            <th th:replace="fragments :: column_link5('result_date', 'Results Date', 'none')" />
-                            <th th:replace="fragments :: column_link5('user1', 'User', 'none')" />
-                            <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
-                        </tr>
-                    </thead>
-                    <tbody class="data">
-                        <tr th:each="medical : ${listMedicals}">
-
-                            <td>[[${medical.applicant.identification}+' :
-                                '+${medical.applicant.firstName}+'
-                                '+${medical.applicant.lastName}]]</td>
-                            <td>[[${medical.application_date}]]</td>
-
-                            <td>[[${medical.result_date}]]</td>
-                            <td>[[${medical.user1.firstName}+'
-                                '+${medical.user1.lastName}]]</td>
-
-                            <td th:if="${medical.m_status == false && medical.result_date > (#dates.createNow()) }"><a
-                                    class="btn btn-sm" style="background-color: orange;"
-                                    th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Ongoing</a>
-                            </td>
-                            <td th:if="${medical.m_status == false && medical.result_date < (#dates.createNow())}"><a
-                                    class="btn btn-sm" style="background-color: red;"
-                                    th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Late</a>
-                            </td>
-                            <td th:if="${medical.m_status == true}"><a class="btn btn-warning btn-sm"
-                                    th:href="@{'/medicals/edit/' + ${medical.id}}"
-                                    title="Edit this medical">Complete</a></td>
-
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-
-
-            <div class="full-details m-3" th:if="${!listBirths.isEmpty()}">
-                <div class="m-3">
-                    <h2 style="text-align: center;">Birth Certs Schedule</h2>
-                </div>
-                <table class="table table-hover table-responsive-xl back" id="Table4">
-                    <thead class="thead-dark art">
-                        <tr>
-
-                            <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
-                            <th
-                                th:replace="fragments :: column_link5('cert_application_date', 'Application Date', 'none')" />
-                            <th
-                                th:replace="fragments :: column_link5('cert_reception_date', 'Reception Date', 'none')" />
-
-                            <th th:replace="fragments :: column_link5('user2', 'User', 'none')" />
-                            <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
-                        </tr>
-                    </thead>
-                    <tbody class="data">
-                        <tr th:each="birth : ${listBirths}">
-
-                            <td>[[${birth.applicant.identification}+' :
-                                '+${birth.applicant.firstName}+'
-                                '+${birth.applicant.lastName}]]</td>
-                            <td>[[${birth.cert_application_date}]]</td>
-                            <td>[[${birth.cert_reception_date}]]</td>
-                            <td>[[${birth.user2.firstName}+'
-                                '+${birth.user2.lastName}]]</td>
-
-                            <td th:if="${birth.status == false && birth.cert_reception_date > (#dates.createNow()) }"><a
-                                    class="btn btn-sm" style="background-color: orange;"
-                                    th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Ongoing</a></td>
-                            <td th:if="${birth.status == false && birth.cert_reception_date < (#dates.createNow())}"><a
-                                    class="btn btn-sm" style="background-color: red;"
-                                    th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Late</a></td>
-                            <td th:if="${birth.status == true}"><a class="btn btn-warning btn-sm"
-                                    th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Complete</a></td>
-
-
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-
-
-            <div class="full-details m-3" th:if="${!listPassports.isEmpty()}">
-                <div class="m-3">
-                    <h2 style="text-align: center;">Passport Schedule</h2>
-                </div>
-                <table class="table table-hover table-responsive-xl back" id="Table3">
-                    <thead class="thead-dark art">
-                        <tr>
-                            <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
-                            <th
-                                th:replace="fragments :: column_link5('pass_application_date', 'Pass App Date', 'none')" />
-                            <th
-                                th:replace="fragments :: column_link5('pass_application_date', 'Pass Recep Date', 'none')" />
-
-                            <th th:replace="fragments :: column_link5('user_id3', 'User', 'none')" />
-                            <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
-
-                        </tr>
-                    </thead>
-                    <tbody class="data">
-                        <tr th:each="passport : ${listPassports}">
-                            <td>[[${passport.applicant.identification}+' :
-                                '+${passport.applicant.firstName}+'
-                                '+${passport.applicant.lastName}]]</td>
-                            <td>[[${passport.pass_application_date}]]</td>
-                            <td>[[${passport.pass_reception_date}]]</td>
-                            <td>[[${passport.user3.firstName}+'
-                                '+${passport.user3.lastName}]]</td>
-
-                            <td
-                                th:if="${passport.status == false && passport.pass_reception_date > (#dates.createNow()) }">
-                                <a class="btn btn-sm" style="background-color: orange;"
-                                    th:href="@{'/passports/edit/' + ${passport.id}}"
-                                    title="Edit this passport">Ongoing</a>
-                            </td>
-                            <td
-                                th:if="${passport.status == false && passport.pass_reception_date < (#dates.createNow())}">
-                                <a class="btn btn-sm" style="background-color: red;"
-                                    th:href="@{'/passports/edit/' + ${passport.id}}" title="Edit this passport">Late</a>
-                            </td>
-                            <td th:if="${passport.status == true}"><a class="btn btn-warning btn-sm"
-                                    th:href="@{'/passports/edit/' + ${passport.id}}"
-                                    title="Edit this passport">Complete</a></td>
-
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-
-
-            <div class="full-details m-3" th:if="${!listTrainings.isEmpty()}">
-                <div class="m-3">
-                    <h2 style="text-align: center;">Training Schedule</h2>
-                </div>
-                <table class="table table-hover table-responsive-xl back" id="Table2">
-                    <thead class="thead-dark art">
-                        <tr>
-                            <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
-                            <th th:replace="fragments :: column_link6('start_date', 'Start Date', 'none')" />
-                            <th th:replace="fragments :: column_link6('finish_date', 'Finish Date', 'none')" />
-                            <th th:replace="fragments :: column_link6('user5', 'User', 'none')" />
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody class="data">
-                        <tr th:each="training : ${listTrainings}">
-                            <td>[[${training.applicant.identification}+' :
-                                '+${training.applicant.firstName}+'
-                                '+${training.applicant.lastName}]]</td>
-                            <td>[[${training.start_date}]]</td>
-                            <td>[[${training.finish_date}]]</td>
-                            <td>[[${training.user5.firstName}+'
-                                '+${training.user5.lastName}]]</td>
-
-                            <td th:if="${training.t_status == false && training.finish_date > (#dates.createNow()) }"><a
-                                    class="btn btn-sm" style="background-color: orange;"
-                                    th:href="@{'/trainings/edit/' + ${training.id}}"
-                                    title="Edit this training">Ongoing</a></td>
-                            <td th:if="${training.t_status == false && training.finish_date < (#dates.createNow())}"><a
-                                    class="btn btn-sm" style="background-color: red;"
-                                    th:href="@{'/trainings/edit/' + ${training.id}}" title="Edit this training">Late</a>
-                            </td>
-                            <td th:if="${training.t_status == true}"><a class="btn btn-warning btn-sm"
-                                    th:href="@{'/trainings/edit/' + ${training.id}}"
-                                    title="Edit this training">Complete</a></td>
-
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="full-details m-3" th:if="${!listVisas.isEmpty()}">
-                <div class="m-3">
-                    <h2 style="text-align: center;">Visa Schedule</h2>
-                </div>
-                <table class="table table-hover table-responsive-xl back" id="Table6">
-                    <thead class="thead-dark art">
-                        <tr>
-                            <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
-                            <th th:replace="fragments :: column_link6('type_of_visa', 'Type of Visa', 'none')" />
-                            <th th:replace="fragments :: column_link6('finish_date', 'Visa Apply Date', 'none')" />
-                            <th th:replace="fragments :: column_link6('cert_no', 'Visa Reception Date', 'none')" />
-                            <th th:replace="fragments :: column_link6('user4', 'User', 'none')" />
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody class="data">
-                        <tr th:each="visa : ${listVisas}">
-                            <td>[[${visa.applicant.identification}+' :
-                                '+${visa.applicant.firstName}+'
-                                '+${visa.applicant.lastName}]]</td>
-                            <td>[[${visa.type_of_visa}]]</td>
-                            <td>[[${visa.visa_apply_date}]]</td>
-                            <td>[[${visa.visa_reception_date}]]</td>
-                            <td>[[${visa.user4.firstName}+'
-                                '+${visa.user4.lastName}]]</td>
-
-                            <td th:if="${visa.status == false && visa.visa_reception_date > (#dates.createNow()) }"><a
-                                    class="btn btn-sm" style="background-color: orange;"
-                                    th:href="@{'/visas/edit/' + ${visa.id}}" title="Edit this visa">Ongoing</a></td>
-                            <td th:if="${visa.status == false && visa.visa_reception_date < (#dates.createNow())}"><a
-                                    class="btn btn-sm" style="background-color: red;"
-                                    th:href="@{'/visas/edit/' + ${visa.id}}" title="Edit this visa">Late</a></td>
-                            <td th:if="${visa.status == true}"><a class="btn btn-warning btn-sm"
-                                    th:href="@{'/visas/edit/' + ${visa.id}}" title="Edit this visa">Complete</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="full-details m-3" th:if="${!listTickets.isEmpty()}">
-                <div class="m-3">
-                    <h2 style="text-align: center;">Ticket Schedule</h2>
-                </div>
-                <table class="table table-responsive-xl back" id="Table1">
-                    <thead class="thead-dark art">
-                        <tr>
-                            <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
-
-                            <th th:replace="fragments :: column_link6('ticket_date', 'Ticket Date', 'none')" />
-
-
-                            <th th:replace="fragments :: column_link6('date_travel', 'Date Travel', 'none')" />
-
-                            <th
-                                th:replace="fragments :: column_link6('expected_arrival_date', 'Expected Arrival Date', 'none')" />
-                            <th th:replace="fragments :: column_link6('user4', 'User', 'none')" />
-
-                            <th th:replace="fragments :: column_link6('travel_status', 'Travel Status', 'none')" />
-
-                        </tr>
-                    </thead>
-                    <tbody class="data">
-                        <tr th:each="travel : ${listTickets}">
-                            <td>[[${travel.applicant.identification}+' :
-                                '+${travel.applicant.firstName}+'
-                                '+${travel.applicant.lastName}]]</td>
-                            <td>[[${travel.ticket_date}]]</td>
-                            <td>[[${travel.date_travel}]]</td>
-                            <td>[[${travel.expected_arrival_date}]]</td>
-                            <td>[[${travel.user4.firstName}+'
-                                '+${travel.user4.lastName}]]</td>
-
-                            <td
-                                th:if="${travel.travel_status == false && travel.expected_arrival_date > (#dates.createNow()) }">
-                                <a class="btn btn-sm" style="background-color: orange;"
-                                    th:href="@{'/tickets/edit/' + ${travel.id}}" title="Edit this travel">Ongoing</a>
-                            </td>
-                            <td
-                                th:if="${travel.travel_status == false && travel.expected_arrival_date < (#dates.createNow())}">
-                                <a class="btn btn-sm" style="background-color: red;"
-                                    th:href="@{'/tickets/edit/' + ${travel.id}}" title="Edit this travel">Late</a>
-                            </td>
-                            <td th:if="${travel.travel_status == true}"><a class="btn btn-warning btn-sm"
-                                    th:href="@{'/tickets/edit/' + ${travel.id}}" title="Edit this travel">Complete</a>
-                            </td>
-
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-
-
-
-
-            <div th:replace="fragments :: footer"></div>
         </div>
+
+
+        <div class="row" style="margin: 0 auto;">
+            <div class="column" sec:authorize="hasAuthority('Admin')">
+                <div class="" style="left: 0px; top: 0px;">
+                    <div class="people-item service-card">
+                        <div class="panel-heading">
+                            <div class="pull-left">
+                                <img alt="Sample" class="thumbnail media-object"
+                                    src="/images/user.png?vsn=d"
+                                    data-holder-rendered="true">
+                            </div>
+                            <div class="pull-right text-left">
+                                <a th:href="@{/users}" class="btn btn-sm btn-default">Get
+                                    Service</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="media">
+
+                            <div class="media-body">
+                                <h4 class="person-name">
+                                    <a th:href="@{/users}">
+                                        Users
+                                    </a>
+                                </h4>
+                                <div class="text-muted">
+                                    Includes inserting for user applications, Editing user details and deleting.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAnyAuthority('Admin', 'Agents')">
+                <div class="" style="left: 0px; top: 0px;">
+                    <div class="people-item service-card">
+                        <div class="panel-heading">
+                            <div class="pull-left">
+                                <img alt="Sample" class="thumbnail media-object"
+                                    src="/images/agent.png?vsn=d"
+                                    data-holder-rendered="true">
+                            </div>
+                            <div class="pull-right text-left">
+                                <a th:href="@{/agents}" class="btn btn-sm btn-default">Get
+                                    Service</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="media">
+
+                            <div class="media-body">
+                                <h4 class="person-name">
+                                    <a th:href="@{/agents}">
+                                        Agents
+                                    </a>
+                                </h4>
+                                <div class="text-muted">
+                                    Includes inserting for agents applications, Editing agent details and deleting.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAnyAuthority('Admin', 'Applicants')">
+                <div class="" style="left: 0px; top: 0px;">
+                    <div class="people-item service-card">
+                        <div class="panel-heading">
+                            <div class="pull-left">
+                                <img alt="Sample" class="thumbnail media-object"
+                                    src="/images/applicant.png?vsn=d"
+                                    data-holder-rendered="true">
+                            </div>
+                            <div class="pull-right text-left">
+                                <a th:href="@{/applicants}" class="btn btn-sm btn-default">Get
+                                    Service</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="media">
+
+                            <div class="media-body">
+                                <h4 class="person-name">
+                                    <a th:href="@{/applicants}">
+                                        Applicants
+                                    </a>
+                                </h4>
+                                <div class="text-muted">
+                                    Includes inserting for Applicants applications, Editing applicant details and
+                                    deleting.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAuthority('Admin')">
+                <div class="" style="left: 0px; top: 0px;">
+                    <div class="people-item service-card">
+                        <div class="panel-heading">
+                            <div class="pull-left">
+                                <img alt="Sample" class="thumbnail media-object"
+                                    src="/images/schedule.png?vsn=d"
+                                    data-holder-rendered="true">
+                            </div>
+                            <div class="pull-right text-left">
+                                <a th:href="@{/schedules}" class="btn btn-sm btn-default">Get
+                                    Service</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="media">
+
+                            <div class="media-body">
+                                <h4 class="person-name">
+                                    <a th:href="@{/schedules}">
+                                        Schedules
+                                    </a>
+                                </h4>
+                                <div class="text-muted">
+                                    Monitor Users Schedules and follow ups.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAnyAuthority('Admin','Task')">
+                <div class="" style="left: 0px; top: 0px;">
+                    <div class="people-item service-card">
+                        <div class="panel-heading">
+                            <div class="pull-left">
+                                <img alt="Sample" class="thumbnail media-object"
+                                    src="/images/task.png?vsn=d"
+                                    data-holder-rendered="true">
+                            </div>
+                            <div class="pull-right text-left">
+                                <a th:href="@{/tasks}" class="btn btn-sm btn-default">Get
+                                    Service</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="media">
+
+                            <div class="media-body">
+                                <h4 class="person-name">
+                                    <a th:href="@{/tasks}">
+                                        Tasks
+                                    </a>
+                                </h4>
+                                <div class="text-muted">
+                                    Insert, Edit and view tasks.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAnyAuthority('Admin', 'Births')">
+                <div class="" style="left: 0px; top: 0px;">
+                    <div class="people-item service-card">
+                        <div class="panel-heading">
+                            <div class="pull-left">
+                                <img alt="Sample" class="thumbnail media-object"
+                                    src="/images/birth.png?vsn=d"
+                                    data-holder-rendered="true">
+                            </div>
+                            <div class="pull-right text-left">
+                                <a th:href="@{/births}" class="btn btn-sm btn-default">Get
+                                    Service</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="media">
+
+                            <div class="media-body">
+                                <h4 class="person-name">
+                                    <a th:href="@{/births}">
+                                        Birth Cert
+                                    </a>
+                                </h4>
+                                <div class="text-muted">
+                                    Insert, Edit and view applicant birth certificates schedules and details.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAnyAuthority('Admin', 'Passports')">
+                <div class="" style="left: 0px; top: 0px;">
+                    <div class="people-item service-card">
+                        <div class="panel-heading">
+                            <div class="pull-left">
+                                <img alt="Sample" class="thumbnail media-object"
+                                    src="/images/passport.png?vsn=d"
+                                    data-holder-rendered="true">
+                            </div>
+                            <div class="pull-right text-left">
+                                <a th:href="@{/passports}" class="btn btn-sm btn-default">Get
+                                    Service</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="media">
+
+                            <div class="media-body">
+                                <h4 class="person-name">
+                                    <a th:href="@{/passports}">
+                                        Passports
+                                    </a>
+                                </h4>
+                                <div class="text-muted">
+                                    Insert, Edit and view applicant passport data, schedules and view details.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAnyAuthority('Admin', 'Medicals')">
+                <div class="" style="left: 0px; top: 0px;">
+                    <div class="people-item service-card">
+                        <div class="panel-heading">
+                            <div class="pull-left">
+                                <img alt="Sample" class="thumbnail media-object"
+                                    src="/images/medical.png?vsn=d"
+                                    data-holder-rendered="true">
+                            </div>
+                            <div class="pull-right text-left">
+                                <a th:href="@{/medicals}" class="btn btn-sm btn-default">Get
+                                    Service</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="media">
+
+                            <div class="media-body">
+                                <h4 class="person-name">
+                                    <a th:href="@{/medicals}">
+                                        Medicals
+                                    </a>
+                                </h4>
+                                <div class="text-muted">
+                                    Insert, Edit and view applicant medical data, schedules and view details.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAnyAuthority('Admin', 'Trainings')">
+                <div class="people-item service-card">
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <img alt="Sample" class="thumbnail media-object"
+                                src="/images/training.png?vsn=d"
+                                data-holder-rendered="true">
+                        </div>
+                        <div class="pull-right text-left">
+                            <a th:href="@{/trainings}" class="btn btn-sm btn-default">Get
+                                Service</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="media">
+
+                        <div class="media-body">
+                            <h4 class="person-name">
+                                <a th:href="@{/trainings}">
+                                    Trainings
+                                </a>
+                            </h4>
+                            <div class="text-muted">
+                                Insert, Edit and view applicant training data, schedules and view details.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAnyAuthority('Admin', 'Jobs')">
+                <div class="people-item service-card">
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <img alt="Sample" class="thumbnail media-object"
+                                src="/images/job.png?vsn=d"
+                                data-holder-rendered="true">
+                        </div>
+                        <div class="pull-right text-left">
+                            <a th:href="@{/jobss}" class="btn btn-sm btn-default">Get
+                                Service</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="media">
+
+                        <div class="media-body">
+                            <h4 class="person-name">
+                                <a th:href="@{/jobss}">
+                                    Jobs
+                                </a>
+                            </h4>
+                            <div class="text-muted">
+                                Insert, Edit and view Jobs data, schedules and view details.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAnyAuthority('Admin', 'Interviews')">
+                <div class="people-item service-card">
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <img alt="Sample" class="thumbnail media-object"
+                                src="/images/interview.png?vsn=d"
+                                data-holder-rendered="true">
+                        </div>
+                        <div class="pull-right text-left">
+                            <a th:href="@{/interviews}" class="btn btn-sm btn-default">Get
+                                Service</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="media">
+
+                        <div class="media-body">
+                            <h4 class="person-name">
+                                <a th:href="@{/interviews}">
+                                    Interview
+                                </a>
+                            </h4>
+                            <div class="text-muted">
+                                Insert, Edit and view applicant interview data, schedules and view details.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAnyAuthority('Admin', 'Visas')">
+                <div class="people-item service-card">
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <img alt="Sample" class="thumbnail media-object"
+                                src="/images/visa.png?vsn=d"
+                                data-holder-rendered="true">
+                        </div>
+                        <div class="pull-right text-left">
+                            <a th:href="@{/visas}" class="btn btn-sm btn-default">Get
+                                Service</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="media">
+
+                        <div class="media-body">
+                            <h4 class="person-name">
+                                <a th:href="@{/visas}">
+                                    Visas
+                                </a>
+                            </h4>
+                            <div class="text-muted">
+                                Insert, Edit and view applicant visa data, schedules and view details.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAnyAuthority('Admin', 'Tickets')">
+                <div class="people-item service-card">
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <img alt="Sample" class="thumbnail media-object"
+                                src="/images/tickets.png?vsn=d"
+                                data-holder-rendered="true">
+                        </div>
+                        <div class="pull-right text-left">
+                            <a th:href="@{/tickets}" class="btn btn-sm btn-default">Get
+                                Service</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="media">
+
+                        <div class="media-body">
+                            <h4 class="person-name">
+                                <a th:href="@{/tickets}">
+                                    Tickets
+                                </a>
+                            </h4>
+                            <div class="text-muted">
+                                Insert, Edit and view applicant tickets data, schedules and view details.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAuthority('Admin')">
+                <div class="people-item service-card">
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <img alt="Sample" class="thumbnail media-object"
+                                src="/images/payments.png?vsn=d"
+                                data-holder-rendered="true">
+                        </div>
+                        <div class="pull-right text-left">
+                            <a th:href="@{/payments}" class="btn btn-sm btn-default">Get
+                                Service</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="media">
+
+                        <div class="media-body">
+                            <h4 class="person-name">
+                                <a th:href="@{/payments}">
+                                    Payments
+                                </a>
+                            </h4>
+                            <div class="text-muted">
+                                Insert, Edit and view applicant payments data, schedules and view details.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column" sec:authorize="hasAnyAuthority('Admin', 'Marketers')">
+                <div class="people-item service-card">
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <img alt="Sample" class="thumbnail media-object"
+                                src="/images/marketer.png?vsn=d"
+                                data-holder-rendered="true">
+                        </div>
+                        <div class="pull-right text-left">
+                            <a th:href="@{/marketer}" class="btn btn-sm btn-default">Get
+                                Service</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="media">
+
+                        <div class="media-body">
+                            <h4 class="person-name">
+                                <a th:href="@{/marketer}">
+                                    Marketer
+                                </a>
+                            </h4>
+                            <div class="text-muted">
+                                Comming Soon!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="full-details m-3" th:if="${!listMedicals.isEmpty()}">
+            <div class="panel-heading" style="background:#ecebec;!important;padding-left:0;padding-right:0;">
+                <h3 class="panel-title">User Schedules</h3>
+                <p>Click on any of the Schedule below to access the respective function.</p>
+            </div>
+            <hr>
+            <div class="m-3">
+                <h2 style="text-align: center;">Medical Schedule</h2>
+            </div>
+            <table class="table table-hover table-special table-striped">
+                <thead class="thead-dark">
+                    <tr>
+
+                        <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
+                        <th th:replace="fragments :: column_link5('application_date', 'Application Date', 'none')" />
+                        <th th:replace="fragments :: column_link5('result_date', 'Results Date', 'none')" />
+                        <th th:replace="fragments :: column_link5('user1', 'User', 'none')" />
+                        <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="medical : ${listMedicals}">
+
+                        <td>[[${medical.applicant.identification}+' :
+                            '+${medical.applicant.firstName}+'
+                            '+${medical.applicant.lastName}]]</td>
+                        <td>[[${medical.application_date}]]</td>
+
+                        <td>[[${medical.result_date}]]</td>
+                        <td>[[${medical.user1.firstName}+'
+                            '+${medical.user1.lastName}]]</td>
+
+                        <td th:if="${medical.m_status == false && medical.result_date > (#dates.createNow()) }"><a
+                                class="btn btn-sm" style="background-color: orange;"
+                                th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Ongoing</a>
+                        </td>
+                        <td th:if="${medical.m_status == false && medical.result_date < (#dates.createNow())}"><a
+                                class="btn btn-sm" style="background-color: red;"
+                                th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Late</a>
+                        </td>
+                        <td th:if="${medical.m_status == true}"><a class="btn btn-warning btn-sm"
+                                th:href="@{'/medicals/edit/' + ${medical.id}}" title="Edit this medical">Complete</a>
+                        </td>
+
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="12">
+                            To be ....
+
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>           
+        </div>
+
+
+
+        <div class="full-details m-3" th:if="${!listBirths.isEmpty()}">
+            <div class="m-3">
+                <h2 style="text-align: center;">Birth Certs Schedule</h2>
+            </div>
+            <table class="table table-hover table-special table-striped">
+                <thead class="thead-dark">
+                    <tr>
+
+                        <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
+                        <th
+                            th:replace="fragments :: column_link5('cert_application_date', 'Application Date', 'none')" />
+                        <th th:replace="fragments :: column_link5('cert_reception_date', 'Reception Date', 'none')" />
+
+                        <th th:replace="fragments :: column_link5('user2', 'User', 'none')" />
+                        <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="birth : ${listBirths}">
+
+                        <td>[[${birth.applicant.identification}+' :
+                            '+${birth.applicant.firstName}+'
+                            '+${birth.applicant.lastName}]]</td>
+                        <td>[[${birth.cert_application_date}]]</td>
+                        <td>[[${birth.cert_reception_date}]]</td>
+                        <td>[[${birth.user2.firstName}+'
+                            '+${birth.user2.lastName}]]</td>
+
+                        <td th:if="${birth.status == false && birth.cert_reception_date > (#dates.createNow()) }"><a
+                                class="btn btn-sm" style="background-color: orange;"
+                                th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Ongoing</a></td>
+                        <td th:if="${birth.status == false && birth.cert_reception_date < (#dates.createNow())}"><a
+                                class="btn btn-sm" style="background-color: red;"
+                                th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Late</a></td>
+                        <td th:if="${birth.status == true}"><a class="btn btn-warning btn-sm"
+                                th:href="@{'/births/edit/' + ${birth.id}}" title="Edit this birth">Complete</a></td>
+
+
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="12">
+                            To be ....
+
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>   
+        </div>
+
+
+
+        <div class="full-details m-3" th:if="${!listPassports.isEmpty()}">
+            <div class="m-3">
+                <h2 style="text-align: center;">Passport Schedule</h2>
+            </div>
+            <table class="table table-hover table-special table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
+                        <th th:replace="fragments :: column_link5('pass_application_date', 'Pass App Date', 'none')" />
+                        <th
+                            th:replace="fragments :: column_link5('pass_application_date', 'Pass Recep Date', 'none')" />
+
+                        <th th:replace="fragments :: column_link5('user_id3', 'User', 'none')" />
+                        <th th:replace="fragments :: column_link5('status', 'Status', 'none')" />
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="passport : ${listPassports}">
+                        <td>[[${passport.applicant.identification}+' :
+                            '+${passport.applicant.firstName}+'
+                            '+${passport.applicant.lastName}]]</td>
+                        <td>[[${passport.pass_application_date}]]</td>
+                        <td>[[${passport.pass_reception_date}]]</td>
+                        <td>[[${passport.user3.firstName}+'
+                            '+${passport.user3.lastName}]]</td>
+
+                        <td th:if="${passport.status == false && passport.pass_reception_date > (#dates.createNow()) }">
+                            <a class="btn btn-sm" style="background-color: orange;"
+                                th:href="@{'/passports/edit/' + ${passport.id}}" title="Edit this passport">Ongoing</a>
+                        </td>
+                        <td th:if="${passport.status == false && passport.pass_reception_date < (#dates.createNow())}">
+                            <a class="btn btn-sm" style="background-color: red;"
+                                th:href="@{'/passports/edit/' + ${passport.id}}" title="Edit this passport">Late</a>
+                        </td>
+                        <td th:if="${passport.status == true}"><a class="btn btn-warning btn-sm"
+                                th:href="@{'/passports/edit/' + ${passport.id}}" title="Edit this passport">Complete</a>
+                        </td>
+
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="12">
+                            To be ....
+
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+
+
+        <div class="full-details m-3" th:if="${!listTrainings.isEmpty()}">
+            <div class="m-3">
+                <h2 style="text-align: center;">Training Schedule</h2>
+            </div>
+            <table class="table table-hover table-special table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
+                        <th th:replace="fragments :: column_link6('start_date', 'Start Date', 'none')" />
+                        <th th:replace="fragments :: column_link6('finish_date', 'Finish Date', 'none')" />
+                        <th th:replace="fragments :: column_link6('user5', 'User', 'none')" />
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="training : ${listTrainings}">
+                        <td>[[${training.applicant.identification}+' :
+                            '+${training.applicant.firstName}+'
+                            '+${training.applicant.lastName}]]</td>
+                        <td>[[${training.start_date}]]</td>
+                        <td>[[${training.finish_date}]]</td>
+                        <td>[[${training.user5.firstName}+'
+                            '+${training.user5.lastName}]]</td>
+
+                        <td th:if="${training.t_status == false && training.finish_date > (#dates.createNow()) }"><a
+                                class="btn btn-sm" style="background-color: orange;"
+                                th:href="@{'/trainings/edit/' + ${training.id}}" title="Edit this training">Ongoing</a>
+                        </td>
+                        <td th:if="${training.t_status == false && training.finish_date < (#dates.createNow())}"><a
+                                class="btn btn-sm" style="background-color: red;"
+                                th:href="@{'/trainings/edit/' + ${training.id}}" title="Edit this training">Late</a>
+                        </td>
+                        <td th:if="${training.t_status == true}"><a class="btn btn-warning btn-sm"
+                                th:href="@{'/trainings/edit/' + ${training.id}}" title="Edit this training">Complete</a>
+                        </td>
+
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="12">
+                            To be ....
+
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+
+        <div class="full-details m-3" th:if="${!listVisas.isEmpty()}">
+            <div class="m-3">
+                <h2 style="text-align: center;">Visa Schedule</h2>
+            </div>
+            <table class="table table-hover table-special table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
+                        <th th:replace="fragments :: column_link6('type_of_visa', 'Type of Visa', 'none')" />
+                        <th th:replace="fragments :: column_link6('finish_date', 'Visa Apply Date', 'none')" />
+                        <th th:replace="fragments :: column_link6('cert_no', 'Visa Reception Date', 'none')" />
+                        <th th:replace="fragments :: column_link6('user4', 'User', 'none')" />
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="visa : ${listVisas}">
+                        <td>[[${visa.applicant.identification}+' :
+                            '+${visa.applicant.firstName}+'
+                            '+${visa.applicant.lastName}]]</td>
+                        <td>[[${visa.type_of_visa}]]</td>
+                        <td>[[${visa.visa_apply_date}]]</td>
+                        <td>[[${visa.visa_reception_date}]]</td>
+                        <td>[[${visa.user4.firstName}+'
+                            '+${visa.user4.lastName}]]</td>
+
+                        <td th:if="${visa.status == false && visa.visa_reception_date > (#dates.createNow()) }"><a
+                                class="btn btn-sm" style="background-color: orange;"
+                                th:href="@{'/visas/edit/' + ${visa.id}}" title="Edit this visa">Ongoing</a></td>
+                        <td th:if="${visa.status == false && visa.visa_reception_date < (#dates.createNow())}"><a
+                                class="btn btn-sm" style="background-color: red;"
+                                th:href="@{'/visas/edit/' + ${visa.id}}" title="Edit this visa">Late</a></td>
+                        <td th:if="${visa.status == true}"><a class="btn btn-warning btn-sm"
+                                th:href="@{'/visas/edit/' + ${visa.id}}" title="Edit this visa">Complete</a></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="12">
+                            To be ....
+
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="full-details m-3" th:if="${!listTickets.isEmpty()}">
+            <div class="m-3">
+                <h2 style="text-align: center;">Ticket Schedule</h2>
+            </div>
+            <table class="table table-hover table-special table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
+
+                        <th th:replace="fragments :: column_link6('ticket_date', 'Ticket Date', 'none')" />
+
+
+                        <th th:replace="fragments :: column_link6('date_travel', 'Date Travel', 'none')" />
+
+                        <th
+                            th:replace="fragments :: column_link6('expected_arrival_date', 'Expected Arrival Date', 'none')" />
+                        <th th:replace="fragments :: column_link6('user4', 'User', 'none')" />
+
+                        <th th:replace="fragments :: column_link6('travel_status', 'Travel Status', 'none')" />
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="travel : ${listTickets}">
+                        <td>[[${travel.applicant.identification}+' :
+                            '+${travel.applicant.firstName}+'
+                            '+${travel.applicant.lastName}]]</td>
+                        <td>[[${travel.ticket_date}]]</td>
+                        <td>[[${travel.date_travel}]]</td>
+                        <td>[[${travel.expected_arrival_date}]]</td>
+                        <td>[[${travel.user4.firstName}+'
+                            '+${travel.user4.lastName}]]</td>
+
+                        <td
+                            th:if="${travel.travel_status == false && travel.expected_arrival_date > (#dates.createNow()) }">
+                            <a class="btn btn-sm" style="background-color: orange;"
+                                th:href="@{'/tickets/edit/' + ${travel.id}}" title="Edit this travel">Ongoing</a>
+                        </td>
+                        <td
+                            th:if="${travel.travel_status == false && travel.expected_arrival_date < (#dates.createNow())}">
+                            <a class="btn btn-sm" style="background-color: red;"
+                                th:href="@{'/tickets/edit/' + ${travel.id}}" title="Edit this travel">Late</a>
+                        </td>
+                        <td th:if="${travel.travel_status == true}"><a class="btn btn-warning btn-sm"
+                                th:href="@{'/tickets/edit/' + ${travel.id}}" title="Edit this travel">Complete</a>
+                        </td>
+
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="12">
+                            To be ....
+
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+
+
+
+
+        <div th:replace="fragments :: footer"></div>
     </div>
-    <script th:src="@{/js/common.js}"></script>
+</div>
+<script th:src="@{/js/common.js}"></script>
 
 
 
-    <script>
-        $(document).ready(function () {
-            $("#buttonCancel").on("click", function () {
-                window.location = "[[@{/medicals}]]";
-            });
-
-            $("#fileImage").change(function () {
-                fileSize = this.files[0].size;
-                //alert("File size: " + fileSize);
-
-                if (fileSize > 1048576) {
-                    this.setCustomValidity("You must choose an image less than 1MB!");
-                    this.reportValidity();
-                } else {
-                    this.setCustomValidity("");
-                    showImageThumbnail(this);
-                }
-
-
-            });
+<script>
+    $(document).ready(function () {
+        $("#buttonCancel").on("click", function () {
+            window.location = "[[@{/medicals}]]";
         });
 
-        function showImageThumbnail(fileInput) {
-            var file = fileInput.files[0];
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $("#thumbnail").attr("src", e.target.result);
-            };
+        $("#fileImage").change(function () {
+            fileSize = this.files[0].size;
+            //alert("File size: " + fileSize);
 
-            reader.readAsDataURL(file);
-        }
+            if (fileSize > 1048576) {
+                this.setCustomValidity("You must choose an image less than 1MB!");
+                this.reportValidity();
+            } else {
+                this.setCustomValidity("");
+                showImageThumbnail(this);
+            }
 
 
-        function showModalDialog(title, message) {
-            $("#modalTitle").text(title);
-            $("#modalBody").text(message);
-            $("#modalDialog").modal();
-        }
-    </script>
-
-    <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <!-- Bootstrap Js CDN -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- jQuery Custom Scroller CDN -->
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#sidebar").mCustomScrollbar({
-                theme: "minimal"
-            });
-
-            $('#dismiss, .overlay').on('click', function () {
-                $('#sidebar').removeClass('active');
-                $('.overlay').fadeOut();
-            });
-
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').addClass('active');
-                $('.overlay').fadeIn();
-                $('.collapse.in').toggleClass('in');
-                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-            });
         });
-    </script>
+    });
+
+    function showImageThumbnail(fileInput) {
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $("#thumbnail").attr("src", e.target.result);
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+
+    function showModalDialog(title, message) {
+        $("#modalTitle").text(title);
+        $("#modalBody").text(message);
+        $("#modalDialog").modal();
+    }
+</script>
+
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<!-- Bootstrap Js CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#dismiss, .overlay').on('click', function () {
+            $('#sidebar').removeClass('active');
+            $('.overlay').fadeOut();
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').addClass('active');
+            $('.overlay').fadeIn();
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script>
 
 </html>

@@ -3,69 +3,130 @@
 
 <head th:replace="fragments :: page_head('Training - Defis Admin')" />
 
-    <div class="container-fluid">
-        <div th:replace="nav :: menu"></div>
-        <div class="m-3">
-            <h2 class="heading">Manage Trainees</h2>
-            <a th:href="@{/trainings/new}"><i class="fas fa-folder-plus fa-2x mr-4"></i></a>
-            <a th:href="@{/trainings/export/csv}"><i class="fas fa-file-csv fa-2x mr-4"></i></a>
-            <a th:href="@{/trainings/export/excel}"><i class="far fa-file-excel fa-2x mr-4"></i></a>
-        </div>
-        <div th:if="${message != null}" class="alert alert-success text-center">
-            [[${message}]]
-        </div>
-
-        <div class="m-3">
-            <form th:action="@{/trainings/page/1}" class="form-inline">
-                <input type="hidden" name="sortField" th:value="${sortField}" />
-                <input type="hidden" name="sortDir" th:value="${sortDir}" />
-
-                <input type="search" name="keyword" th:value="${keyword}" class="form-control mr-2" required />
-                <button type="submit" class="btn btn-primary mr-2"><i class="fas fa-search"></i></button>
-                <button type="button" class="btn btn-secondary" onclick="clearFilter()"><i
-                        class="fas fa-eraser"></i></button>
-            </form>
-        </div>
-
+<div class="container-fluid">
+    <div th:replace="nav :: menu"></div>
+    <div th:if="${message != null}" class="alert alert-success text-center">
+        [[${message}]]
     </div>
-    <div class="full-details m-3">
-        <table class="table table-hover table-responsive-xl back">
-            <thead class="thead-dark art">
-                <tr>
-                    <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
-                    <th th:replace="fragments :: column_link6('start_date', 'Start Date', 'none')" />
-                    <th th:replace="fragments :: column_link6('finish_date', 'Finish Date', 'none')" />
-                    <th th:replace="fragments :: column_link6('cert_no', 'Cert No', 'none')" />
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody class="data">
-                <tr th:each="training : ${listTrainings}">
-                    <td>[[${training.applicant.identification}+' :
-                        '+${training.applicant.firstName}+' 
-                        '+${training.applicant.lastName}]]</td>
-                    <td>[[${training.start_date}]]</td>
-                    <td>[[${training.finish_date}]]</td>
-                    <td>[[${training.cert_no}]]</td>
 
-                    <td>
-                        <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/trainings/view/' + ${training.id}}"
-                        title="Edit this training"></a>
-                        <a class="far fa-edit icon-green mr-4" th:href="@{'/trainings/edit/' + ${training.id}}"
-                        title="Edit this training"></a>
-                        <a class="far fa-trash-alt icon-red link-delete" th:href="@{'/trainings/delete/' + ${training.id}}"
-                            th:trainingId="${training.id}" title="Delete this training"></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="m-3">
+        <form th:action="@{/trainings/page/1}" class="form-inline">
+            <input type="hidden" name="sortField" th:value="${sortField}" />
+            <input type="hidden" name="sortDir" th:value="${sortDir}" />
+
+            <input type="search" name="keyword" th:value="${keyword}" class="form-control mr-2" required />
+            <button type="submit" class="btn btn-primary mr-2"><i class="fas fa-search"></i></button>
+            <button type="button" class="btn btn-secondary" onclick="clearFilter()"><i
+                    class="fas fa-eraser"></i></button>
+        </form>
     </div>
-    
+
+    <div class="panel panel-default full-details" style="margin-top: 20px;">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                Training Schedules <a th:href="@{/trainings/new}" class="btn btn-primary btn-sm pull-right"
+                    style="margin-top: -4px; color: #FFFFFF;">Add Training</a>&nbsp;
+                <a th:href="@{/trainings/export/csv}" class="btn btn-primary btn-sm pull-center"
+                    style="margin-top: -4px; color: #FFFFFF;">Export to CSV </a>
+                &nbsp;<a th:href="@{/trainings/export/excel}" class="btn btn-primary btn-sm pull-center"
+                    style="margin-top: -4px; color: #FFFFFF;">Export to Spread Excel </a>
+
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-special table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th th:replace="fragments :: column_link6('applicant', 'Applicant', 'none')" />
+                            <th th:replace="fragments :: column_link6('start_date', 'Start Date', 'none')" />
+                            <th th:replace="fragments :: column_link6('finish_date', 'Finish Date', 'none')" />
+                            <th th:replace="fragments :: column_link6('cert_no', 'Cert No', 'none')" />
+                            <th th:replace="fragments :: column_link6('user5', 'User', 'none')" />
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="training : ${listTrainings}">
+                            <td>[[${training.applicant.identification}+' :
+                                '+${training.applicant.firstName}+'
+                                '+${training.applicant.lastName}]]</td>
+                            <td>[[${training.start_date}]]</td>
+                            <td>[[${training.finish_date}]]</td>
+                            <td>[[${training.cert_no}]]</td>
+                            <td>[[${training.user5.firstName}+'
+                                '+${training.user5.lastName}]]</td>
+
+                            <td>
+                                <a class="fas fa-file-alt icon-green mr-4"
+                                    th:href="@{'/trainings/view/' + ${training.id}}" title="Edit this training"></a>
+                                <a class="far fa-edit icon-green mr-4" th:href="@{'/trainings/edit/' + ${training.id}}"
+                                    title="Edit this training"></a>
+                                <a class="far fa-trash-alt icon-red link-delete"
+                                    th:href="@{'/trainings/delete/' + ${training.id}}" th:trainingId="${training.id}"
+                                    title="Delete this training"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="12">
+                                <div th:if="${totalItems > 0}">
+                                    <span>Showing trainings # [[${startCount}]] to [[${endCount}]] of
+                                        [[${totalItems}]]</span>
+                                </div>
+                                <div class="text-center m-1" th:unless="${totalItems > 0}">
+                                    <span>No trainings found!</span>
+                                </div>
+
+                                <div th:if="${totalPages > 1}">
+                                    <nav>
+                                        <ul class="pagination justify-content-center flex-wrap">
+                                            <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                                                <a th:replace="fragments :: page_link6(1, 'First')"></a>
+                                            </li>
+
+                                            <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                                                <a
+                                                    th:replace="fragments :: page_link6(${currentPage - 1}, 'Previous')"></a>
+                                            </li>
+
+                                            <li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+                                                th:each="i : ${#numbers.sequence(1, totalPages)}">
+                                                <a th:replace="fragments :: page_link6(${i}, ${i})"></a>
+                                            </li>
+
+                                            <li
+                                                th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                                <a th:replace="fragments :: page_link6(${currentPage + 1}, 'Next')"></a>
+                                            </li>
+
+                                            <li
+                                                th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                                <a th:replace="fragments :: page_link6(${totalPages}, 'Last')"></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div id="snackbar">You have a new Bill</div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
     <div class="less-details">
         <div th:each="training : ${listTrainings}" class="row m-1">
             <div class="col-8">
                 <div>[[${training.applicant.identification}+' :
-                    '+${training.applicant.firstName}+' 
+                    '+${training.applicant.firstName}+'
                     '+${training.applicant.lastName}]]</div>
                 <div class="mt-2">
                     <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/trainings/view/' + ${training.id}}"
@@ -79,41 +140,41 @@
             </div>
             <div>&nbsp;</div>
         </div>
-    </div>
-    </div>
 
-    <div class="text-center m-1" th:if="${totalItems > 0}">
-        <span>Showing trainings # [[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
-    </div>
-    <div class="text-center m-1" th:unless="${totalItems > 0}">
-        <span>No trainings found!</span>
-    </div>
+        <div class="text-center m-1" th:if="${totalItems > 0}">
+            <span>Showing trainings # [[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
+        </div>
+        <div class="text-center m-1" th:unless="${totalItems > 0}">
+            <span>No trainings found!</span>
+        </div>
 
-    <div th:if="${totalPages > 1}">
-        <nav>
-            <ul class="pagination justify-content-center flex-wrap">
-                <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-                    <a th:replace="fragments :: page_link6(1, 'First')"></a>
-                </li>
+        <div th:if="${totalPages > 1}">
+            <nav>
+                <ul class="pagination justify-content-center flex-wrap">
+                    <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                        <a th:replace="fragments :: page_link6(1, 'First')"></a>
+                    </li>
 
-                <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-                    <a th:replace="fragments :: page_link6(${currentPage - 1}, 'Previous')"></a>
-                </li>
+                    <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                        <a th:replace="fragments :: page_link6(${currentPage - 1}, 'Previous')"></a>
+                    </li>
 
-                <li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
-                    th:each="i : ${#numbers.sequence(1, totalPages)}">
-                    <a th:replace="fragments :: page_link6(${i}, ${i})"></a>
-                </li>
+                    <li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+                        th:each="i : ${#numbers.sequence(1, totalPages)}">
+                        <a th:replace="fragments :: page_link6(${i}, ${i})"></a>
+                    </li>
 
-                <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-                    <a th:replace="fragments :: page_link6(${currentPage + 1}, 'Next')"></a>
-                </li>
+                    <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                        <a th:replace="fragments :: page_link6(${currentPage + 1}, 'Next')"></a>
+                    </li>
 
-                <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-                    <a th:replace="fragments :: page_link6(${totalPages}, 'Last')"></a>
-                </li>
-            </ul>
-        </nav>
+                    <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                        <a th:replace="fragments :: page_link6(${totalPages}, 'Last')"></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
     </div>
 
     <div class="modal fade text-center" id="confirmModal">
@@ -138,24 +199,24 @@
 
     <div th:replace="fragments :: footer"></div>
 
-    </div>
-    <script th:src="@{/js/common.js}"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".link-delete").on("click", function (e) {
-                e.preventDefault();
-                link = $(this);
-                // alert($(this).attr("href"));
-                trainingId = link.attr("trainingId");
-                $("#yesButton").attr("href", link.attr("href"));
-                $("#confirmText").text("Are you sure you want to delete this ID " + trainingId + "?");
-                $("#confirmModal").modal();
-            });
+</div>
+<script th:src="@{/js/common.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".link-delete").on("click", function (e) {
+            e.preventDefault();
+            link = $(this);
+            // alert($(this).attr("href"));
+            trainingId = link.attr("trainingId");
+            $("#yesButton").attr("href", link.attr("href"));
+            $("#confirmText").text("Are you sure you want to delete this ID " + trainingId + "?");
+            $("#confirmModal").modal();
         });
+    });
 
-        function clearFilter() {
-            window.location = "[[@{/trainings}]]";
-        }
-    </script>
+    function clearFilter() {
+        window.location = "[[@{/trainings}]]";
+    }
+</script>
 
 </html>

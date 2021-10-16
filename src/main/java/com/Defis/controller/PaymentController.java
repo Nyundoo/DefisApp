@@ -18,11 +18,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Applicant;
 import com.Defis.domain.Payment;
+import com.Defis.domain.User;
 import com.Defis.exception.PaymentNotFoundException;
 import com.Defis.exporter.PaymentCsvExporter;
 import com.Defis.exporter.PaymentExcelExporter;
 import com.Defis.exporter.PaymentPDFExporter;
 import com.Defis.repository.ApplicantRepository;
+import com.Defis.repository.UserRepository;
 import com.Defis.service.PaymentService;
 
 @Controller
@@ -32,6 +34,9 @@ public class PaymentController {
 	
 	@Autowired
 	private PaymentService service;
+	
+	@Autowired
+	private UserRepository userRepo;
 	
 	
 	@GetMapping("/payments")
@@ -79,9 +84,11 @@ public class PaymentController {
 	@GetMapping("/payments/new")
 	public String newPayment(Model model) {	
 		List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
+		List<User> listUsers = (List<User>) userRepo.findAll();
 		
 		Payment payments = new Payment();
-		
+
+		model.addAttribute("listUsers", listUsers);
 		model.addAttribute("payment", payments);
 
 		model.addAttribute("pageTitle", "Create New Payment");
@@ -117,9 +124,11 @@ public class PaymentController {
 			Payment payment = service.get(id);
 			
 			List<Applicant> listApplicants = (List<Applicant>) applicantRepo.findAll();
+			List<User> listUsers = (List<User>) userRepo.findAll();
 			
 
 			model.addAttribute("listApplicants", listApplicants);
+			model.addAttribute("listUsers", listUsers);
 			
 			model.addAttribute("payment", payment);
 			model.addAttribute("pageTitle", "Edit Payment (ID: " + id + ")");
@@ -151,6 +160,33 @@ public class PaymentController {
 		}
 
 		return "redirect:/payments";
+		
+	}
+	
+	@GetMapping("/payments/view/{id}")
+	public String viewBirth(@PathVariable(name = "id") Integer id,
+			Model model,
+			RedirectAttributes redirectAttributes) throws PaymentNotFoundException {
+		try {
+			Payment payment = service.get(id);
+		
+		List<Payment> listPayment = (List<Payment>) service.findAll();
+		List<User> listUsers = (List<User>) userRepo.findAll();
+		
+
+		model.addAttribute("listPayment", listPayment);
+		model.addAttribute("listUsers", listUsers);
+		
+		model.addAttribute("payment", payment);
+		model.addAttribute("pageTitle", "View Birth (ID: " + id + ")");
+		
+		return "births/birthpreview";
+		
+		} catch (PaymentNotFoundException ex) {
+			redirectAttributes.addFlashAttribute("message", ex.getMessage());
+			
+			return "redirect:/births";
+		}
 		
 	}
 	

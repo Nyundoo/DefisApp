@@ -42,6 +42,9 @@ public class Ticket {
 
 	private boolean travel_status = false;
 	
+	@Column(length = 64)
+	private String photos;
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id4")
 	private User user4;
@@ -131,6 +134,14 @@ public class Ticket {
 
 	public void setUser4(User user4) {
 		this.user4 = user4;
+	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
 
 }

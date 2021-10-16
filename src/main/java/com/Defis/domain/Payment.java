@@ -11,6 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * @author defis
+ *
+ */
 @Entity(name = "Payment")
 @Table(name = "payment")
 public class Payment {
@@ -27,6 +31,10 @@ public class Payment {
 
 	@Column(name = "date_paid", length = 16, nullable = false)
 	private Date date_paid;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id8")
+	private User user8;
 
 	public Integer getId() {
 		return id;
@@ -58,6 +66,14 @@ public class Payment {
 
 	public void setDate_paid(Date date_paid) {
 		this.date_paid = date_paid;
+	}
+
+	public User getUser8() {
+		return user8;
+	}
+
+	public void setUser8(User user8) {
+		this.user8 = user8;
 	}
 
 }

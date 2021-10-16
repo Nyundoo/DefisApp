@@ -30,7 +30,7 @@ public class User {
 	@Column(length = 128, nullable = false, unique = true)
 	private String email;
 
-	@Column(name = "id_no", length = 8, nullable = false)
+	@Column(name = "id_no", length = 9, nullable = true)
 	private String idNo;
 
 	@Column(length = 64, nullable = false)
@@ -42,7 +42,7 @@ public class User {
 	@Column(name = "last_name", length = 45, nullable = false)
 	private String lastName;
 
-	@Column(length = 6,nullable = false)
+	@Column(length = 6, nullable = true)
 	private String gender;
 
 	@Column(length = 64)

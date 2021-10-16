@@ -10,6 +10,11 @@
             <h2>[[${pageTitle}]]</h2>
         </div>
     </div>
+    <div class="col-rt-2">
+        <ul>
+            <li><a th:href="@{/agents}">Back to agents list page</a></li>
+        </ul>
+    </div>
     <form enctype="multipart/form-data" th:action="@{/agents/save}" method="post"
         style="max-width: 700px; margin: 0 auto;" th:object="${agent}" onsubmit="return checkEmailUnique(this);">
         <input type="hidden" th:field="*{id}" />
@@ -24,7 +29,7 @@
                     <img id="thumbnail" alt="Photo preview" th:src="@{${agent.photosImagePath}}" class="img-fluid" />
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <label class="col-form-label login">E-mail *</label>
                 <div class="">
@@ -36,7 +41,8 @@
             <div class="form-group">
                 <label class="col-form-label login">Identification Number *</label>
                 <div class="">
-                    <input type="text" class="form-control input" th:field="*{idNo}" required minlength="2" maxlength="26" />
+                    <input type="text" class="form-control input" th:field="*{idNo}" required minlength="2"
+                        maxlength="26" />
                 </div>
             </div>
 
@@ -84,7 +90,7 @@
                 <label class="col-form-label login">County *</label>
                 <div class="">
                     <input list="countytxt" th:field="*{county}" class="form-control input" required minlength="2"
-                    maxlength="45">
+                        maxlength="45">
                     <datalist id="countytxt">
                         <option value="01Mombasa">Mombasa</option>
                         <option value="02Kwale">Kwale</option>

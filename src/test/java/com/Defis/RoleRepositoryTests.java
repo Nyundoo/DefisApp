@@ -49,7 +49,7 @@ public class RoleRepositoryTests {
 //
 //
 //		
-//		 repo.saveAll(List.of(rolePayment, roleMedical, roleJob, roleAgent, roleApplicant, roleTraining, roleTicket, roleMarketers, rolePassports, roleBirth, roleTasks, roleVisas));
+//		 repo.saveAll(List.of(rolePayment, roleMedical, roleJob, roleAgent, roleApplicant, roleTraining, roleTicket, roleMarketers, rolePassports, roleBirth, roleTasks, roleVisas, roleInterviews));
 //		
 //	}
 

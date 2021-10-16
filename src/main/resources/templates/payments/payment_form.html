@@ -10,6 +10,11 @@
             <h2>[[${pageTitle}]]</h2>
         </div>
     </div>
+    <div class="col-rt-2">
+        <ul>
+            <li><a th:href="@{/payments}">Back to payments list page</a></li>
+        </ul>
+    </div>
     <form enctype="multipart/form-data" th:action="@{/payments/save}" method="post"
         style="max-width: 700px; margin: 0 auto;" th:object="${payment}" >
         <input type="hidden" th:field="*{id}" />
@@ -24,7 +29,7 @@
                         </th:block>
                     </select>
                     <a style="text-decoration:underline; color: blue; font-size: medium;"
-                        th:href="@{/applicants/new}" class="heading">Add New Applicant</a>
+                        th:href="@{/payments/new}" class="heading">Add New Applicant</a>
                 </div>
             </div>
 
@@ -43,7 +48,34 @@
                         maxlength="45" />
                 </div>
             </div>   
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="inputAttachments">Payments attachment</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="file" name="attachments[]" id="inputAttachments" class="form-control valid"
+                        aria-invalid="false">
+                    <div id="fileUploadsContainer"></div>
+                </div>
+            </div>
 
+            <div class="form-group" style="display: none">
+                <label class="col-form-label login">Assign To *</label>
+                <div class="">
+                    <select th:field="*{user8}" class="form-control input" required>
+                        <th:block th:each="cat : ${listUsers}">
+                            <option th:text="${cat.firstName}+' '+${cat.lastName}" th:value="${#request.userPrincipal.principal.id}" />
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label class="col-form-label login" style="text-align: right;">Edited By</label>
+                <div class="">
+                    <input type="text" th:value="${#request.userPrincipal.principal.fullname}" class="form-control input" required readonly="readonly" />
+                </div>
+            </div>
 
 
 

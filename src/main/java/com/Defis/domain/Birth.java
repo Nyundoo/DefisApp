@@ -36,6 +36,9 @@ public class Birth {
 	@Column(name = "cert_reception_date", length = 16, nullable = false)
 	private Date cert_reception_date;
 
+	@Column(length = 64)
+	private String photos;
+
 	@ManyToOne
 	@JoinColumn(name = "user_id2")
 	private User user2;
@@ -104,6 +107,14 @@ public class Birth {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
 
 }

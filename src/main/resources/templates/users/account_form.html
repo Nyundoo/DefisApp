@@ -7,8 +7,16 @@
     <div class="container-fluid">
         <div th:replace="nav :: menu"></div>
         
-        <div class="text-center">
-            <h2 class="heading">Your Account Details</h2>
+        <div class="pageheader">
+            <h2>
+                <i class="fa fa-home"></i>User Account
+            </h2>
+            <div class="breadcrumb-wrapper">
+                <span class="label">You are here:</span>
+                <ol class="breadcrumb">
+                    <li>Tables</li>
+                </ol>
+            </div>
         </div>
 
         <div th:if="${message != null}" class="alert alert-success text-center">

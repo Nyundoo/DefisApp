@@ -3,78 +3,140 @@
 
 <head th:replace="fragments :: page_head('Medical - Defis Admin')" />
 
-    <div class="container-fluid">
-        <div th:replace="nav :: menu"></div>
-        <div class="m-3">
-            <h2 class="heading">Manage Medicals</h2>
-            <a th:href="@{/medicals/new}"><i class="fas fa-folder-plus fa-2x mr-4"></i></a>
-            <a th:href="@{/medicals/export/csv}"><i class="fas fa-file-csv fa-2x mr-4"></i></a>
-            <a th:href="@{/medicals/export/excel}"><i class="far fa-file-excel fa-2x mr-4"></i></a>
-        </div>
-        <div th:if="${message != null}" class="alert alert-success text-center">
-            [[${message}]]
-        </div>
+<div class="container-fluid">
+    <div th:replace="nav :: menu"></div>
 
-        <div class="m-3">
-            <form th:action="@{/medicals/page/1}" class="form-inline">
-                <input type="hidden" name="sortField" th:value="${sortField}" />
-                <input type="hidden" name="sortDir" th:value="${sortDir}" />
-
-                <input type="search" name="keyword" th:value="${keyword}" class="form-control mr-2" required />
-                <button type="submit" class="btn btn-primary mr-2"><i class="fas fa-search"></i></button>
-                <button type="button" class="btn btn-secondary" onclick="clearFilter()"><i
-                        class="fas fa-eraser"></i></button>
-            </form>
-        </div>
-
+    <div th:if="${message != null}" class="alert alert-success text-center">
+        [[${message}]]
     </div>
-    <div class="full-details m-3">
-        <table class="table table-hover table-responsive-xl back">
-            <thead class="thead-dark art">
-                <tr>
-                    <th class="hideable-column">
-                        <th th:replace="fragments :: column_link5('id', 'Medical ID', 'tag')" />
-                    <th class="hideable-column">
-                        <th th:replace="fragments :: column_link5('client_info', 'Client Info', 'tag')" />
-                        <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
-                        <th th:replace="fragments :: column_link5('medical_center', 'Medical Center', 'none')" />
-                        <th th:replace="fragments :: column_link5('medical_type', 'Medical Type', 'none')" />
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody class="data">
-                <tr th:each="medical : ${listMedicals}">
-                    <td class="hideable-column">[[${medical.id}]]</td>
-                    <td class="hideable-column">[[${medical.client_info}]]</td>
-                    <td>[[${medical.applicant.identification}+' :
-                        '+${medical.applicant.firstName}+' 
-                        '+${medical.applicant.lastName}]]</td>
-                    <td>[[${medical.medical_center}]]</td>
-                    <td>[[${medical.medical_type}]]</td>
 
-                    <td>
-                        <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/medicals/view/' + ${medical.id}}"
-                        title="Edit this medical"></a>
-                        <a class="far fa-edit icon-green mr-4" th:href="@{'/medicals/edit/' + ${medical.id}}"
-                        title="Edit this medical"></a>
-                        <a class="far fa-trash-alt icon-red link-delete"
-                            th:href="@{'/medicals/delete/' + ${medical.id}}" th:medicalId="${medical.id}"
-                            title="Delete this medical"></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="m-3">
+        <form th:action="@{/medicals/page/1}" class="form-inline">
+            <input type="hidden" name="sortField" th:value="${sortField}" />
+            <input type="hidden" name="sortDir" th:value="${sortDir}" />
+
+            <input type="search" name="keyword" th:value="${keyword}" class="form-control mr-2" required />
+            <button type="submit" class="btn btn-primary mr-2"><i class="fas fa-search"></i></button>
+            <button type="button" class="btn btn-secondary" onclick="clearFilter()"><i
+                    class="fas fa-eraser"></i></button>
+        </form>
     </div>
+
+    <div class="panel panel-default full-details" style="margin-top: 20px;">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                Medical Schedules <a th:href="@{/medicals/new}" class="btn btn-primary btn-sm pull-right"
+                    style="margin-top: -4px; color: #FFFFFF;">Add Medical</a>&nbsp;
+                <a th:href="@{/medicals/export/csv}" class="btn btn-primary btn-sm pull-center"
+                    style="margin-top: -4px; color: #FFFFFF;">Export to CSV </a>
+                &nbsp;<a th:href="@{/medicals/export/excel}" class="btn btn-primary btn-sm pull-center"
+                    style="margin-top: -4px; color: #FFFFFF;">Export to Spread Excel </a>
+
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-special table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="hideable-column">
+                                <th th:replace="fragments :: column_link5('id', 'Medical ID', 'tag')" />
+                            <th class="hideable-column">
+                                <th th:replace="fragments :: column_link5('client_info', 'Client Info', 'tag')" />
+                                <th th:replace="fragments :: column_link5('applicant', 'Applicant', 'none')" />
+                                <th
+                                    th:replace="fragments :: column_link5('medical_center', 'Medical Center', 'none')" />
+                                <th th:replace="fragments :: column_link5('medical_type', 'Medical Type', 'none')" />
+                                <th th:replace="fragments :: column_link5('user1', 'User', 'none')" />
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="medical : ${listMedicals}">
+                            <td class="hideable-column">[[${medical.id}]]</td>
+                            <td class="hideable-column">[[${medical.client_info}]]</td>
+                            <td>[[${medical.applicant.identification}+' :
+                                '+${medical.applicant.firstName}+'
+                                '+${medical.applicant.lastName}]]</td>
+                            <td>[[${medical.medical_center}]]</td>
+                            <td>[[${medical.medical_type}]]</td>
+                            <td>[[${medical.user1.firstName}+'
+                                '+${medical.user1.lastName}]]</td>
+
+                            <td>
+                                <a class="fas fa-file-alt icon-green mr-4"
+                                    th:href="@{'/medicals/view/' + ${medical.id}}" title="Edit this medical"></a>
+                                <a class="far fa-edit icon-green mr-4" th:href="@{'/medicals/edit/' + ${medical.id}}"
+                                    title="Edit this medical"></a>
+                                <a class="far fa-trash-alt icon-red link-delete"
+                                    th:href="@{'/medicals/delete/' + ${medical.id}}" th:medicalId="${medical.id}"
+                                    title="Delete this medical"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="12">
+                                <div th:if="${totalItems > 0}">
+                                    <span>Showing medicals # [[${startCount}]] to [[${endCount}]] of
+                                        [[${totalItems}]]</span>
+                                </div>
+                                <div class="text-center m-1" th:unless="${totalItems > 0}">
+                                    <span>No medicals found!</span>
+                                </div>
+
+                                <div th:if="${totalPages > 1}">
+                                    <nav>
+                                        <ul class="pagination justify-content-center flex-wrap">
+                                            <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                                                <a th:replace="fragments :: page_link5(1, 'First')"></a>
+                                            </li>
+
+                                            <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                                                <a
+                                                    th:replace="fragments :: page_link5(${currentPage - 1}, 'Previous')"></a>
+                                            </li>
+
+                                            <li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+                                                th:each="i : ${#numbers.sequence(1, totalPages)}">
+                                                <a th:replace="fragments :: page_link5(${i}, ${i})"></a>
+                                            </li>
+
+                                            <li
+                                                th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                                <a th:replace="fragments :: page_link5(${currentPage + 1}, 'Next')"></a>
+                                            </li>
+
+                                            <li
+                                                th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                                <a th:replace="fragments :: page_link5(${totalPages}, 'Last')"></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div id="snackbar">You have a new Bill</div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <div class="less-details">
         <div th:each="medical : ${listMedicals}" class="row m-1">
             <div class="col-8">
                 <div>[[${medical.applicant.identification}+' :
-                    '+${medical.applicant.firstName}+' 
+                    '+${medical.applicant.firstName}+'
                     '+${medical.applicant.lastName}]]</div>
                 <div>[[${medical.medical_center}]]</div>
                 <div class="mt-2">
                     <a class="fas fa-file-alt icon-green mr-4" th:href="@{'/medicals/view/' + ${medical.id}}"
-                    title="Edit this medical"></a>
+                        title="Edit this medical"></a>
                     <a class="far fa-edit icon-green mr-4" th:href="@{'/medicals/edit/' + ${medical.id}}"
                         title="Edit this medical"></a>
                     <a class="far fa-trash-alt icon-red link-delete" th:href="@{'/medicals/delete/' + ${medical.id}}"
@@ -84,41 +146,41 @@
             </div>
             <div>&nbsp;</div>
         </div>
-    </div>
-    </div>
 
-    <div class="text-center m-1" th:if="${totalItems > 0}">
-        <span>Showing medicals # [[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
-    </div>
-    <div class="text-center m-1" th:unless="${totalItems > 0}">
-        <span>No medicals found!</span>
-    </div>
 
-    <div th:if="${totalPages > 1}">
-        <nav>
-            <ul class="pagination justify-content-center flex-wrap">
-                <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-                    <a th:replace="fragments :: page_link5(1, 'First')"></a>
-                </li>
+        <div class="text-center m-1" th:if="${totalItems > 0}">
+            <span>Showing medicals # [[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
+        </div>
+        <div class="text-center m-1" th:unless="${totalItems > 0}">
+            <span>No medicals found!</span>
+        </div>
 
-                <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-                    <a th:replace="fragments :: page_link5(${currentPage - 1}, 'Previous')"></a>
-                </li>
+        <div th:if="${totalPages > 1}">
+            <nav>
+                <ul class="pagination justify-content-center flex-wrap">
+                    <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                        <a th:replace="fragments :: page_link5(1, 'First')"></a>
+                    </li>
 
-                <li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
-                    th:each="i : ${#numbers.sequence(1, totalPages)}">
-                    <a th:replace="fragments :: page_link5(${i}, ${i})"></a>
-                </li>
+                    <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                        <a th:replace="fragments :: page_link5(${currentPage - 1}, 'Previous')"></a>
+                    </li>
 
-                <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-                    <a th:replace="fragments :: page_link5(${currentPage + 1}, 'Next')"></a>
-                </li>
+                    <li th:class="${currentPage != i ? 'page-item' : 'page-item active'}"
+                        th:each="i : ${#numbers.sequence(1, totalPages)}">
+                        <a th:replace="fragments :: page_link5(${i}, ${i})"></a>
+                    </li>
 
-                <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-                    <a th:replace="fragments :: page_link5(${totalPages}, 'Last')"></a>
-                </li>
-            </ul>
-        </nav>
+                    <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                        <a th:replace="fragments :: page_link5(${currentPage + 1}, 'Next')"></a>
+                    </li>
+
+                    <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                        <a th:replace="fragments :: page_link5(${totalPages}, 'Last')"></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 
     <div class="modal fade text-center" id="confirmModal">
@@ -143,24 +205,24 @@
 
     <div th:replace="fragments :: footer"></div>
 
-    </div>
-    <script th:src="@{/js/common.js}"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".link-delete").on("click", function (e) {
-                e.preventDefault();
-                link = $(this);
-                // alert($(this).attr("href"));
-                medicalId = link.attr("medicalId");
-                $("#yesButton").attr("href", link.attr("href"));
-                $("#confirmText").text("Are you sure you want to delete this ID " + medicalId + "?");
-                $("#confirmModal").modal();
-            });
+</div>
+<script th:src="@{/js/common.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".link-delete").on("click", function (e) {
+            e.preventDefault();
+            link = $(this);
+            // alert($(this).attr("href"));
+            medicalId = link.attr("medicalId");
+            $("#yesButton").attr("href", link.attr("href"));
+            $("#confirmText").text("Are you sure you want to delete this ID " + medicalId + "?");
+            $("#confirmModal").modal();
         });
+    });
 
-        function clearFilter() {
-            window.location = "[[@{/medicals}]]";
-        }
-    </script>
+    function clearFilter() {
+        window.location = "[[@{/medicals}]]";
+    }
+</script>
 
 </html>

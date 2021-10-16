@@ -10,6 +10,11 @@
             <h2>[[${pageTitle}]]</h2>
         </div>
     </div>
+    <div class="col-rt-2">
+        <ul>
+            <li><a th:href="@{/trainings}">Back to trainings list page</a></li>
+        </ul>
+    </div>
     <form enctype="multipart/form-data" th:action="@{/trainings/save}" method="post"
         style="max-width: 700px; margin: 0 auto;" th:object="${training}">
         <input type="hidden" th:field="*{id}" />
@@ -63,17 +68,34 @@
             </div>
 
             <div class="form-group">
+                <div class="col-sm-12">
+                    <label for="inputAttachments">Trainning attachment</label>
+                </div>
+                <div class="col-sm-12">
+                    <input type="hidden" th:field="*{photos}" />
+                    <input type="file" name="image" id="fileImage" class="form-control valid"
+                        aria-invalid="false" accept="image/png, image/jpeg, image/jpg, image/pdf">
+                    <div id="fileUploadsContainer"></div>
+                </div>
+            </div>
+
+            <div class="form-group" style="display: none">
                 <label class="col-form-label login">Assign To *</label>
                 <div class="">
-                    <select th:field="*{user5}" class="form-control" required>
+                    <select th:field="*{user5}" class="form-control input" required>
                         <th:block th:each="cat : ${listUsers}">
-                            <option th:text="${cat.firstName}+' '+${cat.lastName}" th:value="${cat.id}" />
+                            <option th:text="${cat.firstName}+' '+${cat.lastName}" th:value="${#request.userPrincipal.principal.id}" />
                         </th:block>
                     </select>
                 </div>
             </div>
 
-
+            <div class="form-group">
+                <label class="col-form-label login" style="text-align: right;">Created By</label>
+                <div class="">
+                    <input type="text" th:value="${#request.userPrincipal.principal.fullname}" class="form-control input" required readonly="readonly" />
+                </div>
+            </div>
 
             <div class="text-center">
                 <a th:href="@{/trainings}" class="btn btn-secondary m-3"> Cancel </a>

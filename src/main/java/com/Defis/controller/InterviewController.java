@@ -42,7 +42,7 @@ public class InterviewController {
 	@GetMapping("/interviews")
 	public String listFirstPage(Model model) {
 		
-		return listByPage(1, model, "applicant", "asc", null);
+		return listByPage(1, model, "id", "asc", null);
 	}
 	
 	@GetMapping("/interviews/page/{pageNum}")
@@ -124,7 +124,7 @@ public class InterviewController {
 
 	private String getRedirectURLToAffectedInterview(Interview interview) {
 		Integer interviewId = interview.getId();
-		return "redirect:/interview/page/1?sortField=id&sortDir=asc&keyword=" + interviewId;
+		return "redirect:/interviews/page/1?sortField=id&sortDir=asc&keyword=" + interviewId;
 	}
 	
 	@GetMapping("/interviews/edit/{id}")

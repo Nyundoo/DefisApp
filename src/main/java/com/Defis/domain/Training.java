@@ -36,6 +36,9 @@ public class Training {
 	private BigInteger cert_no;
 
 	private boolean t_status = false;
+	
+	@Column(length = 64)
+	private String photos;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id5")
@@ -107,6 +110,14 @@ public class Training {
 
 	public void setUser5(User user5) {
 		this.user5 = user5;
+	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
 
 }

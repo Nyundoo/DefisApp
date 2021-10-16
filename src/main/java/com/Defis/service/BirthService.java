@@ -14,7 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.Defis.domain.Birth;
-import com.Defis.domain.Medical;
 import com.Defis.exception.BirthNotFoundException;
 import com.Defis.repository.BirthRepository;
 

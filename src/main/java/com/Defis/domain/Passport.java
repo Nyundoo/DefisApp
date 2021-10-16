@@ -37,6 +37,9 @@ public class Passport {
 
 	@Column(name = "pass_reception_date", length = 16, nullable = true)
 	private Date pass_reception_date;
+	
+	@Column(length = 64)
+	private String photos;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id3")
@@ -114,6 +117,14 @@ public class Passport {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
 
 }

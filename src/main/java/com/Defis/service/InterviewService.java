@@ -29,7 +29,7 @@ public class InterviewService {
 	
 	
 	public List<Interview> listAll()	{
-		return (List<Interview>) interviewRepo.findAll(Sort.by("applicant").ascending());
+		return (List<Interview>) interviewRepo.findAll(Sort.by("id").ascending());
 		
 	}
 	

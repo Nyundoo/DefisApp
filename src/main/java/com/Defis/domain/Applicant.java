@@ -29,7 +29,7 @@ public class Applicant {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(length = 8, nullable = false, unique = false)
+	@Column(length = 12, nullable = false, unique = false)
 	private Integer identification;
 
 	@Column(length = 3, nullable = false, unique = false)
@@ -40,7 +40,7 @@ public class Applicant {
 
 	@Column(name = "last_name", length = 45, nullable = false)
 	private String lastName;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "applicants_jobs", joinColumns = @JoinColumn(name = "applicant_id"), inverseJoinColumns = @JoinColumn(name = "job_id"))
 	private Set<Jobs> jobs = new HashSet<>();
@@ -68,15 +68,21 @@ public class Applicant {
 
 	@Column(length = 45, nullable = false, unique = false)
 	private String contact;
-	
+
 	@Column(length = 720, nullable = true)
 	private String education;
-	
+
 	@Column(length = 720, nullable = true)
 	private String experience;
 
 	@Column(length = 64)
 	private String photos;
+
+	@Column(length = 64)
+	private String full_photos;
+
+	@Column(length = 64)
+	private String id_photos;
 
 	@ManyToOne
 	@JoinColumn(name = "agent_id")
@@ -84,22 +90,20 @@ public class Applicant {
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "applicant")
 	private Medical medical;
-	
+
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "applicant")
 	private Medical tickets;
-	
+
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "applicant")
 	private Medical training;
 
 	@OneToMany(mappedBy = "applicant", cascade = CascadeType.ALL)
 	private List<ApplicantDetails> details = new ArrayList<>();
-	
-	
 
 	public Applicant() {
 	}
 
-	public Applicant( String firstName, String lastName, String email) {
+	public Applicant(String firstName, String lastName, String email) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -264,8 +268,8 @@ public class Applicant {
 
 	public void setDetails(List<ApplicantDetails> details) {
 		this.details = details;
-	}	
-	
+	}
+
 	public Medical getTickets() {
 		return tickets;
 	}
@@ -286,12 +290,31 @@ public class Applicant {
 		this.villageName = villageName;
 	}
 
-	public void addDetail(String cname, Integer ccontact, Integer cnational_id, String crelationship, String ccurrent_residence) {
+	public String getFull_photos() {
+		return full_photos;
+	}
+
+	public void setFull_photos(String full_photos) {
+		this.full_photos = full_photos;
+	}
+
+	public String getId_photos() {
+		return id_photos;
+	}
+
+	public void setId_photos(String id_photos) {
+		this.id_photos = id_photos;
+	}
+
+	public void addDetail(String cname, Integer ccontact, Integer cnational_id, String crelationship,
+			String ccurrent_residence) {
 		this.details.add(new ApplicantDetails(cname, ccontact, cnational_id, crelationship, ccurrent_residence, this));
 	}
 
-	public void setDetail(Integer id, String cname, Integer ccontact, Integer cnational_id, String crelationship, String ccurrent_residence) {
-		this.details.add(new ApplicantDetails(id, cname, ccontact, cnational_id, crelationship, ccurrent_residence, this));
+	public void setDetail(Integer id, String cname, Integer ccontact, Integer cnational_id, String crelationship,
+			String ccurrent_residence) {
+		this.details
+				.add(new ApplicantDetails(id, cname, ccontact, cnational_id, crelationship, ccurrent_residence, this));
 	}
 
 	@Transient
@@ -301,7 +324,7 @@ public class Applicant {
 
 		return "/applicant-photos/" + this.id + "/" + this.photos;
 	}
-	
+
 	@Transient
 	public String getFullName() {
 		return firstName + " " + lastName;

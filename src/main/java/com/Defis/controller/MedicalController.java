@@ -3,6 +3,7 @@ package com.Defis.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Applicant;
@@ -25,6 +30,7 @@ import com.Defis.exporter.MedicalPDFExporter;
 import com.Defis.repository.ApplicantRepository;
 import com.Defis.repository.UserRepository;
 import com.Defis.service.MedicalService;
+import com.Defis.utility.FileUploadUtil;
 
 @Controller
 public class MedicalController {
@@ -95,18 +101,35 @@ public class MedicalController {
 	}
 	
 	@PostMapping("/medicals/save")
-	public String saveMedical(Medical medical,
-			Integer applicant,
-			RedirectAttributes redirectAttributes) throws IOException {
-
+	public String saveJob(@ModelAttribute("applicant") Medical medical, 
+			RedirectAttributes redirectAttributes,
+			@RequestParam("image") MultipartFile multipartFile, 
+			HttpServletRequest request) throws IOException {
 		
+		if(!multipartFile.isEmpty()) {	
+			
+			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+			medical.setPhotos(fileName);
+			
+			Medical savedMedical = service.save(medical);
+			
+			String uploadDir = "medical-photos/" + savedMedical.getId();
+			
+			FileUploadUtil.cleanDir(uploadDir);
+			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		}else {				
+			
+			
+			if (medical.getPhotos().isEmpty()) medical.setPhotos(null);
+			
+			
+			
 			service.save(medical);
-			
-			
-			redirectAttributes.addFlashAttribute("message", "The medical record has been saved successfully!");
-			
-			return getRedirectURLToAffectedMedical(medical);		
-	
+		}
+				
+		redirectAttributes.addFlashAttribute("message", "The job has been saved successfully!");
+		
+		return getRedirectURLToAffectedMedical(medical);
 	}
 
 	private String getRedirectURLToAffectedMedical(Medical medical) {

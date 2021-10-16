@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity(name = "Jobs")
@@ -23,7 +25,7 @@ public class Jobs {
 
 	@Column(name = "job_title", length = 45, nullable = false)
 	private String jobTitle;
-	
+
 	private boolean pay = false;
 
 	@Column(length = 10, nullable = true)
@@ -31,25 +33,29 @@ public class Jobs {
 
 	@Column(name = "job_description", columnDefinition = "text", nullable = true)
 	private String jobDescription;
-	
+
 	@Column(length = 750, nullable = true)
 	private String skills;
-	
+
 	@Column(length = 750, nullable = true)
 	private String objective;
-	
+
 	@Column(name = "interview_date", length = 10, nullable = false)
 	private Date interviewDate;
 
-	@Column(name = "no_vacancy", length = 45, nullable = false)
+	@Column(name = "no_vacancy", length = 45, nullable = true)
 	private Integer noVacancy;
 
 	@Column(name = "date_posted", length = 10, nullable = false)
-	private Date datePosted;	
-	
+	private Date datePosted;
+
 	@Column(length = 64)
 	private String photos;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "user_id10")
+	private User user9;
+
 	public Jobs() {
 	}
 
@@ -58,7 +64,7 @@ public class Jobs {
 	}
 
 	public Jobs(Integer id, String country, String jobTitle, boolean pay, double payment, String jobDescription,
-			 Date interviewDate, Integer noVacancy, Date datePosted) {
+			Date interviewDate, Integer noVacancy, Date datePosted) {
 		this.id = id;
 		this.country = country;
 		this.jobTitle = jobTitle;
@@ -156,7 +162,7 @@ public class Jobs {
 
 	public void setDatePosted(Date datePosted) {
 		this.datePosted = datePosted;
-	}	
+	}
 
 	public String getPhotos() {
 		return photos;
@@ -165,7 +171,15 @@ public class Jobs {
 	public void setPhotos(String photos) {
 		this.photos = photos;
 	}
-	
+
+	public User getUser9() {
+		return user9;
+	}
+
+	public void setUser9(User user9) {
+		this.user9 = user9;
+	}
+
 	@Transient
 	public String getPhotosImagePath() {
 		if (id == null || photos == null)

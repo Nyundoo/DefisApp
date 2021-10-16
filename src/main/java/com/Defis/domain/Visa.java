@@ -32,6 +32,9 @@ public class Visa {
 
 	@Column(name = "visa_reception_date", length = 16, nullable = true)
 	private Date visa_reception_date;
+	
+	@Column(length = 64)
+	private String photos;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id4")
@@ -93,6 +96,14 @@ public class Visa {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
 
 }

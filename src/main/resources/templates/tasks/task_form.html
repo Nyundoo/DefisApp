@@ -10,6 +10,11 @@
             <h2>[[${pageTitle}]]</h2>
         </div>
     </div>
+    <div class="col-rt-2">
+        <ul>
+            <li><a th:href="@{/tasks}">Back to tasks list page</a></li>
+        </ul>
+    </div>
     <form enctype="multipart/form-data" th:action="@{/tasks/save}" method="post"
         style="max-width: 700px; margin: 0 auto;" th:object="${task}">
         <input type="hidden" th:field="*{id}" />

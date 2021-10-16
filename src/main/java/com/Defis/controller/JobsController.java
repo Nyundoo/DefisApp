@@ -22,10 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Defis.domain.Jobs;
+import com.Defis.domain.User;
 import com.Defis.exception.JobsNotFoundException;
 import com.Defis.exporter.JobsCsvExporter;
 import com.Defis.exporter.JobsExcelExporter;
 import com.Defis.exporter.JobsPDFExporter;
+import com.Defis.repository.UserRepository;
 import com.Defis.service.JobsService;
 import com.Defis.utility.FileUploadUtil;
 
@@ -33,6 +35,9 @@ import com.Defis.utility.FileUploadUtil;
 public class JobsController {
 	@Autowired
 	private JobsService service;
+	
+	@Autowired
+	private UserRepository userRepo;
 	
 	@GetMapping("/jobss")
 	public String listFirstPage(Model model) {
@@ -81,7 +86,11 @@ public class JobsController {
 		
 		Jobs jobs = new Jobs();
 		
-		model.addAttribute("jobs", jobs);
+		List<User> listUsers = (List<User>) userRepo.findAll();
+		
+		model.addAttribute("jobs", jobs);		
+
+		model.addAttribute("listUsers", listUsers);
 
 		model.addAttribute("pageTitle", "Create New Job");
 		
@@ -132,8 +141,11 @@ public class JobsController {
 			RedirectAttributes redirectAttributes) {
 		try {
 		Jobs jobs = service.get(id);
+
+		List<User> listUsers = (List<User>) userRepo.findAll();
 		
-		
+
+		model.addAttribute("listUsers", listUsers);
 		model.addAttribute("jobs", jobs);
 		model.addAttribute("pageTitle", "Edit Job (ID: " + id + ")");
 		
