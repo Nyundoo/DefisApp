@@ -29,7 +29,6 @@ public class JobsPDFExporter extends AbstractExporter {
 		
 		Font font =FontFactory.getFont(FontFactory.HELVETICA_BOLD);
 		font.setSize(18);
-		font.setColor(Color.BLUE);
 		
 		Paragraph paragraph = new Paragraph("List of Job", font);
 		paragraph.setAlignment(Paragraph.ALIGN_CENTER);
@@ -64,12 +63,10 @@ public class JobsPDFExporter extends AbstractExporter {
 
 	private void writeTableHeader(PdfPTable table) {
 		PdfPCell cell = new PdfPCell();
-		cell.setBackgroundColor(Color.BLUE);
 		cell.setPadding(5);
 		
 		Font font = FontFactory.getFont(FontFactory.HELVETICA);
 		font.setSize(14);
-		font.setColor(Color.WHITE);
 		
 		cell.setPhrase(new Phrase("ID", font));				
 		table.addCell(cell);

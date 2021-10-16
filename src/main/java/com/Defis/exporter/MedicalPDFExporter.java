@@ -28,7 +28,6 @@ public class MedicalPDFExporter extends AbstractExporter {
 		
 		Font font =FontFactory.getFont(FontFactory.HELVETICA_BOLD);
 		font.setSize(18);
-		font.setColor(Color.BLUE);
 		
 		Paragraph paragraph = new Paragraph("List of Medical", font);
 		paragraph.setAlignment(Paragraph.ALIGN_CENTER);
@@ -63,13 +62,10 @@ public class MedicalPDFExporter extends AbstractExporter {
 
 	private void writeTableHeader(PdfPTable table) {
 		PdfPCell cell = new PdfPCell();
-		cell.setBackgroundColor(Color.BLUE);
 		cell.setPadding(5);
 		
 		Font font = FontFactory.getFont(FontFactory.HELVETICA);
 		font.setSize(14);
-		font.setColor(Color.WHITE);
-		
 		cell.setPhrase(new Phrase("Applicant Id", font));				
 		table.addCell(cell);
 		
